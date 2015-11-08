@@ -1,0 +1,10 @@
+{
+  "applications": {
+    "AdherencePillProject": {
+      "applicationId": "BDo39lSOtPuBwDfq0EBDgIjTzztIQE38Fuk03EcR"
+    },
+    "_default": {
+      "link": "AdherencePillProject"
+    }
+  }
+}
