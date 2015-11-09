@@ -1,0 +1,53 @@
+<html>
+	<head>
+		<title>My Profile</title>
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link href='https://fonts.googleapis.com/css?family=Pathway+Gothic+One&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+    	<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+    	<script src="//www.parsecdn.com/js/parse-1.6.7.min.js"></script>
+    	<script src="js/myprofile.js"/>
+		<div id="new-header">
+			<script>
+        		$("#new-header").load("header.html");
+      		</script>
+		</div>
+	</head>
+	<body>
+		<form id="profile" name="profile" target="_self" method="post" action="profile.html" onSubmit="return editMyProfile(this)">
+			My Profile
+			<div id="username">
+			</div>
+			<div id="password">
+				password: <input type="password" name="password"/><br>
+				confirm password: <input type="password" name="confirmPassword"/>
+			</div>
+			<div id="email">
+			</div>
+			<input type="submit" name="save" class="button" id="login" value="Save" />
+			<a href="home.html">cancel</a>
+		</form>
+		<script type="text/javascript">
+			var username = getUsername();
+			$("#username").html("username: " + username);
+			var email = getEmail();
+			var emailTag = 'email: <input type="text" name="email" value="' + email + '">';
+			$("#email").html(emailTag);
+		</script>
+		<script type="text/javascript">
+			function editMyProfile(form){
+				var passwd = form['password'].value;
+				var cpassword = form['confirmPassword'].value;
+				var email = form['email'].value;
+				if(passwd === cpassword){
+					saveChanges(passwd, email, "home.html");
+				}else{
+					alert("Please make sure your passwords match");
+					event.preventDefault();
+				}
+			}
+		</script>
+	</body>
+</html>
