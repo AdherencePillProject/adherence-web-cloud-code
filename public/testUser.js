@@ -11,6 +11,7 @@ user.set("phone", "415-392-0202");
 user.signUp(null, {
   success: function(user) {
     // Hooray! Let them use the app now.
+    window.location("/dashboard.html");
   },
   error: function(user, error) {
     // Show the error message somewhere and let the user try again.
