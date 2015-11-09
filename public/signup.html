@@ -17,7 +17,7 @@
   <script type="text/javascript" src="js/atooltip.jquery.js"></script>
   <script type="text/javascript" src="js/script.js"></script>
   <script src="//www.parsecdn.com/js/parse-1.6.7.min.js"></script>
-  <script type="text/javascript" src="js/parse_required.js"></script>
+  <script type="text/javascript" src="js/userSignup.js"></script>
 
 </head>
 
@@ -369,7 +369,7 @@ else if(!chkEmail(reg.Email.value))
 else
 {
   patient = CreateNewPatient(reg['UserName'].value, reg['UserPassword'].value, reg['Email'].value, "1234567890");
-  saveNewPatient(patient, "login.html");
+  saveNewPatient(patient, "login.html", "login.html");
   return true;
 }
 }

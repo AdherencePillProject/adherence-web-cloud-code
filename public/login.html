@@ -5,7 +5,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>Smartcap Homepage</title>
         <script src="//www.parsecdn.com/js/parse-1.6.7.min.js"></script>
-        <script type="text/javascript" src="js/parse_required.js"></script>
+        <script type="text/javascript" src="js/userAuthentication.js"></script>
         <style type="text/css">
             body {
                 background: #7fbbdb ;
@@ -171,10 +171,15 @@
                     </p>
 
                     <p>
-                        <a href="SignUp.php">
+                        <a href="signup.html">
                             <input name="Signup" type="button" class="button" value="Signup" /></a>
                         <input type="submit" name="Login" class="button" id="login" value="Log In" />
 
+                    </p>
+                    <p>
+                        <a href="forgotpassword.html">
+                            Forgot Password
+                        </a>
                     </p>
 
                 </form>
@@ -183,8 +188,7 @@
         </div>
          <script type="text/javascript">
             function authenticate(form){
-                userAuthenticate(form.account.value, form.password.value);
-                return true;
+                userAuthenticate(form.account.value, form.password.value, "home.html");
             }
         </script>
     </body>

@@ -23,7 +23,7 @@ function saveNewPatient(patient, redirectUrl) {
 		success: function(user) {
 			// Hooray! Let them use the app now.
 			alert("Successfully registered");
-			//window.location.replace(redirectUrl);
+			window.location.replace(redirectUrl);
 		},
 		error: function(user, error) {
 			// Show the error message somewhere and let the user try again.
@@ -31,16 +31,4 @@ function saveNewPatient(patient, redirectUrl) {
 		}
 	});
 	event.preventDefault();
-}
-
-function userAuthenticate(username, password) {
-	Parse.User.logIn(username, password, {
-		success: function(user) {
-			alert("You have successfully logged in!");
-		},
-		error: function(user, error) {
-			alert("Invalid username/password combination");
-		}
-	});
-	event.preventDefault();	
 }
