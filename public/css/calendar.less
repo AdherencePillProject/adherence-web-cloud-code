@@ -4,8 +4,8 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
 /* 
-    Created on : Nov 2, 2015, 5:29:55 PM
-    Author     : frezmecritus
+	Created on : Nov 2, 2015, 5:29:55 PM
+	Author     : frezmecritus
 */
 
 body { font-family:Arial; font-size:14px; }
@@ -21,7 +21,7 @@ body>span, body>h1 {
 span { color:#888888;
 	>b { color:black; }
 }
-            
+			
 .vertical-centre (@height) { 
 	height:@height;
 	line-height:@height !important;
@@ -34,32 +34,78 @@ span { color:#888888;
 	-moz-box-sizing:border-box;
 }
 
+.border-radius {
+	border-radius: 8px;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+}
+
 #calendar { 
 	@border-colour:#CCC;
 	@secondary-colour:#2875C7;
-	@spacing:10px;            
+	@spacing:20px;            
 	@icon-width:40px;
-	@header-height:40px;
+	@header-height:60px;
 	
-	float:left;
-	display:block;
+	width:400px;
+	height: auto;
+	background: @secondary-colour;
+	padding: 5px 0px;
+	/*clear: both;*/
+	/*display:block;*/
+	overflow: visible;
+	margin: 7% auto;	
 	.border-box;
-	background:white;
-	width:300px;
+	.border-radius;	
 	border:solid 1px @border-colour;
-	margin-bottom:10px;
+	/*box-shadow: 0px 5px 0px @secondary-colour;*/
+	position: relative;
 	
 	>div {
-		>div.header { float:left; width:100%; background:@secondary-colour; height:@header-height; color:white;
+		>div.header {
+			width:100%;
+			background:@secondary-colour;
+			height:@header-height;
+			color:white;
+
 			>* { .vertical-centre(@header-height); }
-			>i { float:left; width:@icon-width; font-size:1.125em; font-weight:bold; position:relative; .border-box; padding:0 @spacing; cursor:pointer; }
+			>i {
+				width:@icon-width;
+				font-size:1.125em;
+				font-weight:bold;
+				position:relative;
+				.border-box;
+				padding:0 @spacing;
+				cursor:pointer; }
 			>i.fa-angle-left { text-align:left; }
 			>i.fa-angle-right { text-align:right; margin-left:@icon-width*-1; }
-			>span { float:left; width:100%; font-weight:bold; text-transform:uppercase; .border-box; padding-left:@icon-width+@spacing; margin-left:@icon-width*-1; text-align:center; padding-right:@icon-width; color:inherit; }
+			>span {
+				width:100%;
+				font-weight:bold;
+				text-transform:uppercase;
+				.border-box;
+				padding-left:@icon-width+@spacing;
+				margin-left:@icon-width*-1;
+				text-align:center;
+				padding-right:@icon-width;
+				color:inherit; }
 		}
-		>div.week { float:left; width:100%; border-top:solid 1px @border-colour;
+		>div.week {
+			width:100%;
+			border-top:solid 1px @border-colour;
+
 			&:first-child { border-top:none; }
-			>span.day { float:left; width:100%/7; .border-box; border-left:solid 1px @border-colour; font-size:0.75em; text-align:center; .vertical-centre(30px); background:white; cursor:pointer; color:black;
+			>span.day {
+				width:100%/7;
+				.border-box;
+				border-left:solid 1px @border-colour;
+				font-size:0.75em;
+				text-align:center;
+				.vertical-centre(40px);
+				background:white;
+				cursor:pointer;
+				color:black;
+
 				&:first-child { border-left:none; }
 				&.today { background:#E3F2FF; }
 				&.different-month { color:#C0C0C0; }
