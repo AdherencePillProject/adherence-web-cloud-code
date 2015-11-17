@@ -5,15 +5,15 @@
 		<meta name="viewport" content="width=device-width" />
 		<title>Calendar</title>
 		
-        <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.css" />
-        <link rel="stylesheet" type="text/less" href="css/calendar.less" />
+		<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.css" />
+		<link rel="stylesheet" type="text/less" href="css/calendar.less" />
 
 		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/react/0.12.2/react.js"></script>
 		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/react/0.12.2/JSXTransformer.js"></script>
 		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/less.js/1.7.5/less.min.js"></script>
 		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
-        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.3/moment.min.js"></script>
-        
+		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.3/moment.min.js"></script>
+		
 		<script type="text/jsx">
 			var Calendar = React.createClass({
 				getInitialState: function() {
@@ -53,18 +53,18 @@
 				
 				renderWeeks: function() {
 					var weeks = [],
-                    	done = false,
+						done = false,
 						date = this.state.month.clone().startOf("month").add("w" -1).day("Sunday"),
 						monthIndex = date.month(),
 						count = 0;
 						
 						
-                    while (!done) {
+					while (!done) {
 						weeks.push(<Week key={date.toString()} date={date.clone()} month={this.state.month} select={this.select} selected={this.props.selected} />);
-                        date.add(1, "w");
-                        done = count++ > 2 && monthIndex !== date.month();
-                        monthIndex = date.month();
-                    }
+						date.add(1, "w");
+						done = count++ > 2 && monthIndex !== date.month();
+						monthIndex = date.month();
+					}
 					
 					return weeks;
 				},
@@ -94,19 +94,19 @@
 						date = this.props.date,
 						month = this.props.month;
 						
-                    for (var i = 0; i < 7; i++) {
-                        var day = {
-                            name: date.format("dd").substring(0, 1),
-                            number: date.date(),
-                            isCurrentMonth: date.month() === month.month(),
-                            isToday: date.isSame(new Date(), "day"),
-                            date: date
-                        };
+					for (var i = 0; i < 7; i++) {
+						var day = {
+							name: date.format("dd").substring(0, 1),
+							number: date.date(),
+							isCurrentMonth: date.month() === month.month(),
+							isToday: date.isSame(new Date(), "day"),
+							date: date
+						};
 						days.push(<span key={day.date.toString()} className={"day" + (day.isToday ? " today" : "") + (day.isCurrentMonth ? "" : " different-month") + (day.date.isSame(this.props.selected) ? " selected" : "")} onClick={this.props.select.bind(null, day)}>{day.number}</span>);
-                        date = date.clone();
-                        date.add(1, "d");
+						date = date.clone();
+						date.add(1, "d");
 						
-                    }
+					}
 					
 					return <div className="week" key={days[0].toString()}>
 						{days}
@@ -119,6 +119,6 @@
 	</head>
 	<body>
 		<!-- <h1>Calendar</h1> -->
-        <div id="calendar"></div>
+		<div id="calendar"></div>
 	</body>
 </html>

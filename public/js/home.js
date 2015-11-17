@@ -4,19 +4,25 @@
  * and open the template in the editor.
  */
 
-
+$(function(){
+	taskState([100,50,20,null]);
+});
 
 function taskState(stateArray) {
-    var threshold = 50;
-    var list = $('.list');
-    var first = $('.list')[0];
-//    list.each(function(i){
-//       console.log(i + $(this).attr('class')); 
-//    });
-	console.log($(first).attr('class'));
-    stateArray.forEach(function(value,i) {
-//        if (value==100)
-//            $(list)[i].;
-        console.log(value + ' ' + i);
-    });
+	var threshold = 50;
+	var list = $('.list');
+
+	var newClass;
+	stateArray.forEach(function(value,i) {
+		if(value==null)
+			newClass = 'list uncheck';
+		else if (value==100)
+			newClass = 'list done';
+		else if (value >= threshold)
+			newClass = 'list halfdone';
+		else
+			newClass = 'list notdone';
+
+		$(list[i]).attr('class', newClass);
+	});
 }
