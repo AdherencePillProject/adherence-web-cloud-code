@@ -10,8 +10,8 @@
     <script src="//www.parsecdn.com/js/parse-1.6.7.min.js"></script>
 	<script src="js/addPrescription.js"></script>
 	<div id="new-header">
-		<script>
-		$("#new-header").load("header.html");
+		<script type="text/javascript">
+			$("#new-header").load("header.html");
 		</script>
 	</div>
 </head>
@@ -25,12 +25,8 @@
 				<td colspan="2">Add New Prescription</td>
 			</tr>
 			<tr>
-				<td>first name:</td>
-				<td><input type="text" name="doctor_first_name"/></td>
-			</tr>
-			<tr>
-				<td>last name: </td>
-				<td><input type="text" name="doctor_last_name"/></td>
+				<td>Doctor's email:</td>
+				<td><input type="text" name="doctor_email"/></td>
 			</tr>
 			<tr>		
 				<td>pharmacy: </td>
@@ -92,8 +88,7 @@
 			prescriptionDetails.times_per_day = Number(form['times_per_day'].value);
 
 			var prescription = new Object();
-			prescription.doctor_first_name = form['doctor_first_name'];
-			prescription.doctor_last_name = form['doctor_last_name'];
+			prescription.doctor_email = form['doctor_email'];
 			prescription.details = prescriptionDetails;
 
 			addPrescription(null, prescription);

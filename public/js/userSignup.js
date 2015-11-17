@@ -2,7 +2,7 @@
 Parse.initialize("BDo39lSOtPuBwDfq0EBDgIjTzztIQE38Fuk03EcR", "ox76Y4RxB06A69JWAleRHSercHKomN2FVu61dfu3");
 
 // This function will create a new patient.
-function CreateNewPatient(username, password, email, phone) {
+function CreateNewPatient(username, password, email, phone, firstname, lastname) {
 	var patient = new Object();
 	patient.username = username;
 	patient.password = password;
@@ -14,7 +14,7 @@ function CreateNewPatient(username, password, email, phone) {
 // Save the patient to Parse
 function saveNewPatient(patient, redirectUrl) {
 	var user = new Parse.User();
-	user.set("username", patient.username);
+	user.set("username", patient.email);
 	user.set("password", patient.password);
 	user.set("email", patient.email);
 	user.set("phone", patient.phone);

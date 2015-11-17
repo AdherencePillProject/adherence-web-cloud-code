@@ -8,7 +8,7 @@ function userAuthenticate(username, password, redirectUrl) {
 			window.location.replace(redirectUrl);
 		},
 		error: function(user, error) {
-			alert("Invalid username/password combination");
+			alert("Invalid username/password combination" + error.code + " " + error.message);
 		}
 	});
 	event.preventDefault();	

@@ -78,7 +78,7 @@
           <form name="reg" action="signup.html" method="post" onSubmit="return docheck()">
             <table width="90%" border="0">
               <tr>
-                <td width="50%" align="right" height="25"><font face="Arial, Helvetica, sans-serif">User Name:  </font></td>
+                <td width="50%" align="right" height="25"><font face="Arial, Helvetica, sans-serif">E-mail (Username):  </font></td>
                 <td id="inputx" width="50%" align="left" height="25">
                  <input type="text" name="UserName"> <span>*</span>
                  <br>
@@ -86,10 +86,6 @@
                </td>
              </tr>
              <tr>
-              <td width="50%" align="right" height="25" >Patient ID:  </td>
-              <td width="50%" align="left" height="25"> <input type="text" name="PID" class="inputbox" onfocus="myFunction(this)"></td> <span><img src="images/waiting_loading.gif" alt=""></span>
-            </tr>
-            <tr>
               <td width="50%" align="right" height="25">Password:  </td>
               <td width="50%" align="left" height="25"> <input type="password" name="UserPassword"></td>
             </tr>
@@ -98,151 +94,159 @@
               <td width="50%" align="left" height="25"> <input type="password" name="CUserPassword"></td>
             </tr>
             <tr>
-              <td width="50%" align="right" height="25">Gender:  </td>
-              <td width="50%" align="left" height="25"> <input type="radio" name="Sex" value="0" checked>Male <input type="radio" name="Sex" value="1">Female</td>
-            </tr>
-            <tr>
-              <td width="50%" align="right" height="25">E-mail:  </td>
-              <td width="50%" align="left" height="25"> <input type="text" name="Email"></td>
-            </tr>
-          </table>
-          <p>
-            <input type="submit" name="sub" value="Submit">
-            <input type="reset" name="res" value="Clear">
-          </p>
-        </form>
+              <td width="50%" align="right" height="25"><font face="Arial, Helvetica, sans-serif">Firstname: </font></td>
+              <td id="inputx" width="50%" align="left" height="25">
+               <input type="text" name="FirstName"> <span>*</span>
+             </td>
+           </tr>
+           <tr>
+              <td width="50%" align="right" height="25"><font face="Arial, Helvetica, sans-serif">Lastname: </font></td>
+              <td id="inputx" width="50%" align="left" height="25">
+               <input type="text" name="LastName"> <span>*</span>
+             </td>
+           </tr>
+           <tr>
+            <td width="50%" align="right" height="25">Gender:  </td>
+            <td width="50%" align="left" height="25"> <input type="radio" name="Sex" value="0" checked>Male <input type="radio" name="Sex" value="1">Female</td>
+          </tr>
+        </table>
+        <p>
+          <input type="submit" name="sub" value="Submit">
+          <input type="reset" name="res" value="Clear">
+        </p>
+      </form>
 
-      </div>
     </div>
-    <!-- footer -->
-
-
-    <footer>
-      <div class="wrapper">
-        <a href="Home.html" id="footer_logo"><span>Smart</span>Cap</a>
-        <ul id="icons">
-          <li><a href="#" class="normaltip" title="Facebook"><img src="images/icon1.gif" alt=""></a></li>
-          <li><a href="#" class="normaltip" title="Twitter"><img src="images/icon2.gif" alt=""></a></li>
-          <li><a href="#" class="normaltip" title="Linkedin"><img src="images/icon3.gif" alt=""></a></li>
-        </ul>
-      </div>
-      <div class="wrapper">
-        <nav>
-          <ul id="footer_menu">
-            <li class="active"><a href="index.html">Home</a></li>
-            <li><a href="Mission.html">Our Mission</a></li>
-            <li><a href="News.html">News &amp; Press</a></li>
-            <li><a href="Help.html">Information</a></li>
-            <li class="end"><a href="Contact.html">Contact</a></li>
-          </ul>
-        </nav>
-        <div class="tel"><span>+1 800</span>123 45 67</div>
-      </div>
-      <div id="footer_text">
-        <a rel="nofollow" href="#" target="_blank">Related Website</a> Add other related website1<br>
-        <a rel="nofollow" href="#" target="_blank">website2</a>
-      </div>
-    </footer>
-    <!-- / footer -->
-
-
   </div>
+  <!-- footer -->
 
-  <style>
-  /*new 9.4*/
-  .error {color: #FF0000;}
-  /*background*/
-  /* Getting the new tags to behave */
-  header,meter, nav, article,footer {display:block}
-  .wrapper {width:100%;overflow:hidden}/*all wrapper*/
-  /* Global properties ======================================================== */
-  body {background: #f0fff0  top center repeat;border:0;font:14px "Trebuchet MS", Arial, Helvetica, sans-serif;color:#575652;line-height:22px}
 
-  /* Global Structure ============================================================= */
-  .main {margin:0 auto;width:940px}
-  .body1 {background: #f0fff0 top repeat-x}
-  /* ============================= main layout ====================== */
-  a {color:#575652;text-decoration:underline;outline:none}
-  a:hover {text-decoration:none}
-  /* ============================= main layout ====================== */
-  a {color:#575652;text-decoration:underline;outline:none}
-  a:hover {text-decoration:none}
-  h1 {float:left;padding:0 0 0 0}
-  .buttons {
-    margin-bottom:10px;
-    background-color:#D6D6D6;
-    font-family:Verdana;
-    font-weight:light;
-    font-size:10px;
-    color: black;
-    text-align:relative;
-    font-weight:bold;
-    position:relative;
-    width:70px;
-    height:30px;
-    border-radius: 9px;
-    border-width: 1px;
-    border-color:rgb(169, 169, 169);
-    /*border-top-color:#747474;*/
-    /*box-shadow: inset 0 0 10px #333;*/
-    -webkit-box-shadow: inset -1px -1px 8px #888, inset 1px -1px 8px #888, inset 0 6px 8px 0px #FFFFFF;
-  }
-  h3 {font-size:35px;color:#dad6cc;font-weight:400;line-height:1.2em;padding:25px 0 0 35px;float:left;letter-spacing:-1px}
-  p {padding-bottom:22px}
-  strong {color:#dcd9cf}
+  <footer>
+    <div class="wrapper">
+      <a href="Home.html" id="footer_logo"><span>Smart</span>Cap</a>
+      <ul id="icons">
+        <li><a href="#" class="normaltip" title="Facebook"><img src="images/icon1.gif" alt=""></a></li>
+        <li><a href="#" class="normaltip" title="Twitter"><img src="images/icon2.gif" alt=""></a></li>
+        <li><a href="#" class="normaltip" title="Linkedin"><img src="images/icon3.gif" alt=""></a></li>
+      </ul>
+    </div>
+    <div class="wrapper">
+      <nav>
+        <ul id="footer_menu">
+          <li class="active"><a href="index.html">Home</a></li>
+          <li><a href="Mission.html">Our Mission</a></li>
+          <li><a href="News.html">News &amp; Press</a></li>
+          <li><a href="Help.html">Information</a></li>
+          <li class="end"><a href="Contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="tel"><span>+1 800</span>123 45 67</div>
+    </div>
+    <div id="footer_text">
+      <a rel="nofollow" href="#" target="_blank">Related Website</a> Add other related website1<br>
+      <a rel="nofollow" href="#" target="_blank">website2</a>
+    </div>
+  </footer>
+  <!-- / footer -->
 
-  /*banner*/
-  /* ============================= header ====================== */
-  header {}
-  #menu {background:#000;width:935px;height:30px;float:right;padding:10px 12px 20px 10px}
-  #menu li {float:left;padding-left:1px}
-  #menu li a {display:block;padding:0 20px;height:42px;font-size:18px;color:#dad6cc;line-height:42px;text-transform:uppercase;text-decoration:none;font-weight:400}
-  #menu li a:hover, #menu #menu_active a {background:url(images/menu_active.gif) top repeat-x;color:#fff}
-  #top_nav {float:right;padding:40px 37px 0 575px}
-  #top_logo {float:left;font-size:60px;font-weight:360;text-transform:uppercase;color:#dedbd2;line-height:1.2em;text-decoration:none;letter-spacing:-3px;margin-left:-4px}
-  #top_nav li {float:left;padding:4px 26px 5px 0;margin-right:25px;background: right 0 no-repeat}
-  #top_nav .end {padding-right:0;margin-right:0;background:none}
-  .slider {position:relative; z-index:2;width:100%;height:465px;overflow:hidden;margin-bottom:10px}
-  .slider .items {display:none} /*deside display of slides, with js*/
-  .pic {float:right;position:relative}
-  .mask {left:auto !important;right:0;width:720px !important}
 
-  .pagination {position:absolute;left:0;top:0;z-index:3}
-  .pagination li {width:250px;height:155px}
-  .pagination a {display:block;position:relative;cursor:pointer;padding:29px 0 0 33px;font-size:50px;line-height:1.2em;font-weight:400;color:#fff;text-decoration:none;text-transform:uppercase;letter-spacing:-1px;height:126px}
-  .pagination a span {display:block;font-weight:300;font-size:30px;line-height:1.2em;margin-top:-10px;letter-spacing:0}
-  #banner1 {background:url(images/banner1.png) 0 0 no-repeat}
-  #banner1 a {background:url(images/banner1_active.png) -250px 0 no-repeat}
-  #banner2 {background:url(images/banner2.png) 0 0 no-repeat}
-  #banner2 a {background:url(images/banner2_active.png) -250px 0 no-repeat}
-  #banner3 {background:url(images/banner3.png) 0 0 no-repeat}
-  #banner3 a {background:url(images/banner3_active.png) -250px 0 no-repeat}
-  .pagination #banner1:hover, .pagination #banner1.current, .pagination #banner2:hover, .pagination #banner2.current, .pagination #banner3:hover, .pagination #banner3.current {}
-  .banner {position:absolute;z-index:1;right:0;bottom:0;margin:0 10px 10px 0}
-  .banner span {float:right;padding:0 32px;margin-bottom:5px;background:#000;font-size:40px;line-height:56px;height:56px;font-weight:400;color:#dad6cc;line-height:1.2em}
-  .banner em {font-style:normal;text-transform:uppercase}
-  .banner strong {float:right;padding:0 32px;background:#000;font-size:40px;line-height:56px;font-weight:300;color:#dad6cc}
+</div>
 
-  /* ============================= content ====================== */
-  .register_info{float:center;margin: 10px 20px 20px 10px; width:800px; height:500px}
-  #retitle{font-family:"Trebuchet MS" Arial, Helvetica, sans-serif;
-  font-size: 25px;
+<style>
+/*new 9.4*/
+.error {color: #FF0000;}
+/*background*/
+/* Getting the new tags to behave */
+header,meter, nav, article,footer {display:block}
+.wrapper {width:100%;overflow:hidden}/*all wrapper*/
+/* Global properties ======================================================== */
+body {background: #f0fff0  top center repeat;border:0;font:14px "Trebuchet MS", Arial, Helvetica, sans-serif;color:#575652;line-height:22px}
+
+/* Global Structure ============================================================= */
+.main {margin:0 auto;width:940px}
+.body1 {background: #f0fff0 top repeat-x}
+/* ============================= main layout ====================== */
+a {color:#575652;text-decoration:underline;outline:none}
+a:hover {text-decoration:none}
+/* ============================= main layout ====================== */
+a {color:#575652;text-decoration:underline;outline:none}
+a:hover {text-decoration:none}
+h1 {float:left;padding:0 0 0 0}
+.buttons {
+  margin-bottom:10px;
+  background-color:#D6D6D6;
+  font-family:Verdana;
+  font-weight:light;
+  font-size:10px;
+  color: black;
+  text-align:relative;
+  font-weight:bold;
+  position:relative;
+  width:70px;
+  height:30px;
+  border-radius: 9px;
+  border-width: 1px;
+  border-color:rgb(169, 169, 169);
+  /*border-top-color:#747474;*/
+  /*box-shadow: inset 0 0 10px #333;*/
+  -webkit-box-shadow: inset -1px -1px 8px #888, inset 1px -1px 8px #888, inset 0 6px 8px 0px #FFFFFF;
+}
+h3 {font-size:35px;color:#dad6cc;font-weight:400;line-height:1.2em;padding:25px 0 0 35px;float:left;letter-spacing:-1px}
+p {padding-bottom:22px}
+strong {color:#dcd9cf}
+
+/*banner*/
+/* ============================= header ====================== */
+header {}
+#menu {background:#000;width:935px;height:30px;float:right;padding:10px 12px 20px 10px}
+#menu li {float:left;padding-left:1px}
+#menu li a {display:block;padding:0 20px;height:42px;font-size:18px;color:#dad6cc;line-height:42px;text-transform:uppercase;text-decoration:none;font-weight:400}
+#menu li a:hover, #menu #menu_active a {background:url(images/menu_active.gif) top repeat-x;color:#fff}
+#top_nav {float:right;padding:40px 37px 0 575px}
+#top_logo {float:left;font-size:60px;font-weight:360;text-transform:uppercase;color:#dedbd2;line-height:1.2em;text-decoration:none;letter-spacing:-3px;margin-left:-4px}
+#top_nav li {float:left;padding:4px 26px 5px 0;margin-right:25px;background: right 0 no-repeat}
+#top_nav .end {padding-right:0;margin-right:0;background:none}
+.slider {position:relative; z-index:2;width:100%;height:465px;overflow:hidden;margin-bottom:10px}
+.slider .items {display:none} /*deside display of slides, with js*/
+.pic {float:right;position:relative}
+.mask {left:auto !important;right:0;width:720px !important}
+
+.pagination {position:absolute;left:0;top:0;z-index:3}
+.pagination li {width:250px;height:155px}
+.pagination a {display:block;position:relative;cursor:pointer;padding:29px 0 0 33px;font-size:50px;line-height:1.2em;font-weight:400;color:#fff;text-decoration:none;text-transform:uppercase;letter-spacing:-1px;height:126px}
+.pagination a span {display:block;font-weight:300;font-size:30px;line-height:1.2em;margin-top:-10px;letter-spacing:0}
+#banner1 {background:url(images/banner1.png) 0 0 no-repeat}
+#banner1 a {background:url(images/banner1_active.png) -250px 0 no-repeat}
+#banner2 {background:url(images/banner2.png) 0 0 no-repeat}
+#banner2 a {background:url(images/banner2_active.png) -250px 0 no-repeat}
+#banner3 {background:url(images/banner3.png) 0 0 no-repeat}
+#banner3 a {background:url(images/banner3_active.png) -250px 0 no-repeat}
+.pagination #banner1:hover, .pagination #banner1.current, .pagination #banner2:hover, .pagination #banner2.current, .pagination #banner3:hover, .pagination #banner3.current {}
+.banner {position:absolute;z-index:1;right:0;bottom:0;margin:0 10px 10px 0}
+.banner span {float:right;padding:0 32px;margin-bottom:5px;background:#000;font-size:40px;line-height:56px;height:56px;font-weight:400;color:#dad6cc;line-height:1.2em}
+.banner em {font-style:normal;text-transform:uppercase}
+.banner strong {float:right;padding:0 32px;background:#000;font-size:40px;line-height:56px;font-weight:300;color:#dad6cc}
+
+/* ============================= content ====================== */
+.register_info{float:center;margin: 10px 20px 20px 10px; width:800px; height:500px}
+#retitle{font-family:"Trebuchet MS" Arial, Helvetica, sans-serif;
+font-size: 25px;
+line-height: 30px;
+color: #333333;
+float:center;margin: 10px 20px 20px 10px; width:800px; height:30px}
+td, th {
+  font-family:"Trebuchet MS" Arial, Helvetica, sans-serif;
+  font-size: 18px;
   line-height: 30px;
-  color: #333333;
-  float:center;margin: 10px 20px 20px 10px; width:800px; height:30px}
-  td, th {
-    font-family:"Trebuchet MS" Arial, Helvetica, sans-serif;
-    font-size: 18px;
-    line-height: 30px;
-    color: #333333
-  }
-  #inputx{margin-right:10px}
-  /* ============================= footer ====================== */
-  footer {background:#000;padding:21px 36px 44px}
-  #footler_logo {float:left;font-size:46px;font-weight:300;text-transform:uppercase;color:#dedbd2;line-height:1.2em;text-decoration:none;letter-spacing:-3px;margin-left:-4px}
-  #footer_logo span {color:#ffc11e}
-  #icons {float:right;padding:20px 0 0 0}
-  #icons li {float:left;padding-left:4px}
+  color: #333333
+}
+#inputx{margin-right:10px}
+/* ============================= footer ====================== */
+footer {background:#000;padding:21px 36px 44px}
+#footler_logo {float:left;font-size:46px;font-weight:300;text-transform:uppercase;color:#dedbd2;line-height:1.2em;text-decoration:none;letter-spacing:-3px;margin-left:-4px}
+#footer_logo span {color:#ffc11e}
+#icons {float:right;padding:20px 0 0 0}
+#icons li {float:left;padding-left:4px}
 /* Tooltips
 .aToolTip {background:#ffc11e;color:#fff;font-weight:bold;margin:0;padding:2px 10px 3px;font-size:11px;position:absolute;line-height:17px}
 .aToolTip .aToolTipContent {position:relative;margin:0;padding:0}*/
@@ -331,9 +335,9 @@ function docheck()
     alert("Please Enter your user name");
     return false;
   }
-  else if(!IsValid())
+  else if(!chkEmail(reg.UserName.value))
   {
-    alert("Invalid user name. Please just include digits and character");
+    alert("Invalid user name. Please enter a valid email");
     return false;
   }
   else if(reg.PID.value=="")
@@ -361,14 +365,9 @@ else if(reg.Email.value =="")
   alert("Please enter you E-mail");
   return false;
 }
-else if(!chkEmail(reg.Email.value))
-{
-  alert("Invalid E-mail");
-  return false;
-}
 else
 {
-  patient = CreateNewPatient(reg['UserName'].value, reg['UserPassword'].value, reg['Email'].value, "1234567890");
+  patient = CreateNewPatient(reg['UserName'].value, reg['UserPassword'].value, reg['Email'].value, "1234567890", reg['FirstName'].value, reg['LastName'].value);
   saveNewPatient(patient, "login.html", "login.html");
   return true;
 }

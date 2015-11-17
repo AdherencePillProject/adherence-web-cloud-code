@@ -46,13 +46,6 @@ function saveChanges(passwd, email, redirectUrl) {
 			alert("Error: " + error.code + " " + error.message);
 		}
 	});
-	var sessionToken = user.getSessionToken();
-	Parse.User.become(sessionToken).then(function(user) {
-		// The current user is now set to user.
-		window.location.replace(redirectUrl);
-	}, function(error) {
-		// The token could not be validated.
-		alert("Error: " + error.code + " " + error.message);
-	});
+	window.location.replace(redirectUrl);
 	event.preventDefault();
 }
