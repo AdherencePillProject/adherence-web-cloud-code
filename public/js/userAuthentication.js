@@ -6,7 +6,6 @@ function userAuthenticate(username, password, redirectUrl) {
 		success: function(user) {
 			alert("You have successfully logged in!");
 			window.location.replace(redirectUrl);
-			
 		},
 		error: function(user, error) {
 			alert("Invalid username/password combination");

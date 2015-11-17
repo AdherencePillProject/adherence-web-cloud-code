@@ -4,7 +4,7 @@ Parse.initialize("BDo39lSOtPuBwDfq0EBDgIjTzztIQE38Fuk03EcR", "ox76Y4RxB06A69JWAl
 function loggedInUser() {
 	Parse.Cloud.run('loggedInUser', {}, {
 		success: function(user) {
-			alert("Current user is: " + user.getUsername());
+			//alert("Current user is: " + user.getUsername());
 		},
 		error: function(error) {
 			alert("Error: " + error.message);

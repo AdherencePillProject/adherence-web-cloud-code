@@ -7,8 +7,14 @@ function getUsername() {
 		window.location.replace("login.html");
 		event.preventDefault();
 	} else {
-		return Parse.User.current().getUsername();
+		user.fetch(null, {
+			success: function(user) {},
+			error: function(user, error) {
+				alert("Error: " + error.code + " " + error.message);
+			}
+		});
 	}
+	return user.getUsername();
 }
 
 function getEmail() {
@@ -17,8 +23,14 @@ function getEmail() {
 		alert("Please login first");
 		window.location.replace("login.html");
 	} else {
-		return Parse.User.current().getEmail();
+		user.fetch(null, {
+			success: function(user) {},
+			error: function(user, error) {
+				alert("Error: " + error.code + " " + error.message);
+			}
+		});
 	}
+	return user.getEmail();;
 }
 
 function saveChanges(passwd, email, redirectUrl) {
@@ -29,11 +41,18 @@ function saveChanges(passwd, email, redirectUrl) {
 		success: function(user) {
 			// The save was successful.
 			alert("Your profile has been successfully changed.");
-			window.location.replace(redirectUrl);
 		},
 		error: function(user, error) {
 			alert("Error: " + error.code + " " + error.message);
 		}
+	});
+	var sessionToken = user.getSessionToken();
+	Parse.User.become(sessionToken).then(function(user) {
+		// The current user is now set to user.
+		window.location.replace(redirectUrl);
+	}, function(error) {
+		// The token could not be validated.
+		alert("Error: " + error.code + " " + error.message);
 	});
 	event.preventDefault();
 }

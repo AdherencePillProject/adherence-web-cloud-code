@@ -2,12 +2,13 @@
 <head>
 	<title>Add My Prescription</title>
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="css/index.css">
+	<link rel="stylesheet" type="text/css" href="css/home.css">
 	<link href='https://fonts.googleapis.com/css?family=Pathway+Gothic+One&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script type="text/javascript" src="js/index.js"></script>
+	<script type="text/javascript" src="js/home.js"></script>
 	<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
-	<script src="//www.parsecdn.com/js/parse-1.6.7.min.js"></script>
+    <script src="//www.parsecdn.com/js/parse-1.6.7.min.js"></script>
+	<script src="js/addPrescription.js"></script>
 	<div id="new-header">
 		<script>
 		$("#new-header").load("header.html");
@@ -18,7 +19,7 @@
 	<div id="prescription">
 
 	</div>
-	<form id="addPrescription" name="addPrescription" target="_self" method="post" action="prescription.html" onSubmit="return addMyPrescription(this)">
+	<form id="addFormPrescription" name="addPrescription" target="_self" method="post" action="prescription.html" onSubmit="return addMyPrescription(this)">
 		<table>
 			<tr>
 				<td colspan="2">Add New Prescription</td>
@@ -74,5 +75,29 @@
 			</tr>
 		</table>
 	</form>
+	<script type="text/javascript">
+		function addMyPrescription(form){
+			var pill = new Object();
+			pill.name = form['pill_name'].value;
+			pill.description = form['pill_description'].value;
+			pill.weight_per_pill = Number(form['pill_weight'].value);
+			pill.image = null;
+
+			var prescriptionDetails = new Object();
+			prescriptionDetails.pill = pill;
+			prescriptionDetails.pills_per_time = Number(form['pills_per_time'].value);
+			prescriptionDetails.pills_total = Number(form['pills_total'].value);
+			prescriptionDetails.start_time = new Date(form['start_time'].value);
+			prescriptionDetails.stop_time = new Date(form['stop_time'].value);
+			prescriptionDetails.times_per_day = Number(form['times_per_day'].value);
+
+			var prescription = new Object();
+			prescription.doctor_first_name = form['doctor_first_name'];
+			prescription.doctor_last_name = form['doctor_last_name'];
+			prescription.details = prescriptionDetails;
+
+			addPrescription(null, prescription);
+		}
+	</script>
 </body>
 </html>
