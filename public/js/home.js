@@ -5,6 +5,7 @@
  */
 
 $(function(){
+	$('#page2').hide();
 	taskState([100,50,20,null]);
 });
 

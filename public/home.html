@@ -1,17 +1,24 @@
+<!DOCTYPE html>
 <html>
 	<head>
 		<meta name="viewport" content="width=device-width" />
 		<title>checklist</title>
-		<!-- <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"> -->
 		<link rel="stylesheet" type="text/less" href="css/home.less">
+		<link rel="stylesheet" type="text/less" href="css/calendar.less" />
+		<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.css" />
 		<link href='https://fonts.googleapis.com/css?family=Pathway+Gothic+One&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
 		
+		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/react/0.12.2/react.js"></script>
+		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/react/0.12.2/JSXTransformer.js"></script>
 		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/less.js/1.7.5/less.min.js"></script>
+		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
+		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.3/moment.min.js"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-		<!--<script type="text/javascript" src="View/js/bootstrap.min.js"></script>-->
 		<script type="text/javascript" src="js/home.js"></script>
+		<script type="text/jsx" src="js/calendar.js"></script>
 		<!-- <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script> -->
 		<script src="//www.parsecdn.com/js/parse-1.6.7.min.js"></script>
+
 <!-- 		<div id="new-header">
 			<script>
 				$("#new-header").load("header.html");
@@ -22,13 +29,29 @@
 	<body>
 		<div class="board">
 			<div class="papers">
-				<div class="list uncheck"><p class="word">BREAKFAST</p></div>
-				<div class="list uncheck"><p class="word">LUNCH</p></div>
-				<div class="list uncheck"><p class="word">DINNER</p></div>
-				<div class="list uncheck"><p class="word">BEFORE BED</p></div>
+				<div id='page1'>
+					<div class="list uncheck"><p class="word">BREAKFAST</p></div>
+					<div class="list uncheck"><p class="word">LUNCH</p></div>
+					<div class="list uncheck"><p class="word">DINNER</p></div>
+					<div class="list uncheck"><p class="word">BEFORE BED</p></div>
+				</div>
+				<div id="page2">
+					<div id="calendar"></div>
+				</div>
 			</div>
+			<div id="changeView">To Calendar</div>
 		</div>
 		<script type="text/javascript">
+		$('#changeView').click(function(){
+			if($('#page1').css('opacity') == '1') {
+				$('#page1').animate({opacity:0}, 800, function(){$('#page1').toggle();});
+				$('#page2').animate({opacity:1}, 800, function(){$('#page2').fadeIn();});
+			}
+			else {
+				$('#page2').animate({opacity:0}, 800, function(){$('#page2').toggle();});
+				$('#page1').animate({opacity:1}, 800, function(){$('#page1').fadeIn();});
+			}
+		});
 		$('.word').click(function(){
 			var list = $(this).parent().siblings();
 			if($(list).css('opacity') == '1') {
@@ -41,3 +64,4 @@
 		</script>
 	</body>
 </html>
+
