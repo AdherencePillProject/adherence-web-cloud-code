@@ -12,16 +12,35 @@ function CreateNewPatient(username, password, email, phone, firstname, lastname)
 }
 
 // Save the patient to Parse
+function saveNewUser(user){
+
+
+}
 function saveNewPatient(patient, redirectUrl) {
 	var user = new Parse.User();
 	user.set("username", patient.email);
 	user.set("password", patient.password);
 	user.set("email", patient.email);
 	user.set("phone", patient.phone);
-
+	user.set("firstname", patient.firstname);
+	user.set("lastname", patient.lastname);
+	if(patient.sex == 0){
+		user.set("geneder", "Male");
+	}else if(patient.sex == 1){
+		user.set("gender", "Female");
+	}
+	
 	user.signUp(null, {
 		success: function(user) {
 			// Hooray! Let them use the app now.
+			Parse.Cloud.run('setUserRole', { accountType: patient.accountType }, {
+		  		success: function(ratings) {
+		  			alert("The user role has been successfully set to " + patient.accountType);
+		  		},
+		  		error: function(error) {
+		  			alert("Failed to set user role to " + patient.accountType + " " + error.code + " " + error.message);
+		  		}
+			});
 			alert("Successfully registered");
 			window.location.replace(redirectUrl);
 		},

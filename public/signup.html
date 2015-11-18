@@ -94,6 +94,16 @@
               <td width="50%" align="left" height="25"> <input type="password" name="CUserPassword"></td>
             </tr>
             <tr>
+              <td width="%50" align="right" height="25">Account Type:</td>
+              <td>
+                <select name="Account_type" id="AccountType">
+                  <option>Patient</option>
+                  <option>Doctor</option>
+                  <option>Pharmacy</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
               <td width="50%" align="right" height="25"><font face="Arial, Helvetica, sans-serif">Firstname: </font></td>
               <td id="inputx" width="50%" align="left" height="25">
                <input type="text" name="FirstName"> <span>*</span>
@@ -108,6 +118,12 @@
            <tr>
             <td width="50%" align="right" height="25">Gender:  </td>
             <td width="50%" align="left" height="25"> <input type="radio" name="Sex" value="0" checked>Male <input type="radio" name="Sex" value="1">Female</td>
+          </tr>
+          <tr>
+            <td width="50%" align="right" height="25">Phone:  </td>
+            <td width="50%" align="left" height="25"> 
+              <input type="text" name="Phone">
+            </td>
           </tr>
         </table>
         <p>
@@ -340,11 +356,11 @@ function docheck()
     alert("Invalid user name. Please enter a valid email");
     return false;
   }
-  else if(reg.PID.value=="")
-  {
-    alert("Please enter your Patient ID");
-    return false;
-  }
+  // else if(reg.PID.value=="")
+  // {
+  //   alert("Please enter your Patient ID");
+  //   return false;
+  // }
 /*else if(!chkPID())
 {
 alert("Invalid Patient ID. Please just include digits" + " "+patientID+"stop");
@@ -360,15 +376,22 @@ else if(reg.UserPassword.value != reg.CUserPassword.value)
   alert("Conflict between two password");
   return false;
 }
-else if(reg.Email.value =="")
+else if(reg.UserName.value =="")
 {
   alert("Please enter you E-mail");
   return false;
 }
 else
 {
-  patient = CreateNewPatient(reg['UserName'].value, reg['UserPassword'].value, reg['Email'].value, "1234567890", reg['FirstName'].value, reg['LastName'].value);
-  saveNewPatient(patient, "login.html", "login.html");
+  var user = new Object();
+  user.password = reg['UserPassword'].value;
+  user.email = reg['UserName'].value;
+  user.accountType = reg['AccountType'].value;
+  user.firstname = reg['FirstName'].value;
+  user.lastname = reg['LastName'].value;
+  user.gender = reg['Sex'].value;
+  user.phone = reg['Phone'].value;
+  saveNewPatient(user, "login.html", "login.html");
   return true;
 }
 }
