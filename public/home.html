@@ -29,6 +29,7 @@
 	<body>
 		<div class="board">
 			<div class="papers">
+				<i class="fa fa-calendar fa-2x" id="changeView"></i>
 				<div id='page1'>
 					<div class="list uncheck"><p class="word">BREAKFAST</p></div>
 					<div class="list uncheck"><p class="word">LUNCH</p></div>
@@ -39,28 +40,33 @@
 					<div id="calendar"></div>
 				</div>
 			</div>
-			<div id="changeView">To Calendar</div>
 		</div>
 		<script type="text/javascript">
+		var changeViewDelay = 400;
+		var wordDelay = 400;
+		var toggleDelay = 600;
 		$('#changeView').click(function(){
 			if($('#page1').css('opacity') == '1') {
-				$('#page1').animate({opacity:0}, 800, function(){$('#page1').toggle();});
-				$('#page2').animate({opacity:1}, 800, function(){$('#page2').fadeIn();});
+				$('#page1').animate({opacity:0}, changeViewDelay, function(){$('#page1').toggle();});
+				$('#page2').animate({opacity:1}, changeViewDelay, function(){$('#page2').fadeIn();});
 			}
 			else {
-				$('#page2').animate({opacity:0}, 800, function(){$('#page2').toggle();});
-				$('#page1').animate({opacity:1}, 800, function(){$('#page1').fadeIn();});
+				$('#page2').animate({opacity:0}, changeViewDelay, function(){$('#page2').toggle();});
+				$('#page1').animate({opacity:1}, changeViewDelay, function(){$('#page1').fadeIn();});
 			}
 		});
 		$('.word').click(function(){
 			var list = $(this).parent().siblings();
 			if($(list).css('opacity') == '1') {
-				$(list).animate({opacity:0}, 800, function(){$(this).toggle(800);});
+				$(list).animate({opacity:0}, wordDelay, function(){$(this).toggle(toggleDelay);});
 			}
 			else {
-				$(list).toggle(800).animate({opacity:1});
+				$(list).toggle(toggleDelay).animate({opacity:1});
 			}
-		 });
+		});
+		// $('.day').click(function(){
+			// alert('day!');
+		// });
 		</script>
 	</body>
 </html>
