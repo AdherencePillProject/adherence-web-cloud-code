@@ -11,43 +11,59 @@ function CreateNewPatient(username, password, email, phone, firstname, lastname)
 	return patient;
 }
 
-// Save the patient to Parse
-function saveNewUser(user){
-
-
-}
-function saveNewPatient(patient, redirectUrl) {
-	var user = new Parse.User();
-	user.set("username", patient.email);
-	user.set("password", patient.password);
-	user.set("email", patient.email);
-	user.set("phone", patient.phone);
-	user.set("firstname", patient.firstname);
-	user.set("lastname", patient.lastname);
-	if(patient.sex == 0){
-		user.set("geneder", "Male");
-	}else if(patient.sex == 1){
-		user.set("gender", "Female");
+// Save the new user to Parse
+function saveNewUser(user, accountType, additionalInfo, redirectUrl){
+	var newUser = new Parse.User();
+	newUser.set("username", user.email);
+	newUser.set("password", user.password);
+	newUser.set("email", user.email);
+	newUser.set("phone", user.phone);
+	newUser.set("firstname", user.firstname);
+	newUser.set("lastname", user.lastname);
+	if(user.gender == 0){
+		newUser.set("geneder", "Male");
+	}else if(user.gender == 1){
+		newUser.set("gender", "Female");
 	}
 	
-	user.signUp(null, {
-		success: function(user) {
+	newUser.signUp(null, {
+		success: function(newUser) {
 			// Hooray! Let them use the app now.
-			Parse.Cloud.run('setUserRole', { accountType: patient.accountType }, {
-		  		success: function(ratings) {
-		  			alert("The user role has been successfully set to " + patient.accountType);
+			Parse.Cloud.run('setUserRole', { accountType: user.accountType }, {
+		  		success: function(role) {
+		  			alert("The user role has been successfully set to " + user.accountType);
 		  		},
 		  		error: function(error) {
-		  			alert("Failed to set user role to " + patient.accountType + " " + error.code + " " + error.message);
+		  			alert("Failed to set user role to " + user.accountType + " " + error.code + " " + error.message);
 		  		}
 			});
 			alert("Successfully registered");
-			window.location.replace(redirectUrl);
 		},
-		error: function(user, error) {
+		error: function(newUser, error) {
 			// Show the error message somewhere and let the user try again.
 			alert("Error: " + error.code + " " + error.message);
 		}
 	});
+
+	if(accountType.toLowerCase() == "patient"){
+		Parse.Cloud.run('setPatient', { username: newUser.getUsername() }, {
+		  	success: function(newUser) {
+		  		alert("The paient is successfully set");
+		  	},
+		  	error: function(error) {
+		  		alert("Failed to set patient " + error.code + " " + error.message);
+		  	}
+		});
+	}else if(accountType.toLowerCase() == "doctor"){
+		newUser.set("userType", ["Doctor"]);
+		var doctor = new Parse.Object("Doctor");
+		doctor.set("address", additionalInfo.address);
+		doctor.set("hospitalCity", additionalInfo.hospitalCity);
+		doctor.set("hospitalName", additionalInfo.hospitalName);
+		doctor.save();
+	}else if(accountType.toLowerCase() == "pharmacy"){
+		newUser.set("userType", ["PharmacyStuff"]);
+	}
+	// window.location.replace(redirectUrl);
 	event.preventDefault();
 }

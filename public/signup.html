@@ -96,7 +96,7 @@
             <tr>
               <td width="%50" align="right" height="25">Account Type:</td>
               <td>
-                <select name="Account_type" id="AccountType">
+                <select name="Account_type" id="AccountType" onchange="changeType()">
                   <option>Patient</option>
                   <option>Doctor</option>
                   <option>Pharmacy</option>
@@ -125,6 +125,34 @@
               <input type="text" name="Phone">
             </td>
           </tr>
+          <tbody id="doctor" style="display:none">
+            <tr>
+              <td width="50%" align="right" height="25">Hospital Name:  </td>
+              <td width="50%" align="left" height="25"> 
+                <input type="text" name="hospitalName">
+              </td>
+            </tr>
+            <tr>
+              <td width="50%" align="right" height="25">Hospital City:  </td>
+              <td width="50%" align="left" height="25"> 
+                <input type="text" name="hospitalCity">
+              </td>
+            </tr>
+            <tr>
+              <td width="50%" align="right" height="25">Address:  </td>
+              <td width="50%" align="left" height="25"> 
+                <input type="text" name="address">
+              </td>  
+            </tr>
+          </tbody>
+          <tbody id="pharmacy" style="display:none">
+            <tr>
+              <td width="50%" align="right" height="25">Pharmacy Name:  </td>
+              <td width="50%" align="left" height="25"> 
+                <input type="text" name="pharmacyName">
+              </td>
+            </tr>
+          </tbody>
         </table>
         <p>
           <input type="submit" name="sub" value="Submit">
@@ -391,9 +419,28 @@ else
   user.lastname = reg['LastName'].value;
   user.gender = reg['Sex'].value;
   user.phone = reg['Phone'].value;
-  saveNewPatient(user, "login.html", "login.html");
+
+  if(user.accountType.toLowerCase() == "patient"){
+    saveNewUser(user, "Patient", null, "login.html"); 
+  }else if(user.accountType.toLowerCase() == "doctor"){
+    var doctor = new Object();
+    doctor.hospitalName = reg['hospitalName'].value;
+    doctor.address = reg['address'].value;
+    doctor.hospitalCity = reg['hospitalCity'].value;
+    saveNewUser(user, "Doctor", doctor, "login.html"); 
+  }
   return true;
 }
+}
+function changeType(){
+  var accountType = document.getElementById("AccountType").value;
+  if(accountType=="Doctor"){
+    document.getElementById("doctor").style.display = "block";
+    document.getElementById("pharmacy").style.display = "none";
+  }else if(accountType="Pharmacy"){
+    document.getElementById("doctor").style.display = "none";
+    document.getElementById("pharmacy").style.display = "block";
+  }
 }
 </script>
 </body>

@@ -3,6 +3,7 @@ Parse.initialize("BDo39lSOtPuBwDfq0EBDgIjTzztIQE38Fuk03EcR", "ox76Y4RxB06A69JWAl
 
 function userAuthenticate(username, password, redirectUrl) {
 	Parse.User.logIn(username, password, {
+		var event = window.event;
 		success: function(user) {
 			alert("You have successfully logged in!");
 			window.location.replace(redirectUrl);
