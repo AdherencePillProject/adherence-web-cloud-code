@@ -64,6 +64,6 @@ function saveNewUser(user, accountType, additionalInfo, redirectUrl){
 	}else if(accountType.toLowerCase() == "pharmacy"){
 		newUser.set("userType", ["PharmacyStuff"]);
 	}
-	// window.location.replace(redirectUrl);
+	window.location.replace(redirectUrl);
 	event.preventDefault();
 }
