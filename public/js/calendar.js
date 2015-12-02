@@ -78,6 +78,13 @@ var DayNames = React.createClass({
 });
 	
 var Week = React.createClass({
+	onClick: function() {
+		// this.props.select.bind(null, day);
+		// alert('jjj');
+		$('#page2').animate({opacity:0}, changeViewDelay, function(){$('#page2').toggle();});
+		$('#page1').animate({opacity:1}, changeViewDelay, function(){$('#page1').fadeIn();});
+		// this.setState({ showResults: this.state.showResults? false : true });
+	},
 	render: function() {
 		var days = [],
 			date = this.props.date,
@@ -94,7 +101,8 @@ var Week = React.createClass({
 			days.push(
 				<span key={day.date.toString()} 
 				      className={"day" + (day.isToday ? " today" : "") + (day.isCurrentMonth ? "" : " different-month") + (day.date.isSame(this.props.selected) ? " selected" : "")}
-				      onClick={this.props.select.bind(null, day)}>
+				      // onClick={this.props.select.bind(null, day)}>
+				      onClick={this.onClick}>
 				      {day.number}</span>);
 			date = date.clone();
 			date.add(1, "d");
