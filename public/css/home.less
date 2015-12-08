@@ -7,152 +7,12 @@ body {
 	background: #3498db;    
 }
 
-#changeView {
-	&:hover {
-		cursor: pointer;
-	}
-}
+#changeView:hover { cursor: pointer; }
 
 .box-shadow (@value)  {
 	box-shadow: @value;
 	-webkit-box-shadow: @value;
 	-moz-box-shadow: @value;
-}
-
-.papers {
-	@box-shadow-value:				
-				1px 1px   0 rgba(0,   0,   0,   0.100), 
-				3px 3px   0 rgba(255, 255, 255, 1.0), 
-				4px 4px   0 rgba(0,   0,   0,   0.125), 
-				6px 6px   0 rgba(255, 255, 255, 1.0),  
-				7px 7px   0 rgba(0,   0,   0,   0.150), 
-				9px 9px   0 rgba(255, 255, 255, 1.0),  
-				10px 10px 0 rgba(0,   0,   0,   0.175);
-	background-color: white;
-	height: 450px;
-	padding: 20px;
-	width: 290px;
-	margin: 5% 5% 8%;
-	.box-shadow(@box-shadow-value);
-}
-
-.list{
-	width: 240px;
-	height: 50px;
-	background: #d0d6d4;
-	margin: 35px 45px;
-	position: relative;
-}
-
-.word {
-	padding: 2% 8%;
-	font-size: 35px;    
-	font-family: 'Pathway Gothic One', sans-serif;
-	letter-spacing: 4px;
-	&:hover {
-		cursor: pointer;
-	}
-}
-
-.notdone{
-	@notdone-color: #FF4040;
-	background: @notdone-color;
-
-	/* the left part of the cross sign */
-	&:before {
-		content: "";
-		position: absolute;
-		top: 10px;
-		left: -38px;
-		width: 8px;
-		height: 26.7px;
-		transform: rotate(-45deg);
-		background: @notdone-color;
-	}
-
-	/* the right part of the cross sign */
-	&:after {
-		content: "";
-		position: absolute;
-		top: 10px;
-		left: -38px;
-		width: 8px;
-		height: 26.7px;
-		transform: rotate(45deg);
-		background: @notdone-color;
-	}
-}
-
-.halfdone{
-	@halfdone-color: #ffcc00;
-	background: @halfdone-color;
-
-	/* the check sign */
-	&:before{
-		content: '';
-		display: block;
-		position: absolute;
-		top: 6px;
-		left: -42px;
-		width: 11px;
-		height: 20px;
-		border: solid @halfdone-color;
-		border-width: 0 8px 8px 0;
-		transform: rotate(45deg);
-	}
-
-	/* a cross on the check sign */
-	&:after{
-		content: "";
-		position: absolute;
-		top: 10px;
-		left: -31px;
-		width: 8px;
-		height: 20px;
-		transform: rotate(-45deg);
-		background: @halfdone-color;
-	}
-}
-
-.done{
-	@done-color: #5a8445;
-	background: @done-color;
-
-	/* the check sign */
-	&:before {
-		/*Add another block-level blank space*/
-		content: '';
-		display: block;
-		position: absolute;
-		top: 6px;
-		left: -43px;
-
-		/*Make it a small rectangle so the border will create an L-shape*/
-		width: 11px;
-		height: 18.7px;
-		
-		/*Add a green border on the bottom and left, creating that 'L' */
-		border: solid @done-color;
-		border-width: 0 10px 10px 0;
-
-		/*Rotate the L 45 degrees to turn it into a checkmark*/
-		transform: rotate(45deg);
-	}
-
-	>.word {
-		color: white;
-	}
-}
-
-/* the square */
-.uncheck:before{
-	content:"";
-	position: absolute;
-	top: 14px;
-	left: -43px;
-	width: 22px;
-	height: 22px;
-	background: #d0d6d4;
 }
 
 .board{
@@ -201,5 +61,238 @@ body {
 		margin: auto;
 		z-index: 999;
 		border: 10px solid #a3aca9;
+	}
+
+	>.papers {
+		@box-shadow-value:				
+			1px 1px   0 rgba(0,   0,   0,   0.100), 
+			3px 3px   0 rgba(255, 255, 255, 1.0), 
+			4px 4px   0 rgba(0,   0,   0,   0.125), 
+			6px 6px   0 rgba(255, 255, 255, 1.0),  
+			7px 7px   0 rgba(0,   0,   0,   0.150), 
+			9px 9px   0 rgba(255, 255, 255, 1.0),  
+			10px 10px 0 rgba(0,   0,   0,   0.175);
+		background-color: white;
+		height: 450px;
+		padding: 20px;
+		width: 290px;
+		margin: 5% 5% 8%;
+		.box-shadow(@box-shadow-value);
+	}
+}
+
+.list{
+	width: 240px;
+	height: 50px;
+	background: #d0d6d4;
+	margin: 35px 45px;
+	position: relative;
+
+	&.notdone{
+		@notdone-color: #FF4040;
+		background: @notdone-color;
+
+		/* the left part of the cross sign */
+		&:before {
+			content: "";
+			position: absolute;
+			top: 10px;
+			left: -38px;
+			width: 8px;
+			height: 26.7px;
+			transform: rotate(-45deg);
+			background: @notdone-color;
+		}
+
+		/* the right part of the cross sign */
+		&:after {
+			content: "";
+			position: absolute;
+			top: 10px;
+			left: -38px;
+			width: 8px;
+			height: 26.7px;
+			transform: rotate(45deg);
+			background: @notdone-color;
+		}
+	}
+
+	&.halfdone{
+		@halfdone-color: #ffcc00;
+		background: @halfdone-color;
+
+		/* the check sign */
+		&:before{
+			content: '';
+			display: block;
+			position: absolute;
+			top: 6px;
+			left: -42px;
+			width: 11px;
+			height: 20px;
+			border: solid @halfdone-color;
+			border-width: 0 8px 8px 0;
+			transform: rotate(45deg);
+		}
+
+		/* a cross on the check sign */
+		&:after{
+			content: "";
+			position: absolute;
+			top: 10px;
+			left: -31px;
+			width: 8px;
+			height: 20px;
+			transform: rotate(-45deg);
+			background: @halfdone-color;
+		}
+	}
+
+	&.done{
+		@done-color: #5a8445;
+		background: @done-color;
+
+		/* the check sign */
+		&:before {
+			/*Add another block-level blank space*/
+			content: '';
+			display: block;
+			position: absolute;
+			top: 6px;
+			left: -43px;
+
+			/*Make it a small rectangle so the border will create an L-shape*/
+			width: 11px;
+			height: 18.7px;
+			
+			/*Add a green border on the bottom and left, creating that 'L' */
+			border: solid @done-color;
+			border-width: 0 10px 10px 0;
+
+			/*Rotate the L 45 degrees to turn it into a checkmark*/
+			transform: rotate(45deg);
+		}
+
+		>.word { color: white; }
+	}
+
+	/* the square */
+	&.uncheck:before{
+		content:"";
+		position: absolute;
+		top: 14px;
+		left: -43px;
+		width: 22px;
+		height: 22px;
+		background: #d0d6d4;
+	}
+
+	>.word {
+		padding: 2% 8%;
+		font-size: 35px;    
+		font-family: 'Pathway Gothic One', sans-serif;
+		letter-spacing: 4px;
+		&:hover { cursor: pointer; }
+	}
+}
+
+/*****************************************************************************/
+/*                           For Calandar                                    */
+/*****************************************************************************/
+
+.vertical-centre (@height) { 
+	height:@height;
+	line-height:@height !important;
+	display:inline-block;
+	vertical-align:middle;
+}
+
+.border-box {
+	box-sizing:border-box;
+	-moz-box-sizing:border-box;
+}
+
+.border-radius {
+	border-radius: 8px;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+}
+
+#calendar { 
+	@border-colour:#CCC;
+	@secondary-colour:#2875C7;
+	@spacing:20px;
+	@icon-width:40px;
+	@header-height:60px;
+	
+	width:297px;
+	height: auto;
+	background: @secondary-colour;
+	padding: 5px 0px;
+	/*clear: both;*/
+	/*display:block;*/
+	overflow: visible;
+	margin: 12% auto;	
+	.border-box;
+	.border-radius;	
+	border:solid 1px @border-colour;
+	/*box-shadow: 0px 5px 0px @secondary-colour;*/
+	position: relative;
+	font-family: 'Pathway Gothic One', sans-serif;
+	letter-spacing: 3px;
+	
+	>div {
+		>div.header {
+			width:100%;
+			background:@secondary-colour;
+			height:@header-height;
+			color:white;
+
+			>* { .vertical-centre(@header-height); }
+			>i {
+				width:@icon-width;
+				font-size:1.125em;
+				font-weight:bold;
+				position:relative;
+				.border-box;
+				padding:0 @spacing;
+				cursor:pointer; }
+			>i.fa-angle-left { text-align:left; }
+			>i.fa-angle-right { text-align:right; margin-left:@icon-width*-1; }
+			>span {
+				width:100%;
+				font-weight:bold;
+				text-transform:uppercase;
+				.border-box;
+				padding-left:@icon-width+@spacing;
+				margin-left:@icon-width*-1;
+				text-align:center;
+				padding-right:@icon-width;
+				color:inherit; }
+		}
+		>div.week {
+			width:100%;
+			border-top:solid 1px @border-colour;
+
+			&:first-child { border-top:none; }
+			>span.day {
+				width:100%/7;
+				.border-box;
+				border-left:solid 1px @border-colour;
+				font-size:0.75em;
+				text-align:center;
+				.vertical-centre(40px);
+				background:white;
+				cursor:pointer;
+				color:black;
+
+				&:first-child { border-left:none; }
+				&:hover {cursor: pointer;}
+				&.today { background:#E3F2FF; }
+				&.different-month { color:#C0C0C0; }
+				&.selected { background:@secondary-colour; color:white; }
+			}
+			&.names>span { color:@secondary-colour; font-weight:bold; }
+		}
 	}
 }
