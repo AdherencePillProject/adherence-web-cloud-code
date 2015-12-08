@@ -287,9 +287,12 @@ body {
 				color:black;
 
 				&:first-child { border-left:none; }
-				&:hover {cursor: pointer;}
+				&:hover { cursor: pointer; }
+				&.done { background:#D3FFD9; }
+				&.halfdone { background:#FFFBDF; }
+				&.notdone { background:#FFDBD4; }
 				&.today { background:#E3F2FF; }
-				&.different-month { color:#C0C0C0; }
+				&.different-month { background:white; color:#C0C0C0; }
 				&.selected { background:@secondary-colour; color:white; }
 			}
 			&.names>span { color:@secondary-colour; font-weight:bold; }

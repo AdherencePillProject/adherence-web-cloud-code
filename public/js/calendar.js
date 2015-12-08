@@ -1,8 +1,3 @@
-/* 
-	Created on : Nov 2, 2015, 5:29:55 PM
-	Author     : frezmecritus
-	A html5 calendar by React.js
-*/
 
 var Calendar = React.createClass({
 	getInitialState: function() {
@@ -79,16 +74,15 @@ var DayNames = React.createClass({
 	
 var Week = React.createClass({
 	onClick: function() {
-		// this.props.select.bind(null, day);
-		// alert('jjj');
+		// haven't figure out how to animate in React, use jQuery instead
 		$('#page2').animate({opacity:0}, changeViewDelay, function(){$('#page2').toggle();});
 		$('#page1').animate({opacity:1}, changeViewDelay, function(){$('#page1').fadeIn();});
-		// this.setState({ showResults: this.state.showResults? false : true });
 	},
 	render: function() {
 		var days = [],
 			date = this.props.date,
-			month = this.props.month;
+			month = this.props.month,
+			dose = [0, 100, 20, 50, 49, 81, 100];//get this month's dose progress by query date and month
 			
 		for (var i = 0; i < 7; i++) {
 			var day = {
@@ -96,11 +90,19 @@ var Week = React.createClass({
 				number: date.date(),
 				isCurrentMonth: date.month() === month.month(),
 				isToday: date.isSame(new Date(), "day"),
-				date: date
+				date: date,
+				isDoseDone: dose[i] === 100,
+				isDoseHalfdone: dose[i] >= 50 && dose[i] < 100,
+				isDoseNotdone: dose[i] < 50
 			};
 			days.push(
 				<span key={day.date.toString()} 
-				      className={"day" + (day.isToday ? " today" : "") + (day.isCurrentMonth ? "" : " different-month") + (day.date.isSame(this.props.selected) ? " selected" : "")}
+				      className={"day" + (day.isToday ? " today" : "") 
+				                       + (day.isCurrentMonth ? "" : " different-month")
+				                       + (day.isDoseDone ? " done" : "")
+				                       + (day.isDoseHalfdone ? " halfdone" : "")
+				                       + (day.isDoseNotdone ? " notdone" : "")
+				                       + (day.date.isSame(this.props.selected) ? " selected" : "")}
 				      // onClick={this.props.select.bind(null, day)}>
 				      onClick={this.onClick}>
 				      {day.number}</span>);
