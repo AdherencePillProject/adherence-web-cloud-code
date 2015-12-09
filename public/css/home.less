@@ -287,15 +287,18 @@ body {
 				color:black;
 
 				&:first-child { border-left:none; }
-				&:hover { cursor: pointer; }
 				&.done { background:#D3FFD9; }
 				&.halfdone { background:#FFFBDF; }
 				&.notdone { background:#FFDBD4; }
+				&:hover { background:@secondary-colour; color:white; cursor: pointer; }
 				&.today { background:#E3F2FF; }
 				&.different-month { background:white; color:#C0C0C0; }
 				&.selected { background:@secondary-colour; color:white; }
 			}
-			&.names>span { color:@secondary-colour; font-weight:bold; }
+			&.names>span {
+				color:@secondary-colour; font-weight:bold;
+				&:hover { background:white; color:@secondary-colour; cursor: default; }
+			}
 		}
 	}
 }
