@@ -2,6 +2,8 @@
 	<head>
 		<title>My Doctor</title>
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/bootstrap.css" rel="stylesheet">
         <link rel="stylesheet" type="text/less" href="css/home.less">
         <link href='https://fonts.googleapis.com/css?family=Pathway+Gothic+One&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -13,6 +15,32 @@
         		$("#new-header").load("header.html");
       		</script>
             <body>
+                <nav class="navbar navbar-default">
+	  <div class="container-fluid">
+	    <!-- Brand and toggle get grouped for better mobile display -->
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="#">John Doe</a>
+	    </div>
+
+	    <!-- Collect the nav links, forms, and other content for toggling -->
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	      <ul class="nav navbar-nav">
+	        <li><a href="#">Prescription Settings</a></li>
+	        <li><a href="#">Patient Profile</a></li>
+               <li class="active"><a href="#">My Doctor</a></li>
+	        
+	      </ul>
+	    </div><!-- /.navbar-collapse -->
+	  </div><!-- /.container-fluid -->
+	</nav>
+
+                <div id="clearbox">
                 <h1>My Doctor</h1>
             <div id="doctorinfo">
                 <div class="circular"></div>
@@ -31,6 +59,7 @@
             </div>
             </body>
 		</div>
+        </div>
 	</head>
 	<body>
 	
