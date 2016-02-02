@@ -55,9 +55,9 @@ function getDataByUid (uid, data, myDiv) {
   			data["registrationDate"] = parseDemo.get("registrationDate");
 
 			var nodeName = document.createTextNode("Name: " + data["name"]);
-			var nodeAge = document.createTextNode("Age: " + data.age);
-			var nodeApproved = document.createTextNode("Approved: " + data.approved);
-			var nodeRegistrationDate = document.createTextNode("Registration Date: " + data.registrationDate);
+			var nodeAge = document.createTextNode(", Age: " + data.age);
+			var nodeApproved = document.createTextNode(", Approved: " + data.approved);
+			var nodeRegistrationDate = document.createTextNode(", Registration Date: " + data.registrationDate);
 
 			myDiv.appendChild(nodeName);
 			myDiv.appendChild(nodeAge);
