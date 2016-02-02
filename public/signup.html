@@ -372,8 +372,9 @@ function  chkPID()//RE EDIT here when connect to database with check whether we 
   }
 }
 }
-function docheck()
+function docheck(event)
 {
+  event.preventDefault();
   if(reg.UserName.value=="")
   {
     alert("Please Enter your user name");
@@ -401,14 +402,14 @@ else if(reg.UserPassword.value=="")
 }
 else if(reg.UserPassword.value != reg.CUserPassword.value)
 {
-  alert("Conflict between two password");
+  alert("Conflict between two passwords");
   return false;
 }
-else if(reg.UserName.value =="")
+/*else if(reg.UserName.value =="")
 {
   alert("Please enter you E-mail");
   return false;
-}
+}*/
 else
 {
   var user = new Object();
