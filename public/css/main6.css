@@ -4,14 +4,26 @@
 2.Change the symbol of the toggle as well as the one when it pop out
 3. Adjust the layout of the page and plan to use float to manage the layout.*/
 .page{
-margin-left: 50px;
-margin-right: 210px;
-/********************************************CSS for pop up bar ****************************************/
+margin-left: 150px;
+margin-right: 150px;
+background-image: url("bgrd_transparent1.png");
+background-color: rgba(195, 234, 253, 0.22);
 }
+ 
+ .navbar {
+    
+    margin-top: 40%;
+     z-index: -1;
+}
+}
+
+
+/********************************************CSS for pop up bar ****************************************/
 .menu{
 	overflow-x: hidden;
 	position: relative;
 	right:0;
+   overflow: auto;}
 }
 
 
