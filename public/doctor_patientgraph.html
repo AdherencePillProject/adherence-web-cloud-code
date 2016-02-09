@@ -2,29 +2,51 @@
 <html>
 
 <head>
-	<title>Doctor - Patient Prescription Page</title>
+	<title>Doctor - Patient Graph Report</title>
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="css/bootstrap.css" rel="stylesheet">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	<script src="js/chartjs/Chart.js"></script>
+	<script src="js/jquery.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<script src="js/bootstrap.min.js"></script>
 
 	<style>
-
-	body {
-		background-color: white;
-		font-family: "Helvetica Neue";
-	}
-	.list-group {
-		padding-left: 10%;
-		padding-right: 10%;
-	}
-	#options {
-		float:right;
-	}
-	li .active {
-		background-color: #3498db;
-	}
-
+		body {
+			background-color: white;
+			font-family: "Helvetica Neue";
+		}
+		.list-group {
+			padding-left: 10%;
+			padding-right: 10%;
+		}
+		#options {
+			float:right;
+		}
+		li .active {
+			background-color: #3498db;
+		}
+		.navbar-tabs {
+			font-size: 15px;
+		}
+		.navbar-brand {
+			font-size: 25px;
+			font-weight: bold;
+		}
+		.col-md-4 {
+			padding-left: 30px;
+			padding-right: 30px;
+			height: 700px;
+			border-right: 2px solid #3498db;
+		}
+		.col-md-8 {
+			padding-left: 30px;
+			padding-right: 30px;
+		}
+		#patien-list {
+			padding: 20px 0px 0px 0px;
+			width: 350px;
+		}
 
 	</style>
 </head>
@@ -32,7 +54,6 @@
 <body>
 	<nav class="navbar navbar-default">
         <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header page-scroll">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
@@ -44,55 +65,93 @@
             </div>
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-		      <ul class="nav navbar-nav" >
-		        <li><a href="#"><i class="fa fa-clipboard"></i> Prescription</a></li>
-	            <li class="active"><a href="#"><i class="fa fa-medkit"></i> Med Cabinet</a></li>
-		        <li><a href="#"><i class="fa fa-heartbeat"></i> My Profile</a></li>
-	            <li><a href="#"><i class="fa fa-user-md"></i> My Patients</a></li>
-	            <li><a href="#"><i class="fa fa-envelope"></i> Inbox</a></li>
-	            <li><a href="#"><i class="fa fa-cog"></i>  John Doe</a></li>
-
-		        
-		      </ul>
-
+		      	<ul class="nav navbar-nav" >
+		        	<li class="navbar-tabs"><a href="#"><i class="fa fa-clipboard"></i> Prescription </a></li>
+		            <li class="active"><a href="#"><i class="fa fa-medkit"></i> Med Cabinet </a></li>
+			        <li class="navbar-tabs"><a href="#"><i class="fa fa-heartbeat"></i> My Profile </a></li>
+		            <li class="navbar-tabs"><a href="#"><i class="fa fa-user-md"></i> My Patients </a></li>
+		            <li class="navbar-tabs"><a href="#"><i class="fa fa-envelope"></i> Inbox </a></li>
+		            <li class="navbar-tabs"><a href="#"><i class="fa fa-cog"></i> John Doe </a></li>
+		      	</ul>
 		    </div>
-            <!-- /.navbar-collapse -->
         </div>
-        <!-- /.container-fluid -->
     </nav>
-	<!-- <nav class="navbar navbar-default">
-	  <div class="container-fluid">
-        <div class="navbar-header">
-	      <a class="navbar-brand" href="#">SmartCap</a>
-	    </div>
-	    <!Brand and toggle get grouped for better mobile display 
-	    <div class="navbar-header page-scroll">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-        </div>
 
-	    Collect the nav links, forms, and other content for toggling
-	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-	      <ul class="nav navbar-nav" >
-	        <li><a href="#"><i class="fa fa-clipboard"></i> Prescription</a></li>
-            <li class="active"><a href="#"><i class="fa fa-medkit"></i> Med Cabinet</a></li>
-	        <li><a href="#"><i class="fa fa-heartbeat"></i> My Profile</a></li>
-            <li><a href="#"><i class="fa fa-user-md"></i> My Patients</a></li>
-            <li><a href="#"><i class="fa fa-envelope"></i> Inbox</a></li>
-            <li><a href="#"><i class="fa fa-cog"></i>  John Doe</a></li>
+    <div class="row">
+    	<div class="col-md-4">
+    		<h3>Patients' List</h3>
+    		<div class="input-group">
+		     	<input type="text" class="form-control" placeholder="Search for...">
+		      	<span class="input-group-btn">
+		       		<button class="btn btn-default" type="button">Search</button>
+		      	</span>
+    		</div>
 
-	        
-	      </ul>
+    		<div class="list-group" id="patien-list">
+    			<a href="#" class="list-group-item active">
+				    <h4 class="list-group-item-heading">Yeyi Peng</h4>
+				    <p class="list-group-item-text">...</p>
+			  	</a>
+			  	<a href="#" class="list-group-item">
+				    <h4 class="list-group-item-heading">Jeanette</h4>
+				    <p class="list-group-item-text">...</p>
+			  	</a>
+			  	<a href="#" class="list-group-item">
+				    <h4 class="list-group-item-heading">Jack Tumblin</h4>
+				    <p class="list-group-item-text">...</p>
+			  	</a>
+			  	<a href="#" class="list-group-item">
+				    <h4 class="list-group-item-heading">Michael Horn</h4>
+				    <p class="list-group-item-text">...</p>
+			  	</a>
+    		</div>
+    	</div>
 
-	    </div>< /.navbar-collapse
-	  </div><! /.container-fluid 
-	</nav> -->
+    	<div class="col-md-8">
 
-	<canvas id="myChart" width="400" height="400"></canvas>
+    		<div id="checkbox-left" style="float: left; padding-right: 10px;">
+	    		<div class="checkbox">
+	    			<label>
+	    				<input type="checkbox" value="">
+	    				Select all
+	    			</label>
+	    		</div>
+	    		<div class="checkbox">
+	    			<label>
+	    				<input type="checkbox" value="">
+	    				Xanax
+	    			</label>
+	    		</div>
+	    		<div class="checkbox">
+	    			<label>
+	    				<input type="checkbox" value="">
+	    				Iron
+	    			</label>
+	    		</div>
+	    	</div>
+
+	    	<div id="radios-right" style="float: left; padding-left: 10px;">
+	    		<div class="radio">
+    			<label>
+    				<input type="radio" name="optionsRadios" id="optionRadios1" value="option1" checked>
+    				Last Week
+    			</label>
+	    		</div>
+	    		<div class="radio">
+	    			<label>
+	    				<input type="radio" name="optionsRadios" id="optionRadios2" value="option2">
+	    				Last Month
+	    			</label>
+	    		</div>
+	    	</div>
+    		<div id="graph" style="clear: both;">
+    			<canvas id="myChart" width="600" height="400"></canvas>
+    		</div>
+    		
+   
+    	</div>
+    </div>
+	
 
 	<script>
 		var ctx = document.getElementById("myChart").getContext("2d");
@@ -128,7 +187,7 @@
 		    scaleShowGridLines : true,
 
 		    //String - Colour of the grid lines
-		    scaleGridLineColor : "rgba(0,0,0,.05)",
+		    scaleGridLineColor : "rgba(0,0,0,0.05)",
 
 		    //Number - Width of the grid lines
 		    scaleGridLineWidth : 1,
@@ -176,9 +235,7 @@
 
 
 	</script>
-	<script src="js/jquery.js"></script>
-	<script src="js/bootstrap.js"></script>
-	<script src="js/bootstrap.min.js"></script>
+	
 	
 
 </body>
