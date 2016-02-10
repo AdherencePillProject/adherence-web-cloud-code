@@ -13,6 +13,7 @@ function send(subject, msg, addressee) {
 	message.set("addressee", addressee);
 	message.save({
 		success: function (obj) {
+			
 		},
 
 		error: function (obj, error) {
