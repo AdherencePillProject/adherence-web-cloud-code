@@ -1,34 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Smartcap Homepage</title>
-  <link rel="stylesheet" href="css/reset.css" type="text/css" media="all">
-  <link rel="stylesheet" href="css/layout.css" type="text/css" media="all">
-  <script type="text/javascript" src="js/jquery-1.6.js"></script>
-  <script type="text/javascript" src="js/cufon-yui.js"></script>
-  <script type="text/javascript" src="js/cufon-replace.js"></script>
-  <script type="text/javascript" src="js/Vegur_700.font.js"></script>
-  <script type="text/javascript" src="js/Vegur_400.font.js"></script>
-  <script type="text/javascript" src="js/Vegur_300.font.js"></script>
-  <script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
-  <script type="text/javascript" src="js/tms-0.3.js"></script>
-  <script type="text/javascript" src="js/tms_presets.js"></script>
-  <script type="text/javascript" src="js/backgroundPosition.js"></script>
-  <script type="text/javascript" src="js/atooltip.jquery.js"></script>
-  <script type="text/javascript" src="js/script.js"></script>
-  <script src="//www.parsecdn.com/js/parse-1.6.7.min.js"></script>
-  <script type="text/javascript" src="js/userSignup.js"></script>
+    <title>Sign Up</title>
+       <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/bootstrap.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/less" href="css/home.less">
+        <link href='https://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script type="text/javascript" src="js/home.js"></script>
+    	<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+    	<script src="http://www.parsecdn.com/js/parse-1.6.7.min.js"></script>
+    		<div id="new-header">
+			<script>
+        		$("#new-header").load("header.html");
+      		</script>
+                </head>
+            <body>
+                <nav class="navbar navbar-default">
+	  <div class="container-fluid">
+                                    	    <div class="navbar-header">
 
-</head>
+	      <a class="navbar-brand" href="#">SmartCap</a>
+	    </div>
+	    <!-- Brand and toggle get grouped for better mobile display -->
 
-<body id="page1">
-  <div class="body1">
-    <div class="main">
-      <!-- Part1: header -->
+	    <!-- Collect the nav links, forms, and other content for toggling -->
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	      <ul class="nav navbar-nav" >
+	        <li><a href="#"><i class="fa fa-clipboard"></i> Prescription</a></li>
+              <li><a href="#"><i class="fa fa-medkit"></i> Med Cabinet</a></li>
+	        <li><a href="#"><i class="fa fa-heartbeat"></i> My Profile</a></li>
+            <li class="active"><a href="#"><i class="fa fa-user-md"></i> My Doctor</a></li>
+              <li><a href="#"><i class="fa fa-cog"></i>  John Doe</a></li>
+
+	        
+	      </ul>
+
+	    </div><!-- /.navbar-collapse -->
+	  </div><!-- /.container-fluid -->
+	</nav>
+
+
+
+<body>
+  <div>
       <header>
-        <div class="wrapper">
-          <!--<h1><a href="index.html" id="logo">SmartCap</a></h1>--><!--logo delete-->
-          <h1><a href="index.php" id="top_logo"><span>Smart</span>Cap</a>
+        <div>
+
           <!--nav>
 
             <ul id="top_nav">
@@ -55,15 +75,7 @@
           </nav-->
         </h1>
         <!--navagation goes here-->
-        <nav>
-          <ul id="menu">
-            <li id="menu_active"><a href="index.php">Home</a></li>
-            <li><a href="Mission.html">Our Mission</a></li>
-            <li><a href="News.html">News &amp; Press</a></li>
-            <li><a href="Help.html">Information</a></li>
-            <li><a href="Contact.html">Contact</a></li>
-          </ul>
-        </nav>
+  
       </div> <!--div for wrapper-->
 
 
@@ -72,29 +84,27 @@
 
 
     <!--register content-->
-    <div class="register_info">
-      <div align="center" id="retitle"><span align="center">Register </span><div>
-        <div align="center">
-          <form name="reg" action="signup.html" method="post" onSubmit="return docheck()">
-            <table width="90%" border="0">
+    <div id="clearbox">
+      <h2 style="margin-left:20%;">Register</h2>
+          <form name="reg" action="signup.html" method="post" onSubmit="return docheck()" style="margin-left:20%;">
+            <table border="0">
               <tr>
-                <td width="50%" align="right" height="25"><font face="Arial, Helvetica, sans-serif">E-mail (Username):  </font></td>
-                <td id="inputx" width="50%" align="left" height="25">
+                <td>E-mail (Username): </td>
+                <td id="inputx">
                  <input type="text" name="UserName"> <span>*</span>
                  <br>
-                 <font color="red"> Here is restrict description of user name </font>
                </td>
              </tr>
              <tr>
-              <td width="50%" align="right" height="25">Password:  </td>
-              <td width="50%" align="left" height="25"> <input type="password" name="UserPassword"></td>
+              <td>Password:  </td>
+              <td> <input type="password" name="UserPassword"></td>
             </tr>
             <tr>
-              <td width="50%" align="right" height="25">Confirm Password:  </td>
-              <td width="50%" align="left" height="25"> <input type="password" name="CUserPassword"></td>
+              <td>Confirm Password:  </td>
+              <td> <input type="password" name="CUserPassword"></td>
             </tr>
             <tr>
-              <td width="%50" align="right" height="25">Account Type:</td>
+              <td>Account Type:</td>
               <td>
                 <select name="Account_type" id="AccountType" onchange="changeType()">
                   <option>Patient</option>
@@ -104,51 +114,51 @@
               </td>
             </tr>
             <tr>
-              <td width="50%" align="right" height="25"><font face="Arial, Helvetica, sans-serif">Firstname: </font></td>
-              <td id="inputx" width="50%" align="left" height="25">
+              <td>Firstname: </td>
+              <td id="inputx">
                <input type="text" name="FirstName"> <span>*</span>
              </td>
            </tr>
            <tr>
-              <td width="50%" align="right" height="25"><font face="Arial, Helvetica, sans-serif">Lastname: </font></td>
-              <td id="inputx" width="50%" align="left" height="25">
+              <td><font face="Arial, Helvetica, sans-serif">Lastname: </font></td>
+              <td id="inputx">
                <input type="text" name="LastName"> <span>*</span>
              </td>
            </tr>
            <tr>
-            <td width="50%" align="right" height="25">Gender:  </td>
-            <td width="50%" align="left" height="25"> <input type="radio" name="Sex" value="0" checked>Male <input type="radio" name="Sex" value="1">Female</td>
+            <td>Gender:  </td>
+            <td> <input type="radio" name="Sex" value="0" checked style="margin-left:5px;">Male <input type="radio" name="Sex" value="1">Female</td>
           </tr>
           <tr>
-            <td width="50%" align="right" height="25">Phone:  </td>
-            <td width="50%" align="left" height="25"> 
+            <td>Phone:  </td>
+            <td> 
               <input type="text" name="Phone">
             </td>
           </tr>
           <tbody id="doctor" style="display:none">
             <tr>
-              <td width="50%" align="right" height="25">Hospital Name:  </td>
-              <td width="50%" align="left" height="25"> 
+              <td>Hospital Name:  </td>
+              <td> 
                 <input type="text" name="hospitalName">
               </td>
             </tr>
             <tr>
-              <td width="50%" align="right" height="25">Hospital City:  </td>
-              <td width="50%" align="left" height="25"> 
+              <td>Hospital City:  </td>
+              <td> 
                 <input type="text" name="hospitalCity">
               </td>
             </tr>
             <tr>
-              <td width="50%" align="right" height="25">Address:  </td>
-              <td width="50%" align="left" height="25"> 
+              <td>Address:  </td>
+              <td> 
                 <input type="text" name="address">
               </td>  
             </tr>
           </tbody>
           <tbody id="pharmacy" style="display:none">
             <tr>
-              <td width="50%" align="right" height="25">Pharmacy Name:  </td>
-              <td width="50%" align="left" height="25"> 
+              <td>Pharmacy Name:  </td>
+              <td> 
                 <input type="text" name="pharmacyName">
               </td>
             </tr>
@@ -164,7 +174,7 @@
   </div>
   <!-- footer -->
 
-
+<!--nav>
   <footer>
     <div class="wrapper">
       <a href="Home.html" id="footer_logo"><span>Smart</span>Cap</a>
@@ -193,9 +203,8 @@
   </footer>
   <!-- / footer -->
 
-
-</div>
-
+<!--nav-->
+<!--nav>
 <style>
 /*new 9.4*/
 .error {color: #FF0000;}
@@ -322,7 +331,7 @@ footer nav {float:left}
 }
 
 </style>
-
+<!--nav-->
 
 <script type="text/javascript">Cufon.now();</script>
 <script>

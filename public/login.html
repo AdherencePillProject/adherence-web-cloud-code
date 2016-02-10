@@ -3,9 +3,66 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>Smartcap Homepage</title>
+        <title>SmartCap Login</title>
+              <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/bootstrap.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/less" href="css/home.less">
+        <link href='https://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="//www.parsecdn.com/js/parse-1.6.7.min.js"></script>
         <script type="text/javascript" src="js/userAuthentication.js"></script>
+
+
+    </head>
+
+    <body class="passwordValidMsg">
+        <div id="bottellid"><a href="login.php"><img src="images/logonew.jpg" ></a></div>
+        <div id="bottelbody">
+            <div class="formpart">
+                <form id="login" name="login" method="post" action="login.html" onSubmit="return authenticate(this)">
+                    <p>Account Type:
+                        <select name="Account_type" id="AccountType">
+                            <option>Patient</option>
+                            <option>Doctor</option>
+                            <option>Pharmacy</option>
+                        </select>
+                        <label for="AccountType"></label>
+                    </p>
+                    <p>Email:
+                        <input type="text" name="account" id="AccountID" />
+                    </p>
+                    <p>Password:
+                        <input type="password" name="password" id="Password" />
+                        <label for="Password"></label>
+                        <label for="AccountID"></label>
+                    </p>
+
+                    <p>
+                        <a href="signup.html">
+                            <input name="Signup" type="button" class="button" value="Signup" /></a>
+                        <input type="submit" name="Login" class="button" id="login" value="Log In" />
+
+                    </p>
+                    <p>
+                        <a href="forgotpassword.html">
+                            Forgot Password
+                        </a>
+                    </p>
+
+                </form>
+                <!--div id="tip"></div>-->
+            </div>
+        </div>
+         <script type="text/javascript">
+            function authenticate(form){
+                userAuthenticate(form.account.value, form.password.value, "home.html");
+            }
+        </script>
+    </body>
+</html>
+
         <style type="text/css">
             body {
                 background: #7fbbdb ;
@@ -145,51 +202,3 @@
                 background: linear-gradient(to bottom, #a8e427 0%, #b1e73d 100%);
             }
         </style>
-
-    </head>
-
-    <body class="passwordValidMsg">
-        <div id="bottellid"><a href="login.php"><img src="images/logonew.jpg" ></a></div>
-        <div id="bottelbody">
-            <div class="formpart">
-                <form id="login" name="login" method="post" action="login.html" onSubmit="return authenticate(this)">
-                    <p>Account Type:
-                        <select name="Account_type" id="AccountType">
-                            <option>Patient</option>
-                            <option>Doctor</option>
-                            <option>Pharmacy</option>
-                        </select>
-                        <label for="AccountType"></label>
-                    </p>
-                    <p>Email:
-                        <input type="text" name="account" id="AccountID" />
-                    </p>
-                    <p>Password:
-                        <input type="password" name="password" id="Password" />
-                        <label for="Password"></label>
-                        <label for="AccountID"></label>
-                    </p>
-
-                    <p>
-                        <a href="signup.html">
-                            <input name="Signup" type="button" class="button" value="Signup" /></a>
-                        <input type="submit" name="Login" class="button" id="login" value="Log In" />
-
-                    </p>
-                    <p>
-                        <a href="forgotpassword.html">
-                            Forgot Password
-                        </a>
-                    </p>
-
-                </form>
-                <!--div id="tip"></div>-->
-            </div>
-        </div>
-         <script type="text/javascript">
-            function authenticate(form){
-                userAuthenticate(form.account.value, form.password.value, "home.html");
-            }
-        </script>
-    </body>
-</html>
