@@ -11,12 +11,15 @@
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script type="text/javascript" src="js/home.js"></script>
     	<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
-    	<script src="http://www.parsecdn.com/js/parse-1.6.7.min.js"></script>
-    		<div id="new-header">
+      <script src="http://www.parsecdn.com/js/parse-1.6.7.min.js"></script>
+      <script type="text/javascript" src="js/userSignup.js"></script>
+    	
+    		<div id="new-header"> </div>
 			<script>
-        		$("#new-header").load("header.html");
-      		</script>
-                </head>
+        	//	$("#new-header").load("header.html");
+      </script>
+
+</head>
             <body>
                 <nav class="navbar navbar-default">
 	  <div class="container-fluid">
@@ -319,7 +322,7 @@ footer nav {float:left}
 .inputbox{
   margin: 0;
   padding: 4px 6px;
-  border: 2px solid rgba(240, 245, 245, 0.96);
+  border: 2px solid rgba(240, 245, 245, <0 class="96"></0>);
   -moz-border-radius: 0;
   -webkit-border-radius: 0;
   border-radius: 0;
@@ -332,9 +335,10 @@ footer nav {float:left}
 
 </style>
 <!--nav-->
-
-<script type="text/javascript">Cufon.now();</script>
+  
 <script>
+Parse.initialize("BDo39lSOtPuBwDfq0EBDgIjTzztIQE38Fuk03EcR", "ox76Y4RxB06A69JWAleRHSercHKomN2FVu61dfu3");
+
 var patientID;
 function myFunction(x)
 {
@@ -381,9 +385,8 @@ function  chkPID()//RE EDIT here when connect to database with check whether we 
   }
 }
 }
-function docheck(event)
+function docheck()
 {
-  event.preventDefault();
   if(reg.UserName.value=="")
   {
     alert("Please Enter your user name");
@@ -439,6 +442,7 @@ else
     doctor.hospitalCity = reg['hospitalCity'].value;
     saveNewUser(user, "Doctor", doctor, "login.html"); 
   }
+
   return true;
 }
 }

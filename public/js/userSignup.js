@@ -13,7 +13,8 @@ function CreateNewPatient(username, password, email, phone, firstname, lastname)
 
 // Save the new user to Parse
 function saveNewUser(user, accountType, additionalInfo, redirectUrl){
-	var newUser = new Parse.User();
+	event.preventDefault();
+	newUser = new Parse.User();
 	newUser.set("username", user.email);
 	newUser.set("password", user.password);
 	newUser.set("email", user.email);
@@ -32,6 +33,26 @@ function saveNewUser(user, accountType, additionalInfo, redirectUrl){
 			Parse.Cloud.run('setUserRole', { accountType: user.accountType }, {
 		  		success: function(role) {
 		  			alert("The user role has been successfully set to " + user.accountType);
+		  			if(accountType.toLowerCase() == "patient"){
+						Parse.Cloud.run('setPatient', { username: newUser.getUsername() }, {
+		  					success: function(newUser) {
+		  						alert("The paient is successfully set");
+		  						window.location.replace(redirectUrl);
+		  					},
+		  					error: function(error) {
+		  						alert("Failed to set patient " + error.code + " " + error.message);
+		  					}
+						});
+					}else if(accountType.toLowerCase() == "doctor"){
+						newUser.set("userType", ["Doctor"]);
+						var doctor = new Parse.Object("Doctor");
+						doctor.set("address", additionalInfo.address);
+						doctor.set("hospitalCity", additionalInfo.hospitalCity);
+						doctor.set("hospitalName", additionalInfo.hospitalName);
+						doctor.save();
+					}else if(accountType.toLowerCase() == "pharmacy"){
+						newUser.set("userType", ["PharmacyStuff"]);
+					}
 		  		},
 		  		error: function(error) {
 		  			alert("Failed to set user role to " + user.accountType + " " + error.code + " " + error.message);
@@ -43,27 +64,5 @@ function saveNewUser(user, accountType, additionalInfo, redirectUrl){
 			// Show the error message somewhere and let the user try again.
 			alert("Error: " + error.code + " " + error.message);
 		}
-	});
-
-	if(accountType.toLowerCase() == "patient"){
-		Parse.Cloud.run('setPatient', { username: newUser.getUsername() }, {
-		  	success: function(newUser) {
-		  		alert("The paient is successfully set");
-		  	},
-		  	error: function(error) {
-		  		alert("Failed to set patient " + error.code + " " + error.message);
-		  	}
-		});
-	}else if(accountType.toLowerCase() == "doctor"){
-		newUser.set("userType", ["Doctor"]);
-		var doctor = new Parse.Object("Doctor");
-		doctor.set("address", additionalInfo.address);
-		doctor.set("hospitalCity", additionalInfo.hospitalCity);
-		doctor.set("hospitalName", additionalInfo.hospitalName);
-		doctor.save();
-	}else if(accountType.toLowerCase() == "pharmacy"){
-		newUser.set("userType", ["PharmacyStuff"]);
-	}
-	window.location.replace(redirectUrl);
-	event.preventDefault();
+	})
 }
