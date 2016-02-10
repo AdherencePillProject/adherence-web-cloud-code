@@ -34,14 +34,14 @@
 			font-weight: bold;
 		}
 		.col-md-4 {
-			padding-left: 30px;
-			padding-right: 30px;
+			padding-left: 5%;
+			padding-right: 10px;
 			height: 700px;
-			border-right: 2px solid #3498db;
 		}
 		.col-md-8 {
-			padding-left: 30px;
-			padding-right: 30px;
+			padding-left: 10px;
+			padding-right: 5%;
+			
 		}
 		#patien-list {
 			padding: 20px 0px 0px 0px;
@@ -50,6 +50,7 @@
 		#checkbox-left {
 			float: left; 
 			padding-right: 10px;
+			padding-left: 10%;
 		}
 		#radios-right {
 			float: left; 
@@ -57,6 +58,8 @@
 		}
 		#graph {
 			clear: both;
+			padding-left: 10%;
+			padding-right: 10%;
 		}
 
 	</style>
@@ -113,11 +116,11 @@
 				    <h4 class="list-group-item-heading">Yeyi Peng</h4>
 				    <p class="list-group-item-text">some info about this patient</p>
 			  	</a>
-			  	<a href="#" class="list-group-item" onclick="toggleActive(this)">
+			  	<a href="#" class="list-group-item"  onclick="patient1(this)">
 				    <h4 class="list-group-item-heading">Jeanette Pranin</h4>
 				    <p class="list-group-item-text">some info about this patient</p>
 			  	</a>
-			  	<a href="#" class="list-group-item" onclick="toggleActive(this)">
+			  	<a href="#" class="list-group-item" onclick="patient2(this)">
 				    <h4 class="list-group-item-heading">Jack Tumblin</h4>
 				    <p class="list-group-item-text">some info about this patient</p>
 			  	</a>
@@ -188,7 +191,7 @@
 		            pointStrokeColor: "#fff",
 		            pointHighlightFill: "#fff",
 		            pointHighlightStroke: "rgba(220,220,220,1)",
-		            data: [1, 2, 0, 0, 0, 0, 0,3]
+		            data: [0, 1, 0, 0, 0, 0, 0,1]
 		        },
 		        {
 		            label: "Iron",
@@ -198,7 +201,7 @@
 		            pointStrokeColor: "#fff",
 		            pointHighlightFill: "#fff",
 		            pointHighlightStroke: "rgba(151,187,205,1)",
-		            data: [0, 0, 0, 0, 0, 0, 1,0]
+		            data: [0, 0, 0, 0, 0, 0, 2,0]
 		        }
 		    ]
 		};
@@ -223,7 +226,7 @@
 		    bezierCurve : true,
 
 		    //Number - Tension of the bezier curve between points
-		    bezierCurveTension : 0.4,
+		    bezierCurveTension : 0.3,
 
 		    //Boolean - Whether to show a dot for each point
 		    pointDot : true,
@@ -251,10 +254,112 @@
 
 		};
 
+		var myLineChart = new Array();
+		myLineChart[0] = new Chart(ctx).Line(data, options);
+		
 
-		var myLineChart = new Chart(ctx).Line(data, options);
 
+	</script>
+	<script>
+	function patient1(element) {
+		for (var i = 0; i < myLineChart.length; ++i) {
+			myLineChart[i].destroy();
+		}
+		//myLineChart.destroy();
+		var actives = document.getElementsByClassName("list-group-item active");
+			for (var i = 0; i < actives.length; i++){
+				actives[i].className = "list-group-item";
+			}
+		element.className = "list-group-item active";
+		console.log("patient2 runing");
+		//var ctx2 = document.getElementById("myChart").getContext("2d");
+		var data2 = {
+		    labels: ["6AM", "8AM", "10AM", "12AM", "2PM", "4PM", "6PM", "8PM"],
+		    datasets: [
+		        {
+		            label: "Xanax",
+		            fillColor: "rgba(220,220,220,0.2)",
+		            strokeColor: "rgba(220,220,220,1)",
+		            pointColor: "rgba(220,220,220,1)",
+		            pointStrokeColor: "#fff",
+		            pointHighlightFill: "#fff",
+		            pointHighlightStroke: "rgba(220,220,220,1)",
+		            data: [0, 0, 0, 0, 2, 0, 0,0]
+		        }
+		    ]
+		};
 
+		myLineChart[1] = new Chart(ctx).Line(data2, options);
+	}
+
+	function patient2(element) {
+		for (var i = 0; i < myLineChart.length; ++i) {
+			myLineChart[i].destroy();
+		}
+		var actives = document.getElementsByClassName("list-group-item active");
+			for (var i = 0; i < actives.length; i++){
+				actives[i].className = "list-group-item";
+			}
+		element.className = "list-group-item active";
+		console.log("patient3 runing");
+
+		var data3 = {
+		    labels: ["6AM", "8AM", "10AM", "12AM", "2PM", "4PM", "6PM", "8PM"],
+		    datasets: [
+		        {
+		            label: "Xanax",
+		            fillColor: "rgba(220,220,220,0.2)",
+		            strokeColor: "rgba(220,220,220,1)",
+		            pointColor: "rgba(220,220,220,1)",
+		            pointStrokeColor: "#fff",
+		            pointHighlightFill: "#fff",
+		            pointHighlightStroke: "rgba(220,220,220,1)",
+		            data: [1, 1, 0, 0, , 0, 0,0]
+		        }
+		    ]
+		};
+
+		myLineChart[2] = new Chart(ctx).Line(data3, options);
+	}
+	function patient0(element) {
+		for (var i = 0; i < myLineChart.length; ++i) {
+			myLineChart[i].destroy();
+		}
+
+		var actives = document.getElementsByClassName("list-group-item active");
+		for (var i = 0; i < actives.length; i++){
+			actives[i].className = "list-group-item";
+		}
+		element.className = "list-group-item active";
+
+		var data1 = {
+		    labels: ["6AM", "8AM", "10AM", "12AM", "2PM", "4PM", "6PM", "8PM"],
+		    datasets: [
+		        {
+		            label: "Xanax",
+		            fillColor: "rgba(220,220,220,0.2)",
+		            strokeColor: "rgba(220,220,220,1)",
+		            pointColor: "rgba(220,220,220,1)",
+		            pointStrokeColor: "#fff",
+		            pointHighlightFill: "#fff",
+		            pointHighlightStroke: "rgba(220,220,220,1)",
+		            data: [0, 1, 0, 0, 0, 0, 0,1]
+		        },
+		        {
+		            label: "Iron",
+		            fillColor: "rgba(151,187,205,0.2)",
+		            strokeColor: "rgba(151,187,205,1)",
+		            pointColor: "rgba(151,187,205,1)",
+		            pointStrokeColor: "#fff",
+		            pointHighlightFill: "#fff",
+		            pointHighlightStroke: "rgba(151,187,205,1)",
+		            data: [0, 0, 0, 0, 0, 0, 2,0]
+		        }
+		    ]
+		};
+
+		myLineChart[0] = new Chart(ctx).Line(data1, options);
+	}
 	</script>
 	
 	
