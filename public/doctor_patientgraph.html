@@ -49,6 +49,16 @@
 		}
 
 	</style>
+	<script type="text/javascript">
+		function toggleActive(element) {
+			var actives = document.getElementsByClassName("list-group-item active");
+			for (var i = 0; i < actives.length; i++){
+				actives[i].className = "list-group-item";
+			}
+			element.className = "list-group-item active";
+		}
+
+	</script>
 </head>
 
 <body>
@@ -88,21 +98,21 @@
     		</div>
 
     		<div class="list-group" id="patien-list">
-    			<a href="#" class="list-group-item active">
+    			<a href="#" class="list-group-item active" onclick="toggleActive(this)">
 				    <h4 class="list-group-item-heading">Yeyi Peng</h4>
-				    <p class="list-group-item-text">...</p>
+				    <p class="list-group-item-text">some info about this patient</p>
 			  	</a>
-			  	<a href="#" class="list-group-item">
-				    <h4 class="list-group-item-heading">Jeanette</h4>
-				    <p class="list-group-item-text">...</p>
+			  	<a href="#" class="list-group-item" onclick="toggleActive(this)">
+				    <h4 class="list-group-item-heading">Jeanette Pranin</h4>
+				    <p class="list-group-item-text">some info about this patient</p>
 			  	</a>
-			  	<a href="#" class="list-group-item">
+			  	<a href="#" class="list-group-item" onclick="toggleActive(this)">
 				    <h4 class="list-group-item-heading">Jack Tumblin</h4>
-				    <p class="list-group-item-text">...</p>
+				    <p class="list-group-item-text">some info about this patient</p>
 			  	</a>
-			  	<a href="#" class="list-group-item">
+			  	<a href="#" class="list-group-item" onclick="toggleActive(this)">
 				    <h4 class="list-group-item-heading">Michael Horn</h4>
-				    <p class="list-group-item-text">...</p>
+				    <p class="list-group-item-text">some info about this patient</p>
 			  	</a>
     		</div>
     	</div>
