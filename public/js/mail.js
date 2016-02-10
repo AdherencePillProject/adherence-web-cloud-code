@@ -13,7 +13,7 @@ function send(subject, msg, addressee) {
 	message.set("addressee", addressee);
 	message.save({
 		success: function (obj) {
-			
+
 		},
 
 		error: function (obj, error) {
@@ -43,9 +43,11 @@ function getMessages(folder, fn) {
 	else if (folder == "sent")
 		query.equalTo("sender", Parse.User.current());
 	else 
-		error("No Such Folder");
+		throw new Error("No Such Folder");
 
-	var q = query.find({
+	query.include("sender");
+	query.include("addressee");
+	query.find({
 		success: function(results) {
 			fn(results);
 		}, 

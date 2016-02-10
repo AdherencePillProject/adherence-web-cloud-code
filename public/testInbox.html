@@ -4,14 +4,15 @@
 	<head>
 		<script src="http://www.parsecdn.com/js/parse-1.6.7.min.js"></script>
 		<script type="text/javascript" src="js/mail.js"></script>
+		<script type="text/javascript" src="js/jquery-1.6.js"></script>
 	</head>
 	<body>
-		<div id=":"> </div>
+		<div id="test"> </div>
 		<script type="text/javascript">
 		Parse.initialize("BDo39lSOtPuBwDfq0EBDgIjTzztIQE38Fuk03EcR", "ox76Y4RxB06A69JWAleRHSercHKomN2FVu61dfu3");
 		//Parse.User.logIn("testUserTwo","322",{});
 		//Parse.User.logOut();
-		 document.getElementById(":").innerHTML = "Logged In: " + Parse.User.current().getUsername();
+		 document.getElementById("test").innerHTML = "Logged In: " + Parse.User.current().getUsername() + " ";
 
 		/*var query = new Parse.Query(Parse.User);
 		query.equalTo("username", "testUserOne");
@@ -32,11 +33,12 @@
 		// I think related to fetch, should investigate more
 
 		function fcn(arrayMsg) {
-			alert(arrayMsg[0].get('text'));
-			alert(arrayMsg[0].get('sender').getUsername());
-			alert(arrayMsg[0].get('addressee').getUsername());
+			$("#test").append("text : " + arrayMsg[0].get('text') + " ");
+			$("#test").append("sender : " + arrayMsg[0].get('sender').getUsername() + " ");
+			$("#test").append("addressee : " + arrayMsg[0].get('addressee').getUsername() + "<br>");
 
 		}
+		
 		getInbox(fcn);
 		getSent(fcn);
 
