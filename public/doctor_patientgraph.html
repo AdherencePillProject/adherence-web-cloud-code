@@ -112,7 +112,7 @@
     		</div>
 
     		<div class="list-group" id="patien-list">
-    			<a href="#" class="list-group-item active" onclick="toggleActive(this)">
+    			<a href="#" class="list-group-item active" onclick="patient0(this)">
 				    <h4 class="list-group-item-heading">Yeyi Peng</h4>
 				    <p class="list-group-item-text">some info about this patient</p>
 			  	</a>
@@ -265,14 +265,11 @@
 		for (var i = 0; i < myLineChart.length; ++i) {
 			myLineChart[i].destroy();
 		}
-		//myLineChart.destroy();
 		var actives = document.getElementsByClassName("list-group-item active");
 			for (var i = 0; i < actives.length; i++){
 				actives[i].className = "list-group-item";
 			}
 		element.className = "list-group-item active";
-		console.log("patient2 runing");
-		//var ctx2 = document.getElementById("myChart").getContext("2d");
 		var data2 = {
 		    labels: ["6AM", "8AM", "10AM", "12AM", "2PM", "4PM", "6PM", "8PM"],
 		    datasets: [
@@ -301,7 +298,6 @@
 				actives[i].className = "list-group-item";
 			}
 		element.className = "list-group-item active";
-		console.log("patient3 runing");
 
 		var data3 = {
 		    labels: ["6AM", "8AM", "10AM", "12AM", "2PM", "4PM", "6PM", "8PM"],
@@ -325,7 +321,6 @@
 		for (var i = 0; i < myLineChart.length; ++i) {
 			myLineChart[i].destroy();
 		}
-
 		var actives = document.getElementsByClassName("list-group-item active");
 		for (var i = 0; i < actives.length; i++){
 			actives[i].className = "list-group-item";
