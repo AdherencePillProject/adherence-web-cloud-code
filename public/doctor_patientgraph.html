@@ -47,6 +47,17 @@
 			padding: 20px 0px 0px 0px;
 			width: 100%;
 		}
+		#checkbox-left {
+			float: left; 
+			padding-right: 10px;
+		}
+		#radios-right {
+			float: left; 
+			padding-left: 10px;
+		}
+		#graph {
+			clear: both;
+		}
 
 	</style>
 	<script type="text/javascript">
@@ -89,9 +100,9 @@
 
     <div class="row">
     	<div class="col-md-4">
-    		<h3>Patients' List</h3>
+    		<h3 id="patientlist-title">Patients' List</h3>
     		<div class="input-group">
-		     	<input type="text" class="form-control" placeholder="Search for...">
+		     	<input type="text" class="form-control" placeholder="Search for a patient">
 		      	<span class="input-group-btn">
 		       		<button class="btn btn-default" type="button">Search</button>
 		      	</span>
@@ -119,20 +130,20 @@
 
     	<div class="col-md-8">
 
-    		<div id="checkbox-left" style="float: left; padding-right: 10px;">
-	    		<div class="checkbox">
+    		<div id="checkbox-left">
+	    		<div class="checkbox" onclick="selectAll(this)">
 	    			<label>
 	    				<input type="checkbox" value="">
 	    				Select all
 	    			</label>
 	    		</div>
-	    		<div class="checkbox">
+	    		<div class="checkbox" id="xanax">
 	    			<label>
 	    				<input type="checkbox" value="">
 	    				Xanax
 	    			</label>
 	    		</div>
-	    		<div class="checkbox">
+	    		<div class="checkbox" id="iron">
 	    			<label>
 	    				<input type="checkbox" value="">
 	    				Iron
@@ -140,7 +151,7 @@
 	    		</div>
 	    	</div>
 
-	    	<div id="radios-right" style="float: left; padding-left: 10px;">
+	    	<div id="radios-right">
 	    		<div class="radio">
     			<label>
     				<input type="radio" name="optionsRadios" id="optionRadios1" value="option1" checked>
@@ -154,7 +165,7 @@
 	    			</label>
 	    		</div>
 	    	</div>
-    		<div id="graph" style="clear: both;">
+    		<div id="graph">
     			<canvas id="myChart" width="600" height="400"></canvas>
     		</div>
     		
@@ -167,27 +178,27 @@
 		var ctx = document.getElementById("myChart").getContext("2d");
 
 		var data = {
-		    labels: ["January", "February", "March", "April", "May", "June", "July"],
+		    labels: ["6AM", "8AM", "10AM", "12AM", "2PM", "4PM", "6PM", "8PM"],
 		    datasets: [
 		        {
-		            label: "My First dataset",
+		            label: "Xanax",
 		            fillColor: "rgba(220,220,220,0.2)",
 		            strokeColor: "rgba(220,220,220,1)",
 		            pointColor: "rgba(220,220,220,1)",
 		            pointStrokeColor: "#fff",
 		            pointHighlightFill: "#fff",
 		            pointHighlightStroke: "rgba(220,220,220,1)",
-		            data: [65, 59, 80, 81, 56, 55, 40]
+		            data: [1, 2, 0, 0, 0, 0, 0,3]
 		        },
 		        {
-		            label: "My Second dataset",
+		            label: "Iron",
 		            fillColor: "rgba(151,187,205,0.2)",
 		            strokeColor: "rgba(151,187,205,1)",
 		            pointColor: "rgba(151,187,205,1)",
 		            pointStrokeColor: "#fff",
 		            pointHighlightFill: "#fff",
 		            pointHighlightStroke: "rgba(151,187,205,1)",
-		            data: [28, 48, 40, 19, 86, 27, 90]
+		            data: [0, 0, 0, 0, 0, 0, 1,0]
 		        }
 		    ]
 		};
