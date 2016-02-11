@@ -16,7 +16,7 @@
     	
     		<div id="new-header"> </div>
 			<script>
-        	//	$("#new-header").load("header.html");
+        	//$("#new-header").load("header.html");
       </script>
 
 </head>
@@ -339,6 +339,9 @@ footer nav {float:left}
 <script>
 Parse.initialize("BDo39lSOtPuBwDfq0EBDgIjTzztIQE38Fuk03EcR", "ox76Y4RxB06A69JWAleRHSercHKomN2FVu61dfu3");
 
+if (Parse.User.current())
+  Parse.User.logOut();
+  
 var patientID;
 function myFunction(x)
 {
