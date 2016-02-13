@@ -19,11 +19,11 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav" >
-        <li><a href="#"><i class="fa fa-clipboard"></i> Prescription</a></li>
-        <li><a href="#"><i class="fa fa-medkit"></i> Med Cabinet</a></li>
-        <li><a href="#"><i class="fa fa-heartbeat"></i> My Profile</a></li>
-        <li class="active"><a href="#"><i class="fa fa-user-md"></i> My Doctor</a></li>
-        <li><a href="#"><i class="fa fa-cog"></i>  John Doe</a></li>
+        <li ng-class="{active:tab.isSet(1)}"><a ng-click="tab.setTab(1)" href="#"><i class="fa fa-clipboard"></i> Prescription</a></li>
+        <li ng-class="{active:tab.isSet(2)}"><a ng-click="tab.setTab(2)" href="#"><i class="fa fa-medkit"></i> Med Cabinet</a></li>
+        <li ng-class="{active:tab.isSet(3)}"><a ng-click="tab.setTab(3)" href="#"><i class="fa fa-heartbeat"></i> My Profile</a></li>
+        <li ng-class="{active:tab.isSet(4)}"><a ng-click="tab.setTab(4)" href="#"><i class="fa fa-user-md"></i> My Doctor</a></li>
+        <li ng-class="{active:tab.isSet(5)}"><a ng-click="tab.setTab(5)" href="#"><i class="fa fa-cog"></i>  John Doe</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
 

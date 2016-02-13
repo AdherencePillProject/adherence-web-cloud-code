@@ -1,4 +1,4 @@
-<html>
+<html ng-app="adherence-partials">
 	<head>
 		<!--Add Bootstrap CSS-->
 		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -16,8 +16,11 @@
 		<!--Add Angular-->
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
 
+		<!--Add Angular Directives-->
+		<script src="js/angular-app.js"></script>
+
 	</head>
-	<body ng-app="">
-		<div ng-include="'partials/navbar/navbar.html'"></div>
+	<body>
+		<div ng-controller='NavController as tab' ng-include src="'partials/navbar/navbar.html'"></div>
 	</body>
 </html>
