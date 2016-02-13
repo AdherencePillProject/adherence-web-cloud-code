@@ -22,7 +22,7 @@ function saveNewUser(user, accountType, additionalInfo, redirectUrl){
 	newUser.set("firstname", user.firstname);
 	newUser.set("lastname", user.lastname);
 	if(user.gender == 0){
-		newUser.set("geneder", "Male");
+		newUser.set("gender", "Male");
 	}else if(user.gender == 1){
 		newUser.set("gender", "Female");
 	}
@@ -36,7 +36,7 @@ function saveNewUser(user, accountType, additionalInfo, redirectUrl){
 		  			if(accountType.toLowerCase() == "patient"){
 						Parse.Cloud.run('setPatient', { username: newUser.getUsername() }, {
 		  					success: function(newUser) {
-		  						alert("The paient is successfully set");
+		  						alert("The patient is successfully set");
 		  						window.location.replace(redirectUrl);
 		  					},
 		  					error: function(error) {

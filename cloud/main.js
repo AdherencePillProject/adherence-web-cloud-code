@@ -27,7 +27,7 @@ Parse.Cloud.define('setUserRole', function(req, response) {
 		success: function(role) {
 			role.getUsers().add(user);
 			role.save();
-			response.success("Succeed to add role ");
+			response.success("Succeeded to set role ");
 		},
 		error: function(error) {
 			response.error('Failed to set role - ' + accountType + 'for user - ' + req.params.username);
@@ -42,7 +42,7 @@ Parse.Cloud.define('setPatient', function(req, response) {
 	Parse.Cloud.useMasterKey();
 	var username = req.params.username;
 	var query = new Parse.Query(Parse.User);
-	query.equalTo("username", username);  // find all the women
+	query.equalTo("username", username);
 	query.first({
   		success: function(user) {
   			var newPatient = new Parse.Object("Patient");
@@ -50,14 +50,22 @@ Parse.Cloud.define('setPatient', function(req, response) {
 			// user.save();
 			newPatient.set("userAccount", user);
 			newPatient.save(null, {
-				success: function(newPatient){
-					response.success("The patient is saved successfully");
+				success: function(newPatient) {
+					user.set("patientPointer", newPatient);
+					user.save(null, {
+						success: function (user) {
+							response.success("Saved a patient reference in the user class");
+						},
+						error: function (error) {
+							response.error("Failed to save a patient reference in the user class")
+						}
+					})
+
 				},
 				error: function(error){
 					response.error("Failed to save patient with error code: " + error.code + " " + error.message + " user: " + username);
 				}
-			});
-  			response.success("Find user with username " + username);
+			})
   		},
   		error: function(error) {
 	  		response.error('Failed to find user with username ' + username);
@@ -72,7 +80,7 @@ Parse.Cloud.define('setDoctor', function(req, response) {
 	Parse.Cloud.useMasterKey();
 	var username = req.params.username;
 	var query = new Parse.Query(Parse.User);
-	query.equalTo("username", username);  // find all the women
+	query.equalTo("username", username);
 	query.first({
   		success: function(user) {
   			var newPatient = new Parse.Object("Doctor");
@@ -80,14 +88,22 @@ Parse.Cloud.define('setDoctor', function(req, response) {
 			// user.save();
 			newPatient.set("userAccount", user);
 			newPatient.save(null, {
-				success: function(newPatient){
-					response.success("The doctor is saved successfully");
+				success: function(newDoctor){
+
+					user.set("doctorPointer", newDoctor);
+					user.save(null, {
+						success: function (user) {
+							response.success("Saved a doctor reference in the user class");
+						},
+						error: function (error) {
+							response.error("Failed to save a doctor reference in the user class")
+						}
+					})
 				},
 				error: function(error){
 					response.error("Failed to save doctor with error code: " + error.code + " " + error.message + " user: " + username);
 				}
 			});
-  			response.success("Find user with username " + username);
   		},
   		error: function(error) {
 	  		response.error('Failed to find user with username ' + username);
@@ -102,7 +118,7 @@ Parse.Cloud.define('setPharmacy', function(req, response) {
 	Parse.Cloud.useMasterKey();
 	var username = req.params.username;
 	var query = new Parse.Query(Parse.User);
-	query.equalTo("username", username);  // find all the women
+	query.equalTo("username", username);
 	query.first({
   		success: function(user) {
   			var newPatient = new Parse.Object("Pharmacy");
