@@ -10,6 +10,9 @@
 	<script src="js/jquery.js"></script>
 	<script src="js/bootstrap.js"></script>
 	<script src="js/bootstrap.min.js"></script>
+	<script src="//www.parsecdn.com/js/parse-1.6.7.min.js"></script>
+	<script src="js/doctor_patientgraph.js"></script>
+
 
 	<style>
 		body {
@@ -105,9 +108,9 @@
     	<div class="col-md-4">
     		<h3 id="patientlist-title">Patients' List</h3>
     		<div class="input-group">
-		     	<input type="text" class="form-control" placeholder="Search for a patient">
+		     	<input id="patientToSearch" type="text" class="form-control" placeholder="Search for a patient">
 		      	<span class="input-group-btn">
-		       		<button class="btn btn-default" type="button">Search</button>
+		       		<button class="btn btn-default" type="button" onclick="return search()">Search</button>
 		      	</span>
     		</div>
 
@@ -355,6 +358,15 @@
 
 		myLineChart[0] = new Chart(ctx).Line(data1, options);
 	}
+	</script>
+
+	<script type="text/javascript">
+		function search(){
+			var searchValue = document.getElementById("patientToSearch").value;
+			alert("You are trying to search: " + searchValue);
+			searchPatient(searchValue);
+		}
+
 	</script>
 	
 	
