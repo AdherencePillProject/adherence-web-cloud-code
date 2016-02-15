@@ -144,3 +144,52 @@ Parse.Cloud.define('setPharmacy', function(req, response) {
 Parse.Cloud.define("getCurrentScoreForPill", function(req, response) {
 	// TODO
 });
+
+
+// This is a master function for search
+// searchClass - the class to search against
+// searchCriteria - the column to search against
+// searchValue - value to search for
+// The function will return the object that you are searching for
+Parse.Cloud.define("search", function(req, response) {
+	if(!req.params.searchClass){
+		response.error("Please make sure 'searchClass' is set in the request.");
+	}
+	if(!req.params.searchCriteria){
+		response.error("Please make sure 'searchCriteria' is set in the request.");
+	}
+	if(!req.params.searchValue){
+		response.error("Please make sure 'searchValue' is set in the request.");
+	}
+	Parse.Cloud.useMasterKey();
+
+	searchClass = req.params.searchClass;
+	searchCriteria = req.params.searchCriteria;
+	searchValue = req.params.searchValue;
+
+	var query = new Parse.Query(searchClass);
+	if(!req.params.innerQuery){
+		query.contains(searchCriteria, searchValue);
+	}else{
+		query.matchesQuery(searchCriteria, innerQuery);
+	}
+
+	query.find({
+		success: function(results){
+			 alert("Successfully retrieved " + results.length + searchClass);
+		    // Do something with the returned Parse.Object values
+		    for (var i = 0; i < results.length; i++) {
+		      var object = results[i];
+		      alert(object.id + ' - ' + object.get('playerName'));
+		    }
+		    response.success(results);
+		},
+		error: function(error){
+			alert("Error: " + error.code + " " + error.message);
+		}
+	});
+	
+	
+});
+
+
