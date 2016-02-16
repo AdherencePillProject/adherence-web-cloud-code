@@ -10,9 +10,6 @@
 	<script src="js/jquery.js"></script>
 	<script src="js/bootstrap.js"></script>
 	<script src="js/bootstrap.min.js"></script>
-	<script src="//www.parsecdn.com/js/parse-1.6.7.min.js"></script>
-	<script src="js/doctor_patientgraph.js"></script>
-
 
 	<style>
 		body {
@@ -108,9 +105,9 @@
     	<div class="col-md-4">
     		<h3 id="patientlist-title">Patients' List</h3>
     		<div class="input-group">
-		     	<input id="patientToSearch" type="text" class="form-control" placeholder="Search for a patient">
+		     	<input type="text" class="form-control" placeholder="Search for a patient">
 		      	<span class="input-group-btn">
-		       		<button class="btn btn-default" type="button" onclick="return search()">Search</button>
+		       		<button class="btn btn-default" type="button">Search</button>
 		      	</span>
     		</div>
 
@@ -184,17 +181,17 @@
 		var ctx = document.getElementById("myChart").getContext("2d");
 
 		var data = {
-		    labels: ["6AM", "8AM", "10AM", "12AM", "2PM", "4PM", "6PM", "8PM"],
+		    labels: ["MON", "TUE", "WED", "THUR", "FRI", "SAT", "SUN"],
 		    datasets: [
 		        {
 		            label: "Xanax",
-		            fillColor: "rgba(220,220,220,0.2)",
+		            fillColor: "rgba(256,256,256,0)",
 		            strokeColor: "rgba(220,220,220,1)",
 		            pointColor: "rgba(220,220,220,1)",
 		            pointStrokeColor: "#fff",
 		            pointHighlightFill: "#fff",
 		            pointHighlightStroke: "rgba(220,220,220,1)",
-		            data: [0, 1, 0, 0, 0, 0, 0,1]
+		            data: [8, 8.5, 8, 9, 8, 6, 8]
 		        },
 		        {
 		            label: "Iron",
@@ -204,7 +201,7 @@
 		            pointStrokeColor: "#fff",
 		            pointHighlightFill: "#fff",
 		            pointHighlightStroke: "rgba(151,187,205,1)",
-		            data: [0, 0, 0, 0, 0, 0, 2,0]
+		            data: [0, 0, 0, 0, 0, 2, 0]
 		        }
 		    ]
 		};
@@ -226,7 +223,7 @@
 		    scaleShowVerticalLines: true,
 
 		    //Boolean - Whether the line is curved between points
-		    bezierCurve : true,
+		    bezierCurve : false,
 
 		    //Number - Tension of the bezier curve between points
 		    bezierCurveTension : 0.3,
@@ -235,7 +232,7 @@
 		    pointDot : true,
 
 		    //Number - Radius of each point dot in pixels
-		    pointDotRadius : 4,
+		    pointDotRadius : 5,
 
 		    //Number - Pixel width of point dot stroke
 		    pointDotStrokeWidth : 1,
@@ -274,7 +271,7 @@
 			}
 		element.className = "list-group-item active";
 		var data2 = {
-		    labels: ["6AM", "8AM", "10AM", "12AM", "2PM", "4PM", "6PM", "8PM"],
+		    labels: ["MON", "TUE", "WED", "THUR", "FRI", "SAT", "SUN"],
 		    datasets: [
 		        {
 		            label: "Xanax",
@@ -284,7 +281,7 @@
 		            pointStrokeColor: "#fff",
 		            pointHighlightFill: "#fff",
 		            pointHighlightStroke: "rgba(220,220,220,1)",
-		            data: [0, 0, 0, 0, 2, 0, 0,0]
+		            data: [0, 0, 0, 2, 0, 0,0]
 		        }
 		    ]
 		};
@@ -303,7 +300,7 @@
 		element.className = "list-group-item active";
 
 		var data3 = {
-		    labels: ["6AM", "8AM", "10AM", "12AM", "2PM", "4PM", "6PM", "8PM"],
+		    labels: ["MON", "TUE", "WED", "THUR", "FRI", "SAT", "SUN"],
 		    datasets: [
 		        {
 		            label: "Xanax",
@@ -313,7 +310,7 @@
 		            pointStrokeColor: "#fff",
 		            pointHighlightFill: "#fff",
 		            pointHighlightStroke: "rgba(220,220,220,1)",
-		            data: [1, 1, 0, 0, , 0, 0,0]
+		            data: [1, 1, 0, 0, 0, 0,0]
 		        }
 		    ]
 		};
@@ -331,7 +328,7 @@
 		element.className = "list-group-item active";
 
 		var data1 = {
-		    labels: ["6AM", "8AM", "10AM", "12AM", "2PM", "4PM", "6PM", "8PM"],
+		    labels: ["MON", "TUE", "WED", "THUR", "FRI", "SAT", "SUN"],
 		    datasets: [
 		        {
 		            label: "Xanax",
@@ -341,7 +338,7 @@
 		            pointStrokeColor: "#fff",
 		            pointHighlightFill: "#fff",
 		            pointHighlightStroke: "rgba(220,220,220,1)",
-		            data: [0, 1, 0, 0, 0, 0, 0,1]
+		            data: [8, 1, 0, 0, 0, 0, 1]
 		        },
 		        {
 		            label: "Iron",
@@ -351,22 +348,13 @@
 		            pointStrokeColor: "#fff",
 		            pointHighlightFill: "#fff",
 		            pointHighlightStroke: "rgba(151,187,205,1)",
-		            data: [0, 0, 0, 0, 0, 0, 2,0]
+		            data: [0, 0, 0, 0, 0, 2, 0]
 		        }
 		    ]
 		};
 
 		myLineChart[0] = new Chart(ctx).Line(data1, options);
 	}
-	</script>
-
-	<script type="text/javascript">
-		function search(){
-			var searchValue = document.getElementById("patientToSearch").value;
-			alert("You are trying to search: " + searchValue);
-			searchPatient(searchValue);
-		}
-
 	</script>
 	
 	
