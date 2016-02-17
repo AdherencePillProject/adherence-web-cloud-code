@@ -234,14 +234,8 @@
       //String - A legend template
       legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
   };
-  var myLineChart = new Array();
-  myLineChart[0] = new Chart(ctx).Line(data, options);
-</script>     
+  var myLineChart = new Chart(ctx).Line(data, options);
 
-<script>
-  var t = document.getElementById("checkbox2");
-  if (t.checked == true)
-    console.log("ddd");
 </script> 
 </body>
 </html>

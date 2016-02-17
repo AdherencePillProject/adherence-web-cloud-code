@@ -28,9 +28,10 @@ function searchPatient(patientName) {
 ///////// Following is edited by Yeyi/////////
 //////////////////////////////////////////////
 function clearAllCharts() {
-    for (var i = 0; i < myLineChart.length; ++i) {
+    /*for (var i = 0; i < myLineChart.length; ++i) {
         myLineChart[i].destroy();
-    }
+    }*/
+    myLineChart.destroy();
 }
 function patient0(element) {
 	clearAllCharts();
@@ -41,7 +42,7 @@ function patient0(element) {
 	}
 	element.className = "list-group-item active";
 
-	myLineChart[0] = new Chart(ctx).Line(data, options);
+	myLineChart = new Chart(ctx).Line(data, options);
 }
 
 function patient1(element) {
@@ -78,7 +79,7 @@ function patient1(element) {
 		]
 	};
 
-	myLineChart[1] = new Chart(ctx).Line(data1, options);
+	myLineChart = new Chart(ctx).Line(data1, options);
 
 }
 
@@ -115,7 +116,7 @@ function patient2(element) {
 		]
 	};
 
-	myLineChart[2] = new Chart(ctx).Line(data2, options);
+	myLineChart = new Chart(ctx).Line(data2, options);
 
 }
 function selectAll(obj) {
@@ -157,7 +158,7 @@ function checkBox1(obj) {
             ]
         };
         clearAllCharts();
-        myLineChart[2] = new Chart(ctx).Line(data2, options);
+        myLineChart = new Chart(ctx).Line(data2, options);
         var selectall = document.getElementById("selectallcheckboxes");
         selectall.checked = false;
     }
@@ -188,7 +189,7 @@ function checkBox1(obj) {
             ]
         };
         clearAllCharts();
-        myLineChart[2] = new Chart(ctx).Line(data2, options);
+        myLineChart = new Chart(ctx).Line(data2, options);
     }
 }
 function checkBox2(obj) {
@@ -219,7 +220,8 @@ function checkBox2(obj) {
             ]
         };
         clearAllCharts();
-        myLineChart[2] = new Chart(ctx).Line(data2, options);
+        //myLineChart[2] = new Chart(ctx).Line(data2, options);
+        myLineChart = new Chart(ctx).Line(data2, options);
         var selectall = document.getElementById("selectallcheckboxes");
         selectall.checked = false;
     }
