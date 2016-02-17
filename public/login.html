@@ -18,9 +18,14 @@
     </head>
 
     <body class="passwordValidMsg">
-        <div id="bottellid"><a href="login.php"><img src="images/logonew.jpg" ></a></div>
-        <div id="bottelbody">
+        <center>
+        <div><a href="login.php"></a></div>
+        <div class="toppill">
+            
+        </div>
+            <div class="bottompill">
             <div class="formpart">
+                <br>
                 <form id="login" name="login" method="post" action="login.html" onSubmit="return authenticate(this)">
                     <p>Account Type:
                         <select name="Account_type" id="AccountType">
@@ -53,8 +58,8 @@
 
                 </form>
                 <!--div id="tip"></div>-->
-            </div>
-        </div>
+            </div></div>
+            </center>
          <script type="text/javascript">
             function authenticate(form){
                 userAuthenticate(form.account.value, form.password.value, "home.html");
@@ -65,79 +70,7 @@
 
         <style type="text/css">
             body {
-                background: #7fbbdb ;
-            }
-            #bottelbody {
-                border: 2px solid #a1a1a1;
-                background: #ffffff;
-                width: 300px;
-                border-bottom-right-radius:25px;
-                border-bottom-left-radius:25px;
-                box-shadow: 10px 10px 5px #708090;
-                position: absolute;
-                left: 253px;
-                top: 195px;
-                width: 310px;
-                height: 320px;
-                z-index: 1;
-                font-family: Verdana, Geneva, sans-serif;
-                font-weight: bold;
-                color: #000000;
-                outline: none;
-                text-decoration: none !important;
-                -webkit-transition: all 100ms linear;
-                transition: all 100ms linear;
-                -webkit-user-select: none;
-                -moz-user-select: none;
-                -ms-user-select: none;
-                user-select: none;
-                cursor: pointer;
-
-                text-align: left;
-
-                color: #ffffff;
-                background: -webkit-linear-gradient(top, #6fbdbf 0%, #92cdcf 100%);
-                background: linear-gradient(to bottom, #6fbdbf 0%, #92cdcf 100%);
-                border: 1px solid #5db5b8;
-                box-shadow: 0px 4px 0px 0px #5db5b8, 0px 5px 12px 0px rgba(0, 0, 0, 0.6), inset 0px 0px 10px -5px #000000;
-            }
-            #bottellid {
-                border: 2px solid #a1a1a1;
-                background: #ffffff;
-                width: 300px;
-                border-radius: 25px;
-                box-shadow: 10px 10px 5px #708090;
-                position: absolute;
-                left: 199px;
-                top: 75px;
-                width: 410px;
-                height: 112px;
-                z-index: 2;
-                font-family: "MS Serif", "New York", serif;
-                color: #000;
-
-
-                outline: none;
-                text-decoration: none !important;
-
-
-                -webkit-transition: all 100ms linear;
-                transition: all 100ms linear;
-                -webkit-user-select: none;
-                -moz-user-select: none;
-                -ms-user-select: none;
-                user-select: none;
-                cursor: pointer;
-
-                text-align: center;
-
-                color: #ffffff;
-                background: -webkit-linear-gradient(top, #6fbdbf 0%, #92cdcf 100%);
-                background: linear-gradient(to bottom, #6fbdbf 0%, #92cdcf 100%);
-                border: 1px solid #5db5b8;
-                box-shadow: 0px 4px 0px 0px #5db5b8, 0px 5px 12px 0px rgba(0, 0, 0, 0.6), inset 0px 0px 10px -5px #000000;
-
-                text-align: center;
+                background: #3498DB ;
             }
 
             .formpart {
@@ -147,53 +80,26 @@
                 margin-left: 20px;
                 padding-top: 25px;
                 padding-bottom: 25px;
-
-            }
-
-            .button {
-                float: right;
-                width: 70px;
-                height: 70px;
-                border-radius: 80px;
-                margin-top: 10px;
-                margin-bottom: 10px;
-                margin-right: 15px;
-                margin-left: 15px;
-                padding-top: 5px;
-                padding-bottom: 5px;
-                -webkit-box-shadow: inset -2px -3px 18px #d2b48c, inset 1px -5px 10px #888, inset 0 10px 8px 2px #FFFFFF;
-
-
-                outline: none;
-                text-decoration: none !important;
-
-
-                -webkit-transition: all 100ms linear;
-                transition: all 100ms linear;
-                -webkit-user-select: none;
-                -moz-user-select: none;
-                -ms-user-select: none;
-                user-select: none;
-                cursor: pointer;
-
                 text-align: center;
+            }
 
-                color: #ffffff;
-                background: -webkit-linear-gradient(top, #6fbdbf 0%, #92cdcf 100%);
-                background: linear-gradient(to bottom, #6fbdbf 0%, #92cdcf 100%);
-                border: 1px solid #5db5b8;
-                box-shadow: 0px 4px 0px 0px #5db5b8, 0px 5px 12px 0px rgba(0, 0, 0, 0.6), inset 0px 0px 10px -5px #000000;
+            .toppill {
+                margin-top:30px;
+                background-color: white;
+                border-top-left-radius:100%;
+                border-top-right-radius: 100%;
+                width:300px;
+                height:275px;
+                margin-bottom: -30px;
             }
-            .button:hover
-            {
-                background: -webkit-linear-gradient(top, #a8e427 0%, #b1e73d 100%);
-                background: linear-gradient(to bottom, #a8e427 0%, #b1e73d 100%);
-            }
-            .button:hover:active
-            {
-                border: none !important;
-                top: 4px;
-                box-shadow: 0px 2px 0px 0px #9bd71a, 0px 5px 12px 0px rgba(0, 0, 0, 0.6), inset 0px 0px 10px -5px #000000;
+            
+            .bottompill {
+                background-color: #BDC3C7;
+                border-bottom-left-radius:100%;
+                border-bottom-right-radius: 100%;
+                width:300px;
+                height:300px;
+                
             }
 
             .AccountType:hover
