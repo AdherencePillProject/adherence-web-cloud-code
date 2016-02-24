@@ -40,6 +40,8 @@
 			}
 		}
 	</script>
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+   <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
 </head>
 
 <body onload="toggleActive(document.getElementById('firstDrug'))">
@@ -57,6 +59,7 @@
                 <a class="navbar-brand page-scroll" href="#page-top">Smart Cap</a>
             </div>
 
+            <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		      <ul class="nav navbar-nav" >
 		        <li class='active'><a href="#"><i class="fa fa-clipboard"></i> Prescription</a></li>
@@ -64,8 +67,18 @@
 		        <li><a href="#"><i class="fa fa-heartbeat"></i> My Profile</a></li>
 	            <li><a href="#"><i class="fa fa-user-md"></i> My Patients</a></li>
 	            <li><a href="#"><i class="fa fa-envelope"></i> Inbox</a></li>
-	            <li><a href="#"><i class="fa fa-cog"></i>  John Doe</a></li>
-		      </ul>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" >John <b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Sign in as John</a></li>
+                    <li><a href="#">Explore</a></li>
+                    <li><a href="#">Settings</a></li>
+                    <li><a href="#">Help</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Sign out</a></li>
+                  </ul>
+                </li>
+              </ul>
 
 		    </div>
             <!-- /.navbar-collapse -->
@@ -193,7 +206,13 @@
 
 
 
-
+<script>
+   $('ul.nav li.dropdown').hover(function() {
+  $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
+}, function() {
+  $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
+});
+   </script>
 	<script src="js/jquery.js"></script>
 	<script src="js/bootstrap.js"></script>
 	<script src="js/bootstrap.min.js"></script>
