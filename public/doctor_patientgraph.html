@@ -222,6 +222,12 @@
   };
 
   var options = {
+      // fixes height of y-axis to be 24
+      scaleOverride: true,
+      scaleStartValue: 0,
+      scaleStepWidth: 2,
+      scaleSteps: 12,
+
       ///Boolean - Whether grid lines are shown across the chart
       scaleShowGridLines : true,
       //String - Colour of the grid lines
