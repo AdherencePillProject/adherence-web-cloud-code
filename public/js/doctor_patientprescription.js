@@ -4,6 +4,9 @@ var namesToIndices = {};
 //whether the prescription is part of the same patient or not
 var sameDiv = false;
 
+//keeps track of which prescription number we are on
+var prescriptionNum = 0;
+
 
 //toggleActive
 //parameters: div element
@@ -73,6 +76,7 @@ function getPatients() {
 //function: gets list of prescriptions associated with patient
 //          creates prescription descriptions seen on left of screen
 function getPrescriptions(patient){
+
 	var prescription_list = Parse.Object.extend("Prescription");
 	var query = new Parse.Query(prescription_list);
 
@@ -91,17 +95,19 @@ function getPrescriptions(patient){
 		return;
 	}
 	sameDiv = false;
+	prescriptionNum = 0;
 	for(var p = 0; p < prescripIDs.length; p++){
 		query.get(prescripIDs[p], {
 			success: function(currPrescrip){
 				var drugName = currPrescrip.get("pillName");
-				console.log("Successfully retrieved " + drugName + " for patient: " + currPrescrip.get("patientID"));
+				console.log("Successfully retrieved " + drugName + " for patient " + currPrescrip["id"]);
 
-				var scheduleID = currPrescrip.get("schedule");
-				if(typeof scheduleID != "undefined"){
-					getSchedule(scheduleID, drugName, sameDiv);
+				var schedule = currPrescrip.get("schedule");
+				if(typeof schedule != "undefined"){
+					getSchedule(schedule["id"], drugName, sameDiv, prescriptionNum);
 				}
 				if (p != 0) { sameDiv = true; }
+				prescriptionNum++;
 			},
 			error: function(object, error){
 				console.log("Error in retrieving prescriptions list: " + error.code + " " + error.message);
@@ -114,7 +120,7 @@ function getPrescriptions(patient){
 //getSchedule()
 //parameters: scheduleID, drugName
 //function: gets schedule for certain perscription, along with its drug name
-function getSchedule(scheduleID, drugName, sameDiv){
+function getSchedule(scheduleID, drugName, sameDiv, prescriptionNum){
 
 	var scheduleList = Parse.Object.extend("Schedule");
 	var scheduleQuery = new Parse.Query(scheduleList);
@@ -122,7 +128,7 @@ function getSchedule(scheduleID, drugName, sameDiv){
 	var mon, tues, wed, thurs, fri, sat, sund;
 
 
-	scheduleQuery.get(scheduleID["id"], {
+	scheduleQuery.get(scheduleID, {
 		success: function(schedule){
 			mon = schedule.get("Monday");
 			tues = schedule.get("Tuesday");
@@ -139,7 +145,7 @@ function getSchedule(scheduleID, drugName, sameDiv){
 						["Friday", fri],
 						["Saturday", sat],
 						["Sunday", sund]];
-			createPrescriptionDiv(drugName, sameDiv, days);
+			createPrescriptionDiv(drugName, sameDiv, days, scheduleID, prescriptionNum);
 		},
 		error: function(object, err){
 			console.log("Error in retrieving schedule: " + err.code + " " + err.message);
@@ -190,13 +196,14 @@ function createNameDiv(patient_name, count){
 //createPrescriptionDiv()
 //parameters: drugName, days of week
 //function: creates prescription description shown on left of screen when a certain patient is selected
-function createPrescriptionDiv(drugName, sameDiv, days){
+function createPrescriptionDiv(drugName, sameDiv, days, scheduleID, prescriptionNum){
 	//Add info to div id="patient_prescriptions"
 	var pn = document.getElementById("patient_descriptions");
 
-	if(!sameDiv) { pn.innerHTML = ""; }
+	if(!sameDiv) {
+		pn.innerHTML = "";
+	}
 	
-
 
 	var newA = document.createElement("a");
 	newA.href = "#";
@@ -214,30 +221,85 @@ function createPrescriptionDiv(drugName, sameDiv, days){
 		    		"</thead>" +
 		    		  "<tbody>";
 
+
 	for (var d = 0; d < days.length; d++){
+		var thisID = days[d][0] + "" + prescriptionNum;
 		newP += "<tr>" + 
 			      "<td>" + days[d][0] + "</td>" +
-			      "<td>" + days[d][1] + "</td>" +
+			      "<td><a href='#' id='" + thisID + "' class='doses'>" + days[d][1] + "</a></td>" +
 			    "</tr>";
+		// var aID = "#" + thisID;
+		// debugger;
+
+	    
 	}
 
 	newP += "</tbody>" +
 			  "</table>" +
 		    "<div class='btn-group' role='group'>"+
-			  "<button type='button' class='btn btn-default'>Edit</button>" +
-			  "<button type='button' class='btn btn-default'>Save</button>" +
 			  "<button type='button' class='btn btn-default'>Delete</button>" +
 			"</div>";
 	
 	newA.innerHTML += newP;
 
 	pn.appendChild(newA);
+
+	startUpdateDosage(scheduleID, drugName);
+}
+
+
+
+//startUpdateDosage()
+//parameters: scheduleID, drugName
+//function: starts process of updating dosage in database - creates properties for editable dosages
+function startUpdateDosage(scheduleID, drugName){
+	var dosages = document.getElementsByClassName("doses");
+	for(var d = 0; d < dosages.length; d++){
+		var aID = dosages[d].id;
+		$("#"+aID).editable({
+	        type: 'number',
+	        title: 'Select dosage',
+	        placement: 'right',
+	        value: dosages[d].innerHTML,
+	        success: function(response, newValue){
+	        	updateDosage(scheduleID, drugName, this.id.slice(0, -1), newValue);
+	        	console.log("Successfully updated dosage to " + newValue);
+	        },
+	        error: function(response, newValue){
+	        	console.log("Could not update dosage: " + response.responseText);
+	        }
+	    });
+	}
+
+}
+
+
+//udpateDosage()
+//parameters: scheduleID, drugName, dayOfWeek, newValue
+//function: updates database to reflect change in dosage
+function updateDosage(scheduleID, drugName, dayOfWeek, newValue){
+	// Create the object.
+	var scheduleType = Parse.Object.extend("Schedule");
+	var query = new Parse.Query(scheduleType);
+
+	query.get(scheduleID, {
+		success: function(day){
+			day.set(dayOfWeek, parseInt(newValue));
+			day.save();
+			console.log("Dosage successfully updated for " + newValue + " pills on " + dayOfWeek);
+		},
+		error: function(object, error){
+			console.log("Error in retrieving scheduleID in updateDosage: " + error.code + " " + error.message);
+		}
+
+	});
+
 }
 
 //main()
 function main(){
-	Parse.initialize("BDo39lSOtPuBwDfq0EBDgIjTzztIQE38Fuk03EcR", "ox76Y4RxB06A69JWAleRHSercHKomN2FVu61dfu3");
 	getPatients();	
 }
 
+Parse.initialize("BDo39lSOtPuBwDfq0EBDgIjTzztIQE38Fuk03EcR", "ox76Y4RxB06A69JWAleRHSercHKomN2FVu61dfu3");
 main();
