@@ -1,4 +1,8 @@
+//namesToIndices = keeps track of which patient is selected
 var namesToIndices = {};
+
+//whether the prescription is part of the same patient or not
+var sameDiv = false;
 
 
 //toggleActive
@@ -88,7 +92,7 @@ function getPrescriptions(patient){
 
 		return;
 	}
-
+	sameDiv = false;
 	for(var p = 0; p < prescripIDs.length; p++){
 		query.get(prescripIDs[p], {
 			success: function(currPrescrip){
@@ -97,8 +101,9 @@ function getPrescriptions(patient){
 
 				var scheduleID = currPrescrip.get("schedule");
 				if(typeof scheduleID != "undefined"){
-					getSchedule(scheduleID, drugName);
+					getSchedule(scheduleID, drugName, sameDiv);
 				}
+				if (p != 0) { sameDiv = true; }
 			},
 			error: function(object, error){
 				console.log("Error in retrieving prescriptions list: " + error.code + " " + error.message);
@@ -111,7 +116,7 @@ function getPrescriptions(patient){
 //getSchedule()
 //parameters: scheduleID, drugName
 //function: gets schedule for certain perscription, along with its drug name
-function getSchedule(scheduleID, drugName){
+function getSchedule(scheduleID, drugName, sameDiv){
 	debugger;
 	var scheduleList = Parse.Object.extend("Schedule");
 	var scheduleQuery = new Parse.Query(scheduleList);
@@ -128,7 +133,7 @@ function getSchedule(scheduleID, drugName){
 			fri = schedule.get("Friday");
 			sat = schedule.get("Saturday");
 			sund = schedule.get("Sunday");
-			createPrescriptionDiv(drugName, mon, tues, wed, thurs, fri, sat, sund);
+			createPrescriptionDiv(drugName, sameDiv, mon, tues, wed, thurs, fri, sat, sund);
 		},
 		error: function(object, err){
 			console.log("Error in retrieving schedule: " + err.code + " " + err.message);
@@ -179,17 +184,19 @@ function createNameDiv(patient_name, count){
 //createPrescriptionDiv()
 //parameters: drugName, days of week
 //function: creates prescription description shown on left of screen when a certain patient is selected
-function createPrescriptionDiv(drugName, mon, tues, wed, thurs, fri, sat, sund){
+function createPrescriptionDiv(drugName, sameDiv, mon, tues, wed, thurs, fri, sat, sund){
 	//Add info to div id="patient_prescriptions"
 	var pn = document.getElementById("patient_descriptions");
-	pn.innerHTML = "";
+
+	if(!sameDiv){ pn.innerHTML = ""; }
+	
 
 
 	var newA = document.createElement("a");
 	newA.href = "#";
 	newA.className = "list-group-item";
 
-	newA.innerHTML = "<h3 class='drug'>" + drugName + "</h3>" + 
+	newA.innerHTML += "<h3 class='drug'>" + drugName + "</h3>" + 
 			  			"<table class='table'>" +
 				    		"<thead>" +
 				      			"<tr>" +
