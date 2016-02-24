@@ -73,8 +73,6 @@ function getPatients() {
 //function: gets list of prescriptions associated with patient
 //          creates prescription descriptions seen on left of screen
 function getPrescriptions(patient){
-	debugger;
-
 	var prescription_list = Parse.Object.extend("Prescription");
 	var query = new Parse.Query(prescription_list);
 
@@ -117,7 +115,7 @@ function getPrescriptions(patient){
 //parameters: scheduleID, drugName
 //function: gets schedule for certain perscription, along with its drug name
 function getSchedule(scheduleID, drugName, sameDiv){
-	debugger;
+
 	var scheduleList = Parse.Object.extend("Schedule");
 	var scheduleQuery = new Parse.Query(scheduleList);
 
@@ -133,7 +131,15 @@ function getSchedule(scheduleID, drugName, sameDiv){
 			fri = schedule.get("Friday");
 			sat = schedule.get("Saturday");
 			sund = schedule.get("Sunday");
-			createPrescriptionDiv(drugName, sameDiv, mon, tues, wed, thurs, fri, sat, sund);
+
+			var days = [["Monday", mon],
+						["Tuesday", tues],
+						["Wednesday", wed],
+						["Thursday", thurs],
+						["Friday", fri],
+						["Saturday", sat],
+						["Sunday", sund]];
+			createPrescriptionDiv(drugName, sameDiv, days);
 		},
 		error: function(object, err){
 			console.log("Error in retrieving schedule: " + err.code + " " + err.message);
@@ -184,11 +190,11 @@ function createNameDiv(patient_name, count){
 //createPrescriptionDiv()
 //parameters: drugName, days of week
 //function: creates prescription description shown on left of screen when a certain patient is selected
-function createPrescriptionDiv(drugName, sameDiv, mon, tues, wed, thurs, fri, sat, sund){
+function createPrescriptionDiv(drugName, sameDiv, days){
 	//Add info to div id="patient_prescriptions"
 	var pn = document.getElementById("patient_descriptions");
 
-	if(!sameDiv){ pn.innerHTML = ""; }
+	if(!sameDiv) { pn.innerHTML = ""; }
 	
 
 
@@ -196,53 +202,36 @@ function createPrescriptionDiv(drugName, sameDiv, mon, tues, wed, thurs, fri, sa
 	newA.href = "#";
 	newA.className = "list-group-item";
 
-	newA.innerHTML += "<h3 class='drug'>" + drugName + "</h3>" + 
-			  			"<table class='table'>" +
-				    		"<thead>" +
-				      			"<tr>" +
-					      		  "<th>Day of Week</th>" +
-				        		  "<th># of Pills</th>" +
-				        		 "<tr>" +
-				    		"</thead>" +
-				    		"<tbody>" + 
-						      "<tr>" + 
-						        "<td>Monday</td>" +
-						        "<td>" + mon + "</td>" +
-						      "</tr>" + 
-						      "<tr>" +
-						        "<td>Tuesday</td>" +
-						        "<td>" + tues + "</td>" +
-						      "</tr>" +
-						      "<tr>" +
-						        "<td>Wednesday</td>" +
-						        "<td>" + wed + "</td>" +
-						      "</tr>" +
-						      "<tr>" +
-						        "<td>Thursday</td>" +
-						        "<td>" + thurs + "</td>" +
-						      "</tr>" +
-						      "<tr>" +
-						        "<td>Friday</td>" +
-						        "<td>" + fri + "</td>" +
-						      "</tr>" +
-						      "<tr>" +
-						        "<td>Saturday</td>" +
-						        "<td>" + sat + "</td>" +
-						      "</tr>" +
-						      "<tr>" +
-						        "<td>Sunday</td>" +
-						        "<td>" + sund + "</td>" +
-						      "</tr>" +
-						    "</tbody>" +
-						  "</table>" +
-					    "<div class='btn-group' role='group'>"+
-						  "<button type='button' class='btn btn-default'>Edit</button>" +
-						  "<button type='button' class='btn btn-default'>Save</button>" +
-						  "<button type='button' class='btn btn-default'>Delete</button>" +
-						"</div>";
+	var newP = "";
+
+	newP += "<h3 class='drug'>" + drugName + "</h3>" + 
+	  			"<table class='table'>" +
+		    		"<thead>" +
+		      			"<tr>" +
+			      		  "<th>Day of Week</th>" +
+		        		  "<th># of Pills</th>" +
+		        		 "<tr>" +
+		    		"</thead>" +
+		    		  "<tbody>";
+
+	for (var d = 0; d < days.length; d++){
+		newP += "<tr>" + 
+			      "<td>" + days[d][0] + "</td>" +
+			      "<td>" + days[d][1] + "</td>" +
+			    "</tr>";
+	}
+
+	newP += "</tbody>" +
+			  "</table>" +
+		    "<div class='btn-group' role='group'>"+
+			  "<button type='button' class='btn btn-default'>Edit</button>" +
+			  "<button type='button' class='btn btn-default'>Save</button>" +
+			  "<button type='button' class='btn btn-default'>Delete</button>" +
+			"</div>";
+	
+	newA.innerHTML += newP;
+
 	pn.appendChild(newA);
-
-
 }
 
 //main()
