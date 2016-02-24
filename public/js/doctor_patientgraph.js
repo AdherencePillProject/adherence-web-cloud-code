@@ -1,3 +1,4 @@
+
 Parse.initialize("BDo39lSOtPuBwDfq0EBDgIjTzztIQE38Fuk03EcR", "ox76Y4RxB06A69JWAleRHSercHKomN2FVu61dfu3");
 
 function searchPatient(patientName) {
@@ -33,6 +34,14 @@ function clearAllCharts() {
     }*/
     myLineChart.destroy();
 }
+function chooseAllCheckBoxes() {
+	var t = document.getElementById("selectallcheckboxes");
+    t.checked = true;
+    var m1 = document.getElementById("checkbox1");
+    m1.checked = true;
+    var m2 = document.getElementById("checkbox2");
+    m2.checked = true;
+}
 function patient0(element) {
 	clearAllCharts();
 
@@ -43,6 +52,7 @@ function patient0(element) {
 	element.className = "list-group-item active";
 
 	myLineChart = new Chart(ctx).Line(data, options);
+    chooseAllCheckBoxes();
 }
 
 function patient1(element) {
@@ -78,6 +88,7 @@ function patient1(element) {
             }
 		]
 	};
+	
 
 	myLineChart = new Chart(ctx).Line(data1, options);
 
@@ -106,8 +117,8 @@ function patient2(element) {
 			},
             {
                 fillColor: "rgba(255,255,255,0)",
-                strokeColor: "rgba(197, 17, 98, 0)",
-                pointColor: "rgba(197, 17, 98, 0)",
+                strokeColor: "rgba(197, 17, 98, 1)",
+                pointColor: "rgba(197, 17, 98, 1)",
                 pointStrokeColor: "#fff",
                 pointHighlightFill: "#fff",
                 pointHighlightStroke: "rgba(151,187,205,1)",
@@ -115,7 +126,7 @@ function patient2(element) {
             }
 		]
 	};
-
+	chooseAllCheckBoxes();
 	myLineChart = new Chart(ctx).Line(data2, options);
 
 }
@@ -123,6 +134,8 @@ function selectAll(obj) {
     if (obj.checked == true) {
         var cb1 = document.getElementById("checkbox1");
         var cb2 = document.getElementById("checkbox2");
+        var usa = document.getElementById("unselectallcheckboxes");
+        usa.checked = false;
         cb1.checked = true;
         checkBox1(obj);
         cb2.checked = true;
@@ -130,67 +143,165 @@ function selectAll(obj) {
 
     }
 }
+function unSelectAll(obj) {
+    var cb1 = document.getElementById("checkbox1");
+    var cb2 = document.getElementById("checkbox2");
+    var sa = document.getElementById("selectallcheckboxes");
+    cb1.checked = false;
+    cb2.checked = false;
+    sa.checked = false;
+    data2 = {
+        labels: ["MON", "TUE", "WED", "THUR", "FRI", "SAT", "SUN"],
+        datasets: [
+            {
+                label: "Xanax",
+                fillColor: "rgba(255,255,255,0)",
+                strokeColor: "rgba(0, 145, 234, 0)",
+                pointColor: "rgba(0, 145, 234, 0)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(220,220,220,1)",
+                data: [8, 8.5, 8, 9, 8, 6, 8]
+            },
+            {
+                label: "Iron",
+                fillColor: "rgba(255,255,255,0)",
+                strokeColor: "rgba(197, 17, 98, 0)",
+                pointColor: "rgba(197, 17, 98, 0)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(151,187,205,1)",
+                data: [22, 22.5, 21.5, 22, 21, 22, 22]
+            }
+        ]
+    };
+    clearAllCharts();
+    myLineChart = new Chart(ctx).Line(data2, options);
+}
 function checkBox1(obj) {
-    if (obj.checked == false) {
-        data2 = {
-            labels: ["MON", "TUE", "WED", "THUR", "FRI", "SAT", "SUN"],
-            datasets: [
-                {
-                    label: "Xanax",
-                    fillColor: "rgba(255,255,255,0)",
-                    strokeColor: "rgba(0, 145, 234, 1)",
-                    pointColor: "rgba(0, 145, 234, 1)",
-                    pointStrokeColor: "#fff",
-                    pointHighlightFill: "#fff",
-                    pointHighlightStroke: "rgba(220,220,220,1)",
-                    data: [8, 8.5, 8, 9, 8, 6, 8]
-                },
-                {
-                    label: "Iron",
-                    fillColor: "rgba(255,255,255,0)",
-                    strokeColor: "rgba(197, 17, 98, 0)",
-                    pointColor: "rgba(197, 17, 98, 0)",
-                    pointStrokeColor: "#fff",
-                    pointHighlightFill: "#fff",
-                    pointHighlightStroke: "rgba(151,187,205,1)",
-                    data: [22, 22.5, 21.5, 22, 21, 22, 22]
-                }
-            ]
-        };
-        clearAllCharts();
-        myLineChart = new Chart(ctx).Line(data2, options);
-        var selectall = document.getElementById("selectallcheckboxes");
-        selectall.checked = false;
-    }
-    if (obj.checked == true) {
-        data2 = {
-            labels: ["MON", "TUE", "WED", "THUR", "FRI", "SAT", "SUN"],
-            datasets: [
-                {
-                    label: "Xanax",
-                    fillColor: "rgba(255,255,255,0)",
-                    strokeColor: "rgba(0, 145, 234,1)",
-                    pointColor: "rgba(0, 145, 234,1)",
-                    pointStrokeColor: "#fff",
-                    pointHighlightFill: "#fff",
-                    pointHighlightStroke: "rgba(220,220,220,1)",
-                    data: [8, 8.5, 8, 9, 8, 6, 8]
-                },
-                {
-                    label: "Iron",
-                    fillColor: "rgba(255,255,255,0)",
-                    strokeColor: "rgba(197, 17, 98,1)",
-                    pointColor: "rgba(197, 17, 98,1)",
-                    pointStrokeColor: "#fff",
-                    pointHighlightFill: "#fff",
-                    pointHighlightStroke: "rgba(151,187,205,1)",
-                    data: [22, 22.5, 21.5, 22, 21, 22, 22]
-                }
-            ]
-        };
-        clearAllCharts();
-        myLineChart = new Chart(ctx).Line(data2, options);
-    }
+	if (document.getElementById("checkbox2").checked == true) {
+	    if (obj.checked == false) {
+	        data2 = {
+	            labels: ["MON", "TUE", "WED", "THUR", "FRI", "SAT", "SUN"],
+	            datasets: [
+	                {
+	                    label: "Xanax",
+	                    fillColor: "rgba(255,255,255,0)",
+	                    strokeColor: "rgba(0, 145, 234, 0)",
+	                    pointColor: "rgba(0, 145, 234, 0)",
+	                    pointStrokeColor: "#fff",
+	                    pointHighlightFill: "#fff",
+	                    pointHighlightStroke: "rgba(220,220,220,1)",
+	                    data: [8, 8.5, 8, 9, 8, 6, 8]
+	                },
+	                {
+	                    label: "Iron",
+	                    fillColor: "rgba(255,255,255,0)",
+	                    strokeColor: "rgba(197, 17, 98, 1)",
+	                    pointColor: "rgba(197, 17, 98, 1)",
+	                    pointStrokeColor: "#fff",
+	                    pointHighlightFill: "#fff",
+	                    pointHighlightStroke: "rgba(151,187,205,1)",
+	                    data: [22, 22.5, 21.5, 22, 21, 22, 22]
+	                }
+	            ]
+	        };
+	        clearAllCharts();
+	        myLineChart = new Chart(ctx).Line(data2, options);
+	        var selectall = document.getElementById("selectallcheckboxes");
+	        selectall.checked = false;
+	    }
+	    if (obj.checked == true) {
+	        data2 = {
+	            labels: ["MON", "TUE", "WED", "THUR", "FRI", "SAT", "SUN"],
+	            datasets: [
+	                {
+	                    label: "Xanax",
+	                    fillColor: "rgba(255,255,255,0)",
+	                    strokeColor: "rgba(0, 145, 234,1)",
+	                    pointColor: "rgba(0, 145, 234,1)",
+	                    pointStrokeColor: "#fff",
+	                    pointHighlightFill: "#fff",
+	                    pointHighlightStroke: "rgba(220,220,220,1)",
+	                    data: [8, 8.5, 8, 9, 8, 6, 8]
+	                },
+	                {
+	                    label: "Iron",
+	                    fillColor: "rgba(255,255,255,0)",
+	                    strokeColor: "rgba(197, 17, 98,1)",
+	                    pointColor: "rgba(197, 17, 98,1)",
+	                    pointStrokeColor: "#fff",
+	                    pointHighlightFill: "#fff",
+	                    pointHighlightStroke: "rgba(151,187,205,1)",
+	                    data: [22, 22.5, 21.5, 22, 21, 22, 22]
+	                }
+	            ]
+	        };
+	        clearAllCharts();
+	        myLineChart = new Chart(ctx).Line(data2, options);
+	    }
+	} else {
+		if (obj.checked == false) {
+	        data2 = {
+	            labels: ["MON", "TUE", "WED", "THUR", "FRI", "SAT", "SUN"],
+	            datasets: [
+	                {
+	                    label: "Xanax",
+	                    fillColor: "rgba(255,255,255,0)",
+	                    strokeColor: "rgba(0, 145, 234, 0)",
+	                    pointColor: "rgba(0, 145, 234, 0)",
+	                    pointStrokeColor: "#fff",
+	                    pointHighlightFill: "#fff",
+	                    pointHighlightStroke: "rgba(220,220,220,1)",
+	                    data: [8, 8.5, 8, 9, 8, 6, 8]
+	                },
+	                {
+	                    label: "Iron",
+	                    fillColor: "rgba(255,255,255,0)",
+	                    strokeColor: "rgba(197, 17, 98, 0)",
+	                    pointColor: "rgba(197, 17, 98, 0)",
+	                    pointStrokeColor: "#fff",
+	                    pointHighlightFill: "#fff",
+	                    pointHighlightStroke: "rgba(151,187,205,1)",
+	                    data: [22, 22.5, 21.5, 22, 21, 22, 22]
+	                }
+	            ]
+	        };
+	        clearAllCharts();
+	        myLineChart = new Chart(ctx).Line(data2, options);
+	        var selectall = document.getElementById("selectallcheckboxes");
+	        selectall.checked = false;
+	    }
+	    if (obj.checked == true) {
+	        data2 = {
+	            labels: ["MON", "TUE", "WED", "THUR", "FRI", "SAT", "SUN"],
+	            datasets: [
+	                {
+	                    label: "Xanax",
+	                    fillColor: "rgba(255,255,255,0)",
+	                    strokeColor: "rgba(0, 145, 234,0)",
+	                    pointColor: "rgba(0, 145, 234,0)",
+	                    pointStrokeColor: "#fff",
+	                    pointHighlightFill: "#fff",
+	                    pointHighlightStroke: "rgba(220,220,220,1)",
+	                    data: [8, 8.5, 8, 9, 8, 6, 8]
+	                },
+	                {
+	                    label: "Iron",
+	                    fillColor: "rgba(255,255,255,0)",
+	                    strokeColor: "rgba(197, 17, 98,1)",
+	                    pointColor: "rgba(197, 17, 98,1)",
+	                    pointStrokeColor: "#fff",
+	                    pointHighlightFill: "#fff",
+	                    pointHighlightStroke: "rgba(151,187,205,1)",
+	                    data: [22, 22.5, 21.5, 22, 21, 22, 22]
+	                }
+	            ]
+	        };
+	        clearAllCharts();
+	        myLineChart = new Chart(ctx).Line(data2, options);
+	    }
+	}
 }
 function checkBox2(obj) {
     if (obj.checked == false) {

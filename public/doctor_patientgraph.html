@@ -61,6 +61,18 @@
       padding-left: 10%;
       padding-right: 10%;
     }
+    #xanax {
+      color: #0091ea;
+      font-weight: bold;
+    }
+    #iron {
+      color: #c51162;
+      font-weight: bold;
+    }
+    #lb-cb1, #lb-cb2 {
+      font-weight: bold;
+    }
+    
 
   </style>
   <script type="text/javascript">
@@ -139,15 +151,22 @@
         </label>
       </div>
 
-      <div class="checkbox" id="xanax">
+      <div class="checkbox">
         <label>
+          <input type="checkbox" value="" id="unselectallcheckboxes" onclick="unSelectAll(this)">
+          Un-Select all
+        </label>
+      </div>
+
+      <div class="checkbox" id="xanax">
+        <label id="lb-cb1">
           <input type="checkbox" value="" id="checkbox1" onclick="checkBox1(this)">
           Xanax
         </label>
       </div>
 
       <div class="checkbox" id="iron">
-        <label>
+        <label id="lb-cb2">
           <input type="checkbox" value="" id="checkbox2" onclick="checkBox2(this)">
           Iron
         </label>
@@ -212,7 +231,7 @@
       //Boolean - Whether to show horizontal lines (except X axis)
       scaleShowHorizontalLines: true,
       //Boolean - Whether to show vertical lines (except Y axis)
-      scaleShowVerticalLines: true,
+      scaleShowVerticalLines: false,
       //Boolean - Whether the line is curved between points
       bezierCurve : false,
       //Number - Tension of the bezier curve between points
