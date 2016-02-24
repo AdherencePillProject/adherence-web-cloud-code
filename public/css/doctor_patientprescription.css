@@ -1,0 +1,12 @@
+body {
+		font-family: "Helvetica Neue";
+	}
+	.description {
+		position:fixed; top:2%; right:2%;
+	}
+	@media (min-width:768px){
+		.left {
+			left: 10px;
+			width: 400px;
+		}
+	}

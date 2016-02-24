@@ -7,6 +7,9 @@
 	<link href="css/bootstrap.css" rel="stylesheet">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
+	<link rel="stylesheet" href="css/doctor_patientprescription.css"> 
+
+
 	<!--Add JQuery-->
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
@@ -20,27 +23,9 @@
 
 	<script src="http://www.parsecdn.com/js/parse-1.6.7.min.js"></script>
 
-	<style>
-
-	body {
-		/*background-color: #bdc3c7;*/
-		font-family: "Helvetica Neue";
-	}
-	.description {
-		position:fixed; top:2%; right:2%;
-	}
-	@media (min-width:768px){
-		.left {
-			left: 10px;
-			width: 400px;
-		}
-	}
-	</style>
-
-	<script src="js/doctor_patientprescription.js"></script>
+	
 </head>
 
-<!-- <body onload="toggleActive(document.getElementById('firstDrug'))"> -->
 <body>
 
 	<nav class="navbar navbar-default">
@@ -67,64 +52,20 @@
 
 		    </div>
         </div>
-    </nav><!-- 
-    <div ng-controller='NavController as tab' ng-include src="'partials/navbar/navbar.html'"></div> -->
+    </nav>
+    <!-- <div ng-controller='NavController as tab' ng-include src="'partials/navbar/navbar.html'"></div> -->
 
 
 
     <div class="row">
     	<div class="col-md-4 left">
     		<div class="list-group" id="patient_names">
-			  <a href="#" onclick="toggleActive(this)" id="firstPatient" class="list-group-item active">Mary J</a>
-			  <a href="#" onclick="toggleActive(this)" class="list-group-item">John D</a>
-			  <a href="#" onclick="toggleActive(this)" class="list-group-item">Mark I</a>
-			  <a href="#" onclick="toggleActive(this)" class="list-group-item">Faye Z</a>
-			  <a href="#" onclick="toggleActive(this)" class="list-group-item">Claire C</a>
-			  <a href="#" onclick="toggleActive(this)" class="list-group-item">Henry A</a>
 			</div>
     	</div>
+
+
     	<div class="col-md-8 right">
     		<div class="list-group" id="patient_descriptions">
-			  <a href="#" id="firstDrug" class="list-group-item">
-			    <h3 class="drug">Drug 1</h3>
-			  	<p>Description of drug here</p>
-			  	<ul>
-			  		<li>Dosage</li>
-			  		<li>Frequency</li>
-			  	</ul>
-			    <div class="btn-group" role="group">
-				  <button type="button" class="btn btn-default">Edit</button>
-				  <button type="button" class="btn btn-default">Save</button>
-				  <button type="button" class="btn btn-default">Delete</button>
-				</div>
-			  </a>
-			  <a href="#" class="list-group-item">
-			  	<h3 class="drug">Drug 2</h3>
-			  	<p>Description of drug here</p>
-			  	<ul>
-			  		<li>Dosage</li>
-			  		<li>Frequency</li>
-			  	</ul>
-			    <div class="btn-group" role="group">
-				  <button type="button" class="btn btn-default">Edit</button>
-				  <button type="button" class="btn btn-default">Save</button>
-				  <button type="button" class="btn btn-default">Delete</button>
-				</div>
-
-			  </a>
-			  <a href="#" class="list-group-item">
-			  	<h3 class="drug">Drug 3</h3>
-			  	<p>Description of drug here</p>
-			  	<ul>
-			  		<li>Dosage</li>
-			  		<li>Frequency</li>
-			  	</ul>
-			    <div class="btn-group" role="group">
-				  <button type="button" class="btn btn-default">Edit</button>
-				  <button type="button" class="btn btn-default">Save</button>
-				  <button type="button" class="btn btn-default">Delete</button>
-				</div>
-			  </a>
 			</div>
     	</div>
     </div>
@@ -133,6 +74,9 @@
 	<!-- <script src="js/jquery.js"></script> -->
 	<script src="js/bootstrap.js"></script>
 	<script src="js/bootstrap.min.js"></script>
+
+	<script src="js/doctor_patientprescription.js"></script>
+
 
 </body>
 
