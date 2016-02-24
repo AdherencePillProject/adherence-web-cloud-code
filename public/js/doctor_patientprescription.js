@@ -104,7 +104,7 @@ function getPrescriptions(patient){
 
 				var schedule = currPrescrip.get("schedule");
 				if(typeof schedule != "undefined"){
-					getSchedule(schedule["id"], drugName, sameDiv, prescriptionNum);
+					getSchedule(schedule["id"], drugName, sameDiv, prescriptionNum, currPrescrip["id"], patient);
 				}
 				if (p != 0) { sameDiv = true; }
 				prescriptionNum++;
@@ -118,9 +118,9 @@ function getPrescriptions(patient){
 }
 
 //getSchedule()
-//parameters: scheduleID, drugName
+//parameters: scheduleID, drugName, sameDiv, prescriptionNum, patient
 //function: gets schedule for certain perscription, along with its drug name
-function getSchedule(scheduleID, drugName, sameDiv, prescriptionNum){
+function getSchedule(scheduleID, drugName, sameDiv, prescriptionNum, prescriptionID, patient){
 
 	var scheduleList = Parse.Object.extend("Schedule");
 	var scheduleQuery = new Parse.Query(scheduleList);
@@ -145,7 +145,7 @@ function getSchedule(scheduleID, drugName, sameDiv, prescriptionNum){
 						["Friday", fri],
 						["Saturday", sat],
 						["Sunday", sund]];
-			createPrescriptionDiv(drugName, sameDiv, days, scheduleID, prescriptionNum);
+			createPrescriptionDiv(drugName, sameDiv, days, scheduleID, prescriptionNum, prescriptionID, patient);
 		},
 		error: function(object, err){
 			console.log("Error in retrieving schedule: " + err.code + " " + err.message);
@@ -194,9 +194,9 @@ function createNameDiv(patient_name, count){
 }
 
 //createPrescriptionDiv()
-//parameters: drugName, days of week
+//parameters: drugName, sameDiv, days, scheduleID, prescriptionNum, prescriptionID
 //function: creates prescription description shown on left of screen when a certain patient is selected
-function createPrescriptionDiv(drugName, sameDiv, days, scheduleID, prescriptionNum){
+function createPrescriptionDiv(drugName, sameDiv, days, scheduleID, prescriptionNum, prescriptionID, patient){
 	//Add info to div id="patient_prescriptions"
 	var pn = document.getElementById("patient_descriptions");
 
@@ -228,8 +228,6 @@ function createPrescriptionDiv(drugName, sameDiv, days, scheduleID, prescription
 			      "<td>" + days[d][0] + "</td>" +
 			      "<td><a href='#' id='" + thisID + "' class='doses'>" + days[d][1] + "</a></td>" +
 			    "</tr>";
-		// var aID = "#" + thisID;
-		// debugger;
 
 	    
 	}
@@ -237,12 +235,18 @@ function createPrescriptionDiv(drugName, sameDiv, days, scheduleID, prescription
 	newP += "</tbody>" +
 			  "</table>" +
 		    "<div class='btn-group' role='group'>"+
-			  "<button type='button' class='btn btn-default'>Delete</button>" +
+			  "<button type='button' id='deleteBtn' class='btn btn-default'>Delete</button>" +
 			"</div>";
+	
 	
 	newA.innerHTML += newP;
 
 	pn.appendChild(newA);
+
+	// document.getElementById("deleteBtn").addEventListener("click", function(){
+	// 	deletePrescription(prescriptionID, patient);
+	// });
+
 
 	startUpdateDosage(scheduleID, drugName);
 }
@@ -294,6 +298,32 @@ function updateDosage(scheduleID, drugName, dayOfWeek, newValue){
 
 	});
 
+}
+
+function deletePrescription(prescriptionID, patient){
+	// var prescriptionType = Parse.Object.extend("Prescription");
+	// var query = new Parse.Query(prescriptionType);
+
+	// query.get(prescriptionID, {
+	// 	success: function(pres) {
+	// 		debugger;
+
+	// 		pres.destroy({
+	// 			success: function(myObject){
+	// 				var prescripIDs = patient.get("patientPointer").get("prescriptions");
+	// 				console.log("Successfully deleted " + myObject);
+	// 			},
+	// 			error: function (myObject, error){
+	// 				console.log("Error in retrieving scheduleID in updateDosage: " + error.code + " " + error.message);
+	// 			}
+
+	// 		});
+	// 	},
+	// 	error: function(object, error){
+	// 		console.log("Error in finding prescription with ID: " + prescriptionID + " : " + error.code + " " + error.message);
+	// 	}
+
+	// });
 }
 
 //main()
