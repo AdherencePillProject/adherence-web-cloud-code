@@ -79,19 +79,12 @@ function getPrescriptions(patient){
 
 	var prescription_list = Parse.Object.extend("Prescription");
 	var query = new Parse.Query(prescription_list);
+	
 
 	var prescripIDs = patient.get("patientPointer").get("prescriptions");
 
-	if(typeof prescripIDs == "undefined"){
-		var pn = document.getElementById("patient_descriptions");
-		pn.innerHTML = "";
-
-		var newA = document.createElement("a");
-		newA.href = "#";
-		newA.className = "list-group-item";
-		newA.innerHTML = "<h3 class='drug'>No Prescriptions On Record</h3>";
-		pn.appendChild(newA);
-
+	if(typeof prescripIDs == "undefined" || prescripIDs.length == 0){
+		noPrescriptionDiv();
 		return;
 	}
 	sameDiv = false;
@@ -208,6 +201,7 @@ function createPrescriptionDiv(drugName, sameDiv, days, scheduleID, prescription
 	var newA = document.createElement("a");
 	newA.href = "#";
 	newA.className = "list-group-item";
+	newA.id = drugName + "prescriptionID";
 
 	var newP = "";
 
@@ -232,10 +226,12 @@ function createPrescriptionDiv(drugName, sameDiv, days, scheduleID, prescription
 	    
 	}
 
+	var deleteBtnName = "deleteBtn" + prescriptionID;
+
 	newP += "</tbody>" +
 			  "</table>" +
-		    "<div class='btn-group' role='group'>"+
-			  "<button type='button' id='deleteBtn' class='btn btn-default'>Delete</button>" +
+		    "<div class='btn-group' id='" + drugName + "btnGroup' role='group'>"+
+			  "<button type='button' id='" + deleteBtnName + "' class='btn btn-default'>Delete</button>" +
 			"</div>";
 	
 	
@@ -243,9 +239,9 @@ function createPrescriptionDiv(drugName, sameDiv, days, scheduleID, prescription
 
 	pn.appendChild(newA);
 
-	// document.getElementById("deleteBtn").addEventListener("click", function(){
-	// 	deletePrescription(prescriptionID, patient);
-	// });
+	document.getElementById(deleteBtnName).addEventListener("click", function(){
+		deletePrescription(prescriptionID, patient);
+	});
 
 
 	startUpdateDosage(scheduleID, drugName);
@@ -301,29 +297,96 @@ function updateDosage(scheduleID, drugName, dayOfWeek, newValue){
 }
 
 function deletePrescription(prescriptionID, patient){
-	// var prescriptionType = Parse.Object.extend("Prescription");
-	// var query = new Parse.Query(prescriptionType);
+	//delete Prescritpion, Schedule, prescriptions_list in patient
+	var prescriptionType = Parse.Object.extend("Prescription");
+	var query = new Parse.Query(prescriptionType);
+	
+	
 
-	// query.get(prescriptionID, {
-	// 	success: function(pres) {
-	// 		debugger;
 
-	// 		pres.destroy({
-	// 			success: function(myObject){
-	// 				var prescripIDs = patient.get("patientPointer").get("prescriptions");
-	// 				console.log("Successfully deleted " + myObject);
-	// 			},
-	// 			error: function (myObject, error){
-	// 				console.log("Error in retrieving scheduleID in updateDosage: " + error.code + " " + error.message);
-	// 			}
+	query.get(prescriptionID, {
+		success: function(pres) {
+			//delete schedule associated with pill
+			var sched = pres.get("schedule");
+			
+			//destroy schedule
+			destroySchedule(sched);
 
-	// 		});
-	// 	},
-	// 	error: function(object, error){
-	// 		console.log("Error in finding prescription with ID: " + prescriptionID + " : " + error.code + " " + error.message);
-	// 	}
+			//remove prescription from prescription list of patient
+			removePrescriptionFromList(prescriptionID, patient);
 
-	// });
+			
+
+			pres.destroy({
+				success: function(myObject){
+					var prescripIDs = patient.get("patientPointer").get("prescriptions");
+					console.log("Successfully deleted " + myObject.get("pillName"));
+
+					debugger;
+					//finally, delete from webpage
+					var pill = "#" + myObject.get("pillName") + "" + myObject["id"];
+					$(pill).remove();
+
+					//we have no more prescriptions, clear div
+					if($("#patient_descriptions > a").length <= 0){
+						noPrescriptionDiv();
+					}
+					location.reload();
+				},
+				error: function (myObject, error){
+					console.log("Error in retrieving scheduleID in updateDosage: " + error.code + " " + error.message);
+				}
+
+			});
+		},
+		error: function(object, error){
+			console.log("Error in finding prescription with ID: " + prescriptionID + " : " + error.code + " " + error.message);
+		}
+
+	});
+
+}
+
+function removePrescriptionFromList(prescriptionID, patient){
+	var currPatient = patient.get("patientPointer");
+	var prescriptionList = currPatient.get("prescriptions");
+	var index = prescriptionList.indexOf(prescriptionID);
+
+	//remove prescription from list
+	if(index  > -1){
+		prescriptionList.splice(index, 1);
+		console.log("Successfully deleted " + prescriptionID + " from prescription list");
+		currPatient.save();
+	}
+	else {
+		console.log("Prescription " + prescriptionID + " not in prescription list");
+	}
+
+}
+
+function destroySchedule(sched){
+	sched.destroy({
+	  success: function(myObject) {
+	    console.log("Schedule " + myObject.id + " successfully deleted");
+	  },
+	  error: function(myObject, error) {
+	    // The delete failed.
+	    // error is a Parse.Error with an error code and message.
+	    console.log("Deletion of schedule " + myObject.id + " failed, error: " + error.code + ", " + error.message);
+	  }
+	});
+
+}
+
+function noPrescriptionDiv(){
+	var pn = document.getElementById("patient_descriptions");
+	pn.innerHTML = "";
+
+	var newA = document.createElement("a");
+	newA.href = "#";
+	newA.className = "list-group-item";
+	newA.innerHTML = "<h3 class='drug'>No Prescriptions On Record</h3>";
+	pn.appendChild(newA);
 }
 
 //main()
