@@ -218,9 +218,11 @@ function createPrescriptionDiv(drugName, sameDiv, days, scheduleID, prescription
 
 	for (var d = 0; d < days.length; d++){
 		var thisID = days[d][0] + "" + prescriptionNum;
+		var dose = days[d][1];
+		if(typeof dose == "undefined"){dose = 0;}
 		newP += "<tr>" + 
 			      "<td>" + days[d][0] + "</td>" +
-			      "<td><a href='#' id='" + thisID + "' class='doses'>" + days[d][1] + "</a></td>" +
+			      "<td><a href='#' id='" + thisID + "' class='doses'>" + dose + "</a></td>" +
 			    "</tr>";
 
 	    
