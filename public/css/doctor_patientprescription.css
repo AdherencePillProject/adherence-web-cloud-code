@@ -1,12 +1,26 @@
 body {
-		font-family: "Helvetica Neue";
+	font-family: "Helvetica Neue";
+}
+.description {
+	position:fixed; top:2%; right:2%;
+}
+@media (min-width:768px){
+	.left {
+		left: 10px;
+		width: 400px;
 	}
-	.description {
-		position:fixed; top:2%; right:2%;
-	}
-	@media (min-width:768px){
-		.left {
-			left: 10px;
-			width: 400px;
-		}
-	}
+}
+#patient_names {
+  padding-top: 20px;
+}
+
+.col-md-4 {
+  padding-left: 5%;
+  padding-right: 10px;
+  height: 700px;
+}
+.col-md-8 {
+  padding-left: 10px;
+  padding-right: 5%;
+  
+}

@@ -69,22 +69,27 @@
     <!-- <div ng-controller='NavController as tab' ng-include src="'partials/navbar/navbar.html'"></div> -->
 
 
-
     <div class="row">
-    	<div class="col-md-4 left">
-    		<div class="list-group" id="patient_names">
-			</div>
-    	</div>
+	  <div class="col-md-4">
+	    <h3 id="patientlist-title">Patients List</h3>
+	    <div class="input-group">
+	      <input type="text" class="form-control" placeholder="Search for a patient">
+	        <span class="input-group-btn">
+	          <button class="btn btn-default" type="button">Search</button>
+	        </span>
+	    </div>
 
+	    <div class="list-group" id="patient_names">
+		</div>
+	  </div>
 
-    	<div class="col-md-8 right">
-    		<div class="list-group" id="patient_descriptions">
-			</div>
-    	</div>
-    </div>
+  	<div class="col-md-8 right">
+		<div class="list-group" id="patient_descriptions">
+		</div>
+	</div>
+
 
 	
-	<!-- <script src="js/jquery.js"></script> -->
 	<script src="js/bootstrap.js"></script>
 
 

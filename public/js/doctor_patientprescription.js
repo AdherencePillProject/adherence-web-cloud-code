@@ -161,7 +161,9 @@ function createNameDiv(patient_name, count){
 	newA.href = "#";
 	newA.id = "name" + count;
 	newA.onclick = function() { toggleActive(this); }
-	var name = document.createTextNode(patient_name);
+	var name = document.createElement("h4");
+	name.textContent = patient_name;
+	name.className = "list-group-item-heading";
 
 	//first person loaded is highlighted
 
