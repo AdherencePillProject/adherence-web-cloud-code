@@ -196,7 +196,7 @@ function createPrescriptionDiv(drugName, sameDiv, days, scheduleID, prescription
 	var pn = document.getElementById("patient_descriptions");
 
 	if(!sameDiv) {
-		pn.innerHTML = "";
+		pn.innerHTML = "<button type='button' class='btn btn-primary'><i class='fa fa-plus'></i> Add Prescription</button><br/>";
 	}
 	
 
@@ -208,32 +208,36 @@ function createPrescriptionDiv(drugName, sameDiv, days, scheduleID, prescription
 	var newP = "";
 
 	newP += "<h3 class='drug'>" + drugName + "</h3>" + 
-	  			"<table class='table'>" +
+				"<div class='table-responsive'>" + 
+	  			"<table class='table table-responsive'>" +
 		    		"<thead>" +
 		      			"<tr>" +
-			      		  "<th>Day of Week</th>" +
-		        		  "<th># of Pills</th>" +
+		        		  "<th>Monday</th>" +
+		        		  "<th>Tuesday</th>" +
+		        		  "<th>Wednesday</th>" +
+		        		  "<th>Thursday</th>" +
+		        		  "<th>Friday</th>" +
+		        		  "<th>Saturday</th>" +
+		        		  "<th>Sunday</th>" +
 		        		 "<tr>" +
 		    		"</thead>" +
 		    		  "<tbody>";
 
-
+    newP += "<tr>";
 	for (var d = 0; d < days.length; d++){
 		var thisID = days[d][0] + "" + prescriptionNum;
 		var dose = days[d][1];
 		if(typeof dose == "undefined"){dose = 0;}
-		newP += "<tr>" + 
-			      "<td>" + days[d][0] + "</td>" +
-			      "<td><a href='#' id='" + thisID + "' class='doses'>" + dose + "</a></td>" +
-			    "</tr>";
 
-	    
+		newP += "<td><a href='#' id='" + thisID + "' class='doses'>" + dose + "</a></td>";
 	}
+	newP += "</tr>";
 
 	var deleteBtnName = "deleteBtn" + prescriptionID;
 
 	newP += "</tbody>" +
 			  "</table>" +
+		"</div>" + 
 		    "<div class='btn-group' id='" + drugName + "btnGroup' role='group'>"+
 			  "<button type='button' id='" + deleteBtnName + "' class='btn btn-default'>Delete</button>" +
 			"</div>";
@@ -384,7 +388,7 @@ function destroySchedule(sched){
 
 function noPrescriptionDiv(){
 	var pn = document.getElementById("patient_descriptions");
-	pn.innerHTML = "";
+	pn.innerHTML = "<button type='button' class='btn btn-primary'><i class='fa fa-plus'></i> Add Prescription</button>";
 
 	var newA = document.createElement("a");
 	newA.href = "#";
