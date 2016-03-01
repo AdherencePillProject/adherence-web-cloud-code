@@ -3,12 +3,19 @@
 
 <head>
   <title>Doctor - Patient Graph Report</title>
-  <link href="css/bootstrap.css" rel="stylesheet">
+  
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <!--Chart.js-->
   <script src="js/chartjs/Chart.js"></script>
+  <!--JQuery-->
   <script src="js/jquery.js"></script>
+  <!--BootStrap-->
   <script src="js/bootstrap.js"></script>
   <script src="js/bootstrap.min.js"></script>
+  <link href="css/bootstrap.css" rel="stylesheet">
+  <!--Parse-->
+  <script src="http://www.parsecdn.com/js/parse-1.6.7.min.js"></script>
+
   <script src="js/doctor_patientgraph.js"></script>
 
   <style>
@@ -122,12 +129,12 @@
         </span>
     </div>
 
-    <div class="list-group" id="patien-list">
-      <a href="#" class="list-group-item active" onclick="patient0(this)">
+    <div class="list-group" id="patien-names">
+      <!--<a href="#" class="list-group-item active" onclick="patient0(this)">
         <h4 class="list-group-item-heading">Yeyi Peng</h4>
         <p class="list-group-item-text">some info about this patient</p>
       </a>
-      <a href="#" class="list-group-item"  onclick="patient1(this)">
+      <a href="#" class="list-group-item" onclick="patient1(this)">
         <h4 class="list-group-item-heading">Jeanette Pranin</h4>
         <p class="list-group-item-text">some info about this patient</p>
       </a>
@@ -138,7 +145,7 @@
       <a href="#" class="list-group-item" onclick="toggleActive(this)">
         <h4 class="list-group-item-heading">Michael Horn</h4>
         <p class="list-group-item-text">some info about this patient</p>
-      </a>
+      </a>-->
     </div>
   </div>
 
@@ -197,6 +204,8 @@
 <script>
   var ctx = document.getElementById("myChart").getContext("2d");
 
+  var time = new Array(8, 8.5, 8, 9, 8, 6, 22);
+
   var data = {
       labels: ["MON", "TUE", "WED", "THUR", "FRI", "SAT", "SUN"],
       datasets: [
@@ -207,7 +216,8 @@
               pointStrokeColor: "#fff",
               pointHighlightFill: "#fff",
               pointHighlightStroke: "rgba(220,220,220,1)",
-              data: [8, 8.5, 8, 9, 8, 6, 8]
+              //data: [8, 8.5, 8, 9, 8, 6, 8]
+              data: time
           },
           {
               fillColor: "rgba(255,255,255,0)",
@@ -220,6 +230,7 @@
           }
       ]
   };
+  var dataNew = data;
 
   var options = {
       // fixes height of y-axis to be 24

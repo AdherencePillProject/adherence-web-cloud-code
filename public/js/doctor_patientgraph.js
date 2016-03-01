@@ -1,7 +1,9 @@
-
 Parse.initialize("BDo39lSOtPuBwDfq0EBDgIjTzztIQE38Fuk03EcR", "ox76Y4RxB06A69JWAleRHSercHKomN2FVu61dfu3");
 
-function searchPatient(patientName) {
+//namesToIndices = keeps track of which patient is selected
+var namesToIndices = {};
+
+/*function searchPatient(patientName) {
 	var innerQuery = new Parse.Query(Parse.User);
 	innerQuery.contains("username", patientName);
 	var searchCriteria = "userAccount";
@@ -23,7 +25,85 @@ function searchPatient(patientName) {
 			alert("Error: " + error.code + " " + error.message);
 		}
 	});
+}*/
+
+function getPatients() {
+	var patientList = Parse.Object.extend("Patient");
+	var query = new Parse.Query(patientList);
+
+	query.find({
+	  success: function(patients) {
+	    console.log("Successfully retrieved " + patients.length + " patients.");
+	    //GOT PATIENTS SUCCESSFULLY
+	    for (var p = 0; p < patients.length; p++){
+	    	var curr = patients[p];
+	    	var currID = curr.get("userAccount")["id"];
+	    	var userQuery = new Parse.Query(Parse.User);
+
+	    	//for the person who is loaded first
+	    	var count = 0;
+
+	    	//GET PATIENT NAME (FROM USER OBJECT)
+	    	userQuery.get(currID, {
+	    		success: function(user){
+	    			var name = user.get("firstname") + " " + user.get("lastname");
+	    			namesToIndices[count] = user;
+	    			createNameDiv(name, count++);
+
+	    		},
+	    		error: function(object, error){
+	    			console.log("Error in retrieving patients name list: " + error.code + " " + error.message);
+	    		}
+
+	    	});
+
+	    }
+	  },
+	  error: function(error) {
+	    console.log("Error in retrieving patients list: " + error.code + " " + error.message);
+	  }
+	});
 }
+function createNameDiv(patient_name, count){
+	
+	//Add their names to div id="patient_names"
+	var pn = document.getElementById("patient_names");
+	var newA = document.createElement("a");
+
+	newA.href = "#";
+	newA.id = "name" + count;
+	newA.onclick = function() { toggleActive(this); }
+	var name = document.createElement("h4");
+	name.textContent = patient_name;
+	name.className = "list-group-item-heading";
+
+	//first person loaded is highlighted
+
+	if(count == 0){
+		newA.className = "list-group-item active";
+		//element.id[4] because id is in form "name[num here]"
+		var num = parseInt(newA.id[4]);
+
+		var currActiveUser = namesToIndices[num];
+
+		getPrescriptions(currActiveUser);
+
+	}
+	else {
+		newA.className = "list-group-item";
+	}
+	
+	
+	newA.appendChild(name);
+
+	pn.appendChild(newA);
+
+}
+function main() {
+	getPatients();
+}
+
+main();
 
 //////////////////////////////////////////////
 ///////// Following is edited by Yeyi/////////
@@ -64,7 +144,10 @@ function patient1(element) {
 	}
 	element.className = "list-group-item active";
 
-	data1 = {
+	time = new Array(8, 8.5, 8, 9, 8, 6, 10);
+	console.log(time);
+	data1 = data;
+	/*data1 = {
 		labels: ["MON", "TUE", "WED", "THUR", "FRI", "SAT", "SUN"],
 		datasets: [
 			{
@@ -87,7 +170,7 @@ function patient1(element) {
                 data: [22, 22.5, 21.5, 22, 21, 22, 22]
             }
 		]
-	};
+	};*/
 	
 
 	myLineChart = new Chart(ctx).Line(data1, options);
