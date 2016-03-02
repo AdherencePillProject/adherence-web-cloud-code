@@ -36,6 +36,7 @@ function toggleActive(element){
 function getPatients() {
 	var patientList = Parse.Object.extend("Patient");
 	var query = new Parse.Query(patientList);
+	//var prescripIDs = patient.get("patientPointer").get("prescriptions");
 
 	query.find({
 	  success: function(patients) {
@@ -48,13 +49,14 @@ function getPatients() {
 
 	    	//for the person who is loaded first
 	    	var count = 0;
+	    	var pillName = curr.get("prescriptions");
 
 	    	//GET PATIENT NAME (FROM USER OBJECT)
 	    	userQuery.get(currID, {
 	    		success: function(user){
 	    			var name = user.get("firstname") + " " + user.get("lastname");
 	    			namesToIndices[count] = user;
-	    			createNameDiv(name, count++);
+	    			createNameDiv(name, count++, pillName);
 
 	    		},
 	    		error: function(object, error){
@@ -75,30 +77,26 @@ function getPatients() {
 //parameters: patient_name, count
 //function: creates div for name that shows up on the right
 
-function createNameDiv(patient_name, count){
-	
+function createNameDiv(patient_name, count, pillName){	
 	//Add their names to div id="patient_names"
 	var pn = document.getElementById("patien_names");
 	var newA = document.createElement("a");
 
 	newA.href = "#";
 	newA.id = "name" + count;
-	newA.onclick = function() { toggleActive(this); }
+	newA.onclick = function() { 
+		patient0Clicked(this, pillName);
+	}
 	var name = document.createElement("h4");
 	name.textContent = patient_name;
 	name.className = "list-group-item-heading";
 
 	//first person loaded is highlighted
-
 	if(count == 0){
 		newA.className = "list-group-item active";
 		//element.id[4] because id is in form "name[num here]"
 		var num = parseInt(newA.id[4]);
-
 		var currActiveUser = namesToIndices[num];
-
-		//getPrescriptions(currActiveUser);
-
 	}
 	else {
 		newA.className = "list-group-item";
@@ -106,6 +104,31 @@ function createNameDiv(patient_name, count){
 		
 	newA.appendChild(name);
 	pn.appendChild(newA);
+}
+function createCheckBoxes (pillName) {
+	var cb_left = document.getElementById("checkbox-left");
+	var newDiv = document.createElement("div");
+	newDiv.className = "checkbox";
+	
+	var input = document.createElement("input");
+	input.type = "checkbox";
+	input.id = "checkbox" + "1";
+	
+
+	var cblabel = document.createElement("span");
+	cblabel.textContent = pillName;
+
+	var label = document.createElement("label");
+	label.appendChild(input);
+	label.appendChild(cblabel);
+
+	newDiv.appendChild(label);
+	cb_left.appendChild(newDiv);
+
+}
+function patient0Clicked(ev, pillName) {
+	toggleActive(ev);
+	createCheckBoxes(pillName);
 }
 
 

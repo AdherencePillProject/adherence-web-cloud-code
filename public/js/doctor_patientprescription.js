@@ -71,7 +71,7 @@ function getPatients() {
 	});
 }
 
-//getPrescriptions()
+//getPrescriptions()		
 //parameters: patient
 //function: gets list of prescriptions associated with patient
 //          creates prescription descriptions seen on left of screen
