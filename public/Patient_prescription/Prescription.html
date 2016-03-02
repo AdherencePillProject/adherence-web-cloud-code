@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Doctor - Patient Prescription Page</title>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/bootstrap.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	<!-- font -->
+	<link href='https://fonts.googleapis.com/css?family=Nunito' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Lora:400,700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="css/my.css" media="screen" title="no title" charset="utf-8">
+
+	<!--	<style>
+
+	body {
+		/*background-color: #bdc3c7;*/
+		font-family: "Helvetica Neue";
+	}
+
+	</style> -->
+</head>
+
+<body onload="toggleActive(document.getElementById('firstDrug'))">
+
+	<nav class="navbar navbar-default">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top">Smart Cap</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		      <ul class="nav navbar-nav" >
+		        <li class='active'><a href="#"><i class="fa fa-clipboard"></i> Prescription</a></li>
+	            <li><a href="#"><i class="fa fa-medkit"></i> Med Cabinet</a></li>
+		        <li><a href="#"><i class="fa fa-heartbeat"></i> My Profile</a></li>
+	            <li><a href="#"><i class="fa fa-user-md"></i> My Patients</a></li>
+	            <li><a href="#"><i class="fa fa-envelope"></i> Inbox</a></li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" >John <b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Sign in as John</a></li>
+                    <li><a href="#">Explore</a></li>
+                    <li><a href="#">Settings</a></li>
+                    <li><a href="#">Help</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Sign out</a></li>
+                  </ul>
+                </li>
+              </ul>
+
+		    </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+	<div class="dashboard">
+
+		<div class="title">
+			<!-- <div class="input-group">
+	            <input id ="search_text" type="text" class="form-control input-lg" placeholder="Medicine" />
+	            <span class="input-group-btn">
+	                <button class="btn btn-info btn-lg search_button" type="button">
+	                    <i class="glyphicon glyphicon-search" id = "search_icon"></i>
+	                </button></span>
+    		</div> -->
+			<i class="fa fa-chevron-left"></i>
+			<span class='title-name' style="margin: 0 10px; font-size:24px">
+				Today's Prescription
+			</span>
+			<i class="fa fa-chevron-right"></i>
+		</div> <!-- title -->
+
+		<div class="container my-panel"> <!-- dashboard panel groups -->
+			<div id='morning' class="col-md-4"> <!-- first panel -->
+				<div class="child-title">
+					<img class='icon' src="css/image/coffee.png" alt="morning" />
+					Morning
+				</div>
+
+				<div class=" child-panel"> <!-- first panel group content -->
+					<ul class="list-group">
+					    <li class="list-group-item topli" ><!-- first panel->firt medicine -->
+							<a data-toggle="modal" data-target="#myModal"><img class='icon-small' src="css/image/info.png" alt="info" /></a>
+							<button type="button" class="formodal">Tamiflu</button>
+							<img class="condition icon-small" src="css/image/check.png" alt="" />
+						</li>
+
+							<div class="list-group-item subli"> <!-- first panel->firt medicine info-->
+								<h4>Time:</h4>
+								<p> 8:00 am</p>
+								<div class='take-num'>
+									<h4>
+										Amount:
+									</h4>
+									<img class='icon-small' src="css/image/pills.png" alt="pills" />
+									<span>
+										x 10
+									</span>
+								</div>
+							</div> <!-- list-group-item -->
+
+						<li class="list-group-item topli" ><!-- first panel->2d medicine -->
+							<img class='icon-small' src="css/image/info.png" alt="info" />
+							<button type="button" class="formodal" data-toggle="modal" data-target="#myModal">Altace</button>
+							<img class="condition icon-small" src="css/image/close.png" alt="close" /> <!-- cross icon -->
+						</li>
+						<li class="list-group-item"><!-- first panel->3d medicine -->
+							<i class="fa fa-plus-square"></i>
+							<span class="badge">10</span><!-- how many pills haven't taken icon -->
+							Altace
+						</li>
+
+				  </ul>
+				</div>
+
+			</div>
+			<div id='noon' class="col-md-4"><!-- Second panel -->
+				<div class="child-title">
+					<img class="icon" src="css/image/noon.png" alt="noon" />
+					Afternoon
+				</div>
+
+				<div class=" child-panel"><!-- Second panel group content -->
+					<ul class="list-group">
+						<li class="list-group-item topli" > <!-- 2d panel ->1st medicine -->
+							<img class='icon-small' src="css/image/info.png" alt="info" />
+							<button type="button" class="formodal" data-toggle="modal" data-target="#myModal">Altace</button>
+							<img class="condition icon-small" src="css/image/pill.png" alt="pill" />
+						</li>
+
+						<li class="list-group-item topli" > <!-- 2d panel ->2d medicine -->
+							<img class='icon-small' src="css/image/info.png" alt="info" />
+							<button type="button" class="formodal" data-toggle="modal" data-target="#myModal">Altace</button>
+							<img class="condition icon-small" src="css/image/pill.png" alt="pill" />
+						</li>
+
+						<li class="list-group-item topli" ><!-- 2d panel ->3d medicine -->
+							<img class='icon-small' src="css/image/info.png" alt="info" />
+							<button type="button" class="formodal" data-toggle="modal" data-target="#myModal">Altace</button>
+							<img class="condition icon-small" src="css/image/pill.png" alt="pill" />
+						</li>
+
+
+				  </ul>
+				</div>
+			</div>
+
+			<div id='night' class="col-md-4"><!-- Third panel -->
+				<div class="child-title">
+					<img class='icon' src="css/image/night.png" alt="night" />
+					Evening
+				</div>
+
+				<div class=" child-panel">
+					<ul class="list-group"><!-- Third panel content-->
+						<li class="list-group-item topli" ><!-- 3d panel -> 1st medicine-->
+							<img class='icon-small' src="css/image/info.png" alt="info" />
+							<button type="button" class="formodal" data-toggle="modal" data-target="#myModal">Altace</button>
+							<img class="condition icon-small" src="css/image/pill.png" alt="pill" />
+						</li>
+						<li class="list-group-item topli" ><!-- 3d panel -> 2st medicine-->
+							<img class='icon-small' src="css/image/info.png" alt="info" />
+							<button type="button" class="formodal" data-toggle="modal" data-target="#myModal">Altace</button>
+							<img class="condition icon-small" src="css/image/pill.png" alt="pill" />
+						</li>
+				   </ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<script src="js/jquery.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+	<script src="js/my.js"></script>
+
+</body>
+
+
+</html>
