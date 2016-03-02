@@ -119,12 +119,14 @@ function getPrescriptions(user){
 		}
 		prescriptionNum = 0;
 		for(var p = 0; p < results.length; p++){
-			
 			//SYNCHRONOUS WAY
+			debugger;
 
 			var getPrescripInfoQuery = new Parse.Query(prescription_list);
 
 			getPrescripInfoQuery.get(results[p]["id"]).then(function(currPrescrip) {
+				debugger;
+
 				var drugName = currPrescrip.get("pillName");
 				console.log("Successfully retrieved " + drugName + " for patient " + currPrescrip["id"]);
 
@@ -193,12 +195,14 @@ function getPrescriptions(user){
 	
 }
 
+function test(prescripIDs){
+	
+}
+
 //getSchedule()
 //parameters: scheduleID, drugName, sameDiv, prescriptionNum, patient
 //function: gets schedule for certain perscription, along with its drug name
 function getSchedule(scheduleID, drugName, prescriptionNum, prescriptionID, patient){
-
-
 
 	var scheduleList = Parse.Object.extend("Schedule");
 	var scheduleQuery = new Parse.Query(scheduleList);
@@ -206,7 +210,7 @@ function getSchedule(scheduleID, drugName, prescriptionNum, prescriptionID, pati
 
 
 	scheduleQuery.get(scheduleID).then(function(schedule){
-		var prescriptionList = {};
+		// var prescriptionList = {};
 		var timesWithPillNum = schedule.get("timesWithPillNum");
 		var time, dayOfWeek, pillNum;
 		for(var t = 0; t < timesWithPillNum.length; t++){
@@ -227,7 +231,7 @@ function getSchedule(scheduleID, drugName, prescriptionNum, prescriptionID, pati
 				timesAvailable.push(time);
 			}
 		}
-		createPrescriptionDivTest(prescriptionList, drugName, prescriptionID, timesAvailable);
+		createPrescriptionDivTest(drugName, prescriptionID, timesAvailable);
 	});
 
 	//ASYNCHRONOUS WAY
@@ -262,8 +266,8 @@ function getSchedule(scheduleID, drugName, prescriptionNum, prescriptionID, pati
 	// });
 }
 
-function createPrescriptionDivTest(prescriptionList, drugName, prescriptionID, timesAvailable){
-	debugger;
+function createPrescriptionDivTest(drugName, prescriptionID, timesAvailable){
+
 
 	if(typeof timesAvailable == "undefined") { return; }
 
