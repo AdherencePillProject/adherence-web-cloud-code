@@ -52,10 +52,10 @@
                 <div id="topbox">
   <div class="circular"></div>
                     <br>
-                <h3>Name:</h3>
-                 <h3>Email:</h3>
-                 <h3>Age:</h3>
-                 <h3>Sex:</h3>
+                 <h3 id="patName"></h3>
+                 <h3 id="patEmail"></h3>
+                 <h3 id="patAge"></h3>
+                 <h3 id="patSex"></h3>
                 <br>
                 <button class='btn btn-default' id="upload" >Upload Photo</button>
                 </div>
@@ -75,6 +75,17 @@
 		</div>
 	</head>
 	<body>
-	
+	<script type="text/javascript">
+        Parse.initialize("BDo39lSOtPuBwDfq0EBDgIjTzztIQE38Fuk03EcR", "ox76Y4RxB06A69JWAleRHSercHKomN2FVu61dfu3");
+        $( document ).ready(function() {
+            Parse.User.current().fetch().then(function (user) {
+                $("#patName").html("Name: " + user.get("firstname") + " " + user.get("lastname"));
+                $("#patEmail").html("Email: " + user.get("email"));
+                $("#patAge").html("Age: " + user.get("age"));
+                $("#patSex").html("Sex: " + user.get("gender"));
+            })
+        });
+
+    </script>
 	</body>
 </html>
