@@ -59,12 +59,24 @@ width:200px;
 border-radius: 0px;
 }
 
+#name{
+  font-size: 18;
+  font-weight: bold;
+  text-align: center;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+#medcabinet{
+  margin-top: 60px;
+}
+
 #searchbar {
 font-family: 'PT Sans', sans-serif;
-margin-top: 40px;
-margin-bottom: 40px;
+margin-top: 10px;
+margin-bottom: 20px;
 font-size:20px;
 border-radius:0px;
+
 }
 
 #panelheading{
@@ -122,4 +134,10 @@ border-radius:0px;
 #secondmed{
   margin-bottom: 15px;
   background-color: #B0E0E6;
+}
+
+.title{
+  font-family: arial;
+  font-size: 14;
+  font-weight: bold;
 }
