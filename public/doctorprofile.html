@@ -52,10 +52,10 @@
                 <div id="topbox">
   <div class="circular"></div>
                 <br></br>
-                <h3>Name:</h3>
-                 <h3>Phone Number:</h3>
-                 <h3>Email:</h3>
-                 <h3>Clinic:</h3>
+                	<h3 id="docName">Name:</h3>
+					<h3 id="docPhone">Phone Number:</h3>
+			 		<h3 id="docEmail">Email:</h3>
+			 		<h3 id="docClinic">Clinic:</h3>
                 </div>
             
             
@@ -69,6 +69,32 @@
 		</div>
 	</head>
 	<body>
-	
+	<script type="text/javascript">
+		$( document ).ready(function() {
+			Parse.initialize("BDo39lSOtPuBwDfq0EBDgIjTzztIQE38Fuk03EcR", "ox76Y4RxB06A69JWAleRHSercHKomN2FVu61dfu3");
+			var userId; // tested on fGQ4ihQXzi, works well
+			// code to get the userID for the doctor from URL
+			var query = new Parse.Query(Parse.User);
+			query.equalTo("objectId", userId);  // find the user object for the doctor
+			query.first({
+				success: function(user) {
+					$("#docName").html("Name: " + user.get("firstname") + " " + user.get("lastname"));
+					$("#docEmail").html("Email: " + user.get("email"));
+					$("#docPhone").html("Phone Number: " + user.get("phone"));
+					var docId = user.get("doctorPointer").id;
+					var doctor = Parse.Object.extend("Doctor");
+					var query2 = new Parse.Query(doctor);
+					query2.equalTo("objectId", docId);
+					query2.first({
+						success: function(doc) {
+							$("#docClinic").html("Clinic: " + doc.get("hospitalName"));
+						}
+					});
+
+				}
+			});
+
+		});
+	</script>
 	</body>
 </html>
