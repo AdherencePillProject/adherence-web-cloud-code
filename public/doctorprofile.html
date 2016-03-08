@@ -12,11 +12,12 @@
         <script type="text/javascript" src="js/home.js"></script>
     	<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
     	<script src="http://www.parsecdn.com/js/parse-1.6.7.min.js"></script>
+      <script type="text/javascript" src="js/doctorprofile.js"></script>
 		<div id="new-header">
-			<script>
-        		$("#new-header").load("header.html");
-      		</script>
-            <body>
+      <!-- <script>
+                  $("#new-header").load("header.html");
+                </script> -->
+            <body onload="getDoctorInfo()">
                 <nav class="navbar navbar-default">
 	  <div class="container-fluid">
                                     	    <div class="navbar-header">
@@ -52,10 +53,12 @@
                 <div id="topbox">
   <div class="circular"></div>
                 <br></br>
-                <h3>Name:</h3>
-                 <h3>Phone Number:</h3>
-                 <h3>Email:</h3>
-                 <h3>Clinic:</h3>
+                <div id="generalInfo">
+                <h3 id="name">Name:</h3>
+                 <h3 id="phoneNumber">Phone Number:</h3>
+                 <h3 id="email">Email:</h3>
+                 <h3 id="clinic">Clinic:</h3>
+               </div>
                 </div>
             
             
