@@ -62,7 +62,10 @@
             </center>
          <script type="text/javascript">
             function authenticate(form){
-                userAuthenticate(form.account.value, form.password.value, "home.html");
+                if (form.Account_type.value == "Patient")
+                    userAuthenticate(form.account.value, form.password.value, "Patient_prescription/Prescription.html");
+                else
+                    userAuthenticate(form.account.value, form.password.value, "#");
             }
         </script>
     </body>
