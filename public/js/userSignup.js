@@ -49,7 +49,14 @@ function saveNewUser(user, accountType, additionalInfo, redirectUrl){
 						doctor.set("address", additionalInfo.address);
 						doctor.set("hospitalCity", additionalInfo.hospitalCity);
 						doctor.set("hospitalName", additionalInfo.hospitalName);
-						doctor.save();
+						doctor.set("userAccount", newUser);
+						doctor.save(null, {
+							success: function(doc) {
+								newUser.set("doctorPointer", doc);
+								newUser.save();
+							}
+						});
+						
 					}else if(accountType.toLowerCase() == "pharmacy"){
 						newUser.set("userType", ["PharmacyStuff"]);
 					}
