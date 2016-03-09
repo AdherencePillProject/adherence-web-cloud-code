@@ -30,9 +30,6 @@ function toggleActive(element){
 
 	var currActiveUser = namesToIndices[num];
 
-	var pn = document.getElementById("patient_descriptions");
-	pn.innerHTML = "<button type='button' class='btn btn-primary'><i class='fa fa-plus'></i> Add Prescription</button><br/>";
-
 	getPrescriptions(currActiveUser);
 	timesAvailable = [];
 
@@ -153,15 +150,17 @@ function getSchedule(scheduleID, drugName, prescriptionNum, prescriptionID, pati
 				}
 			}
 		}
-		createPrescriptionDiv(drugName, prescriptionID, days, scheduleID);
+		createPrescriptionDiv(drugName, prescriptionID, days, scheduleID, patient);
 	});
 
 }
 
-function createPrescriptionDiv(drugName, prescriptionID, days, scheduleID){
+function createPrescriptionDiv(drugName, prescriptionID, days, scheduleID, patient){
 
 	//Add info to div id="patient_prescriptions"
-	var pn = document.getElementById("patient_descriptions");
+	var pd = document.getElementById("patient_descriptions");
+	pd.innerHTML = "<button type='button' id='addBtn' class='btn btn-primary'><i class='fa fa-plus'></i> Add Prescription</button><br/>";
+
 
 	var newA = document.createElement("a");
 	newA.href = "#";
@@ -230,10 +229,17 @@ function createPrescriptionDiv(drugName, prescriptionID, days, scheduleID){
 	
 	newA.innerHTML += newP;
 
-	pn.appendChild(newA);
+	pd.appendChild(newA);
 
+
+	//delete description button
 	document.getElementById(deleteBtnName).addEventListener("click", function(){
 		deletePrescription(prescriptionID, patient);
+	});
+
+	//add prescription button
+	document.getElementById("addBtn").addEventListener("click", function(){
+		addPrescription(patient);
 	});
  
 	startUpdateDosage(scheduleID, drugName);
@@ -285,72 +291,6 @@ function createNameDiv(patient_name, count){
 
 }
 
-//createPrescriptionDiv()
-//parameters: drugName, sameDiv, days, scheduleID, prescriptionNum, prescriptionID
-//function: creates prescription description shown on left of screen when a certain patient is selected
-function createPrescriptionDivOld(drugName, sameDiv, days, scheduleID, prescriptionNum, prescriptionID, patient){
-	//Add info to div id="patient_prescriptions"
-	var pn = document.getElementById("patient_descriptions");
-
-	if(!sameDiv) {
-		pn.innerHTML = "<button type='button' class='btn btn-primary'><i class='fa fa-plus'></i> Add Prescription</button><br/>";
-	}
-	
-
-	var newA = document.createElement("a");
-	newA.href = "#";
-	newA.className = "list-group-item";
-	newA.id = drugName + "prescriptionID";
-
-	var newP = "";
-
-	newP += "<h3 class='drug'>" + drugName + "</h3>" + 
-				"<div class='table-responsive'>" + 
-	  			"<table class='table table-responsive'>" +
-		    		"<thead>" +
-		      			"<tr>" +
-		        		  "<th>Monday</th>" +
-		        		  "<th>Tuesday</th>" +
-		        		  "<th>Wednesday</th>" +
-		        		  "<th>Thursday</th>" +
-		        		  "<th>Friday</th>" +
-		        		  "<th>Saturday</th>" +
-		        		  "<th>Sunday</th>" +
-		        		 "<tr>" +
-		    		"</thead>" +
-		    		  "<tbody>";
-
-    newP += "<tr>";
-	for (var d = 0; d < days.length; d++){
-		var thisID = days[d][0] + "" + prescriptionNum;
-		var dose = days[d][1];
-		if(typeof dose == "undefined"){dose = 0;}
-
-		newP += "<td><a href='#' id='" + thisID + "' class='doses'>" + dose + "</a></td>";
-	}
-	newP += "</tr>";
-
-	var deleteBtnName = "deleteBtn" + prescriptionID;
-
-	newP += "</tbody>" +
-			  "</table>" +
-		"</div>" + 
-		    "<div class='btn-group' id='" + drugName + "btnGroup' role='group'>"+
-			  "<button type='button' id='" + deleteBtnName + "' class='btn btn-default'>Delete</button>" +
-			"</div>";
-	
-	
-	newA.innerHTML += newP;
-
-	pn.appendChild(newA);
-
-	document.getElementById(deleteBtnName).addEventListener("click", function(){
-		deletePrescription(prescriptionID, patient);
-	});
-
-	startUpdateDosage(scheduleID, drugName);
-}
-
 
 
 //startUpdateDosage()
@@ -384,7 +324,6 @@ function startUpdateDosage(scheduleID, drugName){
 //parameters: scheduleID, drugName, dayOfWeek, newValue
 //function: updates database to reflect change in dosage
 function updateDosage(scheduleID, drugName, dayOfWeek, timeOfDay, newValue){
-	debugger;
 
 	// Create the object.
 	var scheduleType = Parse.Object.extend("Schedule");
@@ -405,7 +344,12 @@ function updateDosage(scheduleID, drugName, dayOfWeek, timeOfDay, newValue){
 
 }
 
+function addPrescription(patient){
+	var pd = document.getElementById("patient_descriptions");
+}
+
 function deletePrescription(prescriptionID, patient){
+	debugger;
 	//delete Prescritpion, Schedule, prescriptions_list in patient
 	var prescriptionType = Parse.Object.extend("Prescription");
 	var query = new Parse.Query(prescriptionType);
