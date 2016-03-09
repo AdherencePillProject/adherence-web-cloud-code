@@ -65,23 +65,6 @@ function getPatientsInfo() {
 	    	//for the person who is loaded first
 	    	var count = 0;
 
-	    	//ASYNCHRONOUS WAY
-	    	// //GET PATIENT NAME (FROM USER OBJECT)
-	    	// userQuery.get(currID, {
-	    	// 	success: function(user){
-	    	// 		var name = user.get("firstname") + " " + user.get("lastname");
-	    	// 		namesToIndices[count] = user;
-	    	// 		createNameDiv(name, count++);
-
-	    	// 	},
-	    	// 	error: function(object, error){
-	    	// 		console.log("Error in retrieving patients name list: " + error.code + " " + error.message);
-	    	// 	}
-
-	    	// });
-
-			//SYNCHRONOUS WAY
-			//GET PATIENT NAME (FROM USER OBJECT)
 	    	userQuery.get(currID).then(function(user) {
 	    		var name = user.get("firstname") + " " + user.get("lastname");
 	    		namesToIndices[count] = user;
@@ -120,12 +103,11 @@ function getPrescriptions(user){
 		prescriptionNum = 0;
 		for(var p = 0; p < results.length; p++){
 			//SYNCHRONOUS WAY
-			debugger;
 
 			var getPrescripInfoQuery = new Parse.Query(prescription_list);
 
 			getPrescripInfoQuery.get(results[p]["id"]).then(function(currPrescrip) {
-				debugger;
+
 
 				var drugName = currPrescrip.get("pillName");
 				console.log("Successfully retrieved " + drugName + " for patient " + currPrescrip["id"]);
@@ -146,56 +128,6 @@ function getPrescriptions(user){
 	});
 
 	
-
-	// var prescripIDs = patient.get("patientPointer").get("prescriptions");
-
-	// if(typeof prescripIDs == "undefined" || prescripIDs.length == 0){
-	// 	noPrescriptionDiv();
-	// 	return;
-	// }
-	// // sameDiv = false;
-	// prescriptionNum = 0;
-	// for(var p = 0; p < prescripIDs.length; p++){
-	// 	//SYNCHRONOUS WAY
-	// 	query.get(prescripIDs[p]).then(function(currPrescrip) {
-	// 		var drugName = currPrescrip.get("pillName");
-	// 		console.log("Successfully retrieved " + drugName + " for patient " + currPrescrip["id"]);
-
-	// 		var schedule = currPrescrip.get("schedule");
-
-
-	// 		if(typeof schedule != "undefined"){
-	// 			getSchedule(schedule["id"], drugName, prescriptionNum, currPrescrip["id"], patient);
-	// 		}
-			
-	// 		prescriptionNum++;
-
-	// 	});
-
-
-	// 	//ASYNCHRONOUS WAY
-	// 	// query.get(prescripIDs[p], {
-	// 	// 	success: function(currPrescrip){
-	// 	// 		var drugName = currPrescrip.get("pillName");
-	// 	// 		console.log("Successfully retrieved " + drugName + " for patient " + currPrescrip["id"]);
-
-	// 	// 		var schedule = currPrescrip.get("schedule");
-	// 	// 		if(typeof schedule != "undefined"){
-	// 	// 			getSchedule(schedule["id"], drugName, sameDiv, prescriptionNum, currPrescrip["id"], patient);
-	// 	// 		}
-	// 	// 		if (p != 0) { sameDiv = true; }
-	// 	// 		prescriptionNum++;
-	// 	// 	},
-	// 	// 	error: function(object, error){
-	// 	// 		console.log("Error in retrieving prescriptions list: " + error.code + " " + error.message);
-	// 	// 	}
-	// 	// });
-	// }
-
-	
-}
-
-function test(prescripIDs){
 	
 }
 
@@ -210,122 +142,88 @@ function getSchedule(scheduleID, drugName, prescriptionNum, prescriptionID, pati
 
 
 	scheduleQuery.get(scheduleID).then(function(schedule){
-		// var prescriptionList = {};
-		var timesWithPillNum = schedule.get("timesWithPillNum");
-		var time, dayOfWeek, pillNum;
-		for(var t = 0; t < timesWithPillNum.length; t++){
-			//get which day of week it is
-			dayOfWeek = timesWithPillNum[t]["dayOfWeek"];
-			if(typeof prescriptionList[dayOfWeek] == "undefined"){
-				prescriptionList[dayOfWeek] = {};
-			}
+		
+		var mon = schedule.get("Monday");
+		var tues = schedule.get("Tuesday");
+		var wed = schedule.get("Wednesday");
+		var thurs = schedule.get("Thursday");
+		var fri = schedule.get("Friday");
+		var sat = schedule.get("Saturday");
+		var sund =schedule.get("Sunday");
 
-			//get what times are available on that day
-			time = timesWithPillNum[t]["hour"] + ":" + timesWithPillNum[t]["min"];
-			pillNum = timesWithPillNum[t]["pillNum"];
+		var days = [mon, tues, wed, thurs, fri, sat, sund];
 
-			prescriptionList[dayOfWeek][time] = pillNum;
-
-			//if it is not in timesAvailable
-			if(timesAvailable.indexOf(time) == -1){
-				timesAvailable.push(time);
+		for(var d = 0; d < days.length; d++){
+			var times = Object.keys(days[d]);
+			for(var t = 0; t < times.length; t++){
+				if(timesAvailable.indexOf(times[t]) == -1){
+					timesAvailable.push(times[t]);
+				}
 			}
 		}
-		createPrescriptionDivTest(drugName, prescriptionID, timesAvailable);
+		createPrescriptionDiv(drugName, prescriptionID, days, scheduleID);
 	});
 
-	//ASYNCHRONOUS WAY
-	// scheduleQuery.get(scheduleID, {
-	// 	success: function(schedule){
-			
-	// 		var timesWithPillNum = schedule.get("timesWithPillNum");
-	// 		var time, dayOfWeek, pillNum;
-	// 		for(var t = 0; t < timesWithPillNum.length; t++){
-	// 			//get which day of week it is
-	// 			dayOfWeek = timesWithPillNum[t]["dayOfWeek"];
-	// 			if(typeof prescriptionList[drugName][dayOfWeek] == "undefined"){
-	// 				prescriptionList[drugName][dayOfWeek] = {};
-	// 			}
-
-	// 			//get what times are available on that day
-	// 			time = timesWithPillNum[t]["hour"] + ":" + timesWithPillNum[t]["min"];
-	// 			pillNum = timesWithPillNum[t]["pillNum"];
-
-	// 			prescriptionList[drugName][dayOfWeek][time] = pillNum;
-
-	// 			//if it is not in timesAvailable
-	// 			if(timesAvailable.indexOf(time) == -1){
-	// 				timesAvailable.push(time);
-	// 			}
-	// 		}
-	// 	},
-	// 	error: function(object, err){
-	// 		console.log("Error in retrieving schedule: " + err.code + " " + err.message);
-	// 	}
-
-	// });
 }
 
-function createPrescriptionDivTest(drugName, prescriptionID, timesAvailable){
-
-
-	if(typeof timesAvailable == "undefined") { return; }
+function createPrescriptionDiv(drugName, prescriptionID, days, scheduleID){
 
 	//Add info to div id="patient_prescriptions"
 	var pn = document.getElementById("patient_descriptions");
-
-	//pn.innerHTML = "<button type='button' class='btn btn-primary'><i class='fa fa-plus'></i> Add Prescription</button><br/>";
 
 	var newA = document.createElement("a");
 	newA.href = "#";
 	newA.className = "list-group-item";
 	newA.id = drugName + "" + prescriptionID;
 
-	var days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+	var daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 
-	var newP = "";
-
-
-	newP += "<h3 class='drug'>" + drugName + "</h3>" + 
+	var newP = "<h3 class='drug'>" + drugName + "</h3>" + 
 				"<div class='table-responsive'>" + 
 	  			"<table class='table table-responsive'>" +
 		    		"<thead>" +
 		      			"<tr>" +
 		     			  "<th></th>"+
-		        		  "<th>"+days[0]+"</th>" +
-		        		  "<th>"+days[1]+"</th>" +
-		        		  "<th>"+days[2]+"</th>" +
-		        		  "<th>"+days[3]+"</th>" +
-		        		  "<th>"+days[4]+"</th>" +
-		        		  "<th>"+days[5]+"</th>" +
-		        		  "<th>"+days[6]+"</th>" +
+		        		  "<th>"+daysOfWeek[0]+"</th>" +
+		        		  "<th>"+daysOfWeek[1]+"</th>" +
+		        		  "<th>"+daysOfWeek[2]+"</th>" +
+		        		  "<th>"+daysOfWeek[3]+"</th>" +
+		        		  "<th>"+daysOfWeek[4]+"</th>" +
+		        		  "<th>"+daysOfWeek[5]+"</th>" +
+		        		  "<th>"+daysOfWeek[6]+"</th>" +
 		        		 "<tr>" +
 		    		"</thead>" +
 		    		  "<tbody>";
+    
+    timesAvailable.sort(function (a, b) {
+	  return new Date('1970/01/01 ' + a) - new Date('1970/01/01 ' + b);
+	});
 
+    for(var t = 0; t < timesAvailable.length; t++){
+    	newP += "<tr>" +
+    			"<th>" + timesAvailable[t] + "</th>";
+    	for(var d = 0; d < days.length; d++){
+    		var times = Object.keys(days[d]);
+			//sort from earliest to latest time
+			times.sort(function (a, b) {
+			  return new Date('1970/01/01 ' + a) - new Date('1970/01/01 ' + b);
+			});
 
+			if(times.indexOf(timesAvailable[t]) > -1){
+				var currDay = days[d];
+				var index = times.indexOf(timesAvailable[t]);
+				var currTime = times[index];
 
-
-	for(var t = 0; t < timesAvailable.length; t++){
-		newP += "<tr>" + 
-				"<th>" + timesAvailable[t] + "</th>";
-		for(var d = 0; d < days.length; d++){
-			//no info for that day or that time on that day
-
-			var currDay = prescriptionList[days[d]];
-			var currTime = timesAvailable[t];
-			
-			if(typeof currDay == "undefined" || typeof currDay[currTime] == "undefined"){
-				newP += "<th>0</th>";
+				//unique id is weekday + time
+				var thisID = scheduleID + ":" + daysOfWeek[d] + "-" + currTime;
+				newP += "<td><a href='#' id='" + thisID + "' class='doses'>" + currDay[currTime] + "</a></td>";
 			}
 			else {
-				newP += "<th>" + currDay[currTime] + "</th>";
+				newP += "<td><a href='#' id='" + thisID + "' class='doses'>0</a></td>";
 			}
-		}
-		newP += "</tr>";
-
-		
-	}
+    	}
+    	newP += "</tr>";
+    }
 
 
 	var deleteBtnName = "deleteBtn" + prescriptionID;
@@ -342,10 +240,12 @@ function createPrescriptionDivTest(drugName, prescriptionID, timesAvailable){
 
 	pn.appendChild(newA);
 
-
+	document.getElementById(deleteBtnName).addEventListener("click", function(){
+		deletePrescription(prescriptionID, patient);
+	});
  
+	startUpdateDosage(scheduleID, drugName);
 
- 
 
 }
 
@@ -389,12 +289,14 @@ function createNameDiv(patient_name, count){
 
 	pn.appendChild(newA);
 
+
+
 }
 
 //createPrescriptionDiv()
 //parameters: drugName, sameDiv, days, scheduleID, prescriptionNum, prescriptionID
 //function: creates prescription description shown on left of screen when a certain patient is selected
-function createPrescriptionDiv(drugName, sameDiv, days, scheduleID, prescriptionNum, prescriptionID, patient){
+function createPrescriptionDivOld(drugName, sameDiv, days, scheduleID, prescriptionNum, prescriptionID, patient){
 	//Add info to div id="patient_prescriptions"
 	var pn = document.getElementById("patient_descriptions");
 
@@ -454,7 +356,6 @@ function createPrescriptionDiv(drugName, sameDiv, days, scheduleID, prescription
 		deletePrescription(prescriptionID, patient);
 	});
 
-
 	startUpdateDosage(scheduleID, drugName);
 }
 
@@ -466,14 +367,16 @@ function createPrescriptionDiv(drugName, sameDiv, days, scheduleID, prescription
 function startUpdateDosage(scheduleID, drugName){
 	var dosages = document.getElementsByClassName("doses");
 	for(var d = 0; d < dosages.length; d++){
-		var aID = dosages[d].id;
-		$("#"+aID).editable({
+		var aID = "#" + dosages[d].id;
+		debugger;
+		$(aID).editable({
 	        type: 'number',
 	        title: 'Select dosage',
 	        placement: 'right',
 	        value: dosages[d].innerHTML,
 	        success: function(response, newValue){
-	        	updateDosage(scheduleID, drugName, this.id.slice(0, -1), newValue);
+	        	debugger;
+	        	updateDosage(scheduleID, drugName, this.id.slice(this.indexOf(":")+1, this.indexOf("-")), newValue);
 	        	console.log("Successfully updated dosage to " + newValue);
 	        },
 	        error: function(response, newValue){
@@ -489,6 +392,8 @@ function startUpdateDosage(scheduleID, drugName){
 //parameters: scheduleID, drugName, dayOfWeek, newValue
 //function: updates database to reflect change in dosage
 function updateDosage(scheduleID, drugName, dayOfWeek, newValue){
+	debugger;
+
 	// Create the object.
 	var scheduleType = Parse.Object.extend("Schedule");
 	var query = new Parse.Query(scheduleType);
