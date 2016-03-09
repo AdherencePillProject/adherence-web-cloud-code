@@ -54,6 +54,7 @@ function saveNewUser(user, accountType, additionalInfo, redirectUrl){
 							success: function(doc) {
 								newUser.set("doctorPointer", doc);
 								newUser.save();
+								window.location.replace(redirectUrl);
 							}
 						});
 						
