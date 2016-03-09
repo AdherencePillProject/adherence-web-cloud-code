@@ -7,17 +7,10 @@ var sameDiv = false;
 //keeps track of which prescription number we are on
 var prescriptionNum = 0;
 
-var prescriptionList = {};
-
 //times available
 var timesAvailable = [];
 var daysAvailable = [];
 
-function TimesWithPillNum(hour, min, pillNum){
-	this.hour = hour;
-	this.min = min;
-	this.pillNum = pillNum;
-}
 
 
 //toggleActive
@@ -41,7 +34,6 @@ function toggleActive(element){
 	pn.innerHTML = "<button type='button' class='btn btn-primary'><i class='fa fa-plus'></i> Add Prescription</button><br/>";
 
 	getPrescriptions(currActiveUser);
-	prescriptionList = {};
 	timesAvailable = [];
 
 }
@@ -368,15 +360,15 @@ function startUpdateDosage(scheduleID, drugName){
 	var dosages = document.getElementsByClassName("doses");
 	for(var d = 0; d < dosages.length; d++){
 		var aID = "#" + dosages[d].id;
-		debugger;
 		$(aID).editable({
 	        type: 'number',
 	        title: 'Select dosage',
 	        placement: 'right',
 	        value: dosages[d].innerHTML,
 	        success: function(response, newValue){
-	        	debugger;
-	        	updateDosage(scheduleID, drugName, this.id.slice(this.indexOf(":")+1, this.indexOf("-")), newValue);
+	        	var dayOfWeek = this.id.slice(this.indexOf(":")+1, this.indexOf("-"));
+	        	var timeOfDay = this.id.slice(this.indexOf("-")+1, this.length);
+	        	updateDosage(scheduleID, drugName, dayOfWeek, timeOfDay, newValue);
 	        	console.log("Successfully updated dosage to " + newValue);
 	        },
 	        error: function(response, newValue){
@@ -391,7 +383,7 @@ function startUpdateDosage(scheduleID, drugName){
 //udpateDosage()
 //parameters: scheduleID, drugName, dayOfWeek, newValue
 //function: updates database to reflect change in dosage
-function updateDosage(scheduleID, drugName, dayOfWeek, newValue){
+function updateDosage(scheduleID, drugName, dayOfWeek, timeOfDay, newValue){
 	debugger;
 
 	// Create the object.
@@ -399,10 +391,11 @@ function updateDosage(scheduleID, drugName, dayOfWeek, newValue){
 	var query = new Parse.Query(scheduleType);
 
 	query.get(scheduleID, {
-		success: function(day){
-			day.set(dayOfWeek, parseInt(newValue));
+		success: function(schedule){
+			var day = schedule.get(dayOfWeek);
+			day[timeOfDay] = parseInt(newValue);
 			day.save();
-			console.log("Dosage successfully updated for " + newValue + " pills on " + dayOfWeek);
+			console.log("Dosage successfully updated for " + newValue + " pills on " + dayOfWeek + " at " + timeOfDay);
 		},
 		error: function(object, error){
 			console.log("Error in retrieving scheduleID in updateDosage: " + error.code + " " + error.message);
