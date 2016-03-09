@@ -366,36 +366,43 @@ function addPrescription(patient){
 											"<label class='time'>Time</label>"+
 								    		"<input type='time' class='form-control' placeholder=''>"+
 										"</div>"+
-										"<div class='form-group'>"+
+	  									"<table>"+
+	  									"<tbody>"+
+
+										"<td><div class='form-group'>"+
 											"<label class='day'>Monday</lable>"+
 								    		"<input type='number' class='form-control' placeholder='# of Pills'>"+
-										"</div>"+
-										"<div class='form-group'>"+
+										"</div></td>"+
+										"<td><div class='form-group'>"+
 											"<label class='day'>Tuesday</lable>"+
 								    		"<input type='number' class='form-control' placeholder='# of Pills'>"+
-										"</div>"+
-										"<div class='form-group'>"+
+										"</div></td>"+
+										"<td><div class='form-group'>"+
 											"<label class='day'>Wednesday</lable>"+
 								    		"<input type='number' class='form-control' placeholder='# of Pills'>"+
-										"</div>"+
-										"<div class='form-group'>"+
+										"</div></td>"+
+										"<td><div class='form-group'>"+
 											"<label class='day'>Thursday</lable>"+
 								    		"<input type='number' class='form-control' placeholder='# of Pills'>"+
-										"</div>"+
-										"<div class='form-group'>"+
+										"</div></td>"+
+										"<td><div class='form-group'>"+
 											"<label class='day'>Friday</lable>"+
 								    		"<input type='number' class='form-control' placeholder='# of Pills'>"+
-										"</div>"+
-										"<div class='form-group'>"+
+										"</div></td>"+
+										"<td><div class='form-group'>"+
 											"<label class='day'>Saturday</lable>"+
 								    		"<input type='number' class='form-control' placeholder='# of Pills'>"+
-										"</div>"+
-										"<div class='form-group'>"+
+										"</div></td>"+
+										"<td><div class='form-group'>"+
 											"<label class='day'>Sunday</lable>"+
 								    		"<input type='number' class='form-control' placeholder='# of Pills'>"+
-										"</div>"+
+										"</div></td>"+
+
+										"</tbody>"+
+										"</table>"+
 								    	
 	  								"</fieldset>"+
+	  								"<button class='btn btn-primary' type='submit'>Submit</button>"+
 
 							   	"</form>"+
 							  "</a>";
@@ -412,34 +419,40 @@ function addPrescription(patient){
 								"<label class='time'>Time</label>"+
 					    		"<input type='time' class='form-control' placeholder=''>"+
 							"</div>"+
-							"<div class='form-group'>"+
+								"<table>"+
+								"<tbody>"+
+
+							"<td><div class='form-group'>"+
 								"<label class='day'>Monday</lable>"+
 					    		"<input type='number' class='form-control' placeholder='# of Pills'>"+
-							"</div>"+
-							"<div class='form-group'>"+
+							"</div></td>"+
+							"<td><div class='form-group'>"+
 								"<label class='day'>Tuesday</lable>"+
 					    		"<input type='number' class='form-control' placeholder='# of Pills'>"+
-							"</div>"+
-							"<div class='form-group'>"+
+							"</div></td>"+
+							"<td><div class='form-group'>"+
 								"<label class='day'>Wednesday</lable>"+
 					    		"<input type='number' class='form-control' placeholder='# of Pills'>"+
-							"</div>"+
-							"<div class='form-group'>"+
+							"</div></td>"+
+							"<td><div class='form-group'>"+
 								"<label class='day'>Thursday</lable>"+
 					    		"<input type='number' class='form-control' placeholder='# of Pills'>"+
-							"</div>"+
-							"<div class='form-group'>"+
+							"</div></td>"+
+							"<td><div class='form-group'>"+
 								"<label class='day'>Friday</lable>"+
 					    		"<input type='number' class='form-control' placeholder='# of Pills'>"+
-							"</div>"+
-							"<div class='form-group'>"+
+							"</div></td>"+
+							"<td><div class='form-group'>"+
 								"<label class='day'>Saturday</lable>"+
 					    		"<input type='number' class='form-control' placeholder='# of Pills'>"+
-							"</div>"+
-							"<div class='form-group'>"+
+							"</div></td>"+
+							"<td><div class='form-group'>"+
 								"<label class='day'>Sunday</lable>"+
 					    		"<input type='number' class='form-control' placeholder='# of Pills'>"+
-							"</div>";
+							"</div></td>"+
+
+							"</tbody>"+
+							"</table>";
 		formHTML += newFieldSet;
 		$("#newPrescriptionForm").html(formHTML);
 	});
