@@ -76,6 +76,7 @@ function getPrescriptions(user){
 	var prescription_list = Parse.Object.extend("Prescription");
 	var getPrescripQuery = new Parse.Query(prescription_list);
 
+
 	getPrescripQuery.ascending("pillName");
 	getPrescripQuery.equalTo("patientID", {
         __type: "Pointer",
@@ -86,7 +87,7 @@ function getPrescriptions(user){
 	getPrescripQuery.find().then(function(results){
 		
 		if(results.length == 0){
-			noPrescriptionDiv();
+			noPrescriptionDiv(user);
 			return;
 		}
 		prescriptionNum = 0;
@@ -345,7 +346,104 @@ function updateDosage(scheduleID, drugName, dayOfWeek, timeOfDay, newValue){
 }
 
 function addPrescription(patient){
-	var pd = document.getElementById("patient_descriptions");
+	debugger;
+	//temporarily remove addBtn
+	var addBtnHTML = $("#addBtn").html();
+	$("#addBtn").remove();
+
+	var divHTML = $("#patient_descriptions").html();
+
+	var addPrescriptionForm = "<a class='list-group-item'>"+
+								"<form>"+
+								"<h3>Add New Prescription</h3>"+
+	  								"<fieldset class='form-group' id='newPrescriptionForm'>"+
+	    								"<label for='newPrescriptionName'>Prescription Name:</label>"+
+	    								"<input type='text' class='form-control' id='newPrescriptionName' placeholder=''>"+
+	    								"<br/>"+
+	  									"<button class='btn btn-default' id='addTime'>Add Time</button><br/>"+
+	  									"<br/>"+
+	  									"<div class='form-group'>"+
+											"<label class='time'>Time</label>"+
+								    		"<input type='time' class='form-control' placeholder=''>"+
+										"</div>"+
+										"<div class='form-group'>"+
+											"<label class='day'>Monday</lable>"+
+								    		"<input type='number' class='form-control' placeholder='# of Pills'>"+
+										"</div>"+
+										"<div class='form-group'>"+
+											"<label class='day'>Tuesday</lable>"+
+								    		"<input type='number' class='form-control' placeholder='# of Pills'>"+
+										"</div>"+
+										"<div class='form-group'>"+
+											"<label class='day'>Wednesday</lable>"+
+								    		"<input type='number' class='form-control' placeholder='# of Pills'>"+
+										"</div>"+
+										"<div class='form-group'>"+
+											"<label class='day'>Thursday</lable>"+
+								    		"<input type='number' class='form-control' placeholder='# of Pills'>"+
+										"</div>"+
+										"<div class='form-group'>"+
+											"<label class='day'>Friday</lable>"+
+								    		"<input type='number' class='form-control' placeholder='# of Pills'>"+
+										"</div>"+
+										"<div class='form-group'>"+
+											"<label class='day'>Saturday</lable>"+
+								    		"<input type='number' class='form-control' placeholder='# of Pills'>"+
+										"</div>"+
+										"<div class='form-group'>"+
+											"<label class='day'>Sunday</lable>"+
+								    		"<input type='number' class='form-control' placeholder='# of Pills'>"+
+										"</div>"+
+								    	
+	  								"</fieldset>"+
+
+							   	"</form>"+
+							  "</a>";
+
+	divHTML = addPrescriptionForm + divHTML;
+
+	$("#patient_descriptions").html(divHTML);
+
+	document.getElementById("addTime").addEventListener("click", function(){
+		debugger;
+		var formHTML = $("#newPrescriptionForm").html();
+		var newFieldSet = "-----------------------------------"+
+							"<div class='form-group'>"+
+								"<label class='time'>Time</label>"+
+					    		"<input type='time' class='form-control' placeholder=''>"+
+							"</div>"+
+							"<div class='form-group'>"+
+								"<label class='day'>Monday</lable>"+
+					    		"<input type='number' class='form-control' placeholder='# of Pills'>"+
+							"</div>"+
+							"<div class='form-group'>"+
+								"<label class='day'>Tuesday</lable>"+
+					    		"<input type='number' class='form-control' placeholder='# of Pills'>"+
+							"</div>"+
+							"<div class='form-group'>"+
+								"<label class='day'>Wednesday</lable>"+
+					    		"<input type='number' class='form-control' placeholder='# of Pills'>"+
+							"</div>"+
+							"<div class='form-group'>"+
+								"<label class='day'>Thursday</lable>"+
+					    		"<input type='number' class='form-control' placeholder='# of Pills'>"+
+							"</div>"+
+							"<div class='form-group'>"+
+								"<label class='day'>Friday</lable>"+
+					    		"<input type='number' class='form-control' placeholder='# of Pills'>"+
+							"</div>"+
+							"<div class='form-group'>"+
+								"<label class='day'>Saturday</lable>"+
+					    		"<input type='number' class='form-control' placeholder='# of Pills'>"+
+							"</div>"+
+							"<div class='form-group'>"+
+								"<label class='day'>Sunday</lable>"+
+					    		"<input type='number' class='form-control' placeholder='# of Pills'>"+
+							"</div>";
+		formHTML += newFieldSet;
+		$("#newPrescriptionForm").html(formHTML);
+	});
+
 }
 
 function deletePrescription(prescriptionID, patient){
@@ -431,15 +529,23 @@ function destroySchedule(sched){
 
 }
 
-function noPrescriptionDiv(){
-	var pn = document.getElementById("patient_descriptions");
-	pn.innerHTML = "<button type='button' class='btn btn-primary'><i class='fa fa-plus'></i> Add Prescription</button>";
+function noPrescriptionDiv(user){
+	var pd = document.getElementById("patient_descriptions");
+	pd.innerHTML = "<button type='button' id='addBtn' class='btn btn-primary'><i class='fa fa-plus'></i> Add Prescription</button>";
 
+ 
 	var newA = document.createElement("a");
 	newA.href = "#";
 	newA.className = "list-group-item";
 	newA.innerHTML = "<h3 class='drug'>No Prescriptions On Record</h3>";
-	pn.appendChild(newA);
+	pd.appendChild(newA);
+
+
+		//add prescription button
+		//FIX LATER TO TAKE USER
+	// document.getElementById("addBtn").addEventListener("click", function(){
+	// 	addPrescription(patient);
+	// });
 }
 
 //main()
