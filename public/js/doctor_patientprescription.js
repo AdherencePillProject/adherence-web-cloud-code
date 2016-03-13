@@ -1,3 +1,5 @@
+//GLOBAL VARIABLES
+
 //namesToIndices = keeps track of which patient is selected
 var namesToIndices = {};
 
@@ -6,11 +8,10 @@ var namesToIndices = {};
 var timesAvailable = [];
 
 
-
 //toggleActive
 //parameters: div element
 //function: toggles the active class element for divs on the right
-//           loads prescription data for selected patient
+//           loads prescription data for selected patientx
 function toggleActive(element){
 	//should only be one
 	var actives = document.getElementsByClassName("list-group-item active");
@@ -19,7 +20,7 @@ function toggleActive(element){
 	}
 	element.className = "list-group-item active";
 
-	//element.id[4] because id is in form "name(num here)" and the number is the 4th character
+	//element.id[4] because id is in form "name(num here)" and the number is the 5th character
 	var num = parseInt(element.id[4]);
 
 	var currActiveUser = namesToIndices[num];
@@ -31,7 +32,7 @@ function toggleActive(element){
 
 
 //getPatientsInfo()
-//parameters: none
+//parameters: none, called by main()
 //function: gets list of patients in Parse database and creates name divs in div id="patient_names"
 function getPatientsInfo() {
 	var patientList = Parse.Object.extend("Patient");
@@ -57,9 +58,51 @@ function getPatientsInfo() {
 	    }
 
 	});
-
 	
 }
+
+//createNameDiv()
+//parameters: patientName, count
+//function: creates div for name that shows up on the right
+
+function createNameDiv(patientName, count){
+	
+	//Add their names to div id="patientNames"
+	var pn = document.getElementById("patient_names");
+	var newA = document.createElement("a");
+
+	newA.href = "#";
+	newA.id = "name" + count;
+	newA.onclick = function() { toggleActive(this); }
+	var name = document.createElement("h4");
+	name.textContent = patientName;
+	name.className = "list-group-item-heading";
+
+	//first person loaded is highlighted
+
+	if(count == 0){
+		newA.className = "list-group-item active";
+		//element.id[4] because id is in form "name[num here]"
+		var num = parseInt(newA.id[4]);
+
+		var currActiveUser = namesToIndices[num];
+
+		getPrescriptions(currActiveUser);
+		prescriptionList = {};
+		timesAvailable = [];
+
+	}
+	else {
+		newA.className = "list-group-item";
+	}
+	
+	
+	newA.appendChild(name);
+
+	pn.appendChild(newA);
+
+}
+
 
 //getPrescriptions()		
 //parameters: user
@@ -111,7 +154,7 @@ function getPrescriptions(user){
 				return;
 			}
 			//get each prescription's schedule
-			getSchedule(schedule["id"], drugName, curr["id"], user);
+			getSchedule(schedule["id"], drugName, curr["id"], user, p);
 		}
 
 	});
@@ -125,7 +168,7 @@ function getPrescriptions(user){
 //getSchedule()
 //parameters: scheduleID, drugName, prescriptionID, patient
 //function: gets schedule for certain perscription, along with its drug name
-function getSchedule(scheduleID, drugName, prescriptionID, patient){
+function getSchedule(scheduleID, drugName, prescriptionID, patient, prescriptionNum){
 
 	var scheduleList = Parse.Object.extend("Schedule");
 	var scheduleQuery = new Parse.Query(scheduleList);
@@ -144,6 +187,7 @@ function getSchedule(scheduleID, drugName, prescriptionID, patient){
 
 		var days = [mon, tues, wed, thurs, fri, sat, sund];
 
+		//keep track of all available times, will make table consistent
 		for(var d = 0; d < days.length; d++){
 			var times = Object.keys(days[d]);
 			for(var t = 0; t < times.length; t++){
@@ -152,16 +196,17 @@ function getSchedule(scheduleID, drugName, prescriptionID, patient){
 				}
 			}
 		}
-		createPrescriptionDiv(drugName, prescriptionID, days, scheduleID, patient);
+		//prescriptionNum is to make id unique in createPrescriptionDiv
+		createPrescriptionDiv(drugName, prescriptionID, days, scheduleID, patient, prescriptionNum);
 	});
 
 }
 
 
 //createPrescriptionDiv()
-//parameters: drugName, prescriptionID, days, scheduleID, patient
+//parameters: drugName, prescriptionID, days, scheduleID, patient, prescriptionNum
 //function: creates the html div of this prescription along with its schedule
-function createPrescriptionDiv(drugName, prescriptionID, days, scheduleID, patient){
+function createPrescriptionDiv(drugName, prescriptionID, days, scheduleID, patient, prescriptionNum){
 
 	//Add info to div id="patient_prescriptions"
 	var pd = document.getElementById("patient_descriptions");
@@ -195,6 +240,7 @@ function createPrescriptionDiv(drugName, prescriptionID, days, scheduleID, patie
 	  return new Date('1970/01/01 ' + a) - new Date('1970/01/01 ' + b);
 	});
 
+
     for(var t = 0; t < timesAvailable.length; t++){
     	newP += "<tr>" +
     			"<th>" + timesAvailable[t] + "</th>";
@@ -206,16 +252,17 @@ function createPrescriptionDiv(drugName, prescriptionID, days, scheduleID, patie
 			  return new Date('1970/01/01 ' + a) - new Date('1970/01/01 ' + b);
 			});
 
-			if(times.indexOf(timesAvailable[t]) > -1){
-				var currDay = days[d];
-				var index = times.indexOf(timesAvailable[t]);
-				var currTime = times[index];
+			//unique id is weekday + time
+			var currDay = days[d];
+			var index = times.indexOf(timesAvailable[t]);
+			var currTime = times[index];
+			var thisID = scheduleID + ":" + daysOfWeek[d] + "-" + timesAvailable[t] + "_" + prescriptionNum;
 
-				//unique id is weekday + time
-				var thisID = scheduleID + ":" + daysOfWeek[d] + "-" + currTime;
+			if(times.indexOf(timesAvailable[t]) > -1){
 				newP += "<td><a href='#' id='" + thisID + "' class='doses'>" + currDay[currTime] + "</a></td>";
 			}
 			else {
+				//isn't defined in database
 				newP += "<td><a href='#' id='" + thisID + "' class='doses'>0</a></td>";
 			}
     	}
@@ -253,51 +300,30 @@ function createPrescriptionDiv(drugName, prescriptionID, days, scheduleID, patie
 
 }
 
-//createNameDiv()
-//parameters: patientName, count
-//function: creates div for name that shows up on the right
 
-function createNameDiv(patientName, count){
-	
-	//Add their names to div id="patientNames"
-	var pn = document.getElementById("patient_names");
+//noPrescriptionDiv()
+//parameters: patient
+//function: creates div for when patient has no prescriptions
+function noPrescriptionDiv(patient){
+	var pd = document.getElementById("patient_descriptions");
+	pd.innerHTML = "<button type='button' id='addBtn' class='btn btn-primary'><i class='fa fa-plus'></i> Add Prescription</button>";
+
+ 
 	var newA = document.createElement("a");
-
 	newA.href = "#";
-	newA.id = "name" + count;
-	newA.onclick = function() { toggleActive(this); }
-	var name = document.createElement("h4");
-	name.textContent = patientName;
-	name.className = "list-group-item-heading";
+	newA.className = "list-group-item";
+	newA.innerHTML = "<h3 class='drug'>No Prescriptions On Record</h3>";
+	pd.appendChild(newA);
 
-	//first person loaded is highlighted
-
-	if(count == 0){
-		newA.className = "list-group-item active";
-		//element.id[4] because id is in form "name[num here]"
-		var num = parseInt(newA.id[4]);
-
-		var currActiveUser = namesToIndices[num];
-
-		getPrescriptions(currActiveUser);
-		prescriptionList = {};
-		timesAvailable = [];
-
-	}
-	else {
-		newA.className = "list-group-item";
-	}
-	
-	
-	newA.appendChild(name);
-
-	pn.appendChild(newA);
-
-
+	//add prescription button
+	document.getElementById("addBtn").addEventListener("click", function(){
+		addPrescription(patient);
+	});
+ 
 
 }
 
-
+//CURRENTLY DOES NOT WORK
 
 //startUpdateDosage()
 //parameters: scheduleID, drugName
@@ -310,10 +336,10 @@ function startUpdateDosage(scheduleID, drugName){
 	        type: 'number',
 	        title: 'Select dosage',
 	        placement: 'right',
-	        value: dosages[d].innerHTML,
+	        value: parseInt(dosages[d].innerHTML),
 	        success: function(response, newValue){
 	        	var dayOfWeek = this.id.slice(this.indexOf(":")+1, this.indexOf("-"));
-	        	var timeOfDay = this.id.slice(this.indexOf("-")+1, this.length);
+	        	var timeOfDay = this.id.slice(this.indexOf("-")+1, this.indexOf("_"));//-1 to exclude prescriptionNum
 	        	updateDosage(scheduleID, drugName, dayOfWeek, timeOfDay, newValue);
 	        	console.log("Successfully updated dosage to " + newValue);
 	        },
@@ -380,31 +406,31 @@ function addPrescription(patient){
 
 										"<td><div class='form-group'>"+
 											"<label class='day'>Monday</lable>"+
-								    		"<input type='number' class='form-control' placeholder='# of Pills'>"+
+								    		"<input type='number' min=0 class='form-control' placeholder='# of Pills'>"+
 										"</div></td>"+
 										"<td><div class='form-group'>"+
 											"<label class='day'>Tuesday</lable>"+
-								    		"<input type='number' class='form-control' placeholder='# of Pills'>"+
+								    		"<input type='number' min=0 class='form-control' placeholder='# of Pills'>"+
 										"</div></td>"+
 										"<td><div class='form-group'>"+
 											"<label class='day'>Wednesday</lable>"+
-								    		"<input type='number' class='form-control' placeholder='# of Pills'>"+
+								    		"<input type='number' min=0 class='form-control' placeholder='# of Pills'>"+
 										"</div></td>"+
 										"<td><div class='form-group'>"+
 											"<label class='day'>Thursday</lable>"+
-								    		"<input type='number' class='form-control' placeholder='# of Pills'>"+
+								    		"<input type='number' min=0 class='form-control' placeholder='# of Pills'>"+
 										"</div></td>"+
 										"<td><div class='form-group'>"+
 											"<label class='day'>Friday</lable>"+
-								    		"<input type='number' class='form-control' placeholder='# of Pills'>"+
+								    		"<input type='number' min=0 class='form-control' placeholder='# of Pills'>"+
 										"</div></td>"+
 										"<td><div class='form-group'>"+
 											"<label class='day'>Saturday</lable>"+
-								    		"<input type='number' class='form-control' placeholder='# of Pills'>"+
+								    		"<input type='number' min=0 class='form-control' placeholder='# of Pills'>"+
 										"</div></td>"+
 										"<td><div class='form-group'>"+
 											"<label class='day'>Sunday</lable>"+
-								    		"<input type='number' class='form-control' placeholder='# of Pills'>"+
+								    		"<input type='number' min=0 class='form-control' placeholder='# of Pills'>"+
 										"</div></td>"+
 
 										"</tbody>"+
@@ -439,31 +465,31 @@ function addPrescription(patient){
 
 							"<td><div class='form-group'>"+
 								"<label class='day'>Monday</lable>"+
-					    		"<input type='number' class='form-control' placeholder='# of Pills'>"+
+					    		"<input type='number' min=0 class='form-control' placeholder='# of Pills'>"+
 							"</div></td>"+
 							"<td><div class='form-group'>"+
 								"<label class='day'>Tuesday</lable>"+
-					    		"<input type='number' class='form-control' placeholder='# of Pills'>"+
+					    		"<input type='number' min=0 class='form-control' placeholder='# of Pills'>"+
 							"</div></td>"+
 							"<td><div class='form-group'>"+
 								"<label class='day'>Wednesday</lable>"+
-					    		"<input type='number' class='form-control' placeholder='# of Pills'>"+
+					    		"<input type='number' min=0 class='form-control' placeholder='# of Pills'>"+
 							"</div></td>"+
 							"<td><div class='form-group'>"+
 								"<label class='day'>Thursday</lable>"+
-					    		"<input type='number' class='form-control' placeholder='# of Pills'>"+
+					    		"<input type='number' min=0 class='form-control' placeholder='# of Pills'>"+
 							"</div></td>"+
 							"<td><div class='form-group'>"+
 								"<label class='day'>Friday</lable>"+
-					    		"<input type='number' class='form-control' placeholder='# of Pills'>"+
+					    		"<input type='number' min=0 class='form-control' placeholder='# of Pills'>"+
 							"</div></td>"+
 							"<td><div class='form-group'>"+
 								"<label class='day'>Saturday</lable>"+
-					    		"<input type='number' class='form-control' placeholder='# of Pills'>"+
+					    		"<input type='number' min=0 class='form-control' placeholder='# of Pills'>"+
 							"</div></td>"+
 							"<td><div class='form-group'>"+
 								"<label class='day'>Sunday</lable>"+
-					    		"<input type='number' class='form-control' placeholder='# of Pills'>"+
+					    		"<input type='number' min=0 class='form-control' placeholder='# of Pills'>"+
 							"</div></td>"+
 
 							"</tbody>"+
@@ -484,7 +510,6 @@ function addPrescription(patient){
 //parameters: prescriptionID, patient
 //function: deletes specified prescription from page and from database
 function deletePrescription(prescriptionID, patient){
-	debugger;
 	//delete Prescritpion, Schedule, prescriptions_list in patient
 	var prescriptionType = Parse.Object.extend("Prescription");
 	var query = new Parse.Query(prescriptionType);
@@ -554,27 +579,6 @@ function destroySchedule(sched){
 
 
 
-//noPrescriptionDiv()
-//parameters: patient
-//function: creates div for when patient has no prescriptions
-function noPrescriptionDiv(patient){
-	var pd = document.getElementById("patient_descriptions");
-	pd.innerHTML = "<button type='button' id='addBtn' class='btn btn-primary'><i class='fa fa-plus'></i> Add Prescription</button>";
-
- 
-	var newA = document.createElement("a");
-	newA.href = "#";
-	newA.className = "list-group-item";
-	newA.innerHTML = "<h3 class='drug'>No Prescriptions On Record</h3>";
-	pd.appendChild(newA);
-
-	//add prescription button
-	document.getElementById("addBtn").addEventListener("click", function(){
-		addPrescription(patient);
-	});
- 
-
-}
 
 //main()
 function main(){
