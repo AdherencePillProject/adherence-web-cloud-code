@@ -1,0 +1,62 @@
+#monthly{
+  float: right;
+}
+
+#panel-board{
+  margin:0px 100px;
+  border-radius: 40px;
+}
+
+#monthly{
+  margin-right: 20px;
+}
+
+.title{
+  text-align: center;
+  margin-bottom: 15px;
+  font-size: 18px;
+}
+
+.my-panel{
+  border-radius: 35px;
+  border: 1px #ccc solid;
+  background-color: #D9EDF7;
+}
+
+.child-panel{
+  height: 360px;
+  margin: 0 auto;
+  font-family: 'Nunito', sans-serif;
+}
+
+.child-panel li{
+  font-size: 20px;
+}
+
+.child-panel li:hover{
+  background: #F5F5F5;
+}
+
+.child-title{
+  text-align: center;
+  margin: 15px;
+  font-size: 24px;
+}
+
+#noon{
+}
+
+#night{
+}
+
+.badge{
+
+}
+
+.formodal{
+  padding: 0px;
+  border-radius: 5px;
+  background-color: transparent;
+  border: #fff;
+  outline: none;
+}
