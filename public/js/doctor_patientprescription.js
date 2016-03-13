@@ -409,6 +409,7 @@ function addPrescription(patient){
 
 										"</tbody>"+
 										"</table>"+
+										"<br/>"+
 								    	
 	  								"</fieldset>"+
 	  								"<button class='btn btn-primary' type='submit'>Submit</button>"+
@@ -421,12 +422,15 @@ function addPrescription(patient){
 	$("#patient_descriptions").html(divHTML);
 
 
-	//FIX THIS
-	//For some reason, this only registers one click, will not enter this code after that
-	document.getElementById("addTime").addEventListener("click", function(){
+	
+	//adds new time option to add prescription div if user clicks "Add Time" button
+	$(document.body).on("click", '#addTime', function(){
+		addForm();
+	});
+
+	function addForm(){
 		var formHTML = $("#newPrescriptionForm").html();
-		var newFieldSet = "-----------------------------------"+
-							"<div class='form-group'>"+
+		var newFieldSet = "<div class='form-group'>"+
 								"<label class='time'>Time</label>"+
 					    		"<input type='time' class='form-control' placeholder=''>"+
 							"</div>"+
@@ -463,10 +467,12 @@ function addPrescription(patient){
 							"</div></td>"+
 
 							"</tbody>"+
-							"</table>";
+							"</table>"+
+							"<br/>";
 		formHTML += newFieldSet;
 		$("#newPrescriptionForm").html(formHTML);
-	});
+	}
+
 
 	//ADD FUNCTIONALITY TO ADD NEW PRESCRIPTION HERE
 
