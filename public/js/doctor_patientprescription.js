@@ -2,6 +2,7 @@
 var namesToIndices = {};
 
 //times available
+//even if times aren't specified for a specific day we need to have it in the table
 var timesAvailable = [];
 
 
@@ -494,7 +495,6 @@ function deletePrescription(prescriptionID, patient){
 			destroySchedule(sched);
 
 			
-
 			pres.destroy({
 				success: function(myObject){
 					var prescripIDs = patient.get("patientPointer").get("prescriptions");
@@ -502,6 +502,7 @@ function deletePrescription(prescriptionID, patient){
 
 					
 					//finally, delete from webpage
+					//this follows the format specified in createPrescriptionDiv()
 					var pill = "#" + myObject.get("pillName") + "" + myObject["id"];
 					$(pill).remove();
 
@@ -509,6 +510,8 @@ function deletePrescription(prescriptionID, patient){
 					if($("#patient_descriptions > a").length <= 0){
 						noPrescriptionDiv(patient);
 					}
+
+					//reload the webpage to show new prescription list
 					location.reload();
 				},
 				error: function (myObject, error){
@@ -526,7 +529,7 @@ function deletePrescription(prescriptionID, patient){
 }
 
 
-//desctroySchedule()
+//destroySchedule()
 //parameters: schedule
 //function: deletes schedule from database
 function destroySchedule(sched){
