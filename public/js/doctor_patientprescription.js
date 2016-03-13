@@ -1,15 +1,8 @@
 //namesToIndices = keeps track of which patient is selected
 var namesToIndices = {};
 
-//whether the prescription is part of the same patient or not
-var sameDiv = false;
-
-//keeps track of which prescription number we are on
-var prescriptionNum = 0;
-
 //times available
 var timesAvailable = [];
-var daysAvailable = [];
 
 
 
@@ -73,58 +66,75 @@ function getPatientsInfo() {
 //          creates prescription descriptions seen on left of screen
 function getPrescriptions(user){
 
-	var prescription_list = Parse.Object.extend("Prescription");
-	var getPrescripQuery = new Parse.Query(prescription_list);
+	//ADDING A PRESCRIPTION TO THE RELATION
+	// var patientID = user.get("patientPointer");
+	// if(patientID["id"]=="8Q3rVNa1M3"){
+	// 		var Prescription = Parse.Object.extend("Prescription");
+	// 		var newPrescrip = new Prescription();
+	// 		newPrescrip.set("pillName", "Advil");
+	// 		newPrescrip.save(null, {
+	// 			success: function(pre){
+	// 				debugger;
+	// 				var relation = patientID.relation("prescriptions");
+	// 				relation.add(newPrescrip);
+	// 				patientID.save();
+	// 			},
+	// 			error: function(pre, error){
+	// 				//failed
+	// 			}
+	// 		});
+	// }
+	
+
+	//reset html
+	var pd = document.getElementById("patient_descriptions");
+	pd.innerHTML = "<button type='button' id='addBtn' class='btn btn-primary'><i class='fa fa-plus'></i> Add Prescription</button><br/>";
 
 
-	getPrescripQuery.ascending("pillName");
-	getPrescripQuery.equalTo("patientID", {
+	var patientID = user.get("patientPointer");
+
+	var prescriptionQuery = new Parse.Query(Parse.Object.extend("Prescription"));
+
+	prescriptionQuery.equalTo("patientID", {
         __type: "Pointer",
         className: "Patient",
-        objectId: user.get("patientPointer")["id"]
+        objectId: patientID["id"]
     });
 
-	getPrescripQuery.find().then(function(results){
-		
+
+	prescriptionQuery.find().then(function(results){
+
 		if(results.length == 0){
-			noPrescriptionDiv(user);
+			noPrescriptionDiv();
 			return;
 		}
-		prescriptionNum = 0;
+
 		for(var p = 0; p < results.length; p++){
-			//SYNCHRONOUS WAY
 
-			var getPrescripInfoQuery = new Parse.Query(prescription_list);
+			var curr = results[p];
 
-			getPrescripInfoQuery.get(results[p]["id"]).then(function(currPrescrip) {
+			var drugName = curr.get("pillName");
+			var schedule = curr.get("schedule");
 
-
-				var drugName = currPrescrip.get("pillName");
-				console.log("Successfully retrieved " + drugName + " for patient " + currPrescrip["id"]);
-
-				var schedule = currPrescrip.get("schedule");
-
-
-				if(typeof schedule != "undefined"){
-					getSchedule(schedule["id"], drugName, prescriptionNum, currPrescrip["id"], user);
-				}
-				
-				prescriptionNum++;
-
-			});
+			if(typeof schedule == "undefined"){
+				console.log("Schedule has not been set for " + drugName + " for patient " + user.get("firstname") + " " + user.get("lastname") + ".");
+				return;
+			}
+			getSchedule(schedule["id"], drugName, curr["id"], user);
 		}
 
-
 	});
+	
 
+		
 	
 	
 }
 
 //getSchedule()
-//parameters: scheduleID, drugName, sameDiv, prescriptionNum, patient
+//parameters: scheduleID, drugName, prescriptionID, patient
 //function: gets schedule for certain perscription, along with its drug name
-function getSchedule(scheduleID, drugName, prescriptionNum, prescriptionID, patient){
+function getSchedule(scheduleID, drugName, prescriptionID, patient){
 
 	var scheduleList = Parse.Object.extend("Schedule");
 	var scheduleQuery = new Parse.Query(scheduleList);
@@ -160,7 +170,7 @@ function createPrescriptionDiv(drugName, prescriptionID, days, scheduleID, patie
 
 	//Add info to div id="patient_prescriptions"
 	var pd = document.getElementById("patient_descriptions");
-	pd.innerHTML = "<button type='button' id='addBtn' class='btn btn-primary'><i class='fa fa-plus'></i> Add Prescription</button><br/>";
+	// pd.innerHTML = "<button type='button' id='addBtn' class='btn btn-primary'><i class='fa fa-plus'></i> Add Prescription</button><br/>";
 
 
 	var newA = document.createElement("a");
@@ -240,7 +250,7 @@ function createPrescriptionDiv(drugName, prescriptionID, days, scheduleID, patie
 
 	//add prescription button
 	document.getElementById("addBtn").addEventListener("click", function(){
-		addPrescription(patient);
+		addPrescription();
 	});
  
 	startUpdateDosage(scheduleID, drugName);
@@ -345,7 +355,7 @@ function updateDosage(scheduleID, drugName, dayOfWeek, timeOfDay, newValue){
 
 }
 
-function addPrescription(patient){
+function addPrescription(){
 	debugger;
 	//temporarily remove addBtn
 	var addBtnHTML = $("#addBtn").html();
@@ -552,6 +562,12 @@ function noPrescriptionDiv(user){
 	newA.className = "list-group-item";
 	newA.innerHTML = "<h3 class='drug'>No Prescriptions On Record</h3>";
 	pd.appendChild(newA);
+
+		//add prescription button
+	document.getElementById("addBtn").addEventListener("click", function(){
+		addPrescription();
+	});
+ 
 
 
 		//add prescription button
