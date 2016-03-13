@@ -349,6 +349,10 @@ function updateDosage(scheduleID, drugName, dayOfWeek, timeOfDay, newValue){
 
 }
 
+
+//addPrescription()
+//parameters: patient
+//function: creates div (AND LATER ADDS TO DATABASE) to allow user to add prescription to patient
 function addPrescription(patient){
 
 	//temporarily remove addBtn
@@ -415,8 +419,10 @@ function addPrescription(patient){
 
 	$("#patient_descriptions").html(divHTML);
 
+
+	//FIX THIS
+	//For some reason, this only registers one click, will not enter this code after that
 	document.getElementById("addTime").addEventListener("click", function(){
-		debugger;
 		var formHTML = $("#newPrescriptionForm").html();
 		var newFieldSet = "-----------------------------------"+
 							"<div class='form-group'>"+
@@ -461,8 +467,15 @@ function addPrescription(patient){
 		$("#newPrescriptionForm").html(formHTML);
 	});
 
+	//ADD FUNCTIONALITY TO ADD NEW PRESCRIPTION HERE
+
 }
 
+
+
+//deletePrescription()
+//parameters: prescriptionID, patient
+//function: deletes specified prescription from page and from database
 function deletePrescription(prescriptionID, patient){
 	debugger;
 	//delete Prescritpion, Schedule, prescriptions_list in patient
@@ -479,9 +492,6 @@ function deletePrescription(prescriptionID, patient){
 			
 			//destroy schedule
 			destroySchedule(sched);
-
-			//remove prescription from prescription list of patient
-			removePrescriptionFromList(prescriptionID, patient);
 
 			
 
@@ -515,23 +525,10 @@ function deletePrescription(prescriptionID, patient){
 
 }
 
-function removePrescriptionFromList(prescriptionID, patient){
-	var currPatient = patient.get("patientPointer");
-	var prescriptionList = currPatient.get("prescriptions");
-	var index = prescriptionList.indexOf(prescriptionID);
 
-	//remove prescription from list
-	if(index  > -1){
-		prescriptionList.splice(index, 1);
-		console.log("Successfully deleted " + prescriptionID + " from prescription list");
-		currPatient.save();
-	}
-	else {
-		console.log("Prescription " + prescriptionID + " not in prescription list");
-	}
-
-}
-
+//desctroySchedule()
+//parameters: schedule
+//function: deletes schedule from database
 function destroySchedule(sched){
 	sched.destroy({
 	  success: function(myObject) {
@@ -546,6 +543,11 @@ function destroySchedule(sched){
 
 }
 
+
+
+//noPrescriptionDiv()
+//parameters: patient
+//function: creates div for when patient has no prescriptions
 function noPrescriptionDiv(patient){
 	var pd = document.getElementById("patient_descriptions");
 	pd.innerHTML = "<button type='button' id='addBtn' class='btn btn-primary'><i class='fa fa-plus'></i> Add Prescription</button>";
@@ -567,9 +569,10 @@ function noPrescriptionDiv(patient){
 
 //main()
 function main(){
+	Parse.initialize("BDo39lSOtPuBwDfq0EBDgIjTzztIQE38Fuk03EcR", "ox76Y4RxB06A69JWAleRHSercHKomN2FVu61dfu3");
 	//get patients
 	getPatientsInfo();
 }
 
-Parse.initialize("BDo39lSOtPuBwDfq0EBDgIjTzztIQE38Fuk03EcR", "ox76Y4RxB06A69JWAleRHSercHKomN2FVu61dfu3");
+
 main();
