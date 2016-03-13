@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css">
+    <script type="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
+
+<head>
+
+    <title>Doctor - Patient Prescription Page</title>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/bootstrap.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/my.css" media="screen" title="no title" charset="utf-8">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	<!-- font -->
+	<link href='https://fonts.googleapis.com/css?family=Nunito' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Lora:400,700' rel='stylesheet' type='text/css'>
+
+	<style>
+
+	body {
+		/*background-color: #bdc3c7;*/
+		font-family: "Helvetica Neue";
+	}
+
+    .changecol{
+        color:red !important;
+    }
+
+	</style>
+	<script>
+		function toggleActive(element){
+			//should only be one
+			var actives = document.getElementsByClassName("list-group-item active");
+			for (var i = 0; i < actives.length; i++){
+				actives[i].className = "list-group-item";
+			}
+			element.className = "list-group-item active";
+
+			var drugs = document.getElementsByClassName("drug");
+			for (var d = 0; d < drugs.length; d++){
+				if (element.textContent.length > 20) {
+					drugs[d].textContent = document.getElementById("firstPatient").textContent + "'s Drug " + (d+1);
+				}
+				else {
+					drugs[d].textContent = element.textContent + "'s Drug " + (d+1);
+				}
+
+			}
+		}
+	</script>
+</head>
+
+<body onload="toggleActive(document.getElementById('firstDrug'))">
+
+	<nav class="navbar navbar-default">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top">Smart Cap</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		      <ul class="nav navbar-nav" >
+		        <li class='active'><a href="#"><i class="fa fa-clipboard"></i> Overview</a></li>
+	            <li><a href="#"><i class="fa fa-hospital-o"></i> Patient-monthly view</a></li>
+		        <li><a href="#"><i class="fa fa-bar-chart-o"></i> Patient-graph</a></li>
+	            <li><a href="#"><i class="fa fa-medkit"></i> Patient-Prescription</a></li>
+	            <li><a href="#"><i class="fa fa-user"></i>Doctor Profile</a></li>
+	            <li><a href="#"><i class="fa fa-cog"></i> Setting</a></li>
+		      </ul>
+
+		    </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+    <div class="container">
+    <h2>Patient Information</h2>
+   </div>
+
+<!--change color -->
+<p id="a" onclick="myFunction()"></p>
+
+<script>
+function myFunction1() {
+    $("#toggle-name").toggleClass("changecol");
+}
+</script>
+
+<script>
+function myFunction2() {
+    $("#toggle-gender").toggleClass("changecol");
+}
+</script>
+
+<script>
+function myFunction3() {
+    $("#toggle-age").toggleClass("changecol");
+}
+</script>
+
+
+<script>
+function myFunction4() {
+    $("#toggle-preapp").toggleClass("changecol");
+}
+</script>
+
+<script>
+function myFunction5() {
+    $("#toggle-nextapp").toggleClass("changecol");
+}
+</script>
+
+<script>
+function myFunction6() {
+    $("#toggle-Medication").toggleClass("changecol");
+}
+</script>
+
+<div class="container">
+<div>
+      Toggle column:
+      <label><a id="toggle-name" class ="toggle-vis" data-column="0"  onclick="myFunction1()" ><span>Name</span></a></label>
+      <label><a id="toggle-gender" class ="toggle-vis" data-column="1" onclick="myFunction2()"><span>- Gender </span></a ></label>
+      <label><a id="toggle-age" class ="toggle-vis" data-column="2" onclick="myFunction3()"><span>- Age</span></a ></label>
+      <label><a id="toggle-preapp" class ="toggle-vis" data-column="3" onclick="myFunction4()"><span>- Last Appointment</span></a ></label>
+      <label><a id="toggle-nextapp" class ="toggle-vis" data-column="4" onclick="myFunction5()"><span>- Next Appointment</span></a ></label>
+      <label><a id="toggle-Medication" class ="toggle-vis" data-column="5" onclick="myFunction6()"><span>- Adherence %</span></a ></label>
+</div>
+
+</br>
+
+
+
+<!-- <table border="0" cellspacing="6" cellpadding="6">
+        <tbody>
+        <tr>
+            <td>Set the Threshold value to highlight:</td>
+            <td><input type="text" class="max" name="max"></td>
+            <td><button>highlight</button></td>
+            <td><button>cancel</button></td>
+        </tr>
+    </tbody>
+</table> -->
+
+<table border="0" cellspacing="6" cellpadding="6">
+        <tbody>
+        <tr>
+            <td>Set the Threshold value to show:</td>
+            <td><input type="text" class="max" name="max"></td>
+        </tr>
+    </tbody>
+</table>
+
+</br>
+</br>
+<table id="example" class="display" cellspacing="0" width="100%">
+
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Gender</th>
+        <th>Age</th>
+        <th>Last Appointment</th>
+        <th>Next Appointment</th>
+        <th>Adherence %</th>
+      </tr>
+    </thead>
+    <tbody>
+            <tr>
+                <td>Tiger Nixon</td>
+                <td>Male</td>
+                <td>61</td>
+                <td>2011/04/22</td>
+                <td>2011/04/25</td>
+                <td>85%</td>
+            </tr>
+            <tr>
+                <td>Garrett Winters</td>
+                <td>Male</td>
+                <td>63</td>
+                <td>2011/07/21</td>
+                <td>2011/07/25</td>
+                <td>70%</td>
+            </tr>
+            <tr>
+                <td>Ashton Cox</td>
+                <td>Female</td>
+                <td>66</td>
+                <td>2009/01/09</td>
+                <td>2009/01/12</td>
+                <td>86%</td>
+            </tr>
+            <tr>
+                <td>Cedric Kelly</td>
+                <td>Male</td>
+                <td>22</td>
+                <td>2012/03/18</td>
+                <td>2012/03/29</td>
+                <td>70%</td>
+            </tr>
+            <tr>
+                <td>Airi Satou</td>
+                <td>Female</td>
+                <td>33</td>
+                <td>2008/11/22</td>
+                <td>2008/11/28</td>
+                <td>62%</td>
+            </tr>
+            <tr>
+                <td>Brielle Williamson</td>
+                <td>Male</td>
+                <td>61</td>
+                <td>2012/11/25</td>
+                <td>2012/12/02</td>
+                <td>59%</td>
+            </tr>
+  </tbody>
+  </table>
+</div>
+	<script src="js/jquery.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="jquery-1.12.0.min.js"></script>
+    <script src="jquery.dataTables.js"></script>
+    <script src="Table.js"></script>
+
+</body>
+</html>
