@@ -5,8 +5,11 @@
 <!--Add Font Awesome Icons-->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
+<!--Add Custom JS-->
+<script src="partials/navbar/navbar.js"></script>
+
 <!--Add Custom CSS-->
-<link rel="stylesheet" type="text/less" href="partials/navbar/navbar.css">
+<link rel="stylesheet" type="text/css" href="partials/navbar/navbar.css">
 
 <nav class="navbar navbar-default">
   <div class="container-fluid">
@@ -25,13 +28,24 @@
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav" >
-        <li ng-class="{ active: isActive('public/prescription.html')}"><a href="doctor_patientprescription.html"><i class="fa fa-clipboard"></i> Prescription</a></li>
-        <li ng-class="{ active: isActive('/cabinet')}"><a href="#"><i class="fa fa-medkit"></i> Med Cabinet</a></li>
-        <li ng-class="{ active: isActive('/public/profile.html')}"><a href="profile.html"><i class="fa fa-heartbeat"></i> My Profile</a></li>
-        <li ng-class="{ active: isActive('public/doctorprofile.html')}"><a href="doctorprofile.html"><i class="fa fa-user-md"></i> My Doctor</a></li>
-        <li ng-class="{ active: isActive('/')}"><a href="#"><i class="fa fa-cog"></i>  John Doe</a></li>
-      </ul>
+      <ul class="nav navbar-nav">
+        <li ng-class="{ active: isActive('/Patient_prescription/Prescription.html')}"><a href="doctor_patientprescription.html"><i class="fa fa-clipboard"></i> Prescription</a></li>
+        <li ng-class="{ active: isActive('/medCabinet/homePage.html')}"><a href="#"><i class="fa fa-medkit"></i> Med Cabinet</a></li>
+        <li ng-class="{ active: isActive('/patientprofile.html')}"><a href="patientprofile.html"><i class="fa fa-heartbeat"></i> My Profile</a></li>
+        <li ng-class="{ active: isActive('/doctorprofile.html')}"><a href="doctorprofile.html"><i class="fa fa-user-md"></i> My Doctor</a></li>
+        <li><a href="#"><i class="fa fa-envelope"></i> Inbox</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle">John <b class="caret"></b></a>
+          <ul class="dropdown-menu nav-hover">
+            <li><a href="#">Sign in as John</a></li>
+            <li><a href="#">Explore</a></li>
+            <li><a href="#">Settings</a></li>
+            <li><a href="#">Help</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Sign out</a></li>
+          </ul>
+        </li>
+      </ul2>
     </div><!-- /.navbar-collapse -->
 
   </div><!-- /.container-fluid -->

@@ -6,13 +6,17 @@ body, html {
 .navbar {
 	font-family: 'PT Sans', sans-serif;
 	margin:0;
+	font-size:18px;
 }
 
 .navbar-default {
 	background-color: #3498db;
 	border-color: #3498db; 
-	font-size:20px;
 	border-radius:0px; 
+}
+
+.navbar .navbar-default {
+	font-size: 18px;
 }
 
 .navbar-nav {
@@ -58,3 +62,8 @@ body, html {
 .container-fluid .jumbotron {
 	border-radius: 0px;
 }
+
+.dropdown-menu {
+	background-color: green;
+}
+
