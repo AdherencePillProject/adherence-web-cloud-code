@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html ng-app="adherence-partials">
 <head>
   <meta charset="utf-8">
   <title>Patient Portal Homepage</title>
@@ -14,6 +14,10 @@
   <link href='https://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
   <!--Add Font Awesome Icons-->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <!--Add Angular-->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+  <!--Add Angular Directives-->
+  <script src="/js/angular-app.js"></script>
   <!--Add Custom CSS-->
   <link rel="stylesheet" type="text/less" href="css/mystyle.css">
   <script src="http://www.parsecdn.com/js/parse-1.6.7.min.js"></script>
@@ -23,27 +27,7 @@
 
 <body onload="getAllPillInfo()">
 
-  <div class="container-fluid"><!-- navbar -->
-    <nav class="navbar navbar-default">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#">SmartCap</a>
-        </div>
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
-          <ul class="nav navbar-nav">
-            <li><a href="#"><i class="fa fa-clipboard"></i> Prescription</a></li>
-            <li class="active"><a href="#"><i class="fa fa-medkit"></i> Med Cabinet</a></li>
-            <li><a href="#"><i class="fa fa-heartbeat"></i> My Profile</a></li>
-            <li><a href="#"><i class="fa fa-user-md"></i> My Doctor</a></li>
-            <li><a href="#"><i class="fa fa-cog"></i> John Doe</a></li>
-          </ul>
-        </div><!-- /.navbar-collapse -->
-      </div><!-- /.container-fluid -->
-    </nav>
-  </div><!--container for navbar-->
+  <div ng-controller='NavController as tab' ng-include src="'/partials/navbar/navbar.html'"></div>
 
   <div class="container" id="medcabinet"><!-- Med Cabinent -->
     <div class ="panel panel-info">
