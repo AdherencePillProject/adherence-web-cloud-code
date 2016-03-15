@@ -15,6 +15,11 @@ body, html {
 	border-radius:0px; 
 }
 
+.navbar-brand {
+  font-size: 25px;
+  font-weight: bold;
+}
+
 .navbar-nav {
 	float:right;
  }
