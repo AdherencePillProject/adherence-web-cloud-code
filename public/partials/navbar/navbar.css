@@ -5,6 +5,7 @@ body, html {
 
 .navbar {
 	font-family: 'PT Sans', sans-serif;
+	margin-bottom: 70px;
 }
 
 .navbar-default {
@@ -12,10 +13,6 @@ body, html {
 	background-color: #3498db;
 	border-color: #3498db; 
 	border-radius:0px; 
-}
-
-.navbar .navbar-default {
-	margin-bottom: 70px;
 }
 
 .navbar-nav {
