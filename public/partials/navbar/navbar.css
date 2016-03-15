@@ -55,15 +55,15 @@ body, html {
 	text-align: center;
 }
 
-.navbar-default .navbar-nav > .open > a:focus {
-	width:200px;
-}
-
 .container-fluid .jumbotron {
 	border-radius: 0px;
 }
 
-.dropdown-menu {
-	background-color: green;
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {
+    background-color: #3498db;
+	border-color: #3498db; 
 }
 
+.dropdown-menu {
+	left: -60px;
+}
