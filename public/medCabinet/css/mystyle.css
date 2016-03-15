@@ -3,62 +3,6 @@ width: 100%;
 margin: 0%;
 }
 
-.navbar {
-font-family: 'PT Sans', sans-serif;
-margin:0;
-}
-
-.navbar-default {
-background-color: #3498db;
-border-color: #3498db;
-font-size:20px;
-border-radius:0px;
-}
-
-.navbar-nav {
-float:right;
-}
-
-.navbar-nav > li > a {
-float:right;
-}
-
-.navbar-default .navbar-brand {
-color: white;
-}
-
-.navbar-default .navbar-text {
-color: white;
-}
-
-.navbar-default .navbar-nav > li > a {
-color: white;
-}
-
-.navbar-default .navbar-nav > .active > a,
-.navbar-default .navbar-nav > .active > a:hover,
-.navbar-default .navbar-nav > .active > a:focus {
-color: #bdc3c7;
-background-color: #066caf;
-}
-
-.navbar-collapse > ul{
-float:right;
-}
-
-.navbar-nav > li > a{
-width:100%;
-text-align: center;
-}
-
-.navbar-default .navbar-nav > .open > a:focus {
-width:200px;
-}
-
-.container-fluid .jumbotron {
-border-radius: 0px;
-}
-
 #name{
   font-size: 18;
   font-weight: bold;
