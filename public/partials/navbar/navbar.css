@@ -5,18 +5,17 @@ body, html {
 
 .navbar {
 	font-family: 'PT Sans', sans-serif;
-	margin:0;
-	font-size:18px;
 }
 
 .navbar-default {
+	font-size: 18px;
 	background-color: #3498db;
 	border-color: #3498db; 
 	border-radius:0px; 
 }
 
 .navbar .navbar-default {
-	font-size: 18px;
+	margin-bottom: 70px;
 }
 
 .navbar-nav {
