@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="adherence-partials">
 
 <head>
 	<title>Doctor - Patient Prescription Page</title>
@@ -10,6 +10,12 @@
 	<link href='https://fonts.googleapis.com/css?family=Nunito' rel='stylesheet' type='text/css'>
 	<link href='https://fonts.googleapis.com/css?family=Lora:400,700' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="css/my.css" media="screen" title="no title" charset="utf-8">
+
+	<!--Add Angular-->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+
+	<!--Add Angular Directives-->
+	<script src="/js/angular-app.js"></script>
 
 	<!--	<style>
 
@@ -23,45 +29,7 @@
 
 <body onload="toggleActive(document.getElementById('firstDrug'))">
 
-	<nav class="navbar navbar-default">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header page-scroll">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand page-scroll" href="#page-top">Smart Cap</a>
-            </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-		      <ul class="nav navbar-nav" >
-		        <li class='active'><a href="#"><i class="fa fa-clipboard"></i> Prescription</a></li>
-	            <li><a href="#"><i class="fa fa-medkit"></i> Med Cabinet</a></li>
-		        <li><a href="#"><i class="fa fa-heartbeat"></i> My Profile</a></li>
-	            <li><a href="#"><i class="fa fa-user-md"></i> My Patients</a></li>
-	            <li><a href="#"><i class="fa fa-envelope"></i> Inbox</a></li>
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" >John <b class="caret"></b></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="#">Sign in as John</a></li>
-                    <li><a href="#">Explore</a></li>
-                    <li><a href="#">Settings</a></li>
-                    <li><a href="#">Help</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">Sign out</a></li>
-                  </ul>
-                </li>
-              </ul>
-
-		    </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container-fluid -->
-    </nav>
+	<div ng-controller='NavController as tab' ng-include src="'/partials/navbar/navbar.html'"></div>
 
 	<div class="dashboard">
 
