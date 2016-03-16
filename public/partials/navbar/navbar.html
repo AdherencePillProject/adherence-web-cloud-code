@@ -1,49 +1,52 @@
 
-<!--Add PT Sans Font-->
-<link href='https://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
 
-<!--Add Font Awesome Icons-->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
-<!--Add Custom CSS-->
-<link rel="stylesheet" type="text/css" href="/partials/navbar/navbar.css">
 
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header page-scroll">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        
-      </button>
-      <a class="navbar-brand page-scroll" href="#page-top">Smart Cap</a>
-    </div>
+  <!--Add Bootstrap CSS-->
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li ng-class="{ active: isActive('/Patient_prescription/Prescription.html')}"><a href="/Patient_prescription/Prescription.html"><i class="fa fa-clipboard"></i> Prescription</a></li>
-        <li ng-class="{ active: isActive('/medCabinet/homePage.html')}"><a href="/medCabinet/homePage.html"><i class="fa fa-medkit"></i> Med Cabinet</a></li>
-        <li ng-class="{ active: isActive('/patientprofile.html')}"><a href="/patientprofile.html"><i class="fa fa-heartbeat"></i> My Profile</a></li>
-        <li ng-class="{ active: isActive('/doctorprofile.html')}"><a href="/doctorprofile.html"><i class="fa fa-user-md"></i> My Doctor</a></li>
-        <li><a href="#"><i class="fa fa-envelope"></i> Inbox</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">John <b class="caret"></b></a>
-          <ul class="dropdown-menu nav-hover-account">
-            <li><a href="#">Sign in as John</a></li>
-            <li><a href="#">Explore</a></li>
-            <li><a href="#">Settings</a></li>
-            <li><a href="#">Help</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Sign out</a></li>
-          </ul>
-        </li>
-      </ul2>
-    </div><!-- /.navbar-collapse -->
+  <!--Add JQuery-->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
 
-  </div><!-- /.container-fluid -->
-</nav>
+  <!--Add PT Sans Font-->
+  <link href='https://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
+
+  <!--Add Font Awesome Icons-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  
+  <!--Add Custom CSS-->
+  <link rel="stylesheet" type="text/less" href="css/navbar.css">
+ 
+
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">SmartCap</a>
+      </div>
+      <!-- Brand and toggle get grouped for better mobile display -->
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav" >
+          <li><a href="#"><i class="fa fa-clipboard"></i> Prescription</a></li>
+          <li><a href="#"><i class="fa fa-medkit"></i> Medication Info</a></li>
+          <li><a href="#"><i class="fa fa-heartbeat"></i> My Profile</a></li>
+          <li class="active"><a href="#"><i class="fa fa-user-md"></i> My Doctor</a></li>
+          <li><a href="#"><i class="fa fa-envelope"></i> Inbox</a></li>
+          <li><a href="#"><i class="fa fa-cog"></i>  Settings</a></li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+
+    </div><!-- /.container-fluid -->
+  </nav>
+
+
+
+
+
+
+
+
+
