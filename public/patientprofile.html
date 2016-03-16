@@ -1,11 +1,9 @@
-<html>
+<html ng-app="adherence-partials">
     <head>
         <title>My Profile</title>
 
         <!-- Adding Bootstrap CSS -->
-        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/bootstrap.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
         <!-- Adding Font Awesome -->        
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -17,8 +15,17 @@
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
 
+        <!-- Adding Bootstrap JS -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        
         <!-- Adding Parse JS -->
         <script src="http://www.parsecdn.com/js/parse-1.6.7.min.js"></script>
+
+        <!--Add Angular-->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+
+        <!--Add Angular Directives-->
+        <script src="/js/angular-app.js"></script>
 
         <!-- Adding Custom CSS -->
         <link rel="stylesheet" href="Patient_prescription/css/my.css" media="screen" title="no title" charset="utf-8">
@@ -28,31 +35,11 @@
         <script type="text/javascript" src="js/home.js"></script>
     </head>
     <body>
+
+        <div ng-controller='NavController as tab' ng-include src="'/partials/navbar/navbar.html'"></div>
+
         <div id="new-header"></div>
         <script>$("#new-header").load("header.html");</script>
-
-        <nav class="navbar navbar-default">
-            <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">SmartCap</a>
-            </div>
-            <!-- Brand and toggle get grouped for better mobile display -->
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav" >
-            <li><a href="#"><i class="fa fa-clipboard"></i> Prescription</a></li>
-            <li><a href="#"><i class="fa fa-medkit"></i> Med Cabinet</a></li>
-            <li class="active"><a href="patientprofile.html"><i class="fa fa-heartbeat"></i> My Profile</a></li>
-            <li><a href="doctorprofile.html"><i class="fa fa-user-md"></i> My Doctor</a></li>
-            <li><a href="#"><i class="fa fa-cog"></i>  John Doe</a></li>
-
-
-            </ul>
-            </div>
-            </div><!-- /.navbar-collapse -->
-            </div><!-- /.container-fluid -->
-        </nav>
 
         <div class="dashboard">
             <span class='title-name'>
