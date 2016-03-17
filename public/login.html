@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <!--This file is new index for new interface and ajax-->
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
@@ -61,11 +61,32 @@
             </div></div>
             </center>
          <script type="text/javascript">
+         Parse.initialize("BDo39lSOtPuBwDfq0EBDgIjTzztIQE38Fuk03EcR", "ox76Y4RxB06A69JWAleRHSercHKomN2FVu61dfu3");
             function authenticate(form){
-                if (form.Account_type.value == "Patient")
-                    userAuthenticate(form.account.value, form.password.value, "Patient_prescription/Prescription.html");
-                else
-                    userAuthenticate(form.account.value, form.password.value, "#");
+                event.preventDefault(); 
+                var query = new Parse.Query(Parse.User);
+                query.equalTo("email", form.account.value);
+                query.first({
+                    success: function (user) {
+                        if (user) {
+                            alert(user);
+                            var pp = user.get("patientPointer");
+                            var dp = user.get("doctorPointer");
+                            if ((form.Account_type.value == "Patient") & (pp != null))
+                                 userAuthenticate(form.account.value, form.password.value, "Patient_prescription/Prescription.html");
+                            else if ((form.Account_type.value == "Doctor") & (dp != null))
+                                 userAuthenticate(form.account.value, form.password.value, "Doctor_homepage/Doctorhome.html");
+                            else 
+                                alert("You're attempting to log in as someone you are not");
+                        }
+                        else {
+                            var sUp = confirm("This email was not found in our database. Would you like to sign up?");
+                            if (sUp == true)
+                                window.location.replace("signup.html");
+                        }
+                    }
+                });
+                
             }
         </script>
     </body>
