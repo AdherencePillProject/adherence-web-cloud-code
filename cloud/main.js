@@ -4,6 +4,34 @@ Parse.Cloud.define("hello", function(request, response) {
 	response.success("Hello world!");
 });
 
+Parse.Cloud.define('saveUserWithNewPointer', function(request, response) {
+	Parse.Cloud.useMasterKey();
+	var id = request.params.user;
+	var newRole = request.params.newRole;
+	var p = request.params.pointer;
+	var query = new Parse.Query(Parse.User);
+    query.equalTo("objectId", id);
+    query.first({ 
+		success: function (user) {
+			user.set(request.params.newRole, p);
+			user.save(null, {
+				success: function (user) {
+					response.success("Updated the user successfully");
+				},
+				error: function (error) {
+					response.error("Failed to update user")
+				}
+			})
+			
+		},
+		error: function (error) {
+			response.error("failed to update user");
+		}
+	});
+
+
+});
+
 Parse.Cloud.define("loggedInUser", function(request, response) {
 	var currentUser = Parse.User.current();
 	if (currentUser) {
