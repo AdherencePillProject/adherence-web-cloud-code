@@ -69,7 +69,6 @@
                 query.first({
                     success: function (user) {
                         if (user) {
-                            alert(user);
                             var pp = user.get("patientPointer");
                             var dp = user.get("doctorPointer");
                             if ((form.Account_type.value == "Patient") & (pp != null))

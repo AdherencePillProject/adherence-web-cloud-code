@@ -58,7 +58,8 @@
                 <h3 id="patAge"></h3>
                 <h3 id="patSex"></h3>
                 <br>
-                <button class='btn btn-default' id="upload" >Upload Photo</button>
+                <button class='btn btn-default' id="upload"><label for="PhotoUpload">Upload Photo</label></button> <br>
+                <input style="visibility: hidden" type="file" id="PhotoUpload" name="PhotoUpload"> 
             </div>
 
             <div id="appointments">
@@ -84,6 +85,20 @@
                     $("#patSex").html("Sex: " + user.get("gender"));
                 })
             });
+             $("#PhotoUpload").change(function() {
+                console.log("changed");
+                var fileUploadControl = $("#PhotoUpload")[0];
+                if (fileUploadControl.files.length > 0) {
+                  var file = fileUploadControl.files[0];
+                  var name = "photo.jpg";
+                  var parseFile = new Parse.File(name, file);
+                  Parse.User.current().fetch().then(function (user) {
+                        user.set("photo", parseFile);
+                        user.save();
+                  })
+                }
+             });
+            
         </script>
     </body>
 </html>
