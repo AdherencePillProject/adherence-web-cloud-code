@@ -49,7 +49,7 @@ function saveNewUser(user, accountType, additionalInfo, redirectUrl){
 						doctor.set("userAccount", foundUser);
 						doctor.save(null, {
 							success: function(doc) {
-								Parse.Cloud.run('saveUserWithNewPointer', { user: foundUser.id, pointer: doc.id, newRole: "doctorPointer" }, {
+									Parse.Cloud.run('saveUserWithNewPointer', { user: foundUser.id, pointer: doc.id, newRole: "Doctor" }, {
 									success: function (s) {
 										alert("user saved, " + s);
 										window.location.replace(redirectUrl);
@@ -69,10 +69,10 @@ function saveNewUser(user, accountType, additionalInfo, redirectUrl){
 	    			if (r == true) {
 	    				var patient = new Parse.Object("Patient");
 						patient.set("userAccount", foundUser);
-						alert("creating patient");
 						patient.save(null, {
 							success: function(pat) {
-								Parse.Cloud.run('saveUserWithNewPointer', { user: foundUser.id, pointer: pat.id, newRole: "patientPointer" }, {
+
+								Parse.Cloud.run('saveUserWithNewPointer', { user: foundUser.id, pointer: pat.id, newRole: "Patient" }, {
 									success: function (s) {
 										alert("user saved, " + s);
 										window.location.replace(redirectUrl);

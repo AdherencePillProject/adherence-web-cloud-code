@@ -13,23 +13,34 @@ Parse.Cloud.define('saveUserWithNewPointer', function(request, response) {
     query.equalTo("objectId", id);
     query.first({ 
 		success: function (user) {
-			user.set(request.params.newRole, p);
-			user.save(null, {
-				success: function (user) {
-					response.success("Updated the user successfully");
+			var obj = Parse.Object.extend(newRole);
+			var query2 = new Parse.Query(obj);
+    		query2.equalTo("objectId", p);
+    		query2.first({
+    			success: function (pntr) {
+    				if (newRole == "Doctor")
+    					user.set("doctorPointer", pntr);
+    				else 
+    					user.set("patientPointer", pntr);
+					user.save(null, {
+						success: function (user) {
+							response.success("Updated the user successfully");
+						},
+						error: function (error) {
+							response.error("Failed to s@ve new user");
+						}
+					});
 				},
-				error: function (error) {
-					response.error("Failed to update user")
+				error: function (err) {
+					response.error("Failed to find the pointer");
 				}
-			})
-			
-		},
-		error: function (error) {
-			response.error("failed to update user");
-		}
-	});
+			});
+    	},
+    	error: function (err) {
+    		response.error("Failed to find the original user");
+    	}
 
-
+    });
 });
 
 Parse.Cloud.define("loggedInUser", function(request, response) {

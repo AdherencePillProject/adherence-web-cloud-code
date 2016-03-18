@@ -85,8 +85,8 @@
                     $("#patSex").html("Sex: " + user.get("gender"));
                 })
             });
-             $("#PhotoUpload").change(function() {
-                console.log("changed");
+
+            $("#PhotoUpload").change(function() {
                 var fileUploadControl = $("#PhotoUpload")[0];
                 if (fileUploadControl.files.length > 0) {
                   var file = fileUploadControl.files[0];
