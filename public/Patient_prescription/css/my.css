@@ -80,9 +80,9 @@ body{
 }
 
 .my-panel{
-  border-radius: 35px;
-  border: 10px #146eb4 solid;
-  box-shadow: 5px 5px 5px #aaa;
+  border-radius: 2px;
+ /* border: 10px #146eb4 solid;*/
+  /*box-shadow: 5px 5px 5px #aaa;*/
   padding-left: 0px;
   padding-right: 0px;
 }
@@ -148,13 +148,33 @@ body{
 }
 
 
-
-
-
 .formodal{
   padding: 0px;
   border-radius: 5px;
   background-color: transparent;
   border: #fff;
   outline: none;
+}
+
+.patient-info{
+  float:right;
+  margin-right: 50%;
+  margin-top: 3%;
+}
+
+.upload-btn{
+  
+  margin-left: 50px;
+  }
+
+.patient-upload-img{
+  float:left;
+    margin:5%;
+    cursor: pointer;
+}
+/*.aptmt-history{*/
+/*  text-align: center;*/
+/*  float: left;*/
+  margin-left: 16%;
+/*  margin-right: 20%;*/
 }
