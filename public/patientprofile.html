@@ -5,11 +5,12 @@
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/bootstrap.css" rel="stylesheet">
         <link href="css/temporary.css" rel="stylesheet">
-        <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">-->
-        <link rel="stylesheet" href="Patient_prescription/css/my.css" media="screen" title="no title" charset="utf-8">
+        <link href="css/temporary.css" rel="stylesheet"
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="Patient_prescription/css/my.css" rel = "stylesheet" type="text/css">
         <link rel="stylesheet" type="text/less" href="css/home.less">
-        <!--<link href='https://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>-->
-        <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,300italic'>
+        <link href='https://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
     
     </head>
     <body> 
@@ -42,57 +43,14 @@
         </nav>
     </div> <!-- End of id="new-header" -->
         
-    <div class="col-xlg-3 col-lg-4 col-md-12">
-          <!-- Panel Web Designer -->
-          <div class="widget widget-shadow">
-            <div class="widget-content widget-radius text-center bg-white padding-40">
-              <div class="avatar avatar-100 margin-bottom-20">
-                <img src="../../assets/portraits/1.jpg" alt="">
-              </div>
-              <p class="font-size-20 blue-grey-700">Breno Bitencourt</p>
-              <p class="blue-grey-400 margin-bottom-20">Web Designer</p>
-              <p class="margin-bottom-35">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-                nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.
-                </p>
-              <ul class="list-inline font-size-18 margin-bottom-35">
-                <li>
-                  <a class="blue-grey-400" href="javascript:void(0)">
-                    <i class="icon bd-twitter" aria-hidden="true"></i>
-                  </a>
-                </li>
-                <li class="margin-left-10">
-                  <a class="blue-grey-400" href="javascript:void(0)">
-                    <i class="icon bd-facebook" aria-hidden="true"></i>
-                  </a>
-                </li>
-                <li class="margin-left-10">
-                  <a class="blue-grey-400" href="javascript:void(0)">
-                    <i class="icon bd-dribbble" aria-hidden="true"></i>
-                  </a>
-                </li>
-                <li class="margin-left-10">
-                  <a class="blue-grey-400" href="javascript:void(0)">
-                    <i class="icon bd-instagram" aria-hidden="true"></i>
-                  </a>
-                </li>
-              </ul>
-              <button type="button" class="btn btn-primary padding-horizontal-40">Follow</button>
-            </div>
-          </div>
-          <!-- End Panel Web Designer -->
-        </div>
-
     
 
     <div class="container my-panel" id="patient-myprof">
+        
         <div id="topbox">
             <div class="patient-upload-img">
-                <div class="patient-pic upload"> <br>
-                <br>
-                <br>
-                <br><span class="upload-btn">Upload Photo </span></div> 
-                <!-- here need to retrieve patient info  from database -->
-                <!-- <button class='btn btn-default' id="upload" >Upload Photo</button> -->
+                <div class="avatar"><img src="patientProfile/defaultAvatar.png"></div>
+                
             </div>
             <div class="patient-info">
                 <br>
@@ -101,103 +59,13 @@
                 <h3>Age:</h3>
                 <h3>Sex:</h3>
                 <br>
-            </div> 
-
-        </div>
-        
-        <div id="appointments">
-        <h2><i class="fa fa-history"></i>  Appointments History</h2>
-            <div class="example-wrap">
-                <div class="table-responsive">
-                  <table class="table table-hover">
- 
-                    <thead>
-                      <tr>
-                        <th>#</th>
-                        <th>Doctor</th>
-                        <th>Clinic</th>
-                        <th>Admitted For</th>
-                        <th>Last Appointment</th>
-                        <th>Next Appointment</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>1</td>
-                        <td>name</td>
-                        <td>
-                            Clinic
-                        </td>
-                        <td>
-                            concern
-                        </td>
-                        <td>date</td>
-                        <td>date</td>
-                      </tr>
-                      <tr>
-                        <td>2</td>
-                        <td>name</td>
-                        <td>
-                            Clinic
-                        </td>
-                        <td>
-                          concern
-                        </td>
-                        <td>date</td>
-                        <td>date</td>
-                      </tr>
-                      <tr>
-                        <td>3</td>
-                        <td>name</td>
-                        <td>
-                            Clinic
-                        </td>
-                        <td>
-                          concern
-                        </td>
-                        <td>date</td>
-                        <td>date</td>
-                      </tr>
-                      <tr>
-                        <td>4</td>
-                        <td>name</td>
-                        <td>
-                            Clinic
-                        </td>
-                        <td>
-                          concern
-                        </td>
-                        <td>date</td>
-                        <td>date</td>
-                      </tr>
-                      <tr>
-                        <td>5</td>
-                        <td>name</td>
-                        <td>
-                            Clinic
-                        </td>
-                        <td>
-                          concern
-                        </td>
-                        <td>date</td>
-                        <td>date</td>
-                      </tr>
-                      <tr>
-                        <td>6</td>
-                        <td>name</td>
-                        <td>
-                            Clinic
-                        </td>
-                        <td>
-                            concern
-                        </td>
-                        <td>date</td>
-                        <td>date</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
             </div>
+
+
+          </div>
+          <!-- End Page Widget -->
+        </div>
+    
         
         <!--<table class = "aptmt-history">
             <tr><td class="patientt"><i class="fa fa-user-md"></i> Doctor</td>
@@ -221,7 +89,6 @@
                 
             <tr><td class="patientt">name</td><td class="patientt">Clinic</td><td class="patientt">Concern</td><td class="patientt">date</td><td class="patientt">date</td></tr>
             </table> -->
-        </div>
     
     </body>
      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
