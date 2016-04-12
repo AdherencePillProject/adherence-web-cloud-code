@@ -38,16 +38,23 @@
       <div class="panel-body">
         <div class="container-fluid"><!-- /.container-fluid-original -->
 
+          <div id='search-box'>
+            <form action='/search' id='search-form' method='get' target='_top'>
+              <input id='search-text' name='q' placeholder='Search Box' type='text'/>
+              <button id='search-button' type='submit'><span>Search</span></button>
+            </form>
+      </div>
+
           <!-- /.container-fluid for search group-->
-          <div class="container-fluid">
+          <!--<div class="container-fluid">
             <div class="input-group input-group-lg" id="searchbar">
-              <input type="text" class="form-control" placeholder="Search Your Medication History">
+              <input type="text" class="form-control" placeholder="Search Your Medication History"> 
+
               <span class="input-group-btn">
                 <button class="btn btn-default" type="button" id="search" onclick="searchFunction()">Search</button>
               </span>
-            </div><!-- /input-group -->
-            <!--This is the seach bar-->
-          </div><!-- /.container-fluid -->
+            </div>
+          </div> -->
 
           <!-- /.Two sortable listgroup-->
           <div id="listWithHandle" class="list-group"><!--List Group-->
