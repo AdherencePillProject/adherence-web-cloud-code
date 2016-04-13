@@ -134,3 +134,86 @@ background-color: #4d90fe;
 border-radius: 0px 5px 5px 0px;
 cursor: pointer;
 }
+
+
+.cell {
+  float: left;
+  width: 50%;
+}
+
+.button {
+  -webkit-transition: max-width 0.2s linear 0.2s, text-indent 0.2s linear 0.2s, color 0.2s linear 0.2s;
+  -moz-transition: max-width 0.2s linear 0.2s, text-indent 0.2s linear 0.2s, color 0.2s linear 0.2s;
+  -o-transition: max-width 0.2s linear 0.2s, text-indent 0.2s linear 0.2s, color 0.2s linear 0.2s;
+  transition: max-width 0.2s linear 0.2s, text-indent 0.2s linear 0.2s, color 0.2s linear 0.2s;
+  background-color: #f00; /* background default state */
+  border-radius: 16px;
+  color: rgba(255,255,255,0.1);
+  display: inline-block;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 32px;
+  overflow: hidden;
+  padding-right: 32px;
+  position: relative;
+  text-decoration: none;
+  text-indent: -20px;
+  max-width: 0;
+  white-space: nowrap;
+  vertical-align: middle;
+  text-align: right;
+} 
+.button_icon {
+  -webkit-transition: -webkit-transform 0.4s ease-out;
+  -moz-transition: transform 0.4s ease-out;
+  -o-transition: -o-transform 0.4s ease-out;
+  transition: transform 0.4s ease-out;
+  border-radius: 16px;
+  color: rgba(255,255,255, 1);
+  font-size: 1.3em;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  text-indent: 0;
+  top: 0;
+  width: 32px;
+}
+
+.button:hover {
+  -webkit-transition: max-width 0.2s linear 0.2s, text-indent 0.2s linear 0.2s, color 0.2s linear 0.2s;
+  -moz-transition: max-width 0.2s linear 0.2s, text-indent 0.2s linear 0.2s, color 0.2s linear 0.2s;
+  -o-transition: max-width 0.2s linear 0.2s, text-indent 0.2s linear 0.2s, color 0.2s linear 0.2s;
+  transition: max-width 0.2s linear 0.2s, text-indent 0.2s linear 0.2s, color 0.2s linear 0.2s;
+  color: rgba(255,255,255,1);
+  max-width: 150px;
+  text-indent: 20px;
+} 
+.button:hover .button_icon {
+  -webkit-transition: -webkit-transform 0.4s ease-out;
+  -moz-transition: transform 0.4s ease-out;
+  -o-transition: -o-transform 0.4s ease-out;
+  transition: transform 0.4s ease-out;
+  -webkit-transform: rotate(360deg);
+  -moz-transform: rotate(360deg);
+  -o-transform: rotate(360deg);
+  transform: rotate(360deg);
+}
+.button:active {
+  top: 1px;
+} 
+
+/* add button */
+.button_type__add,
+.button_type__add .button_icon {
+  background-color: #acd373;
+}
+.button_type__add .button_icon:before {
+  content: '+';
+}
+.button_type__add:hover .button_icon {
+  -webkit-transform: rotate(270deg);
+  -moz-transform: rotate(270deg);
+  -o-transform: rotate(270deg);
+  transform: rotate(270deg);
+}
