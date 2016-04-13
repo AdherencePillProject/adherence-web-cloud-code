@@ -128,7 +128,7 @@ function createCheckBoxes (pillName) {
 }
 function patient0Clicked(ev, pillName) {
 	toggleActive(ev);
-	createCheckBoxes(pillName);
+	// createCheckBoxes(pillName);
 }
 
 
