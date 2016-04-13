@@ -509,4 +509,4 @@ function checkBox2(obj) {
 	        myLineChart[2] = new Chart(ctx).Line(data2, options);
 	}
 }
-}
+
