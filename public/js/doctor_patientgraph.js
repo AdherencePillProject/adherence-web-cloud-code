@@ -118,12 +118,12 @@ function getPatients() {
 
 var pills = ["pill1", "pill2", "pill3"];
 
-bool_arry = {};
+var bool_arry = {};
 bool_arry["pill1"] = true;
 bool_arry["pill2"] = true;
 bool_arry["pill3"] = true;
 
-pill_time = {};
+var pill_time = {};
 pill_time[pills[0]] = [1,2,3,4,5,6,7];
 pill_time[pills[1]] = [4,2,1,3,5,4,7];
 pill_time[pills[2]] = [21,22,4,9,3,6,7];
@@ -137,7 +137,7 @@ function createNameDiv(patient_name, count, pillName){
 	newA.href = "#";
 	newA.id = "name" + count;
 	newA.onclick = function() { 
-		patient0Clicked(this, patient_name);
+		patientClicked(this, patient_name);
 	}
 	var name = document.createElement("h4");
 	name.textContent = patient_name;
@@ -229,7 +229,12 @@ function unSelectAll(ev){
 	drawGraph();
 }
 
+isDrawGraphCalled = false;
+
 function drawGraph(){
+    if (isDrawGraphCalled) {
+        myLineChart.destroy();
+    }
   	var ctx = document.getElementById("myChart").getContext("2d");
 	var time = [[1,1,1,1,1,1]];
 	for(var i = 0; i < pills.length; i++){
@@ -253,12 +258,13 @@ function drawGraph(){
     	labels: ["Mon", "TUE", "WED", "THUR", "FRI", "SAT", "SUN"],
       	datasets
     };
-  	//var dataNew = data;
 
-	var myLineChart = new Chart(ctx).Line(data, options);
+	myLineChart = new Chart(ctx).Line(data, options);
+    isDrawGraphCalled = true;
 }
 
-function patient0Clicked(ev, pillName) {
+
+function patientClicked(ev, pillName) {
 	toggleActive(ev);
 	console.log(pillName);
 	drawGraph();
@@ -276,7 +282,6 @@ function patient0Clicked(ev, pillName) {
 //main()
 function main(){
 	getPatients();	
-
 }
 
 Parse.initialize("BDo39lSOtPuBwDfq0EBDgIjTzztIQE38Fuk03EcR", "ox76Y4RxB06A69JWAleRHSercHKomN2FVu61dfu3");
