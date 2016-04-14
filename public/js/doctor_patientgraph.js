@@ -8,44 +8,51 @@ var sameDiv = false;
 var prescriptionNum = 0;
 
 var color = ["rgba(255, 255, 255,1)", "rgba(197, 17, 98,1)", "rgba(0, 145, 234,1)", "rgba(30, 100, 234,1)"];
+function randomCSSColor() {
+    var color_r = parseInt(Math.random() * 255);
+    var color_g = parseInt(Math.random() * 255);
+    var color_b = parseInt(Math.random() * 255);
+    var colorRGB = "rgba(" + color_r.toString() + ", " + color_g.toString() + ", " + color_b.toString() + ", 1)";
+    return colorRGB;
+}
 
 var options = {
-  // fixes height of y-axis to be 24
-  scaleOverride: true,
-  scaleStartValue: 0,
-  scaleStepWidth: 2,
-  scaleSteps: 12,
+    // fixes height of y-axis to be 24
+    scaleOverride: true,
+    scaleStartValue: 0,
+    scaleStepWidth: 2,
+    scaleSteps: 12,
 
-  ///Boolean - Whether grid lines are shown across the chart
-  scaleShowGridLines : true,
-  //String - Colour of the grid lines
-  scaleGridLineColor : "rgba(0,0,0,0.05)",
-  //Number - Width of the grid lines
-  scaleGridLineWidth : 1,
-  //Boolean - Whether to show horizontal lines (except X axis)
-  scaleShowHorizontalLines: true,
-  //Boolean - Whether to show vertical lines (except Y axis)
-  scaleShowVerticalLines: false,
-  //Boolean - Whether the line is curved between points
-  bezierCurve : false,
-  //Number - Tension of the bezier curve between points
-  bezierCurveTension : 0.3,
-  //Boolean - Whether to show a dot for each point
-  pointDot : true,
-  //Number - Radius of each point dot in pixels
-  pointDotRadius : 5,
-  //Number - Pixel width of point dot stroke
-  pointDotStrokeWidth : 1,
-  //Number - amount extra to add to the radius to cater for hit detection outside the drawn point
-  pointHitDetectionRadius : 20,
-  //Boolean - Whether to show a stroke for datasets
-  datasetStroke : true,
-  //Number - Pixel width of dataset stroke
-  datasetStrokeWidth : 2,
-  //Boolean - Whether to fill the dataset with a colour
-  datasetFill : true,
-  //String - A legend template
-  legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
+    ///Boolean - Whether grid lines are shown across the chart
+    scaleShowGridLines : true,
+    //String - Colour of the grid lines
+    scaleGridLineColor : "rgba(0,0,0,0.05)",
+    //Number - Width of the grid lines
+    scaleGridLineWidth : 1,
+    //Boolean - Whether to show horizontal lines (except X axis)
+    scaleShowHorizontalLines: true,
+    //Boolean - Whether to show vertical lines (except Y axis)
+    scaleShowVerticalLines: false,
+    //Boolean - Whether the line is curved between points
+    bezierCurve : false,
+    //Number - Tension of the bezier curve between points
+    bezierCurveTension : 0.3,
+    //Boolean - Whether to show a dot for each point
+    pointDot : true,
+    //Number - Radius of each point dot in pixels
+    pointDotRadius : 5,
+    //Number - Pixel width of point dot stroke
+    pointDotStrokeWidth : 1,
+    //Number - amount extra to add to the radius to cater for hit detection outside the drawn point
+    pointHitDetectionRadius : 20,
+    //Boolean - Whether to show a stroke for datasets
+    datasetStroke : true,
+    //Number - Pixel width of dataset stroke
+    datasetStrokeWidth : 2,
+    //Boolean - Whether to fill the dataset with a colour
+    datasetFill : true,
+    //String - A legend template
+    legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
 };
 //toggleActive
 //parameters: div element
@@ -116,17 +123,17 @@ function getPatients() {
 //parameters: patient_name, count
 //function: creates div for name that shows up on the right
 
-var pills = ["pill1", "pill2", "pill3"];
+var pills = ["Prilosec", "Cymbalta", "Advil"];
 
 var bool_arry = {};
-bool_arry["pill1"] = true;
-bool_arry["pill2"] = true;
-bool_arry["pill3"] = true;
+bool_arry["Prilosec"] = true;
+bool_arry["Cymbalta"] = true;
+bool_arry["Advil"] = true;
 
 var pill_time = {};
-pill_time[pills[0]] = [1,2,3,4,5,6,7];
-pill_time[pills[1]] = [4,2,1,3,5,4,7];
-pill_time[pills[2]] = [21,22,4,9,3,6,7];
+pill_time[pills[0]] = [8,8.5,8,9,8.5,8,8];
+pill_time[pills[1]] = [18,18,17.5,18,18.5,18,17.5];
+pill_time[pills[2]] = [21,22,21.5,21.5,21,21.5,22];
 
 
 function createNameDiv(patient_name, count, pillName){	
@@ -157,7 +164,7 @@ function createNameDiv(patient_name, count, pillName){
 	newA.appendChild(name);
 	pn.appendChild(newA);
 }
-function createCheckBoxes (pillName) {
+function createCheckBoxes (pillName, pillColor) {
 	var cb_left = document.getElementById("checkbox-left");	
 
 	// console.log("Children number", cb_left.childNodes.length)
@@ -180,6 +187,8 @@ function createCheckBoxes (pillName) {
 
 		var cblabel = document.createElement("span");
 		cblabel.textContent = pillName;
+        cblabel.style="color: " + pillColor + ";";
+        // cblabel.style = "color: " + randomCSSColor() + ";";
 
 		var label = document.createElement("label");
 		label.appendChild(input);
@@ -244,10 +253,13 @@ function drawGraph(){
 
 	var datasets = [];
   	for(i = 0; i < time.length; i++){
+        //var clr = randomCSSColor();
     	datasets.push(          {
         	    fillColor: "rgba(255,255,255,0)",
             	strokeColor: color[i],
+                // strokeColor: clr,
               	pointColor: color[i],
+                // pointColor: clr,
               	pointStrokeColor: "#fff",
               	pointHighlightFill: "#fff",
               	pointHighlightStroke: "rgba(220,220,220,1)",
@@ -255,7 +267,7 @@ function drawGraph(){
           })
   	}
   	var data = {
-    	labels: ["Mon", "TUE", "WED", "THUR", "FRI", "SAT", "SUN"],
+    	labels: ["MON", "TUE", "WED", "THUR", "FRI", "SAT", "SUN"],
       	datasets
     };
 
@@ -275,7 +287,7 @@ function patientClicked(ev, pillName) {
 	while(cb_left.childNodes.length > 4)
 		cb_left.removeChild(cb_left.childNodes[cb_left.childNodes.length - 1]);
 	for(var i = 0; i < pills.length; i++)
-		createCheckBoxes(pills[i]);
+		createCheckBoxes(pills[i], color[i + 1]);
 }
 
 
