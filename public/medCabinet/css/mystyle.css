@@ -26,6 +26,10 @@ border-radius:0px;
 #panelheading{
   font-family: 'PT Sans', sans-serif;
   font-size:20px;
+  background-color: #4d90fe;
+  border-color:#4d90fe;
+  color:#000000;
+  border-color:#0F3C8C;
 }
 
 #buttongroup{
@@ -72,12 +76,12 @@ border-radius:0px;
 
 #firstmed{
   margin-bottom: 15px;
-  background-color: #F4FAE2;
+  background-color: #fff;
 }
 
 #secondmed{
   margin-bottom: 15px;
-  background-color: #B0E0E6;
+  background-color: #fff;
 }
 
 .title{
@@ -216,4 +220,7 @@ cursor: pointer;
   -moz-transform: rotate(270deg);
   -o-transform: rotate(270deg);
   transform: rotate(270deg);
+}
+.table {
+  border:1px solid #000000;
 }
