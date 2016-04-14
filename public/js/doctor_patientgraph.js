@@ -229,7 +229,7 @@ function unSelectAll(ev){
 	drawGraph();
 }
 
-isDrawGraphCalled = false;
+var isDrawGraphCalled = false;
 
 function drawGraph(){
     if (isDrawGraphCalled) {
