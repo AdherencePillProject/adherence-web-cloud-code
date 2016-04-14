@@ -7,7 +7,6 @@ var sameDiv = false;
 //keeps track of which prescription number we are on
 var prescriptionNum = 0;
 
-var color = ["rgba(255, 255, 255,1)", "rgba(197, 17, 98,1)", "rgba(0, 145, 234,1)", "rgba(30, 100, 234,1)"];
 function randomCSSColor() {
     var color_r = parseInt(Math.random() * 255);
     var color_g = parseInt(Math.random() * 255);
@@ -135,6 +134,12 @@ pill_time[pills[0]] = [8,8.5,8,9,8.5,8,8];
 pill_time[pills[1]] = [18,18,17.5,18,18.5,18,17.5];
 pill_time[pills[2]] = [21,22,21.5,21.5,21,21.5,22];
 
+var pillLabelColor = [];
+pillLabelColor[pills[0]] = "rgba(0, 145, 234,1)";
+pillLabelColor[pills[1]] = "rgba(197, 17, 98,1)";
+pillLabelColor[pills[2]] = "rgba(205, 220, 57, 1)";
+
+
 
 function createNameDiv(patient_name, count, pillName){	
 	//Add their names to div id="patient_names"
@@ -207,6 +212,7 @@ function onClickCB(ev, inputID){
 	drawGraph();
 	console.log(cb.id, cb.checked);
 	console.log("bool is", bool_arry[cb.id])
+    document.getElementById("unselectallcheckboxes").checked = false;
 }
 
 function selectAll(ev){
@@ -245,21 +251,21 @@ function drawGraph(){
         myLineChart.destroy();
     }
   	var ctx = document.getElementById("myChart").getContext("2d");
-	var time = [[1,1,1,1,1,1]];
+	var time = [];
+    var _color = [];
 	for(var i = 0; i < pills.length; i++){
-		if(bool_arry[pills[i]])
+		if(bool_arry[pills[i]]) {
 			time.push(pill_time[pills[i]]);
+            _color.push(pillLabelColor[pills[i]]);
+        }
 	}
 
 	var datasets = [];
   	for(i = 0; i < time.length; i++){
-        //var clr = randomCSSColor();
     	datasets.push(          {
         	    fillColor: "rgba(255,255,255,0)",
-            	strokeColor: color[i],
-                // strokeColor: clr,
-              	pointColor: color[i],
-                // pointColor: clr,
+            	strokeColor: _color[i],
+              	pointColor: _color[i],
               	pointStrokeColor: "#fff",
               	pointHighlightFill: "#fff",
               	pointHighlightStroke: "rgba(220,220,220,1)",
@@ -280,6 +286,9 @@ function patientClicked(ev, pillName) {
 	toggleActive(ev);
 	console.log(pillName);
 	drawGraph();
+
+    document.getElementById("selectallcheckboxes").checked = true;
+
 	var cb_left = document.getElementById("checkbox-left");	
 
 	console.log("Children number", cb_left.childNodes.length)
@@ -287,7 +296,7 @@ function patientClicked(ev, pillName) {
 	while(cb_left.childNodes.length > 4)
 		cb_left.removeChild(cb_left.childNodes[cb_left.childNodes.length - 1]);
 	for(var i = 0; i < pills.length; i++)
-		createCheckBoxes(pills[i], color[i + 1]);
+		createCheckBoxes(pills[i], pillLabelColor[pills[i]]);
 }
 
 
