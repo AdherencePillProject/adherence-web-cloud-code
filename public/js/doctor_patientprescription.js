@@ -135,33 +135,6 @@ function getPatientsInfo2() {
 			alert(error.message);
 		}
 	});
-
-	// query.find().then(function(patients) {
-	// 	console.log("Successfully retrieved " + patients.length + " patients.");
-	// 	//GOT PATIENTS SUCCESSFULLY
-	// 	for (var p = 0; p < patients.length; p++) {
-	// 		var user = patients[p];
-	// 		var name = user.get("firstname") + " " + user.get("lastname");
-	// 		namesToIndices[p] = user;
-	// 		createNameDiv(name, p);
-	// 		// var curr = patients[p];
-	// 		// var currID = curr.get("userAccount")["id"];
-	// 		// var userQuery = new Parse.Query(Parse.User);
-
-
-	// 		// //for the person who is loaded first
-	// 		// var count = 0;
-
-	// 		// userQuery.get(currID).then(function(user) {
-	// 		// 	var name = user.get("firstname") + " " + user.get("lastname");
-	// 		// 	namesToIndices[count] = user;
-	// 		// 	createNameDiv(name, count++);
-	// 		// });
-
-	// 	}
-
-	// });
-
 }
 
 //createNameDiv()
