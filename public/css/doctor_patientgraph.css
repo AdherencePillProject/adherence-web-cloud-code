@@ -1,0 +1,48 @@
+body {
+    background-color: white;
+      ont-family: "Helvetica Neue";
+}
+.list-group {
+    padding-top: 20px;
+}
+#options {
+    float:right;
+}
+.col-md-4 {
+    padding-left: 5%;
+    padding-right: 10px;
+    height: 700px;
+}
+.col-md-8 {
+    padding-left: 10px;
+    padding-right: 5%;
+}
+#patien-list {
+    padding: 20px 0px 0px 0px;
+    width: 100%;
+}
+#checkbox-left {
+    float: left; 
+    padding-right: 10px;
+    padding-left: 10%;
+}
+#radios-right {
+    float: left; 
+    padding-left: 10px;
+}
+#graph {
+    clear: both;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+#xanax {
+    color: #0091ea;
+    font-weight: bold;
+}
+#iron {
+    color: #c51162;
+    font-weight: bold;
+}
+#lb-cb1, #lb-cb2 {
+    font-weight: bold;
+}

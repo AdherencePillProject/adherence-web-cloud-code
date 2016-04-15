@@ -656,7 +656,7 @@ function destroySchedule(sched) {
 function main() {
 	Parse.initialize("BDo39lSOtPuBwDfq0EBDgIjTzztIQE38Fuk03EcR", "ox76Y4RxB06A69JWAleRHSercHKomN2FVu61dfu3");
 	//get patients
-	getPatientsInfo();
+	getPatientsInfo2();
 }
 
 

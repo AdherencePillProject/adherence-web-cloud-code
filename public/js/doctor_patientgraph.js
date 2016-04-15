@@ -78,44 +78,112 @@ function toggleActive(element){
 //getPatients()
 //parameters: none
 //function: gets list of patients in Parse database and creates name divs in div id="patient_names"
-function getPatients() {
-	var patientList = Parse.Object.extend("Patient");
-	var query = new Parse.Query(patientList);
-	//var prescripIDs = patient.get("patientPointer").get("prescriptions");
+// function getPatients() {
+// 	var patientList = Parse.Object.extend("Patient");
+// 	var query = new Parse.Query(patientList);
+// 	//var prescripIDs = patient.get("patientPointer").get("prescriptions");
 
-	query.find({
-	  success: function(patients) {
-	    console.log("Successfully retrieved " + patients.length + " patients.");
-	    //GOT PATIENTS SUCCESSFULLY
-	    for (var p = 0; p < patients.length; p++){
-	    	var curr = patients[p];
-	    	var currID = curr.get("userAccount")["id"];
-	    	var userQuery = new Parse.Query(Parse.User);
+// 	query.find({
+// 	  success: function(patients) {
+// 	    console.log("Successfully retrieved " + patients.length + " patients.");
+// 	    //GOT PATIENTS SUCCESSFULLY
+// 	    for (var p = 0; p < patients.length; p++){
+// 	    	var curr = patients[p];
+// 	    	var currID = curr.get("userAccount")["id"];
+// 	    	var userQuery = new Parse.Query(Parse.User);
 
-	    	//for the person who is loaded first
-	    	var count = 0;
-	    	var pillName = curr.get("prescriptions");
+// 	    	//for the person who is loaded first
+// 	    	var count = 0;
+// 	    	var pillName = curr.get("prescriptions");
 
-	    	//GET PATIENT NAME (FROM USER OBJECT)
-	    	userQuery.get(currID, {
-	    		success: function(user){
-	    			var name = user.get("firstname") + " " + user.get("lastname");
-	    			namesToIndices[count] = user;
-	    			createNameDiv(name, count++, pillName);
+// 	    	//GET PATIENT NAME (FROM USER OBJECT)
+// 	    	userQuery.get(currID, {
+// 	    		success: function(user){
+// 	    			var name = user.get("firstname") + " " + user.get("lastname");
+// 	    			namesToIndices[count] = user;
+// 	    			createNameDiv(name, count++, pillName);
 
-	    		},
-	    		error: function(object, error){
-	    			console.log("Error in retrieving patients name list: " + error.code + " " + error.message);
-	    		}
+// 	    		},
+// 	    		error: function(object, error){
+// 	    			console.log("Error in retrieving patients name list: " + error.code + " " + error.message);
+// 	    		}
 
-	    	});
+// 	    	});
 
-	    }
-	  },
-	  error: function(error) {
-	    console.log("Error in retrieving patients list: " + error.code + " " + error.message);
-	  }
-	});
+// 	    }
+// 	  },
+// 	  error: function(error) {
+// 	    console.log("Error in retrieving patients list: " + error.code + " " + error.message);
+// 	  }
+// 	});
+// }
+function getPatientsInfo2() {
+
+  var patientList = Parse.Object.extend("Patient");
+  var query = new Parse.Query(patientList);
+
+  // Include user account info so we don't have to do another query
+  query.include('userAccount').ascending('firstname');
+
+  // Use a dict to save name/user pairs and sort later
+  var unsortedNames = [];
+
+  query.find({
+    success: function(patients) {
+      for (var i = 0; i < patients.length; i++) {
+        var user = patients[i].get("userAccount");
+
+        // In some cases where userAccount is null, we need to double check.
+        // Though the userAccount should NOT be null in any cases.
+        // But with all the testing data, we never know.
+
+        if (user != undefined) {
+          //alert(user);
+          var firstname = user.get("firstname");
+          var lastname = user.get("lastname");
+          if (firstname != undefined && lastname != undefined) {
+
+            var name = firstname + " " + lastname;
+            // Use user as the key here because of the bad data sample where multiple
+            // different patient accounts are pointing to the same user account which is 
+            // odd.
+            var userAndName = {
+              name: name,
+              user: user
+            };
+            unsortedNames.push(userAndName);
+            // var name = user["firstname"] + " " + user["lastname"];
+            // namesToIndices[i] = user;
+            // createNameDiv(name, i);
+          }
+        }
+      }
+
+
+      // sortedNames.push.apply(sortedNames, Object.keys(unsortedUsers));
+      // Ascending, for descending, use sortedNames.sort().reverse()
+      // Or, use a customized rule. There is no out-of-box sorting for a nested query.
+      unsortedNames.sort(function(a, b) {
+        if (a["name"] < b["name"]) {
+          return -1;
+        }
+        if (a["name"] > b["name"]) {
+          return 1;
+        }
+
+        return 0;
+      });
+      for (var i = 0; i < unsortedNames.length; i++) {
+        var sortedUser = unsortedNames[i]["user"];
+        var sortedName = unsortedNames[i]["name"];
+        namesToIndices[i] = sortedUser;
+        createNameDiv(sortedName, i);
+      }
+    },
+    error: function(error) {
+      alert(error.message);
+    }
+  });
 }
 
 //createNameDiv()
@@ -302,7 +370,7 @@ function patientClicked(ev, pillName) {
 
 //main()
 function main(){
-	getPatients();	
+	getPatientsInfo2();	
 }
 
 Parse.initialize("BDo39lSOtPuBwDfq0EBDgIjTzztIQE38Fuk03EcR", "ox76Y4RxB06A69JWAleRHSercHKomN2FVu61dfu3");
