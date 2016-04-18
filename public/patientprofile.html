@@ -11,14 +11,53 @@
         <link rel="stylesheet" href="Patient_prescription/css/my.css" rel = "stylesheet" type="text/css">
         <link rel="stylesheet" type="text/less" href="css/home.less">
         <link href='https://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
+        <!--Add Angular-->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+
+        <!--Add Angular Directives-->
+        <script src="/js/angular-app.js"></script>
+
+        <!-- Parse -->
+        <script src="http://www.parsecdn.com/js/parse-1.6.7.min.js"></script>
+        <script>
+            function createNameDiv() {
+                var userEmail = getEmail();
+                var pn = document.getElementById("patient_names");
+                console.log(userEmail);
+            }
+            function getEmail() {
+                var user = Parse.User.current();
+                if (user == null) {
+                    alert("Please login first");
+                    window.location.replace("login.html");
+                } else {
+                    user.fetch(null, {
+                        success: function(user) {},
+                        error: function(user, error) {
+                            alert("Error: " + error.code + " " + error.message);
+                        }
+                    });
+                }
+                return user.getEmail();;
+            }
+            function main() {
+                Parse.initialize("BDo39lSOtPuBwDfq0EBDgIjTzztIQE38Fuk03EcR", "ox76Y4RxB06A69JWAleRHSercHKomN2FVu61dfu3");
+                //get patients
+                createNameDiv();
+            }
+        </script>
+
     
     </head>
     <body> 
+
+
+
         
     <div id="new-header">
-        <script>
+        <!-- <script>
             $("#new-header").load("header.html");
-        </script>
+        </script>--> <!-- This code isnt working so temporarily removed-->
         
         <nav class="navbar navbar-default">
             <div class="container-fluid">
@@ -26,6 +65,7 @@
 
                     <a class="navbar-brand" href="index.html">SmartCap</a>
                 </div>
+
     <!-- Brand and toggle get grouped for better mobile display -->
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -36,7 +76,7 @@
                         <li><a href="medCabinet/homePage.html"><i class="fa fa-medkit"></i> Med Cabinet</a></li>
                         <li class="active"><a href="patientprofile.html"><i class="fa fa-heartbeat"></i> My Profile</a></li>
                         <li><a href="doctorprofile.html"><i class="fa fa-user-md"></i> My Doctor</a></li>
-                        <li><a href="#"><i class="fa fa-cog"></i>  John Doe</a></li>  
+
                     </ul>
                 </div>
               </div>
@@ -59,6 +99,7 @@
                 <h3>Age:</h3>
                 <h3>Sex:</h3>
                 <br>
+                <script>main()</script>
             </div>
 
 
@@ -93,6 +134,4 @@
     </body>
      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script type="text/javascript" src="js/home.js"></script>
-        <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
-        <script src="http://www.parsecdn.com/js/parse-1.6.7.min.js"></script>
 </html>
