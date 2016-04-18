@@ -27,11 +27,12 @@
             }
             function getEmail() {
                 var user = Parse.User.current();
+                console.log("user is ", user);
                 if (user == null) {
                     alert("Please login first");
                     window.location.replace("login.html");
                 } else {
-                    console.log(user);
+
                     user.fetch(null, {
                         success: function(user) {},
                         error: function(user, error) {
