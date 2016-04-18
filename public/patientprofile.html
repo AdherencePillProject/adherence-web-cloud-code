@@ -20,6 +20,11 @@
         <!-- Parse -->
         <script src="http://www.parsecdn.com/js/parse-1.6.7.min.js"></script>
         <script>
+            function main() {
+                Parse.initialize("BDo39lSOtPuBwDfq0EBDgIjTzztIQE38Fuk03EcR", "ox76Y4RxB06A69JWAleRHSercHKomN2FVu61dfu3");
+                //get patients
+                createNameDiv();
+            }
             function createNameDiv() {
                 var userEmail = getEmail();
                 var pn = document.getElementById("patient_names");
@@ -42,11 +47,7 @@
                 }
                 return user.getEmail();;
             }
-            function main() {
-                Parse.initialize("BDo39lSOtPuBwDfq0EBDgIjTzztIQE38Fuk03EcR", "ox76Y4RxB06A69JWAleRHSercHKomN2FVu61dfu3");
-                //get patients
-                createNameDiv();
-            }
+            
         </script>
 
     
