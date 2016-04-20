@@ -1,0 +1,226 @@
+body, html {
+width: 100%;
+margin: 0%;
+}
+
+#name{
+  font-size: 18;
+  font-weight: bold;
+  text-align: center;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+#medcabinet{
+  margin-top: 60px;
+}
+
+#searchbar {
+font-family: 'PT Sans', sans-serif;
+margin-top: 10px;
+margin-bottom: 20px;
+font-size:20px;
+border-radius:0px;
+
+}
+
+#panelheading{
+  font-family: 'PT Sans', sans-serif;
+  font-size:20px;
+  background-color: #4d90fe;
+  border-color:#4d90fe;
+  color:#000000;
+  border-color:#0F3C8C;
+}
+
+#buttongroup{
+  font-family: 'PT Sans', sans-serif;
+  float:right;
+}
+
+#pill{
+  font-family: 'PT Sans', sans-serif;
+  font-size:16px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+#suggestion{
+  font-family: 'PT Sans', sans-serif;
+  font-size:16px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+#refill{
+  font-family: 'PT Sans', sans-serif;
+  font-size:16px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+#history{
+  font-family: 'PT Sans', sans-serif;
+  font-size:16px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+#img{
+  margin-bottom: 15px;
+}
+
+.glyphicon-move {
+  cursor: move;
+  cursor: -webkit-grabbing;
+}
+
+#firstmed{
+  margin-bottom: 15px;
+  background-color: #fff;
+}
+
+#secondmed{
+  margin-bottom: 15px;
+  background-color: #fff;
+}
+
+.title{
+  font-family: arial;
+  font-size: 14;
+  font-weight: bold;
+}
+
+#search-box {
+position: relative;
+width: 30%;
+margin-bottom: 15px;
+}
+
+#search-form 
+{
+height: 40px;
+border: 1px solid #999;
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 5px;
+background-color: #fff;
+overflow: hidden;
+}
+#search-text 
+{
+font-size: 14px;
+color: #ddd;
+border-width: 0;
+background: transparent;
+}
+#search-box input[type="text"]
+{
+width: 90%;
+padding: 11px 0 12px 1em;
+color: #333;
+outline: none;
+}
+
+#search-button {
+position: absolute;
+top: 0;
+right: 0;
+height: 40px;
+width: 80px;
+font-size: 14px;
+color: #fff;
+text-align: center;
+line-height: 42px;
+border-width: 0;
+background-color: #4d90fe;
+-webkit-border-radius: 0px 5px 5px 0px;
+-moz-border-radius: 0px 5px 5px 0px;
+border-radius: 0px 5px 5px 0px;
+cursor: pointer;
+}
+
+
+.cell {
+  float: left;
+  width: 50%;
+}
+
+.button {
+  -webkit-transition: max-width 0.2s linear 0.2s, text-indent 0.2s linear 0.2s, color 0.2s linear 0.2s;
+  -moz-transition: max-width 0.2s linear 0.2s, text-indent 0.2s linear 0.2s, color 0.2s linear 0.2s;
+  -o-transition: max-width 0.2s linear 0.2s, text-indent 0.2s linear 0.2s, color 0.2s linear 0.2s;
+  transition: max-width 0.2s linear 0.2s, text-indent 0.2s linear 0.2s, color 0.2s linear 0.2s;
+  background-color: #f00; /* background default state */
+  border-radius: 16px;
+  color: rgba(255,255,255,0.1);
+  display: inline-block;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 32px;
+  overflow: hidden;
+  padding-right: 32px;
+  position: relative;
+  text-decoration: none;
+  text-indent: -20px;
+  max-width: 0;
+  white-space: nowrap;
+  vertical-align: middle;
+  text-align: right;
+} 
+.button_icon {
+  -webkit-transition: -webkit-transform 0.4s ease-out;
+  -moz-transition: transform 0.4s ease-out;
+  -o-transition: -o-transform 0.4s ease-out;
+  transition: transform 0.4s ease-out;
+  border-radius: 16px;
+  color: rgba(255,255,255, 1);
+  font-size: 1.3em;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  text-indent: 0;
+  top: 0;
+  width: 32px;
+}
+
+.button:hover {
+  -webkit-transition: max-width 0.2s linear 0.2s, text-indent 0.2s linear 0.2s, color 0.2s linear 0.2s;
+  -moz-transition: max-width 0.2s linear 0.2s, text-indent 0.2s linear 0.2s, color 0.2s linear 0.2s;
+  -o-transition: max-width 0.2s linear 0.2s, text-indent 0.2s linear 0.2s, color 0.2s linear 0.2s;
+  transition: max-width 0.2s linear 0.2s, text-indent 0.2s linear 0.2s, color 0.2s linear 0.2s;
+  color: rgba(255,255,255,1);
+  max-width: 150px;
+  text-indent: 20px;
+} 
+.button:hover .button_icon {
+  -webkit-transition: -webkit-transform 0.4s ease-out;
+  -moz-transition: transform 0.4s ease-out;
+  -o-transition: -o-transform 0.4s ease-out;
+  transition: transform 0.4s ease-out;
+  -webkit-transform: rotate(360deg);
+  -moz-transform: rotate(360deg);
+  -o-transform: rotate(360deg);
+  transform: rotate(360deg);
+}
+.button:active {
+  top: 1px;
+} 
+
+/* add button */
+.button_type__add,
+.button_type__add .button_icon {
+  background-color: #acd373;
+}
+.button_type__add .button_icon:before {
+  content: '+';
+}
+.button_type__add:hover .button_icon {
+  -webkit-transform: rotate(270deg);
+  -moz-transform: rotate(270deg);
+  -o-transform: rotate(270deg);
+  transform: rotate(270deg);
+}
+.table {
+  border:1px solid #000000;
+}

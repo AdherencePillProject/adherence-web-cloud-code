@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+<head>
+  <title>Doctor - Patient Graph Report</title>
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <!--Chart.js-->
+  <script src="js/chartjs/Chart.js"></script>
+  <!--JQuery-->
+  <script src="js/jquery.js"></script>
+  <!--Bootstrap-->
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/bootstrap.css" rel="stylesheet">
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <!--Parse-->
+  <script src="http://www.parsecdn.com/js/parse-1.6.7.min.js"></script>
+
+  <!--Add Angular-->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+
+  <!--Add Angular Directives-->
+  <script src="/js/angular-app.js"></script>
+
+  <script src="js/doctor_patientgraph.js"></script>
+  <!-- <link rel="stylesheet" href="css/doctor_patientgraph.css"> -->
+  <style>
+    body {
+      background-color: white;
+      font-family: "Helvetica Neue";
+    }
+    .list-group {
+      padding-top: 20px;
+    }
+    #options {
+      float:right;
+    }
+    .col-md-4 {
+      padding-left: 5%;
+      padding-right: 10px;
+      height: 700px;
+    }
+    .col-md-8 {
+      padding-left: 10px;
+      padding-right: 5%;
+      
+    }
+    #patien-list {
+      padding: 20px 0px 0px 0px;
+      width: 100%;
+    }
+    #checkbox-left {
+      float: left; 
+      padding-right: 10px;
+      padding-left: 10%;
+    }
+    #radios-right {
+      float: left; 
+      padding-left: 10px;
+    }
+    #graph {
+      clear: both;
+      padding-left: 10%;
+      padding-right: 10%;
+    }
+    #xanax {
+      color: #0091ea;
+      font-weight: bold;
+    }
+    #iron {
+      color: #c51162;
+      font-weight: bold;
+    }
+    #lb-cb1, #lb-cb2 {
+      font-weight: bold;
+    }
+    
+
+  </style>
+  <script type="text/javascript">
+    function toggleActive(element) {
+      var actives = document.getElementsByClassName("list-group-item active");
+      for (var i = 0; i < actives.length; i++){
+        actives[i].className = "list-group-item";
+      }
+      element.className = "list-group-item active";
+    }
+
+  </script>
+</head>
+
+<body>
+  <div ng-controller='NavController as tab' ng-include src="'/partials/navbar/navbar_doctor.html'"></div>
+
+<div class="row">
+  <div class="col-md-4">
+    <h3 id="patientlist-title">Patients' List</h3>
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Search for a patient">
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button">Search</button>
+        </span>
+    </div>
+
+    <div class="list-group" id="patien_names">
+      <!--<a href="#" class="list-group-item active" onclick="patient0(this)">
+        <h4 class="list-group-item-heading">Yeyi Peng</h4>
+        <p class="list-group-item-text">some info about this patient</p>
+      </a>
+      <a href="#" class="list-group-item" onclick="patient1(this)">
+        <h4 class="list-group-item-heading">Jeanette Pranin</h4>
+        <p class="list-group-item-text">some info about this patient</p>
+      </a>
+      <a href="#" class="list-group-item" onclick="patient2(this)">
+        <h4 class="list-group-item-heading">Jack Tumblin</h4>
+        <p class="list-group-item-text">some info about this patient</p>
+      </a>
+      <a href="#" class="list-group-item" onclick="toggleActive(this)">
+        <h4 class="list-group-item-heading">Michael Horn</h4>
+        <p class="list-group-item-text">some info about this patient</p>
+      </a>-->
+    </div>
+  </div>
+
+  <div class="col-md-8">
+    <div id="checkbox-left">
+
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" value="" id="selectallcheckboxes" onclick="selectAll(this)">
+          <span class="checkboxlabel">Select all</span>
+        </label>
+      </div>
+
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" value="" id="unselectallcheckboxes" onclick="unSelectAll(this)">
+          Un-Select all
+        </label>
+      </div>
+    </div>
+
+    <div id="radios-right">
+      <div class="radio">
+      <label>
+        <input type="radio" name="optionsRadios" id="optionRadios1" value="option1" checked>
+        Last Week
+      </label>
+      </div>
+      <div class="radio">
+        <label>
+          <input type="radio" name="optionsRadios" id="optionRadios2" value="option2">
+          Last Month
+        </label>
+      </div>
+    </div>
+
+    <div id="graph">
+      <canvas id="myChart" width="600" height="400"></canvas>
+    </div>
+  </div>
+</div>
+  
+</body>
+</html>
