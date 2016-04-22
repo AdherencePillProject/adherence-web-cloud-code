@@ -96,7 +96,7 @@ width: 30%;
 margin-bottom: 15px;
 }
 
-#search-form 
+#search-form
 {
 height: 40px;
 border: 1px solid #999;
@@ -106,7 +106,7 @@ border-radius: 5px;
 background-color: #fff;
 overflow: hidden;
 }
-#search-text 
+#search-text
 {
 font-size: 14px;
 color: #ddd;
@@ -166,7 +166,7 @@ cursor: pointer;
   white-space: nowrap;
   vertical-align: middle;
   text-align: right;
-} 
+}
 .button_icon {
   -webkit-transition: -webkit-transform 0.4s ease-out;
   -moz-transition: transform 0.4s ease-out;
@@ -192,7 +192,7 @@ cursor: pointer;
   color: rgba(255,255,255,1);
   max-width: 150px;
   text-indent: 20px;
-} 
+}
 .button:hover .button_icon {
   -webkit-transition: -webkit-transform 0.4s ease-out;
   -moz-transition: transform 0.4s ease-out;
@@ -205,7 +205,7 @@ cursor: pointer;
 }
 .button:active {
   top: 1px;
-} 
+}
 
 /* add button */
 .button_type__add,
@@ -223,4 +223,39 @@ cursor: pointer;
 }
 .table {
   border:1px solid #000000;
+}
+
+/* Custom Styles for Bootstrap Affix */
+ul.nav-tabs{
+    width: 220px;
+    margin-top: 20px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.067);
+}
+ul.nav-tabs li{
+    margin: 0;
+    border-top: 1px solid #ddd;
+}
+ul.nav-tabs li:first-child{
+    border-top: none;
+}
+ul.nav-tabs li a{
+    margin: 0;
+    padding: 8px 16px;
+    border-radius: 0;
+}
+ul.nav-tabs li.active a, ul.nav-tabs li.active a:hover{
+    color: #fff;
+    background: #0088cc;
+    border: 1px solid #0088cc;
+}
+ul.nav-tabs li:first-child a{
+    border-radius: 4px 4px 0 0;
+}
+ul.nav-tabs li:last-child a{
+    border-radius: 0 0 4px 4px;
+}
+ul.nav-tabs.affix{
+    top: 30px; /* Set the top position of pinned element */
 }
