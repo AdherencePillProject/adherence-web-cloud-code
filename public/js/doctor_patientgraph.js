@@ -159,10 +159,34 @@ pill_time[pills[0]] = [8,8.5,8,9,8.5,8,8];
 pill_time[pills[1]] = [18,18,17.5,18,18.5,18,17.5];
 pill_time[pills[2]] = [21,22,21.5,21.5,21,21.5,22];
 
+var presetColors = [
+    "rgb(244, 67, 54)", //0.red
+    "rgb(233, 30, 99)", //1.pink
+    "rgb(156, 39, 176)", //2.purple
+    "rgb(103, 58, 183)", //3.deep-purple
+    "rgb(63, 81, 181)", //4.indigo
+    "rgb(33, 150, 243)", //5.blue
+    "rgb(3, 169, 244)", //6.light-blue
+    "rgb(0, 188, 212)", //7.cyan
+    "rgb(0, 150, 136)", //8.teal
+    "rgb(76, 175, 80)", //9.green
+    "rgb(139, 195, 74)", //10.light-green
+    "rgb(205, 220, 57)", //11.lime
+    "rgb(255, 235, 59)", //12.yellow
+    "rgb(255, 193, 7)", //13.amber
+    "rgb(255, 152, 0)", //14.orange
+    "rgb(255, 87, 34)", //15.deep-orange
+    "rgb(121, 85, 72)", //16.brown
+    "rgb(96, 125, 139)", //17.blue-grey
+    "rgb(117, 117, 117)", //18.grey darken-1
+    ]
 var pillLabelColor = [];
-pillLabelColor[pills[0]] = "rgba(0, 145, 234,1)";
-pillLabelColor[pills[1]] = "rgba(197, 17, 98,1)";
-pillLabelColor[pills[2]] = "rgba(205, 220, 57, 1)";
+for (var i = 0; i < pills.length; i++) {
+    pillLabelColor[pills[i]] = presetColors[i];
+}
+// pillLabelColor[pills[0]] = "rgb(0, 145, 234)";
+// pillLabelColor[pills[1]] = "rgba(197, 17, 98,1)";
+// pillLabelColor[pills[2]] = "rgba(205, 220, 57, 1)";
 
 
 
