@@ -26,6 +26,16 @@
   <!-- Add backend -->
   <script src="../js/medCabinet_homePage.js"></script>
 
+    <script type="text/javascript">
+        $(document).ready(function(){
+          $("#myNav").affix({
+              offset: {
+                  top: 125
+            }
+          });
+        });
+  </script>
+
 </head>
 
 <body onload="getAllPillInfo()" data-spy="scroll" data-target="#myScrollspy">
@@ -33,12 +43,12 @@
   <div ng-controller='NavController as tab' ng-include src="'/partials/navbar/navbar.html'"></div>
 
   <div class="container" id="medcabinet"><!-- Med Cabinent -->
-    <div class ="panel panel-info">
+    <!-- <div class ="panel panel-info">
       <div class="panel-heading" id="panelheading">
         <div>Your Medication Cabinent</div>
-      </div> <!--Panel Heading Part Here-->
+      </div> -->
 
-      <div class="panel-body table">
+<!--       <div class="panel-body table"> -->
         <div class="container-fluid"><!-- /.container-fluid-original -->
 
           <div id='search-box'>
@@ -61,7 +71,7 @@
 
                  <!--container for the first item in the list group-->
                  <div class="container-fluid">
-                   <h3 id="name">Xanax</h3>
+                   <h3 class="name" id="firstmed">Xanax</h3>
 
                    <!--First Part-->
                    <div class="col-sm-3" id="pill">
@@ -105,7 +115,7 @@
 
               <!--container for the first item in the list group-->
               <div class="container-fluid">
-                <h3 id="name">Aspirin</h3>
+                <h3 class="name" id="secondmed">Aspirin</h3>
 
                 <!--First Part-->
                 <div class="col-sm-3" id="pill">
@@ -143,14 +153,103 @@
               </div><!--List Group item2-->
              </div><!-- Second Med-->
 
+             <div class="list-group-item table" id="thirdmed">
+                 <!-- <span class="glyphicon glyphicon-move"></span> -->
+
+                 <!--container for the first item in the list group-->
+                 <div class="container-fluid">
+                   <h3 class="name" id="thirdmed">Xanax</h3>
+
+                   <!--First Part-->
+                   <div class="col-sm-3" id="pill">
+                     <div id="img"><img src="img/capsule-icon.png"
+                          class="img-responsive" alt="Responsive image" width="64" height="64"></div><!-- Pill Icon Appears Here-->
+                     <div class="title">Pill Info</div>
+                     <div>Name: Xanax</br>Treat Anxiety, Panic and Depress</div><!-- Pill Name Appears Here-->
+                   </div><!--First Part-->
+
+                   <!--Second Part -->
+                   <div class="col-sm-3" id="suggestion">
+                     <div id="img"> <img src="img/doctor-icon.png"
+                          class="img-responsive" alt="Responsive image" width="64" height="64"> </div><!-- Doctor's Suggestion Icon Appears Here-->
+                     <div class="title">Doctor's Suggestion</div>
+                     <div>Take with water</br>Need Child-proof</div><!-- Doctor's Suggestion Appears Here-->
+                   </div><!--Second Part -->
+
+                   <!--Third Part -->
+                   <div class="col-sm-3" id="refill">
+                     <div id="img"><img src="img/prescription-icon.png"
+                          class="img-responsive" alt="Responsive image" width="64" height="64"></div><!-- Refill Icon Appears Here-->
+                       <div class="title">Refill Information</div>
+                       <div>10 Pills Left</br>Refill in 5 Days</div><!-- Refill Info Appears Here-->
+                   </div><!--Third Part -->
+
+                   <!--fourth Part -->
+                   <div class="col-sm-3" id="history">
+                     <div id="img"><img src="img/Checklist-icon.png"
+                          class="img-responsive" alt="Responsive image" width="64" height="64"></div><!-- Refill Icon Appears Here-->
+                     <div class="title">Reminder</div>
+                     <div>Take1: Morning&nbsp&nbsp&nbsp<span class="glyphicon glyphicon-ok"></span></br>
+                         Take2: Afternoon&nbsp&nbsp&nbsp<span class="glyphicon glyphicon-remove"></span></div><!-- History Appears Here-->
+                   </div><!--fourth Part -->
+
+                 </div><!--List Group item1-->
+             </div><!--Third Med-->
+
+
+             <div class="list-group-item table" >
+                 <!-- <span class="glyphicon glyphicon-move"></span> -->
+
+                 <!--container for the first item in the list group-->
+                 <div class="container-fluid">
+                   <h3 class="name" id="thirdmed">Xanax</h3>
+
+                   <!--First Part-->
+                   <div class="col-sm-3" id="pill">
+                     <div id="img"><img src="img/capsule-icon.png"
+                          class="img-responsive" alt="Responsive image" width="64" height="64"></div><!-- Pill Icon Appears Here-->
+                     <div class="title">Pill Info</div>
+                     <div>Name: Xanax</br>Treat Anxiety, Panic and Depress</div><!-- Pill Name Appears Here-->
+                   </div><!--First Part-->
+
+                   <!--Second Part -->
+                   <div class="col-sm-3" id="suggestion">
+                     <div id="img"> <img src="img/doctor-icon.png"
+                          class="img-responsive" alt="Responsive image" width="64" height="64"> </div><!-- Doctor's Suggestion Icon Appears Here-->
+                     <div class="title">Doctor's Suggestion</div>
+                     <div>Take with water</br>Need Child-proof</div><!-- Doctor's Suggestion Appears Here-->
+                   </div><!--Second Part -->
+
+                   <!--Third Part -->
+                   <div class="col-sm-3" id="refill">
+                     <div id="img"><img src="img/prescription-icon.png"
+                          class="img-responsive" alt="Responsive image" width="64" height="64"></div><!-- Refill Icon Appears Here-->
+                       <div class="title">Refill Information</div>
+                       <div>10 Pills Left</br>Refill in 5 Days</div><!-- Refill Info Appears Here-->
+                   </div><!--Third Part -->
+
+                   <!--fourth Part -->
+                   <div class="col-sm-3" id="history">
+                     <div id="img"><img src="img/Checklist-icon.png"
+                          class="img-responsive" alt="Responsive image" width="64" height="64"></div><!-- Refill Icon Appears Here-->
+                     <div class="title">Reminder</div>
+                     <div>Take1: Morning&nbsp&nbsp&nbsp<span class="glyphicon glyphicon-ok"></span></br>
+                         Take2: Afternoon&nbsp&nbsp&nbsp<span class="glyphicon glyphicon-remove"></span></div><!-- History Appears Here-->
+                   </div><!--fourth Part -->
+
+                 </div><!--List Group item1-->
+             </div><!--Third Med-->
+            
+
            </div><!--List Group-->
            </div>
+
            <div class="col-md-3" id="myScrollspy">
-               <ul class="nav nav-tabs nav-stacked" data-spy="affix" data-offset-top="125">
-                  <li class="active"><a href="#section-1">Xanax</a></li>
-                  <li><a href="#section-2">Aspirin</a></li>
-                  <li><a href="#section-3">XX Med</a></li>
-                  <li><a href="#section-4">XX Med</a></li>
+              <ul class="nav nav-tabs nav-stacked" id="myNav"> 
+                  <li class="active"><a href="#firstmed">Xanax</a></li>
+                  <li><a href="#secondmed">Aspirin</a></li>
+                  <li><a href="#thirdmed">Xanax</a></li>
+                  <li><a href="#fourthmed">Gankang</a></li>
                   <li><a href="#section-5">XX Med</a></li>
               </ul>
            </div>
@@ -158,20 +257,11 @@
 
       </div><!-- /.container-fluid-original -->
 
-    </div><!-- /.panel-body -->
-  </div><!-- /.panel-info -->
-
+   <!--  </div> -->
+ <!--  </div>
+ -->
 </div><!-- /.container for med cabinent -->
 
-  <script type="text/javascript">
-  $(document).ready(function(){
-    $("#myNav").affix({
-        offset: {
-            top: 125
-      }
-    });
-  });
-  </script>
 
   <!--Add Sortable-->
   <script src="js/Sortable.js"></script>
