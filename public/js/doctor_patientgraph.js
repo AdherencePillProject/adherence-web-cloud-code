@@ -74,49 +74,6 @@ function toggleActive(element){
 
 }
 
-
-//getPatients()
-//parameters: none
-//function: gets list of patients in Parse database and creates name divs in div id="patient_names"
-// function getPatients() {
-// 	var patientList = Parse.Object.extend("Patient");
-// 	var query = new Parse.Query(patientList);
-// 	//var prescripIDs = patient.get("patientPointer").get("prescriptions");
-
-// 	query.find({
-// 	  success: function(patients) {
-// 	    console.log("Successfully retrieved " + patients.length + " patients.");
-// 	    //GOT PATIENTS SUCCESSFULLY
-// 	    for (var p = 0; p < patients.length; p++){
-// 	    	var curr = patients[p];
-// 	    	var currID = curr.get("userAccount")["id"];
-// 	    	var userQuery = new Parse.Query(Parse.User);
-
-// 	    	//for the person who is loaded first
-// 	    	var count = 0;
-// 	    	var pillName = curr.get("prescriptions");
-
-// 	    	//GET PATIENT NAME (FROM USER OBJECT)
-// 	    	userQuery.get(currID, {
-// 	    		success: function(user){
-// 	    			var name = user.get("firstname") + " " + user.get("lastname");
-// 	    			namesToIndices[count] = user;
-// 	    			createNameDiv(name, count++, pillName);
-
-// 	    		},
-// 	    		error: function(object, error){
-// 	    			console.log("Error in retrieving patients name list: " + error.code + " " + error.message);
-// 	    		}
-
-// 	    	});
-
-// 	    }
-// 	  },
-// 	  error: function(error) {
-// 	    console.log("Error in retrieving patients list: " + error.code + " " + error.message);
-// 	  }
-// 	});
-// }
 function getPatientsInfo2() {
 
   var patientList = Parse.Object.extend("Patient");
@@ -145,7 +102,7 @@ function getPatientsInfo2() {
 
             var name = firstname + " " + lastname;
             // Use user as the key here because of the bad data sample where multiple
-            // different patient accounts are pointing to the same user account which is 
+            // different patient accounts are pointing to the same user account which is
             // odd.
             var userAndName = {
               name: name,
@@ -202,21 +159,45 @@ pill_time[pills[0]] = [8,8.5,8,9,8.5,8,8];
 pill_time[pills[1]] = [18,18,17.5,18,18.5,18,17.5];
 pill_time[pills[2]] = [21,22,21.5,21.5,21,21.5,22];
 
+var presetColors = [
+    "rgb(244, 67, 54)", //0.red
+    "rgb(233, 30, 99)", //1.pink
+    "rgb(156, 39, 176)", //2.purple
+    "rgb(103, 58, 183)", //3.deep-purple
+    "rgb(63, 81, 181)", //4.indigo
+    "rgb(33, 150, 243)", //5.blue
+    "rgb(3, 169, 244)", //6.light-blue
+    "rgb(0, 188, 212)", //7.cyan
+    "rgb(0, 150, 136)", //8.teal
+    "rgb(76, 175, 80)", //9.green
+    "rgb(139, 195, 74)", //10.light-green
+    "rgb(205, 220, 57)", //11.lime
+    "rgb(255, 235, 59)", //12.yellow
+    "rgb(255, 193, 7)", //13.amber
+    "rgb(255, 152, 0)", //14.orange
+    "rgb(255, 87, 34)", //15.deep-orange
+    "rgb(121, 85, 72)", //16.brown
+    "rgb(96, 125, 139)", //17.blue-grey
+    "rgb(117, 117, 117)", //18.grey darken-1
+    ]
 var pillLabelColor = [];
-pillLabelColor[pills[0]] = "rgba(0, 145, 234,1)";
-pillLabelColor[pills[1]] = "rgba(197, 17, 98,1)";
-pillLabelColor[pills[2]] = "rgba(205, 220, 57, 1)";
+for (var i = 0; i < pills.length; i++) {
+    pillLabelColor[pills[i]] = presetColors[i];
+}
+// pillLabelColor[pills[0]] = "rgb(0, 145, 234)";
+// pillLabelColor[pills[1]] = "rgba(197, 17, 98,1)";
+// pillLabelColor[pills[2]] = "rgba(205, 220, 57, 1)";
 
 
 
-function createNameDiv(patient_name, count, pillName){	
+function createNameDiv(patient_name, count, pillName){
 	//Add their names to div id="patient_names"
 	var pn = document.getElementById("patien_names");
 	var newA = document.createElement("a");
 
 	newA.href = "#";
 	newA.id = "name" + count;
-	newA.onclick = function() { 
+	newA.onclick = function() {
 		patientClicked(this, patient_name);
 	}
 	var name = document.createElement("h4");
@@ -233,12 +214,12 @@ function createNameDiv(patient_name, count, pillName){
 	else {
 		newA.className = "list-group-item";
 	}
-		
+
 	newA.appendChild(name);
 	pn.appendChild(newA);
 }
 function createCheckBoxes (pillName, pillColor) {
-	var cb_left = document.getElementById("checkbox-left");	
+	var cb_left = document.getElementById("checkbox-left");
 
 	// console.log("Children number", cb_left.childNodes.length)
 
@@ -357,7 +338,7 @@ function patientClicked(ev, pillName) {
 
     document.getElementById("selectallcheckboxes").checked = true;
 
-	var cb_left = document.getElementById("checkbox-left");	
+	var cb_left = document.getElementById("checkbox-left");
 
 	console.log("Children number", cb_left.childNodes.length)
 
@@ -370,7 +351,7 @@ function patientClicked(ev, pillName) {
 
 //main()
 function main(){
-	getPatientsInfo2();	
+	getPatientsInfo2();
 }
 
 Parse.initialize("BDo39lSOtPuBwDfq0EBDgIjTzztIQE38Fuk03EcR", "ox76Y4RxB06A69JWAleRHSercHKomN2FVu61dfu3");
