@@ -1,21 +1,18 @@
 <html>
     <head>
         <title>My Profile</title>
-        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/bootstrap.css" rel="stylesheet">
-        <link href="css/patientProfile.css" rel="stylesheet">
-              
-
+        <link href="../css/patientProfile.css" rel="stylesheet">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="Patient_prescription/css/my.css" rel = "stylesheet" type="text/css">
-        <link rel="stylesheet" type="text/less" href="css/home.less">
+        <link rel="stylesheet" href="../css/my.css" rel = "stylesheet" type="text/css">
+        <link rel="stylesheet" type="text/less" href="../css/home.less">
         <link href='https://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script type="text/javascript" src="../js/home.js"></script>
         <!--Add Angular-->
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+        <script src="../../bower_components/angular/angular.js"></script>
 
         <!--Add Angular Directives-->
-        <script src="/js/angular-app.js"></script>
+        <script src="../../common/js/angular-app.js"></script>
 
         <!-- Parse -->
         <script src="http://www.parsecdn.com/js/parse-1.6.7.min.js"></script>
@@ -47,21 +44,21 @@
                 }
                 return user.getEmail();;
             }
-            
+
         </script>
 
-    
+
     </head>
-    <body> 
+    <body>
 
 
 
-        
+
     <div id="new-header">
         <!-- <script>
             $("#new-header").load("header.html");
         </script>--> <!-- This code isnt working so temporarily removed-->
-        
+
         <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -85,15 +82,15 @@
               </div>
         </nav>
     </div> <!-- End of id="new-header" -->
-        
-    
+
+
 
     <div class="container my-panel" id="patient-myprof">
-        
+
         <div id="topbox">
             <div class="patient-upload-img">
-                <div class="avatar"><img src="patientProfile/defaultAvatar.png"></div>
-                
+                <div class="avatar"><img src="../assets/images/defaultAvatar.png"></div>
+
             </div>
             <div class="patient-info">
                 <br>
@@ -109,8 +106,8 @@
           </div>
           <!-- End Page Widget -->
         </div>
-    
-        
+
+
         <!--<table class = "aptmt-history">
             <tr><td class="patientt"><i class="fa fa-user-md"></i> Doctor</td>
                 <td class="patientt"><i class="fa fa-hospital-o"></i> Clinic</td>
@@ -125,16 +122,14 @@
                 <td class="patientt">date</td>
                 <td class="patientt">date</td>
             </tr>
-                
+
             <tr><td class="patientt">name</td><td class="patientt">Clinic</td><td class="patientt">Concern</td><td class="patientt">date</td><td class="patientt">date</td></tr>
-               
+
             <tr><td class="patientt">name</td><td class="patientt">Clinic</td> <td class="patientt">Concern</td><td class="patientt">date</td><td class="patientt">date</td></tr>
             <tr><td class="patientt">name</td><td class="patientt">Clinic</td> <td class="patientt">Concern</td><td class="patientt">date</td><td class="patientt">date</td></tr>
-                
+
             <tr><td class="patientt">name</td><td class="patientt">Clinic</td><td class="patientt">Concern</td><td class="patientt">date</td><td class="patientt">date</td></tr>
             </table> -->
-    
+
     </body>
-     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-        <script type="text/javascript" src="js/home.js"></script>
 </html>

@@ -9,13 +9,18 @@
 	<!-- font -->
 	<link href='https://fonts.googleapis.com/css?family=Nunito' rel='stylesheet' type='text/css'>
 	<link href='https://fonts.googleapis.com/css?family=Lora:400,700' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" href="css/my.css" media="screen" title="no title" charset="utf-8">
+	<link rel="stylesheet" href="../css/my.css" media="screen" title="no title" charset="utf-8">
 
 	<!--Add Angular-->
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.js"></script>
 
 	<!--Add Angular Directives-->
-	<script src="/js/angular-app.js"></script>
+	<script src="../../common/js/angular-app.js"></script>
+
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+	<script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+	<script src="../js/my.js"></script>
 
 	<!--	<style>
 
@@ -51,16 +56,16 @@
 		<div class="container my-panel"> <!-- dashboard panel groups -->
 			<div id='morning' class="col-md-4"> <!-- first panel -->
 				<div class="child-title">
-					<img class='icon' src="css/image/coffee.png" alt="morning" />
+					<img class='icon' src="../assets/images/coffee.png" alt="morning" />
 					Morning
 				</div>
 
 				<div class=" child-panel"> <!-- first panel group content -->
 					<ul class="list-group">
 					    <li class="list-group-item topli" ><!-- first panel->firt medicine -->
-							<a data-toggle="modal" data-target="#myModal"><img class='icon-small' src="css/image/info.png" alt="info" /></a>
+							<a data-toggle="modal" data-target="#myModal"><img class='icon-small' src="../assets/images/info.png" alt="info" /></a>
 							<button type="button" class="formodal">Tamiflu</button>
-							<img class="condition icon-small" src="css/image/check.png" alt="" />
+							<img class="condition icon-small" src="../assets/images/check.png" alt="" />
 						</li>
 
 							<div class="list-group-item subli"> <!-- first panel->firt medicine info-->
@@ -70,7 +75,7 @@
 									<h4>
 										Amount:
 									</h4>
-									<img class='icon-small' src="css/image/pills.png" alt="pills" />
+									<img class='icon-small' src="../assets/images/pills.png" alt="pills" />
 									<span>
 										x 10
 									</span>
@@ -78,9 +83,9 @@
 							</div> <!-- list-group-item -->
 
 						<li class="list-group-item topli" ><!-- first panel->2d medicine -->
-							<img class='icon-small' src="css/image/info.png" alt="info" />
+							<img class='icon-small' src="../assets/images/info.png" alt="info" />
 							<button type="button" class="formodal" data-toggle="modal" data-target="#myModal">Altace</button>
-							<img class="condition icon-small" src="css/image/close.png" alt="close" /> <!-- cross icon -->
+							<img class="condition icon-small" src="../assets/images/close.png" alt="close" /> <!-- cross icon -->
 						</li>
 						<li class="list-group-item"><!-- first panel->3d medicine -->
 							<i class="fa fa-plus-square"></i>
@@ -94,28 +99,28 @@
 			</div>
 			<div id='noon' class="col-md-4"><!-- Second panel -->
 				<div class="child-title">
-					<img class="icon" src="css/image/noon.png" alt="noon" />
+					<img class="icon" src="../assets/images/noon.png" alt="noon" />
 					Afternoon
 				</div>
 
 				<div class=" child-panel"><!-- Second panel group content -->
 					<ul class="list-group">
 						<li class="list-group-item topli" > <!-- 2d panel ->1st medicine -->
-							<img class='icon-small' src="css/image/info.png" alt="info" />
+							<img class='icon-small' src="../assets/images/info.png" alt="info" />
 							<button type="button" class="formodal" data-toggle="modal" data-target="#myModal">Altace</button>
-							<img class="condition icon-small" src="css/image/pill.png" alt="pill" />
+							<img class="condition icon-small" src="../assets/images/pill.png" alt="pill" />
 						</li>
 
 						<li class="list-group-item topli" > <!-- 2d panel ->2d medicine -->
-							<img class='icon-small' src="css/image/info.png" alt="info" />
+							<img class='icon-small' src="../assets/images/info.png" alt="info" />
 							<button type="button" class="formodal" data-toggle="modal" data-target="#myModal">Altace</button>
-							<img class="condition icon-small" src="css/image/pill.png" alt="pill" />
+							<img class="condition icon-small" src="../assets/images/pill.png" alt="pill" />
 						</li>
 
 						<li class="list-group-item topli" ><!-- 2d panel ->3d medicine -->
-							<img class='icon-small' src="css/image/info.png" alt="info" />
+							<img class='icon-small' src="../assets/images/info.png" alt="info" />
 							<button type="button" class="formodal" data-toggle="modal" data-target="#myModal">Altace</button>
-							<img class="condition icon-small" src="css/image/pill.png" alt="pill" />
+							<img class="condition icon-small" src="../assets/images/pill.png" alt="pill" />
 						</li>
 
 
@@ -125,21 +130,21 @@
 
 			<div id='night' class="col-md-4"><!-- Third panel -->
 				<div class="child-title">
-					<img class='icon' src="css/image/night.png" alt="night" />
+					<img class='icon' src="../assets/images/night.png" alt="night" />
 					Evening
 				</div>
 
 				<div class=" child-panel">
 					<ul class="list-group"><!-- Third panel content-->
 						<li class="list-group-item topli" ><!-- 3d panel -> 1st medicine-->
-							<img class='icon-small' src="css/image/info.png" alt="info" />
+							<img class='icon-small' src="../assets/images/info.png" alt="info" />
 							<button type="button" class="formodal" data-toggle="modal" data-target="#myModal">Altace</button>
-							<img class="condition icon-small" src="css/image/pill.png" alt="pill" />
+							<img class="condition icon-small" src="../assets/images/pill.png" alt="pill" />
 						</li>
 						<li class="list-group-item topli" ><!-- 3d panel -> 2st medicine-->
-							<img class='icon-small' src="css/image/info.png" alt="info" />
+							<img class='icon-small' src="../assets/images/info.png" alt="info" />
 							<button type="button" class="formodal" data-toggle="modal" data-target="#myModal">Altace</button>
-							<img class="condition icon-small" src="css/image/pill.png" alt="pill" />
+							<img class="condition icon-small" src="../assets/images/pill.png" alt="pill" />
 						</li>
 				   </ul>
 				</div>
@@ -147,11 +152,6 @@
 		</div>
 	</div>
 
-
-	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
-	<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
-	<script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-	<script src="js/my.js"></script>
 
 </body>
 

@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
         <link rel="stylesheet" type="text/less" href="css/home.less">
         <link href='https://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="../../bower_components/jquery/dist/jquery.js"></script>
         <script src="http://www.parsecdn.com/js/parse-1.6.7.min.js"></script>
         <script type="text/javascript" src="../js/userAuthentication.js"></script>
 
@@ -70,9 +70,9 @@
                             var pp = user.get("patientPointer");
                             var dp = user.get("doctorPointer");
                             if ((form.Account_type.value == "Patient") & (pp != null))
-                                 userAuthenticate(form.account.value, form.password.value, "Patient_prescription/Prescription.html");
+                                 userAuthenticate(form.account.value, form.password.value, "../../patient/views/Prescription.html");
                             else if ((form.Account_type.value == "Doctor") & (dp != null))
-                                 userAuthenticate(form.account.value, form.password.value, "Doctor_homepage/Doctorhome.html");
+                                 userAuthenticate(form.account.value, form.password.value, "../../doctor/views/Doctorhome.html");
                             else
                                 alert("You're attempting to log in as someone you are not");
                         }

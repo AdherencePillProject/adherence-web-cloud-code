@@ -2,41 +2,41 @@
 	<head>
 		<title>My Doctor</title>
         <!-- Adding Bootstrap CSS -->
-        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="../../bower_components/bootstrap/dist/css/bootstrap.css">
 
-        <!-- Adding Font Awesome -->        
+        <!-- Adding Font Awesome -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
         <!-- Adding Fonts -->
         <link href='https://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
 
         <!-- Adding jQuery and jQuery UI -->
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="../../bower_components/jquery/dist/jquery.js"></script>
         <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
 
         <!-- Adding Bootstrap JS -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-        
+        <script src="../../bower_components/bootstrap/dist/js/bootstrap.js"></script>
+
         <!-- Adding Parse JS -->
         <script src="http://www.parsecdn.com/js/parse-1.6.7.min.js"></script>
 
         <!--Add Angular-->
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+        <script src="../../bower_components/angular/angular.js"></script>p
 
         <!--Add Angular Directives-->
-        <script src="/js/angular-app.js"></script>
+        <script src="../../common/js/angular-app.js"></script>
 
         <!-- Adding Custom CSS -->
-        <link rel="stylesheet" href="Patient_prescription/css/my.css" media="screen" title="no title" charset="utf-8">
-        <link rel="stylesheet" type="text/less" href="css/home.less">     
+        <link rel="stylesheet" href="../css/my.css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" type="text/less" href="css/home.less">
 
         <!-- Adding Custom JS -->
-        <script type="text/javascript" src="js/home.js"></script>
-      	<script type="text/javascript" src="js/doctorprofile.js"></script>
+        <script type="text/javascript" src="../js/home.js"></script>
+      	<script type="text/javascript" src="../js/doctorprofile.js"></script>
     </head>
 	<body onload="getDoctorInfo()">
 		<div id="new-header"></div>
-		
+
 		<div ng-controller='NavController as tab' ng-include src="'/partials/navbar/navbar.html'"></div>
 
 		<div class="dashboard">
