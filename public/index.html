@@ -1,0 +1,28 @@
+<html>
+  <head>
+	  <!-- styling -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+	  <link href="css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <!-- JS -->
+    <script src="//www.parsecdn.com/js/parse-1.6.7.js"></script>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="app.js"></script>
+    <script src="routes.js"></script>
+    <script src="common/js/services/UI.js"></script>
+    <script src="common/js/services/Parse.js"></script>
+    <script src="common/js/services/models/Doctor.js"></script>
+    <script src="common/js/services/models/User.js"></script>
+    <script src="common/js/services/models/Patient.js"></script>
+    <script src="common/js/controllers/LoginController.js"></script>
+    <title>My ParseApp site</title>
+  </head>
+
+
+  <body ng-app="app">
+    <ng-view></ng-view>
+  </body>
+</html>
