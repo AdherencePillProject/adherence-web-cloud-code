@@ -1,0 +1,22 @@
+{
+  "name": "adherence-web-cloud-code",
+  "homepage": "https://github.com/AdherencePillProject/adherence-web-cloud-code",
+  "authors": [
+    "Aaron Leon <aaronleon2018@u.northwestern.edu>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-route": "~1.5.5",
+    "bootstrap": "~3.3.6"
+  }
+}

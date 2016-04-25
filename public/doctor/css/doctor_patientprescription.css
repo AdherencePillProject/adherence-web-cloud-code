@@ -1,0 +1,33 @@
+body {
+	font-family: "Helvetica Neue";
+}
+
+.col-sm-4 {
+	padding: 0px 40px 0px 40px;
+}
+
+.col-sm-8 {
+	padding: 0px 40px 0px 40px;
+}
+
+.btn-primary {
+	margin-bottom: 15px;
+}
+
+@media (min-width:768px){
+	.left {
+		left: 10px;
+		width: 400px;
+	}
+	.col-sm-4 {
+	  padding: 0px 20px 0px 30px;
+	}
+	.col-sm-8 {
+	  padding: 0px 35px 0px 0px; 
+	}
+}
+#patient_names {
+  padding-top: 20px;
+}
+
+
