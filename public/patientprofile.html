@@ -1,4 +1,4 @@
-<html>
+<html ng-app="app">
     <head>
         <title>My Profile</title>
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
@@ -12,51 +12,49 @@
         <link rel="stylesheet" type="text/less" href="css/home.less">
         <link href='https://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
         <!--Add Angular-->
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+        <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>-->
 
         <!--Add Angular Directives-->
-        <script src="/js/angular-app.js"></script>
+        <!--<script src="/js/angular-app.js"></script>--> <!--non existant file-->
 
         <!-- Parse -->
         <script src="http://www.parsecdn.com/js/parse-1.6.7.min.js"></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.js"></script>
+        <script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
+        <script src="app.js"></script>
+        <script src="common/js/services/Parse.js"></script>
+        <script src="common/js/services/models/User.js"></script>
         <script>
-            function main() {
-                Parse.initialize("BDo39lSOtPuBwDfq0EBDgIjTzztIQE38Fuk03EcR", "ox76Y4RxB06A69JWAleRHSercHKomN2FVu61dfu3");
-                //get patients
-                createNameDiv();
-            }
-            function createNameDiv() {
-                var userEmail = getEmail();
-                var pn = document.getElementById("patient_names");
-                console.log(userEmail);
-            }
-            function getEmail() {
-                var user = Parse.User.current();
-                console.log("user is ", user);
-                if (user == null) {
-                    alert("Please login first");
-                    window.location.replace("login.html");
-                } else {
+           
 
-                    user.fetch(null, {
-                        success: function(user) {},
-                        error: function(user, error) {
-                            alert("Error: " + error.code + " " + error.message);
-                        }
-                    });
-                }
-                return user.getEmail();;
-            }
-            
+            function saveChanges(passwd, email, redirectUrl) {
+                var user = Parse.User.current();
+                user.setPassword(passwd);
+                user.setEmail(email);
+                user.save({
+                    success: function(user) {
+                        // The save was successful
+                        alert("Your profile has been successfully changed.");
+                    },
+                    error: function(user, error) {
+                        alert("Error: " + error.code + " " + error.message);
+                    }
+                });
+                window.location.replace(redirectUrl);
+                event.preventDefault();
+            }              
+                
+            angular.module('app')
+              .controller('PatientProfileController', ['$rootScope', '$scope', 'Parse', 'User', function($rootScope, $scope, Parse, User){
+    
+
+            }]);
         </script>
 
     
     </head>
-    <body> 
+    <body class="container" ng-controller="PatientProfileController as userData"> 
 
-
-
-        
     <div id="new-header">
         <!-- <script>
             $("#new-header").load("header.html");
@@ -97,12 +95,15 @@
             </div>
             <div class="patient-info">
                 <br>
-                <h3>Name:</h3>
-                <h3>Email:</h3>
+                <h3>Name:</h3>  {{currentUser.get('firstName')}}
+                <h3>Email:</h3> 
+
+
+
                 <h3>Age:</h3>
+
                 <h3>Sex:</h3>
                 <br>
-                <script>main()</script>
             </div>
 
 
@@ -133,7 +134,7 @@
                 
             <tr><td class="patientt">name</td><td class="patientt">Clinic</td><td class="patientt">Concern</td><td class="patientt">date</td><td class="patientt">date</td></tr>
             </table> -->
-    
+
     </body>
      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script type="text/javascript" src="js/home.js"></script>

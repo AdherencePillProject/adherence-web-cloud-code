@@ -1,5 +1,5 @@
 angular.module('app')
-  .controller('LoginController', ['$scope', '$rootScope', 'User', 'UI', function($scope, $rootScope, User, UI) {
+  .controller('LoginController', ['$rootScope', '$scope', '$rootScope', 'User', 'UI', function($rootScope, $scope, $rootScope, User, UI) {
 
     $scope.login = login;
 
@@ -7,10 +7,11 @@ angular.module('app')
     	User.logIn(username, password, {
     		success: function(user) {
           if (user) {
+              $rootScope.currentUser = Parse.User.current();
               var pp = user.get("patientPointer");
               var dp = user.get("doctorPointer");
               if ((form.Account_type.value == "Patient") & (pp != null))
-                userAuthenticate(form.account.value, form.password.value, "Patient_prescription/Prescription.html");
+                userAuthenticate(form.account.value, form.password.value, "/profile/patient");
               else if ((form.Account_type.value == "Doctor") & (dp != null))
                 userAuthenticate(form.account.value, form.password.value, "Doctor_homepage/Doctorhome.html");
               else
