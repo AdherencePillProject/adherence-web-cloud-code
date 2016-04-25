@@ -27,7 +27,7 @@ build/Release
 node_modules
 
 # Bower dependencies
-public/bower_components
+#public/bower_components
 
 # DS_Store
 .DS_Store
