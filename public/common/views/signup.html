@@ -2,24 +2,15 @@
 <html lang="en">
 <head>
     <title>Sign Up</title>
-   
-       <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-	<link href="css/bootstrap.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="../../bower_components/bootstrap/dist/css/bootstrap.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-        <script type="text/javascript" src="js/home.js"></script>
+        <script src="../../bower_components/jquery/dist/jquery.js"></script>
+        <script type="text/javascript" src="../js/home.js"></script>
     	<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
-      <script src="http://www.parsecdn.com/js/parse-1.6.7.min.js"></script>
-      <script type="text/javascript" src="js/userSignup.js"></script>
-    <link rel="stylesheet" href="Patient_prescription/css/my.css" media="screen" title="no title" charset="utf-8">
-     <link rel="stylesheet" type="text/less" href="css/home.less">
-    	
-    		<div id="new-header"> </div>
-			<script>
-        	//$("#new-header").load("header.html");
-      </script>
-
+        <script src="http://www.parsecdn.com/js/parse-1.6.7.min.js"></script>
+        <script type="text/javascript" src="../js/userSignup.js"></script>
+        <link rel="stylesheet" href="../css/my.css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" type="text/less" href="../css/home.less">
 </head>
             <body>
                 <nav class="navbar navbar-default">
@@ -39,7 +30,6 @@
             <li><a href="#"><i class="fa fa-user-md"></i> My Doctor</a></li>
               <li><a href="#"><i class="fa fa-cog"></i>  John Doe</a></li>
 
-	        
 	      </ul>
 
 	    </div><!-- /.navbar-collapse -->
@@ -114,27 +104,27 @@
           <tbody id="doctor" style="display:none">
             <tr>
               <td>Hospital Name:  </td>
-              <td> 
+              <td>
                 <input type="text" name="hospitalName">
               </td>
             </tr>
             <tr>
               <td>Hospital City:  </td>
-              <td> 
+              <td>
                 <input type="text" name="hospitalCity">
               </td>
             </tr>
             <tr>
               <td>Address:  </td>
-              <td> 
+              <td>
                 <input type="text" name="address">
-              </td>  
+              </td>
             </tr>
           </tbody>
           <tbody id="pharmacy" style="display:none">
             <tr>
               <td>Pharmacy Name:  </td>
-              <td> 
+              <td>
                 <input type="text" name="pharmacyName">
               </td>
             </tr>
@@ -307,13 +297,11 @@ footer nav {float:left}
 
 </style>
 <!--nav-->
-  
 <script>
 Parse.initialize("BDo39lSOtPuBwDfq0EBDgIjTzztIQE38Fuk03EcR", "ox76Y4RxB06A69JWAleRHSercHKomN2FVu61dfu3");
 
 if (Parse.User.current())
   Parse.User.logOut();
-  
 var patientID;
 function myFunction(x)
 {
@@ -409,13 +397,13 @@ else
   user.phone = reg['Phone'].value;
 
   if(user.accountType.toLowerCase() == "patient"){
-    saveNewUser(user, "Patient", null, "login.html"); 
+    saveNewUser(user, "Patient", null, "login.html");
   }else if(user.accountType.toLowerCase() == "doctor"){
     var doctor = new Object();
     doctor.hospitalName = reg['hospitalName'].value;
     doctor.address = reg['address'].value;
     doctor.hospitalCity = reg['hospitalCity'].value;
-    saveNewUser(user, "Doctor", doctor, "login.html"); 
+    saveNewUser(user, "Doctor", doctor, "login.html");
   }
 
   return true;
