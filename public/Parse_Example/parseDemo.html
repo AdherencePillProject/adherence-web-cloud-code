@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="http://www.parsecdn.com/js/parse-1.6.7.min.js"></script>
+		<script type="text/javascript" src="js/ParseDemo.js"></script>
+	</head>
+	<body>
+		<H3>Welcome to Parse Demo</H3>
+		<H5>Create New Data</H5>
+		<form target="_self" method="post" action="parseDemo.html" onSubmit="return saveData(this)">
+			name: <input type="text" name="name" ><br>
+			age: <input type="number" name="age" ><br>
+			approved:<br>
+				<input type="radio" name="approved" value="yes">Yes<br>
+				<input type="radio" name="approved" value="no" checked>No<br>
+			registration date: <input type="date" name="registrationDate"><br>
+			<input type="submit" value="Submit">
+		</form>
+		<br><br>
+		<H5>Get Data By Name</H5>
+		<form target="_self" method="get" action="parseDemo.html" onSubmit="return getByName(this)">
+			name: <input type="text" name="name" ><br>
+			<input type="submit" value="Submit">
+		</form>
+		<br><br>
+		<H5>Get Data By Object Id</H5>
+		<form target="_self" method="get" action="parseDemo.html" onSubmit="return getById(this)">
+			objectId: <input type="text" name="objectId" ><br>
+			<input type="submit" value="Submit">
+		</form>
+		<div id="myDiv"></div>
+
+		<H5>Update Data</H5>
+		<form target="_self" method="post" action="parseDemo.html" onSubmit="return updateData(this)">
+			objectId: <input type="text" name="objectId" ><br>
+			name: <input type="text" name="name" ><br>
+			age: <input type="number" name="age" ><br>
+			approved:<br>
+				<input type="radio" name="approved" value="yes">Yes<br>
+				<input type="radio" name="approved" value="no" checked>No<br>
+			registration date: <input type="date" name="registrationDate"><br>
+			<input type="submit" value="Submit">
+		</form>
+		<br><br>
+
+		<script type="text/javascript">
+			function saveData(form){
+				var name = form['name'].value;
+				var age = Number(form['age'].value);
+				var approved = form['approved'].value.toUpperCase() === "YES" ? true : false;
+				var registrationDate = new Date(form['registrationDate'].value);
+				saveNewData(name, age, approved, registrationDate);
+				event.preventDefault();
+			}
+
+			function getByName(form){
+				var name = form['name'].value;
+				getDataByName(name);
+				event.preventDefault();
+			}
+
+			function getById(form){
+				var uid = form['objectId'].value;
+				var myData = new Object();
+				var myDiv = document.getElementById('myDiv');
+				getDataByUid(uid, myData, myDiv);
+				event.preventDefault();
+			}
+
+			function updateData(form){
+				var objectId = form['objectId'].value;
+				var name = form['name'].value;
+				var age = Number(form['age'].value);
+				var approved = form['approved'].value.toUpperCase() === "YES" ? true : false;
+				var registrationDate = new Date(form['registrationDate'].value);
+				updateUserData(name, age, approved, registrationDate, objectId);
+				event.preventDefault();
+			}
+		</script>
+	</body>
+</html>
+

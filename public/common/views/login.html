@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<!--This file is new index for new interface and ajax-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>SmartCap Login</title>
+              <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/bootstrap.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/less" href="css/home.less">
+        <link href='https://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="//www.parsecdn.com/js/parse-1.6.7.min.js"></script>
+        <script type="text/javascript" src="js/userAuthentication.js"></script>
+
+
+    </head>
+
+    <body class="passwordValidMsg">
+        <center>
+        <div><a href="login.php"></a></div>
+        <div class="toppill">
+
+        </div>
+            <div class="bottompill">
+            <div class="formpart">
+                <br>
+                <form id="login" name="login" method="post" action="login.html" onSubmit="return authenticate(this)">
+                    <p>Account Type:
+                        <select name="Account_type" id="AccountType">
+                            <option>Patient</option>
+                            <option>Doctor</option>
+                            <option>Pharmacy</option>
+                        </select>
+                        <label for="AccountType"></label>
+                    </p>
+                    <p>Email:
+                        <input type="text" name="account" id="AccountID" />
+                    </p>
+                    <p>Password:
+                        <input type="password" name="password" id="Password" />
+                        <label for="Password"></label>
+                        <label for="AccountID"></label>
+                    </p>
+
+                    <p>
+                        <a href="signup.html">
+                            <input name="Signup" type="button" class="btn btn-default" value="Signup" id="upload"/></a>
+                        <input type="submit" name="Login" class="btn btn-default" id="upload" value="Log In" />
+
+                    </p>
+                    <p>
+                        <a href="forgotpassword.html">
+                            Forgot Password
+                        </a>
+                    </p>
+
+                </form>
+                <!--div id="tip"></div>-->
+            </div></div>
+            </center>
+         <script type="text/javascript">
+         Parse.initialize("BDo39lSOtPuBwDfq0EBDgIjTzztIQE38Fuk03EcR", "ox76Y4RxB06A69JWAleRHSercHKomN2FVu61dfu3");
+            function authenticate(form){
+                event.preventDefault();
+                var query = new Parse.Query(Parse.User);
+                query.equalTo("email", form.account.value);
+                query.first({
+                    success: function (user) {
+                        if (user) {
+                            var pp = user.get("patientPointer");
+                            var dp = user.get("doctorPointer");
+                            if ((form.Account_type.value == "Patient") & (pp != null))
+                                 userAuthenticate(form.account.value, form.password.value, "Patient_prescription/Prescription.html");
+                            else if ((form.Account_type.value == "Doctor") & (dp != null))
+                                 userAuthenticate(form.account.value, form.password.value, "Doctor_homepage/Doctorhome.html");
+                            else
+                                alert("You're attempting to log in as someone you are not");
+                        }
+                        else {
+                            var sUp = confirm("This email was not found in our database. Would you like to sign up?");
+                            if (sUp == true)
+                                window.location.replace("signup.html");
+                        }
+                    }
+                });
+
+            }
+        </script>
+    </body>
+</html>
+
+        <style type="text/css">
+            body {
+                background: #3498DB ;
+            }
+
+            .formpart {
+                margin-top: 30px;
+                margin-bottom: 20px;
+                margin-right: 20px;
+                margin-left: 20px;
+                padding-top: 25px;
+                padding-bottom: 25px;
+                text-align: center;
+            }
+
+            .toppill {
+                margin-top:30px;
+                background-color: white;
+                border-top-left-radius:100%;
+                border-top-right-radius: 100%;
+                width:300px;
+                height:275px;
+                margin-bottom: -30px;
+            }
+
+            .bottompill {
+                background-color: #BDC3C7;
+                border-bottom-left-radius:100%;
+                border-bottom-right-radius: 100%;
+                width:300px;
+                height:300px;
+
+            }
+
+            .AccountType:hover
+            {
+                background: -webkit-linear-gradient(top, #a8e427 0%, #b1e73d 100%);
+                background: linear-gradient(to bottom, #a8e427 0%, #b1e73d 100%);
+            }
+        </style>
