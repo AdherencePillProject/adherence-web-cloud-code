@@ -1,0 +1,380 @@
+/*
+		This file is used to set up the style of task check list, to see whether the 
+		patient has taken the pills on schedule or not
+*/
+
+body {
+    font-family: 'PT Sans', sans-serif;
+    color:navy;
+}
+
+h2 {
+    font-size:35px;
+}
+
+h1 {
+    font-size:45px;
+    font-weight: bold;
+}
+
+p {
+    font-size: 16px;
+}
+
+td, span {
+    font-size: 18px;
+}
+
+body {
+	background: white;
+}
+
+.title-name {
+    margin-left: 10%;
+    font-size: 35px;
+}
+
+#patient-myprof {
+    background-color: white;
+}
+
+.patientt {
+    padding: 10px;
+    border: #146eb4 solid;
+}
+
+
+.upload:hover {
+    opacity: 0.7;
+}
+
+#appointments {
+    background-color: #F5F5F5;
+    margin-top:1%;
+    padding-top: 1%;
+    padding-bottom: 2%;
+    padding-left: 8%;
+    clear:both;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+}
+
+#topbox {
+    margin-top: 2%;
+    margin-left: 2%;
+}
+
+input, select {
+    margin: 5px;
+}
+
+
+
+#changeView:hover { cursor: pointer; }
+
+.box-shadow (@value)  {
+	box-shadow: @value;
+	-webkit-box-shadow: @value;
+	-moz-box-shadow: @value;
+}
+
+.patient-pic {
+	width: 200px;
+	height: 200px;
+	border-radius: 100px;
+	-webkit-border-radius: 100px;
+	-moz-border-radius: 150px;
+	box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+	-webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+	-moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+    background-color: white;
+    
+	}
+
+.board{
+	width: 380px;
+	height: auto;
+	background: #5a8445;
+	padding: 5px 0px;
+	clear: both; 
+	overflow: visible;
+	margin: 7% auto;
+	border-radius: 8px;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	box-shadow: 0px 5px 0px #476d3b;
+	position: relative;
+
+	/* the gray clamp */
+	&:before{
+		content: "";
+		width: 150px;
+		height: 50px;
+		background: #a3aca9;
+		position: absolute;
+		top: -10px;
+		left: 0px;
+		right: 0px;
+		margin: auto;
+		z-index: 99;
+		 border-radius: 5px;
+		-moz-border-radius: 5px;
+		-webkit-border-radius: 5px;
+		 box-shadow: 0px 2px 0px #88918e;
+	}
+
+	/* blue circle on the clamp */
+	&:after{
+		content: "";
+		width:  40px;
+		height: 40px;
+		position: absolute;
+		border-radius: 200px;
+		background: #3498db;
+		top:-35px;
+		left: 0px;
+		right: 0px;
+		margin: auto;
+		z-index: 999;
+		border: 10px solid #a3aca9;
+	}
+
+	>.papers {
+		@box-shadow-value:				
+			1px 1px   0 rgba(0,   0,   0,   0.100), 
+			3px 3px   0 rgba(255, 255, 255, 1.0), 
+			4px 4px   0 rgba(0,   0,   0,   0.125), 
+			6px 6px   0 rgba(255, 255, 255, 1.0),  
+			7px 7px   0 rgba(0,   0,   0,   0.150), 
+			9px 9px   0 rgba(255, 255, 255, 1.0),  
+			10px 10px 0 rgba(0,   0,   0,   0.175);
+		background-color: white;
+		height: 450px;
+		padding: 20px;
+		width: 290px;
+		margin: 5% 5% 8%;
+		.box-shadow(@box-shadow-value);
+	}
+}
+
+.list{
+	width: 240px;
+	height: 50px;
+	background: #d0d6d4;
+	margin: 35px 45px;
+	position: relative;
+
+	&.notdone{
+		@notdone-color: #FF4040;
+		background: @notdone-color;
+
+		/* the left part of the cross sign */
+		&:before {
+			content: "";
+			position: absolute;
+			top: 10px;
+			left: -38px;
+			width: 8px;
+			height: 26.7px;
+			transform: rotate(-45deg);
+			background: @notdone-color;
+		}
+
+		/* the right part of the cross sign */
+		&:after {
+			content: "";
+			position: absolute;
+			top: 10px;
+			left: -38px;
+			width: 8px;
+			height: 26.7px;
+			transform: rotate(45deg);
+			background: @notdone-color;
+		}
+	}
+
+	&.halfdone{
+		@halfdone-color: #ffcc00;
+		background: @halfdone-color;
+
+		/* the check sign */
+		&:before{
+			content: '';
+			display: block;
+			position: absolute;
+			top: 6px;
+			left: -42px;
+			width: 11px;
+			height: 20px;
+			border: solid @halfdone-color;
+			border-width: 0 8px 8px 0;
+			transform: rotate(45deg);
+		}
+
+		/* a cross on the check sign */
+		&:after{
+			content: "";
+			position: absolute;
+			top: 10px;
+			left: -31px;
+			width: 8px;
+			height: 20px;
+			transform: rotate(-45deg);
+			background: @halfdone-color;
+		}
+	}
+
+	&.done{
+		@done-color: #5a8445;
+		background: @done-color;
+
+		/* the check sign */
+		&:before {
+			/*Add another block-level blank space*/
+			content: '';
+			display: block;
+			position: absolute;
+			top: 6px;
+			left: -43px;
+
+			/*Make it a small rectangle so the border will create an L-shape*/
+			width: 11px;
+			height: 18.7px;
+			
+			/*Add a green border on the bottom and left, creating that 'L' */
+			border: solid @done-color;
+			border-width: 0 10px 10px 0;
+
+			/*Rotate the L 45 degrees to turn it into a checkmark*/
+			transform: rotate(45deg);
+		}
+
+		>.word { color: white; }
+	}
+
+	/* the square */
+	&.uncheck:before{
+		content:"";
+		position: absolute;
+		top: 14px;
+		left: -43px;
+		width: 22px;
+		height: 22px;
+		background: #d0d6d4;
+	}
+
+	>.word {
+		padding: 2% 8%;
+		font-size: 35px;    
+		font-family: 'Pathway Gothic One', sans-serif;
+		letter-spacing: 4px;
+		&:hover { cursor: pointer; }
+	}
+}
+
+/*****************************************************************************/
+/*                           For Calandar                                    */
+/*****************************************************************************/
+
+.vertical-centre (@height) { 
+	height:@height;
+	line-height:@height !important;
+	display:inline-block;
+	vertical-align:middle;
+}
+
+.border-box {
+	box-sizing:border-box;
+	-moz-box-sizing:border-box;
+}
+
+.border-radius {
+	border-radius: 8px;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+}
+
+#calendar { 
+	@border-colour:#CCC;
+	@secondary-colour:#2875C7;
+	@spacing:20px;
+	@icon-width:40px;
+	@header-height:60px;
+	
+	width:297px;
+	height: auto;
+	background: @secondary-colour;
+	padding: 5px 0px;
+	/*clear: both;*/
+	/*display:block;*/
+	overflow: visible;
+	margin: 12% auto;	
+	.border-box;
+	.border-radius;	
+	border:solid 1px @border-colour;
+	/*box-shadow: 0px 5px 0px @secondary-colour;*/
+	position: relative;
+	font-family: 'Pathway Gothic One', sans-serif;
+	letter-spacing: 3px;
+	
+	>div {
+		>div.header {
+			width:100%;
+			background:@secondary-colour;
+			height:@header-height;
+			color:white;
+
+			>* { .vertical-centre(@header-height); }
+			>i {
+				width:@icon-width;
+				font-size:1.125em;
+				font-weight:bold;
+				position:relative;
+				.border-box;
+				padding:0 @spacing;
+				cursor:pointer; }
+			>i.fa-angle-left { text-align:left; }
+			>i.fa-angle-right { text-align:right; margin-left:@icon-width*-1; }
+			>span {
+				width:100%;
+				font-weight:bold;
+				text-transform:uppercase;
+				.border-box;
+				padding-left:@icon-width+@spacing;
+				margin-left:@icon-width*-1;
+				text-align:center;
+				padding-right:@icon-width;
+				color:inherit; }
+		}
+		>div.week {
+			width:100%;
+			border-top:solid 1px @border-colour;
+
+			&:first-child { border-top:none; }
+			>span.day {
+				width:100%/7;
+				.border-box;
+				border-left:solid 1px @border-colour;
+				font-size:0.75em;
+				text-align:center;
+				.vertical-centre(40px);
+				background:white;
+				cursor:pointer;
+				color:black;
+
+				&:first-child { border-left:none; }
+				&.done { background:#D3FFD9; }
+				&.halfdone { background:#FFFBDF; }
+				&.notdone { background:#FFDBD4; }
+				&:hover { background:@secondary-colour; color:white; cursor: pointer; }
+				&.today { background:#E3F2FF; }
+				&.different-month { background:white; color:#C0C0C0; }
+				&.selected { background:@secondary-colour; color:white; }
+			}
+			&.names>span {
+				color:@secondary-colour; font-weight:bold;
+				&:hover { background:white; color:@secondary-colour; cursor: default; }
+			}
+		}
+	}
+}
