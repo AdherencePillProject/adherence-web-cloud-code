@@ -4,7 +4,7 @@ angular.module('app')
         // route for the home page
       .when('/login', {
           templateUrl : 'common/views/login.html',
-          controller : 'LoginController'
+          controller  : 'LoginController'
       })
       .when('/home', {
           templateUrl : 'common/views/home.html'
@@ -12,11 +12,18 @@ angular.module('app')
       .when('/signup', {
           templateUrl : 'common/views/signup.html'
       })
-      .when('/profile/doctor', {
+      .when('/doctor/profile', {
           templateUrl : 'doctor/views/doctorprofile.html'
       })
-      .when('/profile/patient', {
-          templateUrl : 'patient/views/patientprofile.html'
+      .when('/patient/profile', {
+          templateUrl : 'patient/views/patientprofile.html',
+          controller  : 'PatientProfileController'
+      })
+      .when('/doctor/home', {
+          templateUrl : 'doctor/views/Doctorhome.html'
+      })
+      .when('patient/home', {
+          templateUrl : 'patient/views/Prescription.html'
       })
       .otherwise({
           redirectTo  : '/'

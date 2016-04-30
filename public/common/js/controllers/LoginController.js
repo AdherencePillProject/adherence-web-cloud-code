@@ -1,33 +1,36 @@
 angular.module('app')
-  .controller('LoginController', ['$rootScope', '$scope', '$rootScope', 'User', 'UI', function($rootScope, $scope, $rootScope, User, UI) {
+  .controller('LoginController', ['$rootScope', '$scope', 'Parse', 'User', 'UI', '$location', function($rootScope, $scope, Parse, User, UI, $location) {
 
-    $scope.login = login;
-
-    function login(username, password, url) {
-    	User.logIn(username, password, {
+    $scope.logIn = function() {
+      console.log('called');
+    	User.logIn($scope.email, $scope.password, {
     		success: function(user) {
           if (user) {
-              $rootScope.currentUser = Parse.User.current();
-              var pp = user.get("patientPointer");
-              var dp = user.get("doctorPointer");
-              if ((form.Account_type.value == "Patient") & (pp != null))
-                userAuthenticate(form.account.value, form.password.value, "/profile/patient");
-              else if ((form.Account_type.value == "Doctor") & (dp != null))
-                userAuthenticate(form.account.value, form.password.value, "Doctor_homepage/Doctorhome.html");
+              $rootScope.currentUser = user;
+              var pp = user.get('patientPointer');
+              var dp = user.get('doctorPointer');
+              if (($scope.type == 'Patient') && pp) {
+               console.log('patient');
+               $scope.$apply(function(){
+                  $location.path('/patient/profile')
+               })
+              }
+              else if (($scope.type == 'Doctor') && dp) {
+                console.log('doctor')
+                UI.redirect('/profile/doctor');
+              }
               else
                 alert("You're attempting to log in as someone you are not");
           }
           else {
-              var sUp = confirm("This email was not found in our database. Would you like to sign up?");
-              if (sUp == true) window.location.replace("signup.html");
+              var sUp = confirm('This email was not found in our database. Would you like to sign up?');
+              if (sUp === true) UI.redirect('/#/signup');
           }
-    			alert("You have successfully logged in!");
-    			UI.redirect(url);
     		},
     		error: function(user, error) {
-    			alert("Invalid username/password combination" + error.code + " " + error.message);
+    			alert('Invalid username/password combination' + error.code + ' ' + error.message);
     		}
     	});
-    }
+    };
 
   }]);
