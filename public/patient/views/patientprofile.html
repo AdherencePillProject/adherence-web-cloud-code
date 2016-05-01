@@ -6,13 +6,16 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="Patient_prescription/css/my.css" rel = "stylesheet" type="text/css">
         <link rel="stylesheet" type="text/less" href="css/home.less">
+        <link rel="stylesheet" href="../css/patientprofile.css" rel="stylesheet" type="text/css">
         <link href='https://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
         <!-- this is a hack, remove when fixed to deal with failed to parse source map, asynchronous rejection-->
         <script>$.ajaxPrefilter(function( options, originalOptions, jqXHR ) { options.async = true; });</script> 
+        <!-- will create seperate css file later -->
 
 
     </head>
     <body class="container">
+    <style>h3 {display:inline;}</style>
 
     <div id="new-header">
         <!-- <script>
@@ -47,25 +50,20 @@
 
     <div class="container my-panel" id="patient-myprof">
 
-        <div id="topbox">
-            <div class="patient-upload-img">
+            <!--<div class="patient-upload-img">
                 <div class="avatar"><img src="patientProfile/defaultAvatar.png"></div>
-
-            </div>
+            </div>-->
             <div class="patient-info">
             
-                <span> <h3>Name:</h3> {{currentUser.get('firstname')}} </span>
-                <h3>Email:</h3> {{currentUser.get('email')}}
-                <h3>Age:</h3> {{currentUser.get('age')}}
-                <h3>Sex:</h3> {{currentUser.get('gender')}}
-                {{pp}}
-                <br>
+                <h3>Name:</h3> {{currentUser.get('firstname')}} {{currentUser.get('lastname')}} <br><br>
+                <h3>Age:</h3> {{currentUser.get('age')}} <br><br>
+                <h3>Sex:</h3> {{currentUser.get('gender')}} <br><br>
+                <h3>Email:</h3> {{currentUser.get('email')}} <br><br>
+                <h3>Phone:</h3> {{currentUser.get('phone')}} <br><br>
+
             </div>
-
-
-          </div>
           <!-- End Page Widget -->
-        </div>
+    </div>
 
 
         <!--<table class = "aptmt-history">
