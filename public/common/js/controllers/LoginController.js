@@ -1,5 +1,5 @@
 angular.module('app')
-  .controller('LoginController', ['$rootScope', '$scope', 'Parse', 'User', 'UI', '$location', function($rootScope, $scope, Parse, User, UI, $location) {
+  .controller('LoginController', ['$rootScope', '$scope', 'User', 'UI', '$location', function($rootScope, $scope, User, UI, $location) {
 
     $scope.logIn = function() {
       console.log('called');

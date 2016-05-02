@@ -1,4 +1,4 @@
 angular.module('app')
-  .controller('PatientProfileController', ['$scope', '$rootScope', 'Parse', 'Patient', function($scope, Parse, Patient) {
-
+  .controller('PatientProfileController', ['$scope', '$rootScope', 'Patient', function($scope, $rootScope, Patient) {
+    
   }]);
