@@ -22,6 +22,35 @@
   </head>
 
   <body ng-app="app">
-    <ng-view></ng-view>
+      <div id="new-header">
+        <!-- <script>
+            $("#new-header").load("header.html");
+        </script>--> <!-- This code isnt working so temporarily removed-->
+
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+
+                    <a class="navbar-brand" href="index.html">SmartCap</a>
+                </div>
+
+    <!-- Brand and toggle get grouped for better mobile display -->
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+                    <ul class="nav navbar-nav" >
+                        <li><a href="#/patient/home"><i class="fa fa-clipboard"></i> Prescription</a></li>
+                        <li><a href="#/patient/MedCabinet"><i class="fa fa-medkit"></i> Med Cabinet</a></li>
+                        <li><a href="#/patient/profile"><i class="fa fa-heartbeat"></i> My Profile</a></li>
+                        <li><a href="#/doctor/home"><i class="fa fa-user-md"></i> My Doctor</a></li>
+
+                    </ul>
+                </div>
+              </div>
+        </nav>
+    </div> <!-- End of id="new-header" -->
+    <ng-view>
+    </ng-view>
   </body>
 </html>
