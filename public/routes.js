@@ -28,6 +28,9 @@ angular.module('app')
       .when('/patient/MedCabinet', {
           templateURL: 'patient/views/medCabinet.html'
       })
+      .when('/doctor/patientView', {
+          templateURL: 'doctor/views/doctor_patientgraph.html'
+      })
       .otherwise({
           redirectTo  : '/'
       });
