@@ -21,7 +21,7 @@ body {
   font-weight: 400;
   width: 200px;
   height:64px;
-  background: #9ccc65;
+  background: #0089Ec;
   float: left;
   text-align: center;
   font-size: 1.6em;
@@ -30,7 +30,7 @@ body {
 .apb-nav-box{
   margin-left: 200px;
   padding-left: 30px;
-  color: #9ccc65;
+  color: #0089Ec;
   overflow: auto;
 }
 
@@ -47,17 +47,18 @@ body {
 
 .apb-nav-tool a{
   margin-right: 30px;
-  color: #9ccc65;
+  color: #0089Ec;
 }
 
 .apb-side{
+  float: left;
   padding-top: 50px;
   width: 200px;
   height: calc(100% - 66px);
   background-color: #313131;
 }
 
- .apb-side .apb-a{
+.apb-side .apb-a{
    font-size: 1em;
    display: block;
    letter-spacing: 1px;
@@ -65,11 +66,13 @@ body {
 
 
  .apb-a{
+  border-left: 4px solid #313131;
   color:#bbb;
   padding: 15px 30px;
 }
 
 .apb-a:hover{
+  border-left: 4px solid #ddd;
   background-color: #414141;
   color: #fff;
 }
@@ -77,6 +80,8 @@ body {
 
 .current{
   border-left: 4px solid #ddd;
+  background-color: #414141;
+  color: #fff;
 }
 
 .apb-badge{
