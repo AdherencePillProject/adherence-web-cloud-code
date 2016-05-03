@@ -5,26 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Doctor - Patient Prescription Page</title>
 
-    <!--Bootstrap-->
-    <script src="../../bower_components/jquery/dist/jquery.js"></script>
-    <link rel="stylesheet" type="text/css" href="../../bower_components/bootstrap/dist/css/bootstrap.css">
-    <script src="../../bower_components/bootstrap/dist/js/bootstrap.js"></script>
-
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css">
     <script type="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
     <script src="../js/jquery.dataTables.js"></script>
     <script src="../js/Table.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-
-    <!-- font -->
-    <link href='https://fonts.googleapis.com/css?family=Nunito' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Lora:400,700' rel='stylesheet' type='text/css'>
-
-    <!--Add Angular-->
-    <script src="../../bower_components/angular/angular.js"></script>
-
-    <!--Add Angular Directives-->
-    <script src="../../common/js/angular-app.js"></script>
 
 	<script>
 		function toggleActive(element){
@@ -61,8 +45,6 @@
 </style>
 
 <body onload="toggleActive(document.getElementById('firstDrug'))">
-
-	<div ng-controller='NavController as tab' ng-include src="'/partials/navbar/navbar_doctor.html'"></div>
 
     <div class="container">
     <h2>Patient Information</h2>

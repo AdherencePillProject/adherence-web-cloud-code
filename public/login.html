@@ -17,11 +17,14 @@
 
     </head>
 
-    <body class="passwordValidMsg">
+    <body>
+      <scripts>
+        console.log("in login");
+      </scripts>
         <center>
         <div><a href="login.php"></a></div>
         <div class="toppill">
-            
+
         </div>
             <div class="bottompill">
             <div class="formpart">
@@ -63,7 +66,7 @@
          <script type="text/javascript">
          Parse.initialize("BDo39lSOtPuBwDfq0EBDgIjTzztIQE38Fuk03EcR", "ox76Y4RxB06A69JWAleRHSercHKomN2FVu61dfu3");
             function authenticate(form){
-                event.preventDefault(); 
+                event.preventDefault();
                 var query = new Parse.Query(Parse.User);
                 query.equalTo("email", form.account.value);
                 query.first({
@@ -75,7 +78,7 @@
                                  userAuthenticate(form.account.value, form.password.value, "Patient_prescription/Prescription.html");
                             else if ((form.Account_type.value == "Doctor") & (dp != null))
                                  userAuthenticate(form.account.value, form.password.value, "Doctor_homepage/Doctorhome.html");
-                            else 
+                            else
                                 alert("You're attempting to log in as someone you are not");
                         }
                         else {
@@ -85,7 +88,7 @@
                         }
                     }
                 });
-                
+
             }
         </script>
     </body>
@@ -115,14 +118,14 @@
                 height:275px;
                 margin-bottom: -30px;
             }
-            
+
             .bottompill {
                 background-color: #BDC3C7;
                 border-bottom-left-radius:100%;
                 border-bottom-right-radius: 100%;
                 width:300px;
                 height:300px;
-                
+
             }
 
             .AccountType:hover

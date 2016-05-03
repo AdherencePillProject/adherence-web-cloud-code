@@ -5,9 +5,4 @@ app.run(function($rootScope) {
   $rootScope.currentUser = Parse.User.current();
 });
 
-app.controller('NavController', function($scope, $location) {
-  $scope.isActive = function (viewLocation) {
 
-      return $location.absUrl().indexOf(viewLocation) != -1;
-  };
-});
