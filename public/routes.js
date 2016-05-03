@@ -22,8 +22,14 @@ angular.module('app')
       .when('/doctor/home', {
           templateUrl : 'doctor/views/Doctorhome.html'
       })
-      .when('patient/home', {
+      .when('/patient/home', {
           templateUrl : 'patient/views/Prescription.html'
+      })
+      .when('/patient/MedCabinet', {
+          templateURL: 'patient/views/medCabinet.html'
+      })
+      .when('/doctor/patientView', {
+          templateURL: 'doctor/views/doctor_patientgraph.html'
       })
       .otherwise({
           redirectTo  : '/'

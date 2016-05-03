@@ -1,11 +1,25 @@
-<html>
+<!DOCTYPE html>
+<html ng-app="app">
   <head>
-	  <!-- styling -->
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-	  <link href="css/bootstrap.css" rel="stylesheet">
+    <meta charset="utf-8">
+    <title>Welcome To APB</title>
+    <!--font-awesome-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <!-- JS -->
+
+    <!--fonts-->
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,300' rel='stylesheet' type='text/css'>
+
+    <!--CSS-->
+    <link rel="stylesheet" href="Index/css/index.css" media="screen" title="no title" charset="utf-8">
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+
+    <script src="https://code.jquery.com/jquery-2.2.2.js"   integrity="sha256-4/zUCqiq0kqxhZIyp4G0Gk+AOtCJsY1TA00k5ClsZYE="   crossorigin="anonymous"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+
     <script src="//www.parsecdn.com/js/parse-1.6.7.js"></script>
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
@@ -18,10 +32,48 @@
     <script src="common/js/controllers/LoginController.js"></script>
     <script src="patient/js/controllers/PatientProfileController.js"></script>
     <script src="routes.js"></script>
-    <title>My ParseApp site</title>
-  </head>
 
-  <body ng-app="app">
-    <ng-view></ng-view>
+  </head>
+  <body>
+    <nav class="apb-nav">
+      <div class="apb-logo">
+        <a href="#"><span class="">APB System</span></a>
+      </div>
+      <div class="apb-nav-box">
+        <div class="apb-nav-text">
+          Welcome, {{currentUser.get('firstname')}}
+        </div>
+        <div class="apb-nav-tool">
+          <a href="#"><i class="fa fa-user"></i>&nbsp Ilya Mikhelson</a>
+          <a href="#">
+            <i class="fa fa-bell"></i>
+            <span class="apb-badge">3</span>
+          </a>
+          <a href="#">
+            <i class="fa fa-envelope"></i>
+            <span class="apb-badge">1</span>
+          </a>
+        </div>
+      </div>
+    </nav>
+    <div class="apb-side">
+      <a href="#/patient/home" class='apb-a apb-border'>
+        <i class="fa fa-stethoscope"></i>&nbsp Prescription</a>
+      <a href="#/patient/MedCabinet" class='apb-a'>
+        <i class="fa fa-plus-square"></i>&nbsp Med Cabinet</a>
+      <a href="#" class='apb-a'>
+        <i class="fa fa-calendar-check-o"></i>&nbsp Appointment</a>
+      <a href="#/doctor/home" class='apb-a'>
+        <i class="fa fa-user-md"></i>&nbsp My Doctor</a>
+      <a href="#" class='apb-a'>
+        <i class="fa fa-cog"></i>&nbsp Setting</a>
+
+    </div>
+
+    <div ng-view class="apb-page">
+
+    </div>
+
+    <script src='index/js/nav.js'></script>
   </body>
 </html>
