@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <!--This file is new index for new interface and ajax-->
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>SmartCap Login</title>
-        <link rel="stylesheet" type="text/less" href="../css/home.less">
+        <!--<link rel="stylesheet" type="text/less" href="../css/home.less">--> 
+        <!-- kind of sad when i comment this out nothing changes -->
         <link href='https://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
+        <link href="css/bootstrap.css" rel="stylesheet">
     </head>
 
     <body class="passwordValidMsg">
@@ -19,13 +19,16 @@
                 <br>
                 <form id="login" name="login">
                     <p>Account Type:
-                        <select name="Account_type" id="AccountType" ng-model="type">
-                            <option>Patient</option>
-                            <option>Doctor</option>
-                            <option>Pharmacy</option>
-                        </select>
-                        <label for="AccountType"></label>
+                        <div class= "accountTypeMargin"> <!-- there is an angular way to do options-->
+                            <select id="AccountType" ng-model="accType">
+                                <option value="Patient" selected="selected">Patient</option>
+                                <option value="Doctor">Doctor</option>
+                                <option value="Pharmacy">Pharmacy</option>
+                            </select>
+                        </div>
+                            <div>{{accType}}</div>
                     </p>
+
                     <p>Email:
                         <input type="text" name="account" id="AccountID" ng-model="email"/>
                     </p>
@@ -57,6 +60,9 @@
         <style type="text/css">
             body {
                 background: #3498DB ;
+            }
+            .accountTypeMargin select {
+                display: block;
             }
 
             .formpart {
