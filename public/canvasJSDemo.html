@@ -42,7 +42,6 @@
                     var floatPart = yValue - hours;
                     var minutes = (Array(2).join('0') + floatPart * 60).slice(-2);
                     return e.entries[0].dataSeries.name + " " + hours + ":" + minutes;
-
                 // For shared: true
                 // var content = " ";
                 // for (var i = 0; i< e.entries.length; i++) {
@@ -89,11 +88,9 @@
         }
     });
     chart.render();
-
 var pill_times_data = [];
 var pill_time_dataPoints = [];
 var pill_names = ["Prilosec", "Cymbalta", "Advil"];
-
 function createSingleData() {
     for (var i = 0; i < 7; i++) {
         pill_time_dataPoints[i] = {};
@@ -140,12 +137,10 @@ function putDataArrayToChart() {
     }
     chart.render();
 }
-
 createSingleData()  ;
 createDataArray();
 putDataArrayToChart();
 }
-
 </script>
 </head>
 <body>
