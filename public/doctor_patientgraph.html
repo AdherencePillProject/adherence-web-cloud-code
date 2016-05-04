@@ -3,7 +3,7 @@
 
 <head>
   <title>Doctor - Patient Graph Report</title>
-  
+
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
   <!--Chart.js-->
   <script src="js/chartjs/Chart.js"></script>
@@ -23,6 +23,7 @@
   <script src="/js/angular-app.js"></script>
 
   <script src="js/doctor_patientgraph.js"></script>
+  <script type="text/javascript" src="js/canvasjs/canvasjs.min.js"></script>
   <!-- <link rel="stylesheet" href="css/doctor_patientgraph.css"> -->
   <style>
     body {
@@ -43,19 +44,19 @@
     .col-md-8 {
       padding-left: 10px;
       padding-right: 5%;
-      
+
     }
     #patien-list {
       padding: 20px 0px 0px 0px;
       width: 100%;
     }
     #checkbox-left {
-      float: left; 
+      float: left;
       padding-right: 10px;
       padding-left: 10%;
     }
     #radios-right {
-      float: left; 
+      float: left;
       padding-left: 10px;
     }
     #graph {
@@ -74,7 +75,10 @@
     #lb-cb1, #lb-cb2 {
       font-weight: bold;
     }
-    
+    #patien_names {
+        height: 400px;
+    }
+
 
   </style>
   <script type="text/javascript">
@@ -103,22 +107,6 @@
     </div>
 
     <div class="list-group" id="patien_names">
-      <!--<a href="#" class="list-group-item active" onclick="patient0(this)">
-        <h4 class="list-group-item-heading">Yeyi Peng</h4>
-        <p class="list-group-item-text">some info about this patient</p>
-      </a>
-      <a href="#" class="list-group-item" onclick="patient1(this)">
-        <h4 class="list-group-item-heading">Jeanette Pranin</h4>
-        <p class="list-group-item-text">some info about this patient</p>
-      </a>
-      <a href="#" class="list-group-item" onclick="patient2(this)">
-        <h4 class="list-group-item-heading">Jack Tumblin</h4>
-        <p class="list-group-item-text">some info about this patient</p>
-      </a>
-      <a href="#" class="list-group-item" onclick="toggleActive(this)">
-        <h4 class="list-group-item-heading">Michael Horn</h4>
-        <p class="list-group-item-text">some info about this patient</p>
-      </a>-->
     </div>
   </div>
 
@@ -156,10 +144,17 @@
     </div>
 
     <div id="graph">
-      <canvas id="myChart" width="600" height="400"></canvas>
+      <div id="chartContainer" style="height: 400; width: 95%;"></div> 
     </div>
+
+
+  <script>
+
+</script>
+
+
   </div>
 </div>
-  
+
 </body>
 </html>
