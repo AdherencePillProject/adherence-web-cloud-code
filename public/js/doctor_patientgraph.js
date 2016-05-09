@@ -284,23 +284,22 @@ function putDataArrayToChart() {
 // createDataArray(PillData, pill_times_data)
 // putDataArrayToChart();
 getPatientsInfo2();
-// chart.render(); 
+// chart.render();
 
 
-  var selectAll = document.getElementById("SelectAll")
-  selectAll.onclick = function () {
-    for(var i = 0; i < 3; i++){
+  document.getElementById("SelectAll").onclick = function () {
+    for(var i = 0; i < pill_names.length; i++) {
       chart.options.data[i].visible = true
     }
     chart.render()
-  } 
-  var unSelectAll = document.getElementById("unSelectAll")
-  unSelectAll.onclick = function () {
-    for(var i = 0; i < 3; i++){
+  }
+  document.getElementById("unSelectAll").onclick = function () {
+    for(var i = 0; i < pill_names.length; i++) {
       chart.options.data[i].visible = false
     }
     chart.render()
   }
+
 }
 
 
