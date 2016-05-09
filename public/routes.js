@@ -23,7 +23,8 @@ angular.module('app')
           templateUrl : 'doctor/views/Doctorhome.html'
       })
       .when('/patient/home', {
-          templateUrl : 'patient/views/Prescription.html'
+          templateUrl : 'patient/views/Prescription.html',
+          controller : 'PatientPrescriptionController'
       })
       .when('/patient/MedCabinet', {
           templateURL: 'patient/views/medCabinet.html'
