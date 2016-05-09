@@ -36,41 +36,22 @@
     .col-md-4 {
       padding-left: 5%;
       padding-right: 10px;
-      height: 700px;
-    }
-    .col-md-8 {
-      padding-left: 10px;
-      padding-right: 5%;
-
     }
     #checkbox-left {
       float: left;
       padding-right: 10px;
       padding-left: 10%;
     }
-    #radios-right {
-      float: left;
-      padding-left: 10px;
-    }
     #graph {
       clear: both;
-      padding-left: 10%;
-      padding-right: 10%;
-    }
-    #xanax {
-      color: #0091ea;
-      font-weight: bold;
-    }
-    #iron {
-      color: #c51162;
-      font-weight: bold;
+      //padding-left: 10%;
+      padding-right: 5%;
+      margin-top: 100px;
     }
     #lb-cb1, #lb-cb2 {
       font-weight: bold;
     }
-    #patien_names {
-        height: 400px;
-    }
+
     #patien_names {
       margin-top: 20px;
       height: 550px;
@@ -111,9 +92,8 @@
   </div>
 
   <div class="col-md-8">
-    <div id="checkbox-left">
 
-      <div class="checkbox">
+      <!-- <div class="checkbox">
         <label>
           <input type="checkbox" value="" id="selectallcheckboxes" onclick="selectAll(this)">
           <span class="checkboxlabel">Select all</span>
@@ -125,32 +105,46 @@
           <input type="checkbox" value="" id="unselectallcheckboxes" onclick="unSelectAll(this)">
           Un-Select all
         </label>
-      </div>
-    </div>
+      </div> -->
 
-    <div id="radios-right">
-      <div class="radio">
-      <label>
-        <input type="radio" name="optionsRadios" id="optionRadios1" value="option1" checked>
-        Last Week
-      </label>
-      </div>
-      <div class="radio">
-        <label>
-          <input type="radio" name="optionsRadios" id="optionRadios2" value="option2">
-          Last Month
-        </label>
-      </div>
-    </div>
 
     <div id="graph">
-      <div id="chartContainer" style="height: 400; width: 95%;"></div>
+      <div id="chartContainer" style="height: 500px; width: 100%;"></div>
+    </div>
+
+    <!-- <div class="dropup">
+      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Last Week
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+        <li><a href="#">Last Week</a></li>
+        <li><a href="#">Last Month</a></li>
+      </ul>
     </div>
 
 
-  <script>
+    <div class="btn-group" role="group" aria-label="...">
+      <button type="button" class="btn btn-default">Select All</button>
+      <button type="button" class="btn btn-default">Unselect All</button>
+    </div> -->
 
-</script>
+    <div class="btn-group" role="group" aria-label="...">
+
+      <button type="button" class="btn btn-default" onclick="selectAllPills()">Select All</button>
+      <button type="button" class="btn btn-default">Unselect All</button>
+
+      <div class="btn-group dropup" role="group">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Week
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li><a href="#">Week</a></li>
+          <li><a href="#">Month</a></li>
+        </ul>
+      </div>
+    </div>
 
 
   </div>
