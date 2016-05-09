@@ -275,6 +275,7 @@ function putDataArrayToChart() {
             markerType: "circle",
             markerSize: 12,
             dataPoints: pill_times_data[i],
+            visible:true
         }
         chart.options.data.push(pill_time);
     }
@@ -283,14 +284,24 @@ function putDataArrayToChart() {
 // createDataArray(PillData, pill_times_data)
 // putDataArrayToChart();
 getPatientsInfo2();
-// chart.render();
-function selectAllPills() {
+// chart.render(); 
 
-}
-function unSelectPills() {
 
+  var selectAll = document.getElementById("SelectAll")
+  selectAll.onclick = function () {
+    for(var i = 0; i < 3; i++){
+      chart.options.data[i].visible = true
+    }
+    chart.render()
+  } 
+  var unSelectAll = document.getElementById("unSelectAll")
+  unSelectAll.onclick = function () {
+    for(var i = 0; i < 3; i++){
+      chart.options.data[i].visible = false
+    }
+    chart.render()
+  }
 }
 
-}
 
 Parse.initialize("BDo39lSOtPuBwDfq0EBDgIjTzztIQE38Fuk03EcR", "ox76Y4RxB06A69JWAleRHSercHKomN2FVu61dfu3");
