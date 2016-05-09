@@ -30,9 +30,6 @@
       background-color: white;
       font-family: "Helvetica Neue";
     }
-    .list-group {
-      padding-top: 20px;
-    }
     #options {
       float:right;
     }
@@ -45,10 +42,6 @@
       padding-left: 10px;
       padding-right: 5%;
 
-    }
-    #patien-list {
-      padding: 20px 0px 0px 0px;
-      width: 100%;
     }
     #checkbox-left {
       float: left;
@@ -78,6 +71,12 @@
     #patien_names {
         height: 400px;
     }
+    #patien_names {
+      margin-top: 20px;
+      height: 550px;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
 
 
   </style>
@@ -106,6 +105,7 @@
         </span>
     </div>
 
+    <!-- patient name list -->
     <div class="list-group" id="patien_names">
     </div>
   </div>
@@ -144,7 +144,7 @@
     </div>
 
     <div id="graph">
-      <div id="chartContainer" style="height: 400; width: 95%;"></div> 
+      <div id="chartContainer" style="height: 400; width: 95%;"></div>
     </div>
 
 
