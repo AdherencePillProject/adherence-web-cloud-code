@@ -1,18 +1,11 @@
 <!DOCTYPE html>
 <!--This file is new index for new interface and ajax-->
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>SmartCap Login</title>
-        <link rel="stylesheet" type="text/css" href="../../bower_components/bootstrap/dist/css/bootstrap.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-        <link rel="stylesheet" type="text/less" href="css/home.less">
+        <!--<link rel="stylesheet" type="text/less" href="../css/home.less">--> 
+        <!-- kind of sad when i comment this out nothing changes -->
         <link href='https://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
-        <script src="../../bower_components/jquery/dist/jquery.js"></script>
-        <script src="http://www.parsecdn.com/js/parse-1.6.7.min.js"></script>
-        <script type="text/javascript" src="../js/userAuthentication.js"></script>
-
-
+        <link href="css/bootstrap.css" rel="stylesheet">
     </head>
 
     <body class="passwordValidMsg">
@@ -24,29 +17,32 @@
             <div class="bottompill">
             <div class="formpart">
                 <br>
-                <form id="login" name="login" method="post" action="login.html" onSubmit="return authenticate(this)">
+                <form id="login" name="login">
                     <p>Account Type:
-                        <select name="Account_type" id="AccountType">
-                            <option>Patient</option>
-                            <option>Doctor</option>
-                            <option>Pharmacy</option>
-                        </select>
-                        <label for="AccountType"></label>
+                        <div class= "accountTypeMargin"> <!-- there is an angular way to do options-->
+                            <select id="AccountType" ng-model="accType">
+                                <option value="Patient" selected="selected">Patient</option>
+                                <option value="Doctor">Doctor</option>
+                                <option value="Pharmacy">Pharmacy</option>
+                            </select>
+                        </div>
+                            <div>{{accType}}</div>
                     </p>
+
                     <p>Email:
-                        <input type="text" name="account" id="AccountID" />
+                        <input type="text" name="account" id="AccountID" ng-model="email"/>
                     </p>
                     <p>Password:
-                        <input type="password" name="password" id="Password" />
+                        <input type="password" name="password" id="Password" ng-model="password" />
                         <label for="Password"></label>
                         <label for="AccountID"></label>
                     </p>
 
                     <p>
                         <a href="signup.html">
-                            <input name="Signup" type="button" class="btn btn-default" value="Signup" id="upload"/></a>
-                        <input type="submit" name="Login" class="btn btn-default" id="upload" value="Log In" />
-
+                            <button name="Signup" type="button" class="btn btn-default" id="upload">Sign up</button>
+                        </a>
+                        <button name="Login" class="btn btn-default" id="upload" ng-click="logIn()">Log In</button>
                     </p>
                     <p>
                         <a href="forgotpassword.html">
@@ -58,40 +54,15 @@
                 <!--div id="tip"></div>-->
             </div></div>
             </center>
-         <script type="text/javascript">
-         Parse.initialize("BDo39lSOtPuBwDfq0EBDgIjTzztIQE38Fuk03EcR", "ox76Y4RxB06A69JWAleRHSercHKomN2FVu61dfu3");
-            function authenticate(form){
-                event.preventDefault();
-                var query = new Parse.Query(Parse.User);
-                query.equalTo("email", form.account.value);
-                query.first({
-                    success: function (user) {
-                        if (user) {
-                            var pp = user.get("patientPointer");
-                            var dp = user.get("doctorPointer");
-                            if ((form.Account_type.value == "Patient") & (pp != null))
-                                 userAuthenticate(form.account.value, form.password.value, "../../patient/views/Prescription.html");
-                            else if ((form.Account_type.value == "Doctor") & (dp != null))
-                                 userAuthenticate(form.account.value, form.password.value, "../../doctor/views/Doctorhome.html");
-                            else
-                                alert("You're attempting to log in as someone you are not");
-                        }
-                        else {
-                            var sUp = confirm("This email was not found in our database. Would you like to sign up?");
-                            if (sUp == true)
-                                window.location.replace("signup.html");
-                        }
-                    }
-                });
-
-            }
-        </script>
     </body>
 </html>
 
         <style type="text/css">
             body {
                 background: #3498DB ;
+            }
+            .accountTypeMargin select {
+                display: block;
             }
 
             .formpart {

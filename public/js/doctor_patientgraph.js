@@ -126,9 +126,6 @@ function createNameDiv(patient_name, count, pillName){
 	pn.appendChild(newA);
 }
 
-var isDrawGraphCalled = false;
-
-
 
 function patientClicked(ev, pillName) {
   chart.options.data = [];
@@ -141,79 +138,78 @@ function patientClicked(ev, pillName) {
 }
 
 
-        CanvasJS.addColorSet("customColorSet", [
-            "#ffc107", //amber
-            "#f44336", //red
-            "#cddc39", //lime
-            "#3f51b5", //indigo
-            "#2196f3", //blue
-            "#4caf50", //green
-            "#e91e63", //pink
-            "#00bcd4", //cyan
-            "#9c27b0", //purple
-            "#673ab7", //deep-purple
-            "#03a9f4", //light-blue
-            "#009688", //teal
-            "#8bc34a", //light-green
-            "#ffeb3b", //yellow
-            "#ff9800", //orange
-            "#ff5722", //deep-orange
-            "#795548", //brown
-            "#607d8b", //blue-grey
-            "#757575", //grey darken-1
-        ]);
-    var chart = new CanvasJS.Chart("chartContainer", {
-        colorSet: "customColorSet",
-        animationEnabled: true,
-        title:{
-            text: "Weekly Graph Report",
-            horizontalAlign: "center"
-        },
-        //theme: "theme1",
-        toolTip:{
-            shared: false,
-            contentFormatter: function(e) {
-                    var yValue = e.entries[0].dataPoint.y;
-                    var hours = parseInt(yValue);
-                    var floatPart = yValue - hours;
-                    var minutes = (Array(2).join('0') + floatPart * 60).slice(-2);
-                    return e.entries[0].dataSeries.name + " " + hours + ":" + minutes;
-
-            }
-        },
-        legend: {
-            verticalAlign: "center",
-            horizontalAlign: "right",
-            fontSize: 10,
-            fontFamily: "Lucida Sans Unicode"
-        },
-        axisX: {
-            valueFormatString: "MMM DD"
-        },
-        axisY: {
-            minimum: 0,
-            maximum: 24,
-            interval: 2,
-            suffix:":00",
-            interlacedColor: "#eceff1",
-            gridThickness: 1,
-            gridColor: "rgba(204,204,204,0.7)",
-            gridDashType: "dash",
-        },
-        data: [],
-        legend: {
-            cursor:"pointer",
-            itemclick : function(e) {
-                if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
-                    e.dataSeries.visible = false;
-                } else {
-                    e.dataSeries.visible = true;
-                }
-                chart.render();
-            }
+CanvasJS.addColorSet("customColorSet", [
+    "#ffc107", //amber
+    "#f44336", //red
+    "#cddc39", //lime
+    "#3f51b5", //indigo
+    "#2196f3", //blue
+    "#4caf50", //green
+    "#e91e63", //pink
+    "#00bcd4", //cyan
+    "#9c27b0", //purple
+    "#673ab7", //deep-purple
+    "#03a9f4", //light-blue
+    "#009688", //teal
+    "#8bc34a", //light-green
+    "#ffeb3b", //yellow
+    "#ff9800", //orange
+    "#ff5722", //deep-orange
+    "#795548", //brown
+    "#607d8b", //blue-grey
+    "#757575", //grey darken-1
+]);
+var chart = new CanvasJS.Chart("chartContainer", {
+    colorSet: "customColorSet",
+    animationEnabled: true,
+    title:{
+        text: "Weekly Graph Report",
+        horizontalAlign: "center"
+    },
+    toolTip:{
+        shared: false,
+        contentFormatter: function(e) {
+            var yValue = e.entries[0].dataPoint.y;
+            var hours = parseInt(yValue);
+            var floatPart = yValue - hours;
+            var minutes = (Array(2).join('0') + floatPart * 60).slice(-2);
+            return e.entries[0].dataSeries.name + " " + hours + ":" + minutes;
         }
-    });
-    chart.render();
+    },
+    legend: {
+        verticalAlign: "center",
+        horizontalAlign: "right",
+        fontSize: 10,
+        fontFamily: "Lucida Sans Unicode"
+    },
+    axisX: {
+        valueFormatString: "MMM DD"
+    },
+    axisY: {
+        minimum: 0,
+        maximum: 24,
+        interval: 2,
+        suffix:":00",
+        interlacedColor: "#eceff1",
+        gridThickness: 1,
+        gridColor: "rgba(204,204,204,0.7)",
+        gridDashType: "dash",
+    },
+    data: [],
+    legend: {
+        cursor:"pointer",
+        itemclick : function(e) {
+            if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+                e.dataSeries.visible = false;
+            } else {
+                e.dataSeries.visible = true;
+            }
+            chart.render();
+        }
+    }
+});
+
+chart.render();
 
 var pill_times_data = [];
 var pill_time_dataPoints = [];
@@ -250,7 +246,7 @@ var PillData = [[{date: new Date(2016, 3, 18), time: 22, number: true},
 function createDataArray(PillData, drawArray){
   console.log("function called")
   for(var i = 0; i < PillData.length; i++){
-    var chartData = [] 
+    var chartData = []
     for(var j = 0; j < PillData[i].length; j++){
       if(PillData[i][j]["time"] == null){
         chartData.push({x:PillData[i][j]["date"], y:null})
@@ -288,6 +284,13 @@ function putDataArrayToChart() {
 // putDataArrayToChart();
 getPatientsInfo2();
 // chart.render();
+function selectAllPills() {
+
+}
+function unSelectPills() {
+
+}
+
 }
 
 Parse.initialize("BDo39lSOtPuBwDfq0EBDgIjTzztIQE38Fuk03EcR", "ox76Y4RxB06A69JWAleRHSercHKomN2FVu61dfu3");

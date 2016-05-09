@@ -1,6 +1,6 @@
 angular
   .module('app')
-  .factory('User', ['Parse', function(Parse) {
+  .factory('User', [function() {
     var user = Parse.User;
 
     return user;

@@ -96,7 +96,7 @@ function getPatientsInfo2() {
 
 						var name = firstname + " " + lastname;
 						// Use user as the key here because of the bad data sample where multiple
-						// different patient accounts are pointing to the same user account which is 
+						// different patient accounts are pointing to the same user account which is
 						// odd.
 						var userAndName = {
 							name: name,
@@ -181,7 +181,7 @@ function createNameDiv(patientName, count) {
 }
 
 
-//getPrescriptions()		
+//getPrescriptions()
 //parameters: user
 //function: gets list of prescriptions associated with patient
 //          creates prescription descriptions seen on left of screen
@@ -368,7 +368,6 @@ function createPrescriptionDiv(drugName, prescriptionID, days, scheduleID, patie
 	document.getElementById("addBtn").addEventListener("click", function() {
 		addPrescription(patient);
 	});
-
 	startUpdateDosage(scheduleID, drugName);
 
 
@@ -390,7 +389,7 @@ function noPrescriptionDiv(patient) {
 	pd.appendChild(newA);
 
 	//add prescription button
-	document.getElementById("addBtn").addEventListener("click", function() {
+	$(document.body).on("click", '#addBtn', function() {
 		addPrescription(patient);
 	});
 
@@ -457,8 +456,13 @@ function updateDosage(scheduleID, drugName, dayOfWeek, timeOfDay, newValue) {
 function addPrescription(patient) {
 
 	//temporarily remove addBtn
-	var addBtnHTML = $("#addBtn").html();
-	$("#addBtn").remove();
+	// var addBtnHTML = $("#addBtn").html();
+	// $("#addBtn").remove();
+
+	//adds new time option to add prescription div if user clicks "Add Time" button
+	$(document.body).on("click", '#addTime', function() {
+		addForm();
+	});
 
 	var divHTML = $("#patient_descriptions").html();
 
@@ -517,16 +521,10 @@ function addPrescription(patient) {
 		"</form>" +
 		"</a>";
 
-	divHTML = addPrescriptionForm + divHTML;
+	divHTML += addPrescriptionForm;
 
 	$("#patient_descriptions").html(divHTML);
 
-
-
-	//adds new time option to add prescription div if user clicks "Add Time" button
-	$(document.body).on("click", '#addTime', function() {
-		addForm();
-	});
 
 	function addForm() {
 		var formHTML = $("#newPrescriptionForm").html();

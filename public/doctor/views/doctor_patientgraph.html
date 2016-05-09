@@ -1,27 +1,28 @@
 <!DOCTYPE html>
-<html ng-app="app">
+<html ng-app="adherence-partials">
 
 <head>
   <title>Doctor - Patient Graph Report</title>
-
+  
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
   <!--Chart.js-->
-  <script src="../js/chartjs/Chart.js"></script>
+  <script src="js/chartjs/Chart.js"></script>
   <!--JQuery-->
-  <script src="../../bower_components/jquery/dist/jquery.js"></script>
+  <script src="js/jquery.js"></script>
   <!--Bootstrap-->
-  <link rel="stylesheet" type="text/css" href="../../bower_components/bootstrap/dist/css/bootstrap.css">
-  <script src="../../bower_components/bootstrap/dist/js/bootstrap.js"></script>
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/bootstrap.css" rel="stylesheet">
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
   <!--Parse-->
   <script src="http://www.parsecdn.com/js/parse-1.6.7.min.js"></script>
 
   <!--Add Angular-->
-  <script src="../../bower_components/angular/angular.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
 
   <!--Add Angular Directives-->
-  <script src="../../common/js/angular-app.js"></script>
+  <script src="/js/angular-app.js"></script>
 
-  <script src="../js/doctor_patientgraph.js"></script>
+  <script src="js/doctor_patientgraph.js"></script>
   <!-- <link rel="stylesheet" href="css/doctor_patientgraph.css"> -->
   <style>
     body {
@@ -42,19 +43,19 @@
     .col-md-8 {
       padding-left: 10px;
       padding-right: 5%;
-
+      
     }
     #patien-list {
       padding: 20px 0px 0px 0px;
       width: 100%;
     }
     #checkbox-left {
-      float: left;
+      float: left; 
       padding-right: 10px;
       padding-left: 10%;
     }
     #radios-right {
-      float: left;
+      float: left; 
       padding-left: 10px;
     }
     #graph {
@@ -73,7 +74,7 @@
     #lb-cb1, #lb-cb2 {
       font-weight: bold;
     }
-
+    
 
   </style>
   <script type="text/javascript">
@@ -120,6 +121,7 @@
       </a>-->
     </div>
   </div>
+
   <div class="col-md-8">
     <div id="checkbox-left">
 
@@ -158,6 +160,6 @@
     </div>
   </div>
 </div>
-
+  
 </body>
 </html>

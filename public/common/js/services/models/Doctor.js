@@ -1,6 +1,6 @@
 angular
   .module('app')
-  .factory('Doctor', ['Parse', function(Parse) {
+  .factory('Doctor', [function() {
     var doctor = Parse.Object.extend("Doctor", {
       // Instance methods
     }, {
