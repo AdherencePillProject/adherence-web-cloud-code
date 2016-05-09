@@ -132,6 +132,7 @@ var isDrawGraphCalled = false;
 
 function patientClicked(ev, pillName) {
   chart.options.data = [];
+  chart.options.title.text = pillName + "'s Weekly Graph Report"
   pill_times_data = []
   createDataArray(PillData, pill_times_data)
   putDataArrayToChart();
