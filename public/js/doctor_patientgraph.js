@@ -28,7 +28,6 @@ function toggleActive(element){
 
 	var currActiveUser = namesToIndices[num];
 
-	getPrescriptions(currActiveUser);
 
 }
 
@@ -128,6 +127,7 @@ function createNameDiv(patient_name, count, pillName){
 
 
 function patientClicked(ev, pillName) {
+  toggleActive(ev);
   chart.options.data = [];
   chart.options.title.text = pillName + "'s Weekly Graph Report"
   pill_times_data = []
@@ -286,19 +286,21 @@ function putDataArrayToChart() {
 getPatientsInfo2();
 // chart.render();
 
+$("#SelectAll").click(function() {
+  for(var i = 0; i < pill_names.length; i++) {
+    chart.options.data[i].visible = true;
+  }
+  chart.render();
+});
 
-  document.getElementById("SelectAll").onclick = function () {
-    for(var i = 0; i < pill_names.length; i++) {
-      chart.options.data[i].visible = true
-    }
-    chart.render()
+$("#unSelectAll").click(function() {
+  for(var i = 0; i < pill_names.length; i++) {
+    chart.options.data[i].visible = false;
   }
-  document.getElementById("unSelectAll").onclick = function () {
-    for(var i = 0; i < pill_names.length; i++) {
-      chart.options.data[i].visible = false
-    }
-    chart.render()
-  }
+  chart.render();
+});
+
+
 
 }
 
