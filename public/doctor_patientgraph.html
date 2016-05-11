@@ -24,40 +24,9 @@
 
   <script src="js/doctor_patientgraph.js"></script>
   <script type="text/javascript" src="js/canvasjs/canvasjs.min.js"></script>
-  <!-- <link rel="stylesheet" href="css/doctor_patientgraph.css"> -->
+  <link rel="stylesheet" href="css/doctor_patientgraph.css">
   <style>
-    body {
-      background-color: white;
-      font-family: "Helvetica Neue";
-    }
-    #options {
-      float:right;
-    }
-    .col-md-4 {
-      padding-left: 5%;
-      padding-right: 10px;
-    }
-    #checkbox-left {
-      float: left;
-      padding-right: 10px;
-      padding-left: 10%;
-    }
-    #graph {
-      clear: both;
-      //padding-left: 10%;
-      padding-right: 5%;
-      margin-top: 100px;
-    }
-    #lb-cb1, #lb-cb2 {
-      font-weight: bold;
-    }
 
-    #patien_names {
-      margin-top: 20px;
-      height: 550px;
-      overflow-x: hidden;
-      overflow-y: auto;
-    }
 
 
   </style>
@@ -92,18 +61,17 @@
   </div>
 
   <div class="col-md-8">
-
     <!-- the graph chart -->
     <div id="graph">
       <div id="chartContainer" style="height: 500px; width: 100%;"></div>
     </div>
 
+    <!-- button group -->
     <div class="btn-group" role="group" aria-label="...">
-
+      <!-- button -->
       <button type="button" class="btn btn-default" id="SelectAll">Select All</button>
       <button type="button" class="btn btn-default" id="unSelectAll">Unselect All</button>
-
-
+      <!-- switch view -->
       <div class="btn-group dropup" role="group">
         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Week
@@ -115,8 +83,6 @@
         </ul>
       </div>
     </div>
-
-
   </div>
 </div>
 

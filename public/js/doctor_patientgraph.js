@@ -43,43 +43,43 @@ function getPatientsInfo2() {
     var unsortedNames = [];
 
     query.find({
-    success: function(patients) {
-        for (var i = 0; i < patients.length; i++) {
-            var user = patients[i].get("userAccount");
+        success: function(patients) {
+            for (var i = 0; i < patients.length; i++) {
+                var user = patients[i].get("userAccount");
 
-            if (user != undefined) {
-                var firstname = user.get("firstname");
-                var lastname = user.get("lastname").toUpperCase();
-                if (firstname != undefined && lastname != undefined) {
-                    var name = lastname + ", " + firstname;
-                    var userAndName = {
-                        lastName: lastname,
-                        name: name,
-                        user: user
-                    };
-                    unsortedNames.push(userAndName);
+                if (user != undefined) {
+                    var firstname = user.get("firstname");
+                    var lastname = user.get("lastname").toUpperCase();
+                    if (firstname != undefined && lastname != undefined) {
+                        var name = lastname + ", " + firstname;
+                        var userAndName = {
+                            lastName: lastname,
+                            name: name,
+                            user: user
+                        };
+                        unsortedNames.push(userAndName);
+                    }
                 }
             }
+            // sortedNames.push.apply(sortedNames, Object.keys(unsortedUsers));
+            // Ascending, for descending, use sortedNames.sort().reverse()
+            // Or, use a customized rule. There is no out-of-box sorting for a nested query.
+            unsortedNames.sort(function(a, b) {
+                if (a['lastName'] < b['lastName']) return -1;
+                if (a['lastName'] > b['lastName']) return 1;
+                return 0;
+            });
+            for (var i = 0; i < unsortedNames.length; i++) {
+                var sortedUser = unsortedNames[i]["user"];
+                var sortedName = unsortedNames[i]["name"];
+                namesToIndices[i] = sortedUser;
+                createNameDiv(sortedName, i);
+            }
+        },
+        error: function(error) {
+            alert(error.message);
         }
-        // sortedNames.push.apply(sortedNames, Object.keys(unsortedUsers));
-        // Ascending, for descending, use sortedNames.sort().reverse()
-        // Or, use a customized rule. There is no out-of-box sorting for a nested query.
-        unsortedNames.sort(function(a, b) {
-            if (a['lastName'] < b['lastName']) return -1;
-            if (a['lastName'] > b['lastName']) return 1;
-            return 0;
-        });
-        for (var i = 0; i < unsortedNames.length; i++) {
-            var sortedUser = unsortedNames[i]["user"];
-            var sortedName = unsortedNames[i]["name"];
-            namesToIndices[i] = sortedUser;
-            createNameDiv(sortedName, i);
-        }
-    },
-    error: function(error) {
-        alert(error.message);
-    }
-  });
+    });
 }
 
 //createNameDiv()
@@ -127,6 +127,7 @@ function patientClicked(ev, pillName) {
   putDataArrayToChart();
   // getPatientsInfo2();
   chart.render();
+  $(".col-md-8 > .btn-group").show();
 }
 
 
@@ -292,8 +293,8 @@ $("#unSelectAll").click(function() {
   chart.render();
 });
 
-
-
+$(".canvasjs-chart-credit").hide();
+$(".col-md-8 > .btn-group").hide();
 }
 
 
