@@ -29,9 +29,9 @@
 
 </head>
 
-<body onload="getAllPillInfo()" data-spy="scroll" data-target="#myScrollspy">
+<body onload="getPillInfoForCurrentUser()" data-spy="scroll" data-target="#myScrollspy">
 
-  <div ng-controller='NavController as tab' ng-include src="'/partials/navbar/navbar.html'"></div>
+  <!-- <div ng-controller='NavController as tab' ng-include src="'/partials/navbar/navbar.html'"></div> -->
 
   <div class="container" id="medcabinet"><!-- Med Cabinent -->
     <div class ="panel panel-info">
@@ -50,25 +50,26 @@
          </div>
 
 
-         <div class="row">
+         <div class="row" ng-controller="MedCabinetController" id="med">
+           <!-- <div ng-repeat="med in meds">{{med.name}}</div> -->
            <div class="col-md-9">
              <!-- /.Two sortable listgroup-->
              <div id="listWithHandle" class="list-group"><!--List Group-->
 
                <!--List Group item1-->
-               <div class="list-group-item table" id="medication">
+               <div class="list-group-item table" id="medication" style="display: none;">
                  <!-- <span class="glyphicon glyphicon-move"></span> -->
 
                  <!--container for the first item in the list group-->
-                 <div class="row" id="medication">
-                   <h3 class="name" id="firstmed">Xanax</h3>
+                 <div class="row">
+                   <h3 class="firstmed" style="text-align:center"></h3>
 
                    <!--First Part-->
                    <div class="col-sm-3" id="pillcontent">
                      <div id="img"><img src="../assets/images/capsule-icon.png"
                           class="img-responsive" alt="Responsive image" width="64" height="64"></div><!-- Pill Icon Appears Here-->
-                     <div class="title">Pill Info</div>
-                     <div>Name: Xanax</br>Treat Anxiety, Panic and Depress</div><!-- Pill Name Appears Here-->
+                     <div class="title" id="pillInfo">Pill Info</div>
+                     <div class="pNameAndInstruction"></div><!-- Pill Name Appears Here-->
                    </div><!--First Part-->
 
                    <!--Second Part -->
@@ -76,7 +77,7 @@
                      <div id="img"> <img src="../assets/images/doctor-icon.png"
                           class="img-responsive" alt="Responsive image" width="64" height="64"> </div><!-- Doctor's Suggestion Icon Appears Here-->
                      <div class="title">Doctor's Suggestion</div>
-                     <div>Take with water</br>Need Child-proof</div><!-- Doctor's Suggestion Appears Here-->
+                     <div class="suggestion"></div><!-- Doctor's Suggestion Appears Here-->
                    </div><!--Second Part -->
 
                    <!--Third Part -->
@@ -99,135 +100,6 @@
                  </div><!--List Group item1-->
              </div>
 
-             <!--List Group item2-->
-             <div class="list-group-item table" id="medication"><!--List Group item2-->
-
-
-              <!--container for the first item in the list group-->
-              <div class="row">
-                <h3 class="name" id="secondmed">Aspirin</h3>
-
-                <!--First Part-->
-                <div class="col-sm-3" id="pillcontent">
-                  <div id="img"><img src="../assets/images/capsule-icon.png"
-                       class="img-responsive" alt="Responsive image" width="64" height="64"></div><!-- Pill Icon Appears Here-->
-                 <div class="title">Pill Info</div>
-                 <div>Name: Aspirin</br>Treat Pain, Fever and Inflammation</div><!-- Pill Name Appears Here-->
-                </div><!--First Part-->
-
-                <!--Second Part -->
-                <div class="col-sm-3" id="pillcontent">
-                  <div id="img"> <img src="../assets/images/doctor-icon.png"
-                       class="img-responsive" alt="Responsive image" width="64" height="64"> </div><!-- Doctor's Suggestion Icon Appears Here-->
-                  <div class="title">Doctor's Suggestion</div>
-                  <div>Take after meal</br>Do not use if you are pregnant</div><!-- Doctor's Suggestion Appears Here-->
-                </div><!--Second Part -->
-
-                <!--Third Part -->
-                <div class="col-sm-3" id="pillcontent">
-                  <div id="img"><img src="../assets/images/prescription-icon.png"
-                       class="img-responsive" alt="Responsive image" width="64" height="64"></div><!-- Refill Icon Appears Here-->
-                  <div class="title">Refill Information</div>
-                  <div>4 Pills Left</br>Refill in 2 Days</div><!-- Refill Info Appears Here-->
-                </div><!--Third Part -->
-
-                <!--fourth Part -->
-                <div class="col-sm-3" id="pillcontent">
-                  <div id="img"><img src="../assets/images/Checklist-icon.png"
-                       class="img-responsive" alt="Responsive image" width="64" height="64"></div><!-- Refill Icon Appears Here-->
-                  <div class="title">Reminder</div>
-                  <div>Take1: Morning&nbsp&nbsp&nbsp<span class="glyphicon glyphicon-remove"></span></br>
-                       Take2: Afternoon&nbsp&nbsp&nbsp<span class="glyphicon glyphicon-remove"></span></div><!-- History Appears Here-->
-                </div><!--fourth Part -->
-
-              </div><!--List Group item2-->
-             </div><!-- Second Med-->
-
-             <div class="list-group-item table" id="medication">
-                 <!-- <span class="glyphicon glyphicon-move"></span> -->
-
-                 <!--container for the first item in the list group-->
-                 <div class="row">
-                   <h3 class="name" id="thirdmed">Xanax</h3>
-
-                   <!--First Part-->
-                   <div class="col-sm-3" id="pillcontent">
-                     <div id="img"><img src="../assets/images/capsule-icon.png"
-                          class="img-responsive" alt="Responsive image" width="64" height="64"></div><!-- Pill Icon Appears Here-->
-                     <div class="title">Pill Info</div>
-                     <div>Name: Xanax</br>Treat Anxiety, Panic and Depress</div><!-- Pill Name Appears Here-->
-                   </div><!--First Part-->
-
-                   <!--Second Part -->
-                   <div class="col-sm-3" id="pillcontent">
-                     <div id="img"> <img src="../assets/images/doctor-icon.png"
-                          class="img-responsive" alt="Responsive image" width="64" height="64"> </div><!-- Doctor's Suggestion Icon Appears Here-->
-                     <div class="title">Doctor's Suggestion</div>
-                     <div>Take with water</br>Need Child-proof</div><!-- Doctor's Suggestion Appears Here-->
-                   </div><!--Second Part -->
-
-                   <!--Third Part -->
-                   <div class="col-sm-3" id="pillcontent">
-                     <div id="img"><img src="../assets/images/prescription-icon.png"
-                          class="img-responsive" alt="Responsive image" width="64" height="64"></div><!-- Refill Icon Appears Here-->
-                       <div class="title">Refill Information</div>
-                       <div>10 Pills Left</br>Refill in 5 Days</div><!-- Refill Info Appears Here-->
-                   </div><!--Third Part -->
-
-                   <!--fourth Part -->
-                   <div class="col-sm-3" id="pillcontent">
-                     <div id="img"><img src="../assets/images/Checklist-icon.png"
-                          class="img-responsive" alt="Responsive image" width="64" height="64"></div><!-- Refill Icon Appears Here-->
-                     <div class="title">Reminder</div>
-                     <div>Take1: Morning&nbsp&nbsp&nbsp<span class="glyphicon glyphicon-ok"></span></br>
-                         Take2: Afternoon&nbsp&nbsp&nbsp<span class="glyphicon glyphicon-remove"></span></div><!-- History Appears Here-->
-                   </div><!--fourth Part -->
-
-                 </div><!--List Group item3-->
-             </div><!--Third Med-->
-
-             <div class="list-group-item table" id="medication">
-                 <!-- <span class="glyphicon glyphicon-move"></span> -->
-
-                 <!--container for the first item in the list group-->
-                 <div class="row">
-                   <h3 class="name" id="fourthmed">Xanax</h3>
-
-                   <!--First Part-->
-                   <div class="col-sm-3" id="pillcontent">
-                     <div id="img"><img src="../assets/images/capsule-icon.png"
-                          class="img-responsive" alt="Responsive image" width="64" height="64"></div><!-- Pill Icon Appears Here-->
-                     <div class="title">Pill Info</div>
-                     <div>Name: Xanax</br>Treat Anxiety, Panic and Depress</div><!-- Pill Name Appears Here-->
-                   </div><!--First Part-->
-
-                   <!--Second Part -->
-                   <div class="col-sm-3" id="pillcontent">
-                     <div id="img"> <img src="../assets/images/doctor-icon.png"
-                          class="img-responsive" alt="Responsive image" width="64" height="64"> </div><!-- Doctor's Suggestion Icon Appears Here-->
-                     <div class="title">Doctor's Suggestion</div>
-                     <div>Take with water</br>Need Child-proof</div><!-- Doctor's Suggestion Appears Here-->
-                   </div><!--Second Part -->
-
-                   <!--Third Part -->
-                   <div class="col-sm-3" id="pillcontent">
-                     <div id="img"><img src="../assets/images/prescription-icon.png"
-                          class="img-responsive" alt="Responsive image" width="64" height="64"></div><!-- Refill Icon Appears Here-->
-                       <div class="title">Refill Information</div>
-                       <div>10 Pills Left</br>Refill in 5 Days</div><!-- Refill Info Appears Here-->
-                   </div><!--Third Part -->
-
-                   <!--fourth Part -->
-                   <div class="col-sm-3" id="pillcontent">
-                     <div id="img"><img src="../assets/images/Checklist-icon.png"
-                          class="img-responsive" alt="Responsive image" width="64" height="64"></div><!-- Refill Icon Appears Here-->
-                     <div class="title">Reminder</div>
-                     <div>Take1: Morning&nbsp&nbsp&nbsp<span class="glyphicon glyphicon-ok"></span></br>
-                         Take2: Afternoon&nbsp&nbsp&nbsp<span class="glyphicon glyphicon-remove"></span></div><!-- History Appears Here-->
-                   </div><!--fourth Part -->
-
-                 </div><!--List Group item3-->
-             </div><!--Fourth Med-->
 
            </div><!--Total List Group-->
            </div>
@@ -235,10 +107,6 @@
            <div class="col-md-3" id="myScrollspy">
               <ul class="nav nav-tabs nav-stacked" data-spy="affix" data-offset-top="205">
                   <li class="active"><a href="#firstmed">Xanax</a></li>
-                  <li><a href="#secondmed">Aspirin</a></li>
-                  <li><a href="#thirdmed">Xanax</a></li>
-                  <li><a href="#fourthmed">Xanax</a></li>
-                  <li><a href="#fifthmed">GanKang</a></li>
               </ul>
            </div>
          </div>

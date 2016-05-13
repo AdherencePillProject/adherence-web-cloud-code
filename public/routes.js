@@ -28,6 +28,7 @@ angular.module('app')
       })
       .when('/patient/MedCabinet', {
           templateURL: 'patient/views/medCabinet.html'
+          controller: 'MedCabinetController'
       })
       .when('/doctor/patientView', {
           templateURL: 'doctor/views/doctor_patientgraph.html'
