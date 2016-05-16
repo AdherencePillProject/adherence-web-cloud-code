@@ -11,6 +11,7 @@ var sameDiv = false;
 //keeps track of which prescription number we are on
 var prescriptionNum = 0;
 
+var days = 7
 //toggleActive
 //parameters: div element
 //function: toggles the active class element for divs on the right
@@ -215,7 +216,17 @@ var PillData = [[{date: new Date(2016, 3, 18), time: 22, number: true},
                 {date: new Date(2016, 3, 21), time: 20, number: true},
                 {date: new Date(2016, 3, 22), time: 21, number: false},
                 {date: new Date(2016, 3, 23), time: 20, number: true},
-                {date: new Date(2016, 3, 24), time: null, number: false}],
+                {date: new Date(2016, 3, 24), time: null, number: false},
+                {date: new Date(2016, 3, 25), time: 20, number: true},
+                {date: new Date(2016, 3, 26), time: 21, number: true},
+                {date: new Date(2016, 3, 27), time: 22, number: true},
+                {date: new Date(2016, 3, 28), time: 20, number: false},
+                {date: new Date(2016, 3, 29), time: 21, number: true},
+                {date: new Date(2016, 3, 30), time: 22, number: true},
+                {date: new Date(2016, 4, 1), time: 21, number: false},
+                {date: new Date(2016, 4, 2), time: 22, number: true},
+                {date: new Date(2016, 4, 3), time: 20, number: true},
+                {date: new Date(2016, 4, 4), time: 22, number: false}],
                 [
                 {date: new Date(2016, 3, 18), time: 9, number: true},
                 {date: new Date(2016, 3, 19), time: 9.4, number: true},
@@ -223,7 +234,17 @@ var PillData = [[{date: new Date(2016, 3, 18), time: 22, number: true},
                 {date: new Date(2016, 3, 21), time: 9.3, number: true},
                 {date: new Date(2016, 3, 22), time: 9.2, number: false},
                 {date: new Date(2016, 3, 23), time: 9, number: true},
-                {date: new Date(2016, 3, 24), time: 9, number: false}],
+                {date: new Date(2016, 3, 24), time: 9, number: false},
+                {date: new Date(2016, 3, 25), time: 9, number: true},
+                {date: new Date(2016, 3, 26), time: 9, number: true},
+                {date: new Date(2016, 3, 27), time: 8, number: true},
+                {date: new Date(2016, 3, 28), time: 9, number: false},
+                {date: new Date(2016, 3, 29), time: 8, number: true},
+                {date: new Date(2016, 3, 30), time: 8, number: true},
+                {date: new Date(2016, 4, 1), time: 8, number: false},
+                {date: new Date(2016, 4, 2), time: 9, number: true},
+                {date: new Date(2016, 4, 3), time: 8, number: true},
+                {date: new Date(2016, 4, 4), time: 9, number: false}],
 
                 [
                 {date: new Date(2016, 3, 18), time: 14, number: true},
@@ -232,7 +253,17 @@ var PillData = [[{date: new Date(2016, 3, 18), time: 22, number: true},
                 {date: new Date(2016, 3, 21), time: 14.2, number: false},
                 {date: new Date(2016, 3, 22), time: null, number: true},
                 {date: new Date(2016, 3, 23), time: 14, number: true},
-                {date: new Date(2016, 3, 24), time: 15, number: false}]]
+                {date: new Date(2016, 3, 24), time: 15, number: false},
+                {date: new Date(2016, 3, 25), time: 13, number: true},
+                {date: new Date(2016, 3, 26), time: 14, number: true},
+                {date: new Date(2016, 3, 27), time: 12, number: true},
+                {date: new Date(2016, 3, 28), time: 13, number: false},
+                {date: new Date(2016, 3, 29), time: 14, number: true},
+                {date: new Date(2016, 3, 30), time: 12, number: true},
+                {date: new Date(2016, 4, 1), time: 14, number: false},
+                {date: new Date(2016, 4, 2), time: 12, number: true},
+                {date: new Date(2016, 4, 3), time: 13, number: true},
+                {date: new Date(2016, 4, 4), time: 14, number: false}]]
 
 
 
@@ -267,12 +298,42 @@ function putDataArrayToChart() {
             lineThickness: 4,
             markerType: "circle",
             markerSize: 12,
-            dataPoints: pill_times_data[i],
+            dataPoints: pill_times_data[i].slice(pill_times_data[i].length - days, pill_times_data[i].length),
             visible:true
         }
         chart.options.data.push(pill_time);
     }
 }
+    $("#addDataPoint").click(function () {
+
+    var length = chart.options.data[0].dataPoints.length;
+    chart.options.title.text = "New DataPoint Added at the end";
+    chart.options.data[0].dataPoints.push({ y: 25 - Math.random() * 10});
+    chart.render();
+
+    });
+
+$("#week-view").click(function() {
+        console.log("week")
+    days = 7
+    chart.options.data = []
+  createDataArray(PillData, pill_times_data)
+  putDataArrayToChart();
+  // getPatientsInfo2();
+  chart.render();
+});
+
+$("#month-view").click(function() {
+        console.log("week")
+    days = 14
+    chart.options.data = []
+  createDataArray(PillData, pill_times_data)
+  putDataArrayToChart();
+  // getPatientsInfo2();
+  chart.render();
+});
+
+
 
 // createDataArray(PillData, pill_times_data)
 // putDataArrayToChart();
