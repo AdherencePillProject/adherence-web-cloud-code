@@ -10,7 +10,8 @@ angular.module('app')
           templateUrl : 'common/views/home.html'
       })
       .when('/signup', {
-          templateUrl : 'common/views/signup.html'
+          templateUrl : 'common/views/signup.html',
+          controller  : 'SignupController'
       })
       .when('/doctor/profile', {
           templateUrl : 'doctor/views/doctorprofile.html'
@@ -27,7 +28,7 @@ angular.module('app')
           controller : 'PatientPrescriptionController'
       })
       .when('/patient/MedCabinet', {
-          templateURL: 'patient/views/medCabinet.html'
+          templateURL: 'patient/views/medCabinet.html',
           controller: 'MedCabinetController'
       })
       .when('/doctor/patientView', {
