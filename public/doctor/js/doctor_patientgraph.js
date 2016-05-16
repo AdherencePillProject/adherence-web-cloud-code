@@ -314,23 +314,22 @@ function putDataArrayToChart() {
     });
 
 $("#week-view").click(function() {
-        console.log("week")
-    days = 7
-    chart.options.data = []
-  createDataArray(PillData, pill_times_data)
-  putDataArrayToChart();
-  // getPatientsInfo2();
-  chart.render();
+    days = 7;
+    chart.options.data = [];
+    createDataArray(PillData, pill_times_data);
+    putDataArrayToChart();
+    chart.render();
+    $("#view-text").text("Week");
+    //$(".btn-group dropup > .btn btn-default dropdown-toggle").html("???");
 });
 
 $("#month-view").click(function() {
-        console.log("week")
     days = 14
     chart.options.data = []
-  createDataArray(PillData, pill_times_data)
-  putDataArrayToChart();
-  // getPatientsInfo2();
-  chart.render();
+    createDataArray(PillData, pill_times_data)
+    putDataArrayToChart();
+    chart.render();
+    $("#view-text").text("Month");
 });
 
 
