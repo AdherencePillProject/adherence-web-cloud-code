@@ -354,9 +354,6 @@ $("#unSelectAll").click(function() {
   chart.render();
 });
 
-$("#week-view").click(function() {
-    alert("lll");
-});
 
 $(".canvasjs-chart-credit").hide();
 $(".col-md-8 > .btn-group").hide();
