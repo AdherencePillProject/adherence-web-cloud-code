@@ -28,3 +28,11 @@ body {
 .btn-group button {
     width: 100px;
 }
+.label-for-date {
+    width: 80px;
+}
+.reminder {
+    color: #8c8c8c;
+    margin-top: 15px;
+    margin-bottom: -15px;
+}

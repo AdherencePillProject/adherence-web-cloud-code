@@ -50,9 +50,9 @@ function getPatientsInfo2() {
 
                 if (user != undefined) {
                     var firstname = user.get("firstname");
-                    var lastname = user.get("lastname").toUpperCase();
+                    var lastname = user.get("lastname");
                     if (firstname != undefined && lastname != undefined) {
-                        var name = lastname + ", " + firstname;
+                        var name = firstname + " " + lastname;
                         var userAndName = {
                             lastName: lastname,
                             name: name,
@@ -356,6 +356,67 @@ $("#unSelectAll").click(function() {
 
 $(".canvasjs-chart-credit").hide();
 $(".col-md-8 > .btn-group").hide();
+
+// for Modal(Customize view)
+$("#modal-confirm").click(function() {
+    //var t = document.getElementById("date-from");
+    $from = $("#date-from").prop("value"); // a string in the form of: 2015-05-21
+    $to = $("#date-to").prop("value");
+    $fromYear = parseInt($from.slice(0, 4));
+    $fromMonth = parseInt($from.slice(5, 7)) - 1;
+    $fromDay = parseInt($from.slice(8, 10));
+    $toYear = parseInt($to.slice(0, 4));
+    $toMonth = parseInt($to.slice(5, 7)) - 1;
+    $toDay = parseInt($to.slice(8, 10));
+
+    var customizeData = [
+        [
+            {date: new Date($fromYear, $fromMonth, $fromDay), time: 21, number: true},
+            {date: new Date($fromYear, $fromMonth, $fromDay + 1), time: 22, number: true},
+            {date: new Date($toYear, $toMonth, $toDay), time: 22, number: true}
+        ],
+        [
+            {date: new Date($fromYear, $fromMonth, $fromDay), time: 2, number: true},
+            {date: new Date($fromYear, $fromMonth, $fromDay + 1), time: 3, number: true},
+            {date: new Date($toYear, $toMonth, $toDay), time: 4, number: true}
+        ],
+        [
+            {date: new Date($fromYear, $fromMonth, $fromDay), time: 6, number: true},
+            {date: new Date($fromYear, $fromMonth, $fromDay + 1), time: 6, number: true},
+            {date: new Date($toYear, $toMonth, $toDay), time: 7, number: true}
+        ]
+    ];
+    
+    chart.options.data = [];
+    var pill_times_data_temp = []
+    for(var i = 0; i < customizeData.length; i++) {
+        var chartData = []
+        for(var j = 0; j < customizeData[i].length; j++) {
+            chartData.push({x:customizeData[i][j]["date"], y:customizeData[i][j]["time"]});
+        }
+        pill_times_data_temp.push(chartData);
+    }
+        
+    for (var i = 0; i < pill_names.length; i++) {
+        var pill_time = {
+            type: "line",
+            name: pill_names[i],
+            axisYType: "primary",
+            showInLegend: true,
+            lineThickness: 4,
+            markerType: "circle",
+            markerSize: 12,
+            dataPoints: pill_times_data_temp[i],
+            visible:true
+        }
+        chart.options.data.push(pill_time);
+    }
+    
+    chart.render();
+    $("#view-text").text("Customize");
+});
+
+
 }
 
 
