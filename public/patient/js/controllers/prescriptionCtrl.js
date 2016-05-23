@@ -45,7 +45,7 @@ angular
     		"index": "0",
     		"name" :"Antihistamine",
     		"note" :"Take after lunch",
-    		"dose" :"2 tablets",
+    		"dose" :"2",
     		"time":"09:30",
     		"intro":"Here is the detailed introduction to this pill and prescription inforamtion"
     	},
@@ -54,17 +54,39 @@ angular
             "index": "1",
             "name" :"Sonata",
             "note" :"15 mins before bed time",
-            "dose" :"1 tablets",
+            "dose" :"1",
             "time":"11:30",
-            "intro":"Here is the detailed introduction to this pill and prescription inforamtion"
+            "intro":"Here is the detailed introduction to"
         }
     ];
 
     //function:show_detail
     //click the the pill and show pill_detail
-    $scope.showDetaili = true;
-    $scope.show_detail = function(){
-		$scope.showDetail = ! $scope.showDetail;
+  //   $scope.showDetaili = true;
+  //   $scope.show_detail = function(){
+		// $scope.showDetail = ! $scope.showDetail;
+  //   };
+
+
+  $scope.open = function(item){
+        if ($scope.isOpen(item)){
+            $scope.opened = undefined;
+        } else {
+            $scope.opened = item;
+        }        
     };
+    
+    $scope.isOpen = function(item){
+        return $scope.opened === item;
+    };
+    
+    $scope.anyItemOpen = function() {
+        return $scope.opened !== undefined;
+    };
+    
+    $scope.close = function() {
+        $scope.opened = undefined;
+    };
+
 
 });
