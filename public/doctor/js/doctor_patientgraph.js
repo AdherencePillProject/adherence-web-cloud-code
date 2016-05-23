@@ -2,7 +2,6 @@
 window.onload = function () {
 //namesToIndices = keeps track of which patient is selected
 
-
 var namesToIndices = {};
 
 //whether the prescription is part of the same patient or not
@@ -12,6 +11,72 @@ var sameDiv = false;
 var prescriptionNum = 0;
 
 var days = 7
+
+var Perscription = new Parse.Object.extend("Perscription", {
+    Name: "",
+    Pill_Data: [],
+    Pill_Names: [],
+})
+
+// var P = new Parse.Object("Perscription");
+// P.set("Name", "John Doe");
+// P.set("Pill_Names",["eeee", "ffff", "ddddd"])
+// P.set("Pill_Data", [[{date: new Date(2016, 3, 18), time: 1, number: true},
+//                 {date: new Date(2016, 3, 19), time: 1, number: true},
+//                 {date: new Date(2016, 3, 20), time: 1, number: true},
+//                 {date: new Date(2016, 3, 21), time: 1, number: true},
+//                 {date: new Date(2016, 3, 22), time: 1, number: false},
+//                 {date: new Date(2016, 3, 23), time: 2, number: true},
+//                 {date: new Date(2016, 3, 24), time: null, number: false},
+//                 {date: new Date(2016, 3, 25), time: 3, number: true},
+//                 {date: new Date(2016, 3, 26), time: 2, number: true},
+//                 {date: new Date(2016, 3, 27), time: 2, number: true},
+//                 {date: new Date(2016, 3, 28), time: 2, number: false},
+//                 {date: new Date(2016, 3, 29), time: 1, number: true},
+//                 {date: new Date(2016, 3, 30), time: 2, number: true},
+//                 {date: new Date(2016, 4, 1), time: 3, number: false},
+//                 {date: new Date(2016, 4, 2), time: 2, number: true},
+//                 {date: new Date(2016, 4, 3), time: 1, number: true},
+//                 {date: new Date(2016, 4, 4), time: 2, number: false}],
+//                 [
+//                 {date: new Date(2016, 3, 18), time: 9, number: true},
+//                 {date: new Date(2016, 3, 19), time: 9.4, number: true},
+//                 {date: new Date(2016, 3, 20), time: null, number: true},
+//                 {date: new Date(2016, 3, 21), time: 9.3, number: true},
+//                 {date: new Date(2016, 3, 22), time: 9.2, number: false},
+//                 {date: new Date(2016, 3, 23), time: 9, number: true},
+//                 {date: new Date(2016, 3, 24), time: 9, number: false},
+//                 {date: new Date(2016, 3, 25), time: 9, number: true},
+//                 {date: new Date(2016, 3, 26), time: 9, number: true},
+//                 {date: new Date(2016, 3, 27), time: 8, number: true},
+//                 {date: new Date(2016, 3, 28), time: 9, number: false},
+//                 {date: new Date(2016, 3, 29), time: 8, number: true},
+//                 {date: new Date(2016, 3, 30), time: 8, number: true},
+//                 {date: new Date(2016, 4, 1), time: 8, number: false},
+//                 {date: new Date(2016, 4, 2), time: 9, number: true},
+//                 {date: new Date(2016, 4, 3), time: 8, number: true},
+//                 {date: new Date(2016, 4, 4), time: 9, number: false}],
+
+//                 [
+//                 {date: new Date(2016, 3, 18), time: 14, number: true},
+//                 {date: new Date(2016, 3, 19), time: 14, number: true},
+//                 {date: new Date(2016, 3, 20), time: 13.4, number: true},
+//                 {date: new Date(2016, 3, 21), time: 14.2, number: false},
+//                 {date: new Date(2016, 3, 22), time: null, number: true},
+//                 {date: new Date(2016, 3, 23), time: 14, number: true},
+//                 {date: new Date(2016, 3, 24), time: 15, number: false},
+//                 {date: new Date(2016, 3, 25), time: 13, number: true},
+//                 {date: new Date(2016, 3, 26), time: 14, number: true},
+//                 {date: new Date(2016, 3, 27), time: 12, number: true},
+//                 {date: new Date(2016, 3, 28), time: 13, number: false},
+//                 {date: new Date(2016, 3, 29), time: 14, number: true},
+//                 {date: new Date(2016, 3, 30), time: 12, number: true},
+//                 {date: new Date(2016, 4, 1), time: 14, number: false},
+//                 {date: new Date(2016, 4, 2), time: 12, number: true},
+//                 {date: new Date(2016, 4, 3), time: 13, number: true},
+//                 {date: new Date(2016, 4, 4), time: 14, number: false}]]
+// )
+// P.save();
 //toggleActive
 //parameters: div element
 //function: toggles the active class element for divs on the right
@@ -122,12 +187,30 @@ function createNameDiv(patient_name, count, pillName){
 function patientClicked(ev, pillName) {
   toggleActive(ev);
   chart.options.data = [];
-  chart.options.title.text = pillName + "'s Weekly Graph Report"
-  pill_times_data = []
-  createDataArray(PillData, pill_times_data)
-  putDataArrayToChart();
-  // getPatientsInfo2();
-  chart.render();
+  chart.options.title.text = pillName + "'s Weekly Graph Report";
+  pill_times_data = [];
+
+
+  // var perscription = Parse.Object.extend("Perscription");
+  var query = new Parse.Query(Perscription);
+
+  // alert(pillName)
+  query.equalTo("Name", pillName);
+  query.find({
+    success:function(result){
+        for (var i = 0; i < result.length; i++){
+            PillData = result[i].get("Pill_Data");
+            pill_names = result[i].get("Pill_Names");
+        }
+        createDataArray(PillData, pill_times_data)
+        putDataArrayToChart();
+        // getPatientsInfo2();
+        chart.render();
+    },
+    error: function(error) {
+        alert("error: " + error.code + " " + error.message)
+    }
+  })
   $(".col-md-8 > .btn-group").show();
 }
 
@@ -207,63 +290,64 @@ chart.render();
 
 var pill_times_data = [];
 var pill_time_dataPoints = [];
-var pill_names = ["Prilosec", "Cymbalta", "Advil"];
+var pill_names = [] // ["Prilosec", "Cymbalta", "Advil"];
 
 
-var PillData = [[{date: new Date(2016, 3, 18), time: 22, number: true},
-                {date: new Date(2016, 3, 19), time: 21, number: true},
-                {date: new Date(2016, 3, 20), time: 22, number: true},
-                {date: new Date(2016, 3, 21), time: 20, number: true},
-                {date: new Date(2016, 3, 22), time: 21, number: false},
-                {date: new Date(2016, 3, 23), time: 20, number: true},
-                {date: new Date(2016, 3, 24), time: null, number: false},
-                {date: new Date(2016, 3, 25), time: 20, number: true},
-                {date: new Date(2016, 3, 26), time: 21, number: true},
-                {date: new Date(2016, 3, 27), time: 22, number: true},
-                {date: new Date(2016, 3, 28), time: 20, number: false},
-                {date: new Date(2016, 3, 29), time: 21, number: true},
-                {date: new Date(2016, 3, 30), time: 22, number: true},
-                {date: new Date(2016, 4, 1), time: 21, number: false},
-                {date: new Date(2016, 4, 2), time: 22, number: true},
-                {date: new Date(2016, 4, 3), time: 20, number: true},
-                {date: new Date(2016, 4, 4), time: 22, number: false}],
-                [
-                {date: new Date(2016, 3, 18), time: 9, number: true},
-                {date: new Date(2016, 3, 19), time: 9.4, number: true},
-                {date: new Date(2016, 3, 20), time: null, number: true},
-                {date: new Date(2016, 3, 21), time: 9.3, number: true},
-                {date: new Date(2016, 3, 22), time: 9.2, number: false},
-                {date: new Date(2016, 3, 23), time: 9, number: true},
-                {date: new Date(2016, 3, 24), time: 9, number: false},
-                {date: new Date(2016, 3, 25), time: 9, number: true},
-                {date: new Date(2016, 3, 26), time: 9, number: true},
-                {date: new Date(2016, 3, 27), time: 8, number: true},
-                {date: new Date(2016, 3, 28), time: 9, number: false},
-                {date: new Date(2016, 3, 29), time: 8, number: true},
-                {date: new Date(2016, 3, 30), time: 8, number: true},
-                {date: new Date(2016, 4, 1), time: 8, number: false},
-                {date: new Date(2016, 4, 2), time: 9, number: true},
-                {date: new Date(2016, 4, 3), time: 8, number: true},
-                {date: new Date(2016, 4, 4), time: 9, number: false}],
+var PillData = []
+// [[{date: new Date(2016, 3, 18), time: 22, number: true},
+//                 {date: new Date(2016, 3, 19), time: 21, number: true},
+//                 {date: new Date(2016, 3, 20), time: 22, number: true},
+//                 {date: new Date(2016, 3, 21), time: 20, number: true},
+//                 {date: new Date(2016, 3, 22), time: 21, number: false},
+//                 {date: new Date(2016, 3, 23), time: 20, number: true},
+//                 {date: new Date(2016, 3, 24), time: null, number: false},
+//                 {date: new Date(2016, 3, 25), time: 20, number: true},
+//                 {date: new Date(2016, 3, 26), time: 21, number: true},
+//                 {date: new Date(2016, 3, 27), time: 22, number: true},
+//                 {date: new Date(2016, 3, 28), time: 20, number: false},
+//                 {date: new Date(2016, 3, 29), time: 21, number: true},
+//                 {date: new Date(2016, 3, 30), time: 22, number: true},
+//                 {date: new Date(2016, 4, 1), time: 21, number: false},
+//                 {date: new Date(2016, 4, 2), time: 22, number: true},
+//                 {date: new Date(2016, 4, 3), time: 20, number: true},
+//                 {date: new Date(2016, 4, 4), time: 22, number: false}],
+//                 [
+//                 {date: new Date(2016, 3, 18), time: 9, number: true},
+//                 {date: new Date(2016, 3, 19), time: 9.4, number: true},
+//                 {date: new Date(2016, 3, 20), time: null, number: true},
+//                 {date: new Date(2016, 3, 21), time: 9.3, number: true},
+//                 {date: new Date(2016, 3, 22), time: 9.2, number: false},
+//                 {date: new Date(2016, 3, 23), time: 9, number: true},
+//                 {date: new Date(2016, 3, 24), time: 9, number: false},
+//                 {date: new Date(2016, 3, 25), time: 9, number: true},
+//                 {date: new Date(2016, 3, 26), time: 9, number: true},
+//                 {date: new Date(2016, 3, 27), time: 8, number: true},
+//                 {date: new Date(2016, 3, 28), time: 9, number: false},
+//                 {date: new Date(2016, 3, 29), time: 8, number: true},
+//                 {date: new Date(2016, 3, 30), time: 8, number: true},
+//                 {date: new Date(2016, 4, 1), time: 8, number: false},
+//                 {date: new Date(2016, 4, 2), time: 9, number: true},
+//                 {date: new Date(2016, 4, 3), time: 8, number: true},
+//                 {date: new Date(2016, 4, 4), time: 9, number: false}],
 
-                [
-                {date: new Date(2016, 3, 18), time: 14, number: true},
-                {date: new Date(2016, 3, 19), time: 14, number: true},
-                {date: new Date(2016, 3, 20), time: 13.4, number: true},
-                {date: new Date(2016, 3, 21), time: 14.2, number: false},
-                {date: new Date(2016, 3, 22), time: null, number: true},
-                {date: new Date(2016, 3, 23), time: 14, number: true},
-                {date: new Date(2016, 3, 24), time: 15, number: false},
-                {date: new Date(2016, 3, 25), time: 13, number: true},
-                {date: new Date(2016, 3, 26), time: 14, number: true},
-                {date: new Date(2016, 3, 27), time: 12, number: true},
-                {date: new Date(2016, 3, 28), time: 13, number: false},
-                {date: new Date(2016, 3, 29), time: 14, number: true},
-                {date: new Date(2016, 3, 30), time: 12, number: true},
-                {date: new Date(2016, 4, 1), time: 14, number: false},
-                {date: new Date(2016, 4, 2), time: 12, number: true},
-                {date: new Date(2016, 4, 3), time: 13, number: true},
-                {date: new Date(2016, 4, 4), time: 14, number: false}]]
+//                 [
+//                 {date: new Date(2016, 3, 18), time: 14, number: true},
+//                 {date: new Date(2016, 3, 19), time: 14, number: true},
+//                 {date: new Date(2016, 3, 20), time: 13.4, number: true},
+//                 {date: new Date(2016, 3, 21), time: 14.2, number: false},
+//                 {date: new Date(2016, 3, 22), time: null, number: true},
+//                 {date: new Date(2016, 3, 23), time: 14, number: true},
+//                 {date: new Date(2016, 3, 24), time: 15, number: false},
+//                 {date: new Date(2016, 3, 25), time: 13, number: true},
+//                 {date: new Date(2016, 3, 26), time: 14, number: true},
+//                 {date: new Date(2016, 3, 27), time: 12, number: true},
+//                 {date: new Date(2016, 3, 28), time: 13, number: false},
+//                 {date: new Date(2016, 3, 29), time: 14, number: true},
+//                 {date: new Date(2016, 3, 30), time: 12, number: true},
+//                 {date: new Date(2016, 4, 1), time: 14, number: false},
+//                 {date: new Date(2016, 4, 2), time: 12, number: true},
+//                 {date: new Date(2016, 4, 3), time: 13, number: true},
+//                 {date: new Date(2016, 4, 4), time: 14, number: false}]]
 
 
 
@@ -421,3 +505,4 @@ $("#modal-confirm").click(function() {
 
 
 Parse.initialize("BDo39lSOtPuBwDfq0EBDgIjTzztIQE38Fuk03EcR", "ox76Y4RxB06A69JWAleRHSercHKomN2FVu61dfu3");
+
