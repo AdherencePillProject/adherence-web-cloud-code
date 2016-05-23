@@ -1,0 +1,80 @@
+.time_info, .pill_dashborad, .pill_detail{
+	box-shadow: 1px 1px 5px #888888;
+	opacity: 0.7;
+	padding: 20px;
+	margin-top: 120px;
+	
+}
+/*=============time_info================*/
+.time_info{
+	float: left;
+	width: 220px;
+	min-height: 200px;
+	margin-left: -90px;
+	text-align: center;
+
+}
+.date{
+	float: left;
+	width: 100px;
+	height: 150px;
+	font-size: 2rem;
+	text-align: center;
+	line-height: 5;
+}
+#th{
+	font-size: 1rem;
+}
+.month_year{	
+	font-size: 1.5rem;
+	float: right;
+	width: 75px;
+	height: 55px;
+	line-height: 3;
+	margin-left:5px;
+	box-shadow: 1px 1px 1px #888888;
+
+}
+.month{
+	font-size: 1.5rem;
+	
+}
+
+.day_of_week{
+	font-size: 2rem;
+	float: right;
+	margin-left:5px;
+	width: 75px;
+	height: 95px;
+	line-height: 3;
+	box-shadow: 1px 1px 1px #888888;
+}
+/*=============.pill_dashborad=============*/
+.pill_dashborad{
+	float: left;
+	margin-left: 50px;
+	width: 45%;
+	cursor: pointer;
+}
+
+.check_mark{
+	float: left;
+	margin-left: 10px;
+}
+.pill_info_content{
+	padding-left: 50px;
+	border-bottom: solid #888888;
+	border-width: 1px;
+	margin-bottom: 20px;
+}
+.pill_info_content:hover {
+	border:none;
+	box-shadow: 1px 1px 5px #888888;
+	
+}
+ /*===============.pill_detail============*/
+ .pill_detail{
+	float: right;
+    margin-right: -40px;
+    width: 220px;
+ }

@@ -25,7 +25,8 @@ angular.module('app')
       })
       .when('/patient/home', {
           templateUrl : 'patient/views/Prescription.html',
-          controller : 'PatientPrescriptionController'
+          controller : 'prescriptionCtrl',
+          css: 'patient/css/patient_prescription.css'
       })
       .when('/patient/MedCabinet', {
           templateURL: 'patient/views/medCabinet.html',
