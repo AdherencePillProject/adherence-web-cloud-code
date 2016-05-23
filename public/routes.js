@@ -33,7 +33,9 @@ angular.module('app')
           controller: 'MedCabinetController'
       })
       .when('/doctor/patientView', {
-          templateURL: 'doctor/views/doctor_patientgraph.html'
+          templateURL: 'doctor/views/doctor_patientgraph.html',
+          controller: 'patient_graphCtrl',
+          css: 'doctor_patientgraph.css'
       })
       .when('/doctor/doc_patient', {
           templateURL: 'doctor/views/doctor_patientprescription.html'
