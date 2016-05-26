@@ -1,10 +1,10 @@
 
-'use strict';
-angular
-.module('app')
-.controller('patient_graphCtrl', function($scope) {
 
-    window.onload = function () {
+angular.module('app')
+.controller('patient_graphCtrl', function($scope) {
+    console.log('entered controller');
+
+    //window.onload = function () {
     //namesToIndices = keeps track of which patient is selected
 
     var namesToIndices = {};
@@ -15,13 +15,13 @@ angular
     //keeps track of which prescription number we are on
     var prescriptionNum = 0;
 
-    var days = 7
+    var days = 7;
 
     var Perscription = new Parse.Object.extend("Perscription", {
         Name: "",
         Pill_Data: [],
         Pill_Names: [],
-    })
+    });
 
     //toggleActive
     //parameters: div element
@@ -216,7 +216,7 @@ angular
             interlacedColor: "#eceff1",
             gridThickness: 1,
             gridColor: "rgba(204,204,204,0.7)",
-            gridDashType: "dash",
+            gridDashType: "dash"
         },
         data: [],
         legend: {
@@ -236,10 +236,10 @@ angular
 
     var pill_times_data = [];
     var pill_time_dataPoints = [];
-    var pill_names = [] // ["Prilosec", "Cymbalta", "Advil"];
+    var pill_names = []; // ["Prilosec", "Cymbalta", "Advil"];
 
 
-    var PillData = []
+    var PillData = [];
 
 
 
@@ -393,10 +393,10 @@ angular
     });
 
 
-    }
+   // }
 
 
-    Parse.initialize("BDo39lSOtPuBwDfq0EBDgIjTzztIQE38Fuk03EcR", "ox76Y4RxB06A69JWAleRHSercHKomN2FVu61dfu3");
+    //Parse.initialize("BDo39lSOtPuBwDfq0EBDgIjTzztIQE38Fuk03EcR", "ox76Y4RxB06A69JWAleRHSercHKomN2FVu61dfu3");
 
 });
 

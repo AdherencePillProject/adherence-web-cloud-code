@@ -22,7 +22,7 @@ angular.module('app')
       })
       .when('/doctor/home', {
           templateUrl : 'doctor/views/Doctorhome.html',
-          controller:'',
+          controller:'patient_graphCtrl',
           css:'doctor/css/doctor_table.css'
       })
       .when('/patient/home', {
@@ -39,7 +39,7 @@ angular.module('app')
       //     controller: 'patient_graphCtrl',
       //     css: 'doctor_patientgraph.css'
       // })
-      .when('/doctor/doc_patient', {
+      .when('/doctor/graph', {
           templateURL: 'doctor/views/doctor_patientgraph.html',
           controller: 'patient_graphCtrl',
           css: 'doctor_patientgraph.css'
