@@ -44,6 +44,10 @@ angular.module('app')
           controller: 'patient_graphCtrl',
           css: 'doctor_patientgraph.css'
       })
+      .when('/inbox', {
+          templateURL: 'common/views/inbox.html',
+          controller: 'InboxController'
+      })
       .otherwise({
           redirectTo  : '/'
       });

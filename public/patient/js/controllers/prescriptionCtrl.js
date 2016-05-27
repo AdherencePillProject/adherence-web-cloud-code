@@ -58,7 +58,7 @@ angular
 
 
     console.log('current user is', $rootScope.currentUser.get('prescription'));
-    // pill_info 
+    // pill_info
     // include the information of pills a patient should take, please retrieve from database
 
   $scope.open = function(item){
@@ -82,8 +82,4 @@ angular
     };
 
 
-<<<<<<< HEAD
 }]);
-=======
-}]);
->>>>>>> 8bbc931b0b0b85338166bfee7d9cdceadbd2249b
