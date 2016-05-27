@@ -538,17 +538,19 @@ function addPrescription(patient) {
 		addForm();
 	});
 	$(document.body).on("click", '#deleteTime', function() {
-		$("div").remove("#test");
+		deleteForm();
 	});
 
-	// 
-	// function deleteForm() {
-	// 	$("div").remove("#test");
-	// }
+	//
+	function deleteForm() {
+		$("#test").remove("#test");
+	}
 
 	function addForm() {
 		var formHTML = $("#newPrescriptionForm").html();
-		var newFieldSet = "<div class='form-group'>" +
+		var newFieldSet =
+	 		"<div id='test'>"+
+			"<div class='form-group'>" +
 			"<label class='time'>Time</label>" + "<button class='btn btn-del' id='deleteTime'>Delete</button><br/>" +
 			"<input type='time' class='form-control' placeholder=''>" +
 			"</div>" +
@@ -586,6 +588,7 @@ function addPrescription(patient) {
 
 			"</tbody>" +
 			"</table>" +
+			"</div>" +			
 			"<br/>";
 		formHTML += newFieldSet;
 		$("#newPrescriptionForm").html(formHTML);
