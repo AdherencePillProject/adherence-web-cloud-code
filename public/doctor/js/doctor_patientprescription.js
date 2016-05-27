@@ -474,6 +474,7 @@ function addPrescription(patient) {
 		"<br/>" +
 		"<button class='btn btn-default' id='addTime'>Add Time</button><br/>" +
 		"<br/>" +
+		"<div id='test'>"+
 		"<div class='form-group'>" +
 		"<label class='time'>Time</label>" + "<button class='btn btn-del' id='deleteTime'>Delete</button><br/>"+
 		"<input type='time' class='form-control' placeholder=''>" +
@@ -512,6 +513,7 @@ function addPrescription(patient) {
 
 		"</tbody>" +
 		"</table>" +
+		"</div>" +
 		"<br/>" +
 
 		"</fieldset>" +
@@ -536,16 +538,18 @@ function addPrescription(patient) {
 		addForm();
 	});
 	$(document.body).on("click", '#deleteTime', function() {
-		deleteForm();
+		$("div").remove("#test");
 	});
-function deleteForm() {
-	$("div").remove(".form-group");
-}
+
+	// 
+	// function deleteForm() {
+	// 	$("div").remove("#test");
+	// }
 
 	function addForm() {
 		var formHTML = $("#newPrescriptionForm").html();
 		var newFieldSet = "<div class='form-group'>" +
-			"<label class='time'>Time</label>" +
+			"<label class='time'>Time</label>" + "<button class='btn btn-del' id='deleteTime'>Delete</button><br/>" +
 			"<input type='time' class='form-control' placeholder=''>" +
 			"</div>" +
 			"<table>" +
