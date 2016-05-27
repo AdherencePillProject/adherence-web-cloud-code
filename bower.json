@@ -18,5 +18,8 @@
   "dependencies": {
     "angular-route": "~1.5.5",
     "bootstrap": "~3.3.6"
+  },
+  "resolutions": {
+    "angular": "1.5.5"
   }
 }

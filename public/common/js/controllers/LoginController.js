@@ -12,8 +12,8 @@ angular.module('app')
               if (($scope.accType == 'Patient') && pp) {
                console.log('patient');
                $scope.$apply(function(){
-                  $location.path('/patient/profile')
-               })
+                  $location.path('/patient/profile');
+               });
               }
               else if (($scope.accType == 'Doctor') && dp) {
                 console.log('doctor')

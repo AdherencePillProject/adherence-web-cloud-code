@@ -1,6 +1,17 @@
 angular.module('app')
   .controller('SignupController', ['$rootScope', '$scope', 'User', 'UI', '$location', function($rootScope, $scope, User, UI, $location) {
 
+      $scope.type_options = [{
+        label: 'Patient',
+        value: 1
+      }, {
+        label: 'Doctor',
+        value: 2
+      }, {
+        label: 'Pharmacy',
+        value: 3
+      }];
+
       $scope.user = {
         first_name: "",
         last_name: "",
@@ -20,14 +31,14 @@ angular.module('app')
 
       $scope.pharmacy = {
         pharmacy_name: "",
-        hospital_address: "",
-        hospital_city: "",
-        hospital_zip: ""
+        // pharmacy_address: "",
+        // pharmacy_city: "",
+        // pharmacy_zip: ""
       };
 
 
       $(document).ready(function() {
-          $('select').material_select();
+          $('#type_select').material_select();
       });
 
 

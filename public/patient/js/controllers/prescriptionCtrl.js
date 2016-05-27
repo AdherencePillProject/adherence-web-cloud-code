@@ -1,7 +1,6 @@
-'use strict';
 angular
 .module('app')
-.controller('prescriptionCtrl', function($scope) {
+.controller('prescriptionCtrl', ['$scope', '$rootScope', function($scope, $rootScope) {
 	$scope.checked = false;// if the patient have taken this pill: showing checked span
 	$scope.unchecked = !$scope.checked;// else showing unchecked;
     console.log($scope.unchecked);
@@ -9,13 +8,14 @@ angular
 	// funtion: addZero
 	// add 0 to one digit numbers to modify the format of time
 	var addZero = function(i) {
-          if (i < 10) {
-              i = "0" + i;
-          }
-          return i;
-        };
+    if (i < 10) {
+      i = "0" + i;
+    }
+    return i;
+  };
 
 
+    $scope.prescriptions = [];
     $scope.month = "";
     $scope.date = "";
     var currentdate = new Date();
@@ -25,7 +25,7 @@ angular
     console.log($scope.month);
     console.log(currentdate.getDate());
     // get the abbrevation of day_of_week
-    
+
     var weekday = new Array(7);
 	    weekday[0] = "Sun";
 	    weekday[1] = "Mon";
@@ -38,8 +38,25 @@ angular
     $scope.day_of_week = weekday[currentdate.getDay()];
     console.log(currentdate.getDay());
     console.log($scope.day_of_week);
-    // pill_info 
+    // pill_info
     // include the information of pills a patient should take, please retrieve from database
+
+    var query = $rootScope.currentUser.relation('prescription').query();
+    // query.limit(5);
+    // query.descending('createdAt');
+    query.find({
+      success: function(res) {
+        $scope.$apply(function() {
+          $scope.prescriptions = res;
+        });
+      },
+      error: function(err) {
+        console.log('this didnt work')
+        console.log(err);
+      }
+    });
+
+
     $scope.pill_info = [
     	{
     		"index": "0",
@@ -73,20 +90,20 @@ angular
             $scope.opened = undefined;
         } else {
             $scope.opened = item;
-        }        
+        }
     };
-    
+
     $scope.isOpen = function(item){
         return $scope.opened === item;
     };
-    
+
     $scope.anyItemOpen = function() {
         return $scope.opened !== undefined;
     };
-    
+
     $scope.close = function() {
         $scope.opened = undefined;
     };
 
 
-});
+}]);
