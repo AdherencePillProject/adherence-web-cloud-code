@@ -12,6 +12,51 @@
     <!-- CSS Frameworks -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css"/>
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+    <!-- custom CSS -->
+    <link rel="stylesheet" href="common/css/index.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="patient/css/patient_prescription.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="doctor/css/doctor_patientgraph.css" media="screen" title="no title" charset="utf-8">
+
+
+
+  </head>
+  <body>
+    <nav class="apb-nav">
+      <div class="apb-logo">
+        <a href="#"><span class="">APB System</span></a>
+      </div>
+      <div class="apb-nav-box">
+        <div class="apb-nav-text">
+          Welcome, {{currentUser.get('firstname')}}
+        </div>
+        <div class="apb-nav-tool">
+          <a href="#/patient/profile"><i class="fa fa-user"></i>&nbsp Ilya Mikhelson</a>
+          <a href="#">
+            <i class="fa fa-bell"></i>
+            <span class="apb-badge">3</span>
+          </a>
+          <a href="#">
+            <i class="fa fa-envelope"></i>
+            <span class="apb-badge">1</span>
+          </a>
+        </div>
+      </div>
+    </nav>
+    <div class="apb-side">
+      <a href="#/doctor/doc_patient" class='apb-a'>
+        <i class="fa fa-stethoscope"></i>&nbsp Prescription</a>
+      <a href="#/patient/home" class='apb-a'>
+        <i class="fa fa-plus-square"></i>&nbsp Med Cabinet</a>
+      <a href="#" class='apb-a' >
+        <i class="fa fa-calendar-check-o"></i>&nbsp Appointment</a>
+      <a href="#/doctor/home" class='apb-a'>
+        <i class="fa fa-user-md"></i>&nbsp My Doctor</a>
+      <!-- <a href="#/doctor/patientView" class='apb-a'>
+        <i class="fa fa-user-md"></i>&nbsp Doctor Patient View</a> -->
+      <a href="#/doctor/graph" class='apb-a'>
+        <i class="fa fa-cog"></i>&nbsp Graph</a>
+    </div>
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="common/css/index.css" media="screen" title="no title" charset="utf-8">
@@ -21,6 +66,7 @@
     <script src="//www.parsecdn.com/js/parse-1.6.7.js"></script>
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.js"></script>
+     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-materialize/0.1.8/angular-materialize.min.js"></script>
@@ -48,5 +94,7 @@
     <div ng-include="navbar.html"></div>
     <div ng-view class="apb-page"></div>
 
+    <script src="doctor/js/doctor_patientgraph.js"></script>
+    <script src="doctor/js/doctor_patientgraph.js"></script>
   </body>
 </html>

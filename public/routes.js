@@ -21,7 +21,9 @@ angular.module('app')
           controller  : 'PatientProfileController'
       })
       .when('/doctor/home', {
-          templateUrl : 'doctor/views/Doctorhome.html'
+          templateUrl : 'doctor/views/Doctorhome.html',
+          controller:'patient_graphCtrl',
+          css:'doctor/css/doctor_table.css'
       })
       .when('/patient/home', {
           templateUrl : 'patient/views/Prescription.html',
@@ -32,11 +34,15 @@ angular.module('app')
           templateURL: 'patient/views/medCabinet.html',
           controller: 'MedCabinetController'
       })
-      .when('/doctor/patientView', {
-          templateURL: 'doctor/views/doctor_patientgraph.html'
-      })
-      .when('/doctor/doc_patient', {
-          templateURL: 'doctor/views/doctor_patientprescription.html'
+      // .when('/doctor/patientView', {
+      //     templateURL: 'doctor/views/doctor_patientgraph.html',
+      //     controller: 'patient_graphCtrl',
+      //     css: 'doctor_patientgraph.css'
+      // })
+      .when('/doctor/graph', {
+          templateURL: 'doctor/views/doctor_patientgraph.html',
+          controller: 'patient_graphCtrl',
+          css: 'doctor_patientgraph.css'
       })
       .otherwise({
           redirectTo  : '/'

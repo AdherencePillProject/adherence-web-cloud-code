@@ -1,6 +1,6 @@
 angular
 .module('app')
-.controller('prescriptionCtrl', ['$scope', '$rootScope', function($scope, $rootScope) {
+.controller('prescriptionCtrl', ['$scope', '$rootScope', 'Patient', function($scope, $rootScope, Patient) {
 	$scope.checked = false;// if the patient have taken this pill: showing checked span
 	$scope.unchecked = !$scope.checked;// else showing unchecked;
     console.log($scope.unchecked);
@@ -57,33 +57,9 @@ angular
     });
 
 
-    $scope.pill_info = [
-    	{
-    		"index": "0",
-    		"name" :"Antihistamine",
-    		"note" :"Take after lunch",
-    		"dose" :"2",
-    		"time":"09:30",
-    		"intro":"Here is the detailed introduction to this pill and prescription inforamtion"
-    	},
-
-        {
-            "index": "1",
-            "name" :"Sonata",
-            "note" :"15 mins before bed time",
-            "dose" :"1",
-            "time":"11:30",
-            "intro":"Here is the detailed introduction to"
-        }
-    ];
-
-    //function:show_detail
-    //click the the pill and show pill_detail
-  //   $scope.showDetaili = true;
-  //   $scope.show_detail = function(){
-		// $scope.showDetail = ! $scope.showDetail;
-  //   };
-
+    console.log('current user is', $rootScope.currentUser.get('prescription'));
+    // pill_info 
+    // include the information of pills a patient should take, please retrieve from database
 
   $scope.open = function(item){
         if ($scope.isOpen(item)){
@@ -106,4 +82,8 @@ angular
     };
 
 
+<<<<<<< HEAD
 }]);
+=======
+}]);
+>>>>>>> 8bbc931b0b0b85338166bfee7d9cdceadbd2249b
