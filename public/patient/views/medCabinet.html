@@ -1,37 +1,6 @@
-<!doctype html>
-<html ng-app="app">
-<head>
-  <meta charset="utf-8">
-  <title>Patient Portal Homepage</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!--Add JQuery-->
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
-  <!--Add Bootstrap CSS & JS-->
-  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-  <!--Add PT Sans Font-->
-  <link href='https://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
-  <!--Add Font Awesome Icons-->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
-  <!--Add Angular-->
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
-  <!--Add Angular Directives-->
-  <script src="/js/angular-app.js"></script>
 
-  <!--Add Custom CSS-->
-  <link rel="stylesheet" type="text/less" href="../css/myStyle.css">
-  <script src="http://www.parsecdn.com/js/parse-1.6.7.min.js"></script>
-
-  <!-- Add backend -->
-  <script src="../js/medCabinet_homePage.js"></script>
-
-</head>
-
-<body onload="getPillInfoForCurrentUser()" data-spy="scroll" data-target="#myScrollspy">
-
-  <!-- <div ng-controller='NavController as tab' ng-include src="'/partials/navbar/navbar.html'"></div> -->
+<div onload="getPillInfoForCurrentUser()" data-spy="scroll" data-target="#myScrollspy">
 
   <div class="container" id="medcabinet"><!-- Med Cabinent -->
     <div class ="panel panel-info">
@@ -39,7 +8,7 @@
         <div>Your Medication Cabinent</div>
       </div>
 
-      <div class="panel-body table">
+      <div class="panel-div table">
         <div class="container-fluid">
 
           <div id='search-box'>
@@ -47,7 +16,7 @@
               <input id='search-text' name='q' placeholder='Search Box' type='text'/>
               <button id='search-button' type='submit'><span>Search</span></button>
             </form>
-         </div>
+          </div>
 
 
          <div class="row" ng-controller="MedCabinetController" id="med">
@@ -117,6 +86,4 @@
   </div>
 </div><!-- /.container for med cabinent -->
 
-
-</body>
-</html>
+</div>

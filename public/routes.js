@@ -30,9 +30,10 @@ angular.module('app')
           controller : 'prescriptionCtrl',
           css: 'patient/css/patient_prescription.css'
       })
-      .when('/patient/MedCabinet', {
-          templateURL: 'patient/views/medCabinet.html',
-          controller: 'MedCabinetController'
+      .when('/patient/medCabinet', {
+          templateUrl : 'patient/views/medCabinet.html',
+          controller : 'MedCabinetController',
+          css: 'patient/css/medcabinet.css'
       })
       // .when('/doctor/patientView', {
       //     templateURL: 'doctor/views/doctor_patientgraph.html',
