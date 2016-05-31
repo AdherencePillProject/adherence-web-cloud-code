@@ -3,8 +3,8 @@
 <div onload="getPillInfoForCurrentUser()" data-spy="scroll" data-target="#myScrollspy">
 
   <div class="container" id="medcabinet"><!-- Med Cabinent -->
-    <div class ="panel panel-info">
-      <div class="panel-heading" id="panelheading">
+    <div class ="panel panel-primary" style="margin-top:100px">
+      <div class="panel-heading" style="background-color:#499de2; text-align:center; font-size:18px">
         <div>Your Medication Cabinent</div>
       </div>
 
@@ -12,78 +12,83 @@
         <div class="container-fluid">
 
           <div id='search-box'>
+
+
             <form action='/search' id='search-form' method='get' target='_top'>
-              <input id='search-text' name='q' placeholder='Search Box' type='text'/>
-              <button id='search-button' type='submit'><span>Search</span></button>
+              <div class="submit1" style="width:300px; margin-top:30px">
+              <input id='search-text' name='q' placeholder='Search Box' type="text" style="width:60%">
+              <button class="btn btn-primary" id='search-button' type='submit' style="width:30%">Search</button>
+            </div>
             </form>
+
           </div>
 
 
-         <div class="row" ng-controller="MedCabinetController" id="med">
-           <!-- <div ng-repeat="med in meds">{{med.name}}</div> -->
-           <div class="col-md-9">
-             <!-- /.Two sortable listgroup-->
-             <div id="listWithHandle" class="list-group"><!--List Group-->
+          <div class="row" id="med">
+            <!-- <div ng-repeat="med in meds">{{med.name}}</div> -->
+            <div class="col-md-9">
+              <!-- /.Two sortable listgroup-->
+              <div id="listWithHandle" class="list-group"><!--List Group-->
 
-               <!--List Group item1-->
-               <div class="list-group-item table" id="medication" style="display: none;">
-                 <!-- <span class="glyphicon glyphicon-move"></span> -->
+                <!--List Group item1-->
+                <div class="list-group-item table" id="medication" style="display: none;">
+                  <!-- <span class="glyphicon glyphicon-move"></span> -->
 
-                 <!--container for the first item in the list group-->
-                 <div class="row">
-                   <h3 class="firstmed" style="text-align:center"></h3>
+                  <!--container for the first item in the list group-->
+                  <div class="row">
+                    <h3 class="firstmed" style="text-align:center"></h3>
 
-                   <!--First Part-->
-                   <div class="col-sm-3" id="pillcontent">
-                     <div id="img"><img src="../assets/images/capsule-icon.png"
-                          class="img-responsive" alt="Responsive image" width="64" height="64"></div><!-- Pill Icon Appears Here-->
-                     <div class="title" id="pillInfo">Pill Info</div>
-                     <div class="pNameAndInstruction"></div><!-- Pill Name Appears Here-->
-                   </div><!--First Part-->
+                    <!--First Part-->
+                    <div class="col-sm-3" id="pillcontent">
+                      <div id="img"><img src="../assets/images/capsule-icon.png"
+                        class="img-responsive" alt="Responsive image" width="64" height="64"></div><!-- Pill Icon Appears Here-->
+                        <div class="title" id="pillInfo">Pill Info</div>
+                        <div class="pNameAndInstruction"></div><!-- Pill Name Appears Here-->
+                      </div><!--First Part-->
 
-                   <!--Second Part -->
-                   <div class="col-sm-3" id="pillcontent">
-                     <div id="img"> <img src="../assets/images/doctor-icon.png"
+                      <!--Second Part -->
+                      <div class="col-sm-3" id="pillcontent">
+                        <div id="img"> <img src="../assets/images/doctor-icon.png"
                           class="img-responsive" alt="Responsive image" width="64" height="64"> </div><!-- Doctor's Suggestion Icon Appears Here-->
-                     <div class="title">Doctor's Suggestion</div>
-                     <div class="suggestion"></div><!-- Doctor's Suggestion Appears Here-->
-                   </div><!--Second Part -->
+                          <div class="title">Doctor's Suggestion</div>
+                          <div class="suggestion"></div><!-- Doctor's Suggestion Appears Here-->
+                        </div><!--Second Part -->
 
-                   <!--Third Part -->
-                   <div class="col-sm-3" id="pillcontent">
-                     <div id="img"><img src="../assets/images/prescription-icon.png"
-                          class="img-responsive" alt="Responsive image" width="64" height="64"></div><!-- Refill Icon Appears Here-->
-                       <div class="title">Refill Information</div>
-                       <div>10 Pills Left</br>Refill in 5 Days</div><!-- Refill Info Appears Here-->
-                   </div><!--Third Part -->
+                        <!--Third Part -->
+                        <div class="col-sm-3" id="pillcontent">
+                          <div id="img"><img src="../assets/images/prescription-icon.png"
+                            class="img-responsive" alt="Responsive image" width="64" height="64"></div><!-- Refill Icon Appears Here-->
+                            <div class="title">Refill Information</div>
+                            <div>10 Pills Left</br>Refill in 5 Days</div><!-- Refill Info Appears Here-->
+                          </div><!--Third Part -->
 
-                   <!--fourth Part -->
-                   <div class="col-sm-3" id="pillcontent">
-                     <div id="img"><img src="../assets/images/Checklist-icon.png"
-                          class="img-responsive" alt="Responsive image" width="64" height="64"></div><!-- Refill Icon Appears Here-->
-                     <div class="title">Reminder</div>
-                     <div>Take1: Morning&nbsp&nbsp&nbsp<span class="glyphicon glyphicon-ok"></span></br>
-                         Take2: Afternoon&nbsp&nbsp&nbsp<span class="glyphicon glyphicon-remove"></span></div><!-- History Appears Here-->
-                   </div><!--fourth Part -->
+                          <!--fourth Part -->
+                          <div class="col-sm-3" id="pillcontent">
+                            <div id="img"><img src="../assets/images/Checklist-icon.png"
+                              class="img-responsive" alt="Responsive image" width="64" height="64"></div><!-- Refill Icon Appears Here-->
+                              <div class="title">Reminder</div>
+                              <div>Take1: Morning&nbsp&nbsp&nbsp<span class="glyphicon glyphicon-ok"></span></br>
+                                Take2: Afternoon&nbsp&nbsp&nbsp<span class="glyphicon glyphicon-remove"></span></div><!-- History Appears Here-->
+                              </div><!--fourth Part -->
 
-                 </div><!--List Group item1-->
-             </div>
+                            </div><!--List Group item1-->
+                          </div>
 
 
-           </div><!--Total List Group-->
-           </div>
+                        </div><!--Total List Group-->
+                      </div>
 
-           <div class="col-md-3" id="myScrollspy">
-              <ul class="nav nav-tabs nav-stacked" data-spy="affix" data-offset-top="205">
-                  <li class="active"><a href="#firstmed">Xanax</a></li>
-              </ul>
-           </div>
-         </div>
+                      <div class="col-md-3" id="myScrollspy">
+                        <ul class="nav nav-tabs nav-stacked" data-spy="affix" data-offset-top="205">
+                          <li class="active"><a href="#firstmed">Xanax</a></li>
+                        </ul>
+                      </div>
+                    </div>
 
-      </div><!-- /.container-fluid-original -->
+                  </div><!-- /.container-fluid-original -->
 
-    </div>
-  </div>
-</div><!-- /.container for med cabinent -->
+                </div>
+              </div>
+            </div><!-- /.container for med cabinent -->
 
-</div>
+          </div>
