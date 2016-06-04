@@ -33,10 +33,14 @@ angular.module('app')
           controller : 'PatientPrescriptionController'
       })
       .when('/patient/MedCabinet', {
-          templateURL: 'patient/views/medCabinet.html'
+          templateUrl: 'patient/views/medCabinet.html'
       })
       .when('/doctor/patientView', {
-          templateURL: 'doctor/views/doctor_patientgraph.html'
+          templateUrl: 'doctor/views/doctor_patientgraph.html'
+      })
+      .when('/inbox', {
+           templateUrl: 'common/views/inbox.html',
+            controller: 'InboxController'
       })
 
       .otherwise({
