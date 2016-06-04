@@ -1,0 +1,172 @@
+body, html {
+  width: 100%;
+  margin: 0%;
+}
+
+.name{
+  font-size: 18;
+  font-weight: bold;
+  text-align: center;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+
+#searchbar {
+font-family: 'PT Sans', sans-serif;
+margin-top: 10px;
+margin-bottom: 20px;
+font-size:20px;
+border-radius:0px;
+}
+
+#panelheading {
+  text-align: center;
+  font-family: 'PT Sans', sans-serif;
+  font-size:20px;
+  background-color:#0089ec !important;
+  border-color:#4d90fe;
+  color:#000000;
+}
+
+#buttongroup{
+  font-family: 'PT Sans', sans-serif;
+  float:right;
+}
+
+#pillcontent{
+  font-family: 'PT Sans', sans-serif;
+  font-size:16px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+#img{
+  margin-bottom: 15px;
+}
+
+.glyphicon-move {
+  cursor: move;
+  cursor: -webkit-grabbing;
+}
+
+#medication{
+  margin-bottom: 15px;
+  background-color: #fff;
+}
+
+.title{
+  font-family: arial;
+  font-size: 14;
+  font-weight: bold;
+}
+
+#search-box {
+  position: relative;
+  width: 30%;
+  margin-bottom: 15px;
+}
+
+#search-form {
+  height: 40px;
+  border: 1px solid #999;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+#search-text {
+  font-size: 14px;
+  color: #ddd;
+  border-width: 0;
+  background: transparent;
+}
+
+#search-box input[type="text"] {
+  width: 90%;
+  padding: 11px 0 12px 1em;
+  color: #333;
+  outline: none;
+}
+.submit1 {
+  width: 300px;
+}
+.submit1 input {
+  width: 80%;
+}
+
+.submit1 button {
+  width: 20%;
+}
+
+/*#search-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 40px;
+  width: 80px;
+  font-size: 14px;
+  color: #fff;
+  text-align: center;
+  line-height: 42px;
+  border-width: 0;
+  background-color: #4d90fe;
+  -webkit-border-radius: 0px 5px 5px 0px;
+  -moz-border-radius: 0px 5px 5px 0px;
+  border-radius: 0px 5px 5px 0px;
+  cursor: pointer;
+}*/
+
+
+.cell {
+  float: left;
+  width: 50%;
+}
+
+.table {
+  border:1px solid #000000;
+}
+
+/* Custom Styles for Bootstrap Affix */
+ul.nav-tabs{
+  text-align: center;
+  width: 220px;
+  margin-top: 0px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.067);
+}
+
+ul.nav-tabs li{
+    margin: 0;
+    border-top: 1px solid #ddd;
+}
+
+ul.nav-tabs li:first-child{
+    border-top: none;
+}
+
+ul.nav-tabs li a{
+    margin: 0;
+    padding: 8px 16px;
+    border-radius: 0;
+}
+
+ul.nav-tabs li.active a, ul.nav-tabs li.active a:hover{
+    color: #fff;
+    background: #0088cc;
+    border: 1px solid #0088cc;
+}
+
+ul.nav-tabs li:first-child a{
+    border-radius: 4px 4px 0 0;
+}
+
+ul.nav-tabs li:last-child a{
+    border-radius: 0 0 4px 4px;
+}
+
+ul.nav-tabs.affix{
+    top: 60px; /* Set the top position of pinned element */
+}

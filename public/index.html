@@ -3,22 +3,20 @@
   <head>
     <meta charset="utf-8">
     <title>Welcome To APB</title>
-    <!--Font Awesome-->
+    <!--font-awesome-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <!--Fonts-->
+
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Lato:400,300' rel='stylesheet' type='text/css'>
 
     <!-- CSS Frameworks -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css"/>
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
     <!-- custom CSS -->
     <link rel="stylesheet" href="common/css/index.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="patient/css/patient_prescription.css" media="screen" title="no title" charset="utf-8">
-    <link rel="stylesheet" href="doctor/css/doctor_patientgraph.css" media="screen" title="no title" charset="utf-8">
 
     <!-- JS Dependencies -->
-    <script src="//www.parsecdn.com/js/parse-1.6.7.js"></script>
+    <script src="https://www.parsecdn.com/js/parse-1.6.7.js"></script>
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.js"></script>
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
@@ -40,13 +38,18 @@
     <!-- Controllers -->
     <script src="common/js/controllers/LoginController.js"></script>
     <script src="common/js/controllers/SignupController.js"></script>
-    <script src="common/js/controllers/InboxController.js"></script>
+    <script src="patient/js/controllers/PatientPrescriptionController.js"></script>
     <script src="patient/js/controllers/PatientProfileController.js"></script>
-    <script src="patient/js/controllers/MedCabinetController.js"></script>
     <script src="patient/js/controllers/prescriptionCtrl.js"></script>
+    <script src="patient/js/controllers/MedCabinetController.js"></script>
+    <script src="common/js/controllers/InboxController.js"></script>
+    <link href="bower_components/angular-xeditable/dist/css/xeditable.css" rel="stylesheet">
+    <script src="bower_components/angular-xeditable/dist/js/xeditable.js"></script>
+    <script src="routes.js"></script>
     <script src="doctor/js/doctor_patientgraph.js"></script>
-    <script src="doctor/js/doctor_patientgraph.js"></script>
-
+    <script src="doctor/js/DoctorHomeController.js"></script>
+    <script src="doctor/js/DocPrescriptController.js"></script>
+    <script src="doctor/js/controllers/DoctorProfileController.js"></script>
   </head>
   <body>
     <nav class="apb-nav">
@@ -58,7 +61,7 @@
           Welcome, {{currentUser.get('firstname')}}
         </div>
         <div class="apb-nav-tool">
-          <a href="#/patient/profile"><i class="fa fa-user"></i>&nbsp Ilya Mikhelson</a>
+          <a href="#/patient/profile"><i class="fa fa-user"></i>&nbsp {{currentUser.get('firstname')}} {{currentUser.get('lastname')}}</a>
           <a href="#">
             <i class="fa fa-bell"></i>
             <span class="apb-badge">3</span>
@@ -71,22 +74,21 @@
       </div>
     </nav>
     <div class="apb-side">
-      <a href="#/doctor/doc_patient" class='apb-a'>
-        <i class="fa fa-stethoscope"></i>&nbsp Prescription</a>
       <a href="#/patient/home" class='apb-a'>
+        <i class="fa fa-stethoscope"></i>&nbsp Prescription</a>
+      <a href="#/patient/MedCabinet" class='apb-a'>
         <i class="fa fa-plus-square"></i>&nbsp Med Cabinet</a>
       <a href="#" class='apb-a' >
         <i class="fa fa-calendar-check-o"></i>&nbsp Appointment</a>
       <a href="#/doctor/home" class='apb-a'>
         <i class="fa fa-user-md"></i>&nbsp My Doctor</a>
-      <!-- <a href="#/doctor/patientView" class='apb-a'>
-        <i class="fa fa-user-md"></i>&nbsp Doctor Patient View</a> -->
-      <a href="#/doctor/graph" class='apb-a'>
-        <i class="fa fa-cog"></i>&nbsp Graph</a>
+      <a href="#" class='apb-a'>
+        <i class="fa fa-cog"></i>&nbsp Setting</a>
+
     </div>
 
+    <div ng-view class="apb-page">
 
-    <div ng-include="navbar.html"></div>
-    <div ng-view class="apb-page"></div>
+    </div>
   </body>
 </html>
