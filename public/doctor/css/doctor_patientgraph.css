@@ -1,38 +1,48 @@
-* {
-    padding: 0;
-    margin: 0;
-    font-family: "Helvetica Neue"
-}
 body {
     background-color: white;
+      ont-family: "Helvetica Neue";
+}
+.list-group {
+    padding-top: 20px;
+}
+#options {
+    float:right;
 }
 .col-md-4 {
     padding-left: 5%;
     padding-right: 10px;
+    height: 700px;
+}
+.col-md-8 {
+    padding-left: 10px;
+    padding-right: 5%;
+}
+#patien-list {
+    padding: 20px 0px 0px 0px;
+    width: 100%;
+}
+#checkbox-left {
+    float: left; 
+    padding-right: 10px;
+    padding-left: 10%;
+}
+#radios-right {
+    float: left; 
+    padding-left: 10px;
 }
 #graph {
-    padding-right: 5%;
-    margin-top: 100px;
+    clear: both;
+    padding-left: 10%;
+    padding-right: 10%;
 }
-#patien_names {
-    margin-top: 20px;
-    height: 550px;
-    overflow-x: hidden;
-    overflow-y: auto;
+#xanax {
+    color: #0091ea;
+    font-weight: bold;
 }
-.col-md-8 > .btn-group {
-    float: right;
-    margin-bottom: 0;
-    margin-right: 5%;
+#iron {
+    color: #c51162;
+    font-weight: bold;
 }
-.btn-group button {
-    width: 100px;
-}
-.label-for-date {
-    width: 80px;
-}
-.reminder {
-    color: #8c8c8c;
-    margin-top: 15px;
-    margin-bottom: -15px;
+#lb-cb1, #lb-cb2 {
+    font-weight: bold;
 }

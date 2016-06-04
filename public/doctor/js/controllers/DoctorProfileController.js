@@ -1,5 +1,6 @@
 angular.module('app')
-  .controller('PatientProfileController', ['$scope', '$rootScope', 'Patient', '$timeout', '$http', function($scope, $rootScope, Patient, $timeout, $http) {
+  .controller('DoctorProfileController', ['$scope', '$rootScope', 'Doctor', '$timeout', '$http', function($scope, $rootScope, Doctor, $timeout, $http) {
+  var profileImage;
   if (angular.isUndefined($rootScope.currentUser.get("photo"))) {
     profileImage = "http://files.parsetfss.com/658c91b7-5524-4d6d-901d-467f243eda11/tfss-8a768afb-cf7f-4941-894a-3a0927280ffe-defaultAvatar.png";
   }
@@ -15,10 +16,6 @@ angular.module('app')
 		phone: $rootScope.currentUser.get('phone'),
 		imageURL: profileImage,
 	};
-
-
-
-
  $(function() {
     var file;
     // This function is called when the user clicks on Upload to Parse. It will create the REST API request to upload this image to Parse.
@@ -74,8 +71,5 @@ angular.module('app')
 
 
   }]);
-
-
-
 
 

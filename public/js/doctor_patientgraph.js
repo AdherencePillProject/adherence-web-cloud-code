@@ -16,70 +16,79 @@ var prescriptionNum = 0;
 //function: toggles the active class element for divs on the right
 //           loads prescription data for selected patient
 function toggleActive(element){
-    //should only be one
-    var actives = document.getElementsByClassName("list-group-item active");
-    for (var i = 0; i < actives.length; i++){
-        actives[i].className = "list-group-item";
-    }
-    element.className = "list-group-item active";
+	//should only be one
+	var actives = document.getElementsByClassName("list-group-item active");
+	for (var i = 0; i < actives.length; i++){
+		actives[i].className = "list-group-item";
+	}
+	element.className = "list-group-item active";
 
-    //element.id[4] because id is in form "name[num here]"
-    var num = parseInt(element.id[4]);
+	//element.id[4] because id is in form "name[num here]"
+	var num = parseInt(element.id[4]);
 
-    var currActiveUser = namesToIndices[num];
+	var currActiveUser = namesToIndices[num];
 
+	getPrescriptions(currActiveUser);
 
 }
 
 function getPatientsInfo2() {
 
-    var patientList = Parse.Object.extend("Patient");
-    var query = new Parse.Query(patientList);
+  var patientList = Parse.Object.extend("Patient");
+  var query = new Parse.Query(patientList);
 
-    // Include user account info so we don't have to do another query
-    query.include('userAccount').ascending('firstname');
+  // Include user account info so we don't have to do another query
+  query.include('userAccount').ascending('firstname');
 
-    // Use a dict to save name/user pairs and sort later
-    var unsortedNames = [];
+  // Use a dict to save name/user pairs and sort later
+  var unsortedNames = [];
 
-    query.find({
-        success: function(patients) {
-            for (var i = 0; i < patients.length; i++) {
-                var user = patients[i].get("userAccount");
+  query.find({
+    success: function(patients) {
+      for (var i = 0; i < patients.length; i++) {
+        var user = patients[i].get("userAccount");
 
-                if (user != undefined) {
-                    var firstname = user.get("firstname");
-                    var lastname = user.get("lastname").toUpperCase();
-                    if (firstname != undefined && lastname != undefined) {
-                        var name = lastname + ", " + firstname;
-                        var userAndName = {
-                            lastName: lastname,
-                            name: name,
-                            user: user
-                        };
-                        unsortedNames.push(userAndName);
-                    }
-                }
-            }
-            // sortedNames.push.apply(sortedNames, Object.keys(unsortedUsers));
-            // Ascending, for descending, use sortedNames.sort().reverse()
-            // Or, use a customized rule. There is no out-of-box sorting for a nested query.
-            unsortedNames.sort(function(a, b) {
-                if (a['lastName'] < b['lastName']) return -1;
-                if (a['lastName'] > b['lastName']) return 1;
-                return 0;
-            });
-            for (var i = 0; i < unsortedNames.length; i++) {
-                var sortedUser = unsortedNames[i]["user"];
-                var sortedName = unsortedNames[i]["name"];
-                namesToIndices[i] = sortedUser;
-                createNameDiv(sortedName, i);
-            }
-        },
-        error: function(error) {
-            alert(error.message);
+        if (user != undefined) {
+          //alert(user);
+          var firstname = user.get("firstname");
+          var lastname = user.get("lastname");
+          if (firstname != undefined && lastname != undefined) {
+
+            var name = firstname + " " + lastname;
+            var userAndName = {
+              name: name,
+              user: user
+            };
+            unsortedNames.push(userAndName);
+          }
         }
-    });
+      }
+
+
+      // sortedNames.push.apply(sortedNames, Object.keys(unsortedUsers));
+      // Ascending, for descending, use sortedNames.sort().reverse()
+      // Or, use a customized rule. There is no out-of-box sorting for a nested query.
+      unsortedNames.sort(function(a, b) {
+        if (a["name"] < b["name"]) {
+          return -1;
+        }
+        if (a["name"] > b["name"]) {
+          return 1;
+        }
+
+        return 0;
+      });
+      for (var i = 0; i < unsortedNames.length; i++) {
+        var sortedUser = unsortedNames[i]["user"];
+        var sortedName = unsortedNames[i]["name"];
+        namesToIndices[i] = sortedUser;
+        createNameDiv(sortedName, i);
+      }
+    },
+    error: function(error) {
+      alert(error.message);
+    }
+  });
 }
 
 //createNameDiv()
@@ -89,37 +98,36 @@ function getPatientsInfo2() {
 
 
 function createNameDiv(patient_name, count, pillName){
-    //Add their names to div id="patient_names"
-    var pn = document.getElementById("patien_names");
-    var newA = document.createElement("a");
+	//Add their names to div id="patient_names"
+	var pn = document.getElementById("patien_names");
+	var newA = document.createElement("a");
 
-    newA.href = "#";
-    newA.id = "name" + count;
-    newA.onclick = function() {
-        patientClicked(this, patient_name);
-    }
-    var name = document.createElement("h4");
-    name.textContent = patient_name;
-    name.className = "list-group-item-heading";
+	newA.href = "#";
+	newA.id = "name" + count;
+	newA.onclick = function() {
+		patientClicked(this, patient_name);
+	}
+	var name = document.createElement("h4");
+	name.textContent = patient_name;
+	name.className = "list-group-item-heading";
 
-    //first person loaded is highlighted
-    if(count == 0){
-        newA.className = "list-group-item active";
-        //element.id[4] because id is in form "name[num here]"
-        var num = parseInt(newA.id[4]);
-        var currActiveUser = namesToIndices[num];
-    }
-    else {
-        newA.className = "list-group-item";
-    }
+	//first person loaded is highlighted
+	if(count == 0){
+		newA.className = "list-group-item active";
+		//element.id[4] because id is in form "name[num here]"
+		var num = parseInt(newA.id[4]);
+		var currActiveUser = namesToIndices[num];
+	}
+	else {
+		newA.className = "list-group-item";
+	}
 
-    newA.appendChild(name);
-    pn.appendChild(newA);
+	newA.appendChild(name);
+	pn.appendChild(newA);
 }
 
 
 function patientClicked(ev, pillName) {
-  toggleActive(ev);
   chart.options.data = [];
   chart.options.title.text = pillName + "'s Weekly Graph Report"
   pill_times_data = []
@@ -127,7 +135,6 @@ function patientClicked(ev, pillName) {
   putDataArrayToChart();
   // getPatientsInfo2();
   chart.render();
-  $(".col-md-8 > .btn-group").show();
 }
 
 
@@ -279,22 +286,20 @@ function putDataArrayToChart() {
 getPatientsInfo2();
 // chart.render();
 
-$("#SelectAll").click(function() {
-  for(var i = 0; i < pill_names.length; i++) {
-    chart.options.data[i].visible = true;
-  }
-  chart.render();
-});
 
-$("#unSelectAll").click(function() {
-  for(var i = 0; i < pill_names.length; i++) {
-    chart.options.data[i].visible = false;
+  document.getElementById("SelectAll").onclick = function () {
+    for(var i = 0; i < pill_names.length; i++) {
+      chart.options.data[i].visible = true
+    }
+    chart.render()
   }
-  chart.render();
-});
+  document.getElementById("unSelectAll").onclick = function () {
+    for(var i = 0; i < pill_names.length; i++) {
+      chart.options.data[i].visible = false
+    }
+    chart.render()
+  }
 
-$(".canvasjs-chart-credit").hide();
-$(".col-md-8 > .btn-group").hide();
 }
 
 

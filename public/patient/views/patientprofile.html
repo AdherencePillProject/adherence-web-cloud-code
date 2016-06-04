@@ -1,66 +1,127 @@
 <html>
     <head>
         <title>My Profile</title>
-        <link href="css/patientProfile.css" rel="stylesheet">
-
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="Patient_prescription/css/my.css" rel = "stylesheet" type="text/css">
-        <link rel="stylesheet" type="text/less" href="css/home.less">
-        <link rel="stylesheet" href="../css/patientprofile.css" rel="stylesheet" type="text/css">
-        <link href='https://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
-        <!-- this is a hack, remove when fixed to deal with failed to parse source map, asynchronous rejection-->
-        <script>$.ajaxPrefilter(function( options, originalOptions, jqXHR ) { options.async = true; });</script> 
-        <!-- will create seperate css file later -->
-
-
+        <link rel="stylesheet" href="../css/patientProfile.css" rel="stylesheet" type="text/css">
     </head>
-    <body class="container">
-    <style>h3 {display:inline;}</style>
+
+    <body>
+        <style>
+            h3 {display:inline;}
+
+            .container1 {
+                margin-top: 3%;
+                margin-left: 20%;
+            }
+
+            .img-circle {
+                border-radius: 50%;
+                float: left;
+            }
+            .avatar {
+                float: left;
+                margin-left: 0px;
+            }
+            .aLabel {
+                float: left;
+                margin-top: 27%;
+                margin-left: -17%;
+
+            }
+
+               
+            .table-margin {
+                margin-left: 22%;
+            }
+
+            .uploadBox {
+              float:left;
+              margin-top: 17%;
+            }
+            .fileUpload {
+                position: relative;
+                overflow: hidden;
+                margin: 10px;
+            }
+            .fileUpload input.upload {
+                position: absolute;
+                top: 0;
+                right: 0;
+                margin: 0;
+                padding: 0;
+                font-size: 20px;
+                cursor: pointer;
+                opacity: 0;
+                filter: alpha(opacity=0);
+            }
 
 
+        </style>
 
-
-    <div class="container my-panel" id="patient-myprof">
-
-            <!--<div class="patient-upload-img">
-                <div class="avatar"><img src="patientProfile/defaultAvatar.png"></div>
-            </div>-->
-            <div class="patient-info">
-            
-                <h3>Name:</h3> {{currentUser.get('firstname')}} {{currentUser.get('lastname')}} <br><br>
-                <h3>Age:</h3> {{currentUser.get('age')}} <br><br>
-                <h3>Sex:</h3> {{currentUser.get('gender')}} <br><br>
-                <h3>Email:</h3> {{currentUser.get('email')}} <br><br>
-                <h3>Phone:</h3> {{currentUser.get('phone')}} <br><br>
-
+        <div class="container1">
+            <div class="avatar">
+                <img src="{{user.imageURL}}" class="image-circle"/>
             </div>
-          <!-- End Page Widget -->
-    </div>
+            <div class="aLabel">
+            jkl
+                <form id="fileupload" name="fileupload" enctype="multipart/form-data" method="post">
+                      <fieldset>
+                        <input type="file" name="fileselect" id="fileselect"></input>
+                        <input id="uploadbutton" type="button" class= "btn btn-default" value="Upload"/>
+                      </fieldset>
+                  </form>
+            </div>
 
 
-        <!--<table class = "aptmt-history">
-            <tr><td class="patientt"><i class="fa fa-user-md"></i> Doctor</td>
-                <td class="patientt"><i class="fa fa-hospital-o"></i> Clinic</td>
-                <td class="patientt">Admited For</td>
-                <td class="patientt">Last Appointment</td>  -->
-                <!-- These should be clickable and show the medical record of that vist -->
-              <!--  <td class="patientt">Next Appointment</td>
-            </tr>
-            <tr><td class="patientt">name</td>
-                <td class="patientt">Clinic</td>
-                <td class="patientt">Concern</td>
-                <td class="patientt">date</td>
-                <td class="patientt">date</td>
-            </tr>
 
-            <tr><td class="patientt">name</td><td class="patientt">Clinic</td><td class="patientt">Concern</td><td class="patientt">date</td><td class="patientt">date</td></tr>
 
-            <tr><td class="patientt">name</td><td class="patientt">Clinic</td> <td class="patientt">Concern</td><td class="patientt">date</td><td class="patientt">date</td></tr>
-            <tr><td class="patientt">name</td><td class="patientt">Clinic</td> <td class="patientt">Concern</td><td class="patientt">date</td><td class="patientt">date</td></tr>
 
-            <tr><td class="patientt">name</td><td class="patientt">Clinic</td><td class="patientt">Concern</td><td class="patientt">date</td><td class="patientt">date</td></tr>
-            </table> -->
-            <!--script type="text/javascript" src="js/home.js"></script>-->
+
+<!--             <div class="uploadBox">
+              <input id="fileselect" placeholder="Choose File" disabled="disabled" />
+              <div class="fileUpload btn btn-primary">
+                  <span>Upload</span>
+                  <input id="uploadbutton" type="file" class="upload" />
+              </div>
+            </div>
+ -->
+
+
+
+            <div class="table-margin">
+                <form editable-form name="editableForm" onaftersave="saveUser()">
+                    <table class="table table-striped" id="editableUser" style="width:50%">
+                        <tr>
+                            <td style="width:20%">Name: </td>
+                            <td style="width:80%"> <span editable-text="user.firstname" e-name="name" onaftersave="saveUser()" e-required>{{ user.firstname || 'empty' }}</span></td> 
+                        </tr>
+                        <tr>
+                            <td style="width:20%">Age: </td>
+                            <td style="width:80%"> <span editable-number="user.age" e-name="age" onaftersave="saveUser()" e-required>{{ user.age || 'empty' }}</span></td>
+                        </tr>
+                        <tr>
+                            <td style="width:20%">Gender: </td>
+                            <td style="width:80%"><span editable-text="user.gender" e-name="gender" onaftersave="saveUser()" e-required>{{ user.gender || 'empty' }}</span></td>
+                        </tr>
+                        <tr>
+                            <td style="width:20%"> E-mail: </td>
+                            <td style="width:80%"> <span editable-text="user.email" e-name="email" onaftersave="saveUser()" e-required>{{ user.email || 'empty' }}</span> </td>
+                        </tr>
+                        <tr>
+                            <td style="width:20%"> Phone: </td>
+                            <td style="width:80%"> <span editable-text="user.phone" e-name="phone" onaftersave="saveUser()" e-required>{{ user.phone || 'empty' }}</span> </td>
+                        </tr>
+                        <tr> <td style="width:40%"><button type="button" class="btn btn-default" ng-click="editableForm.$show()" ng-show="!editableForm.$visible">Edit</button>
+                        <span ng-show="editableForm.$visible">
+                            <button type="submit" class="btn btn-primary" ng-disabled="editableForm.$waiting">Save</button>
+                            <button type="button" class="btn btn-default" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()">
+                              Cancel
+                            </button>
+                      </span></td></tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+                    
 
     </body>
     

@@ -1,5 +1,5 @@
 //GLOBAL VARIABLES
-
+console.log("reached");
 //namesToIndices = keeps track of which patient is selected
 var namesToIndices = {};
 
@@ -96,7 +96,7 @@ function getPatientsInfo2() {
 
 						var name = firstname + " " + lastname;
 						// Use user as the key here because of the bad data sample where multiple
-						// different patient accounts are pointing to the same user account which is
+						// different patient accounts are pointing to the same user account which is 
 						// odd.
 						var userAndName = {
 							name: name,
@@ -181,7 +181,7 @@ function createNameDiv(patientName, count) {
 }
 
 
-//getPrescriptions()
+//getPrescriptions()		
 //parameters: user
 //function: gets list of prescriptions associated with patient
 //          creates prescription descriptions seen on left of screen
@@ -458,10 +458,7 @@ function addPrescription(patient) {
 
 	//temporarily remove addBtn
 	var addBtnHTML = $("#addBtn").html();
-	//  $("#addBtn").remove();
-	$(document.body).on("click", '#addBtn', function() {
-		addPrescription(patient);
-	});
+	$("#addBtn").remove();
 
 	var divHTML = $("#patient_descriptions").html();
 
@@ -474,9 +471,8 @@ function addPrescription(patient) {
 		"<br/>" +
 		"<button class='btn btn-default' id='addTime'>Add Time</button><br/>" +
 		"<br/>" +
-		"<div id='test'>"+
 		"<div class='form-group'>" +
-		"<label class='time'>Time</label>" + "<button class='btn btn-del' id='deleteTime'>Delete</button><br/>"+
+		"<label class='time'>Time</label>" +
 		"<input type='time' class='form-control' placeholder=''>" +
 		"</div>" +
 		"<table>" +
@@ -513,7 +509,6 @@ function addPrescription(patient) {
 
 		"</tbody>" +
 		"</table>" +
-		"</div>" +
 		"<br/>" +
 
 		"</fieldset>" +
@@ -528,30 +523,15 @@ function addPrescription(patient) {
 
 
 
-	// $( "button" ).click(function() {
-	//   $( "form1" ).remove();
-	// });
-
-
 	//adds new time option to add prescription div if user clicks "Add Time" button
 	$(document.body).on("click", '#addTime', function() {
 		addForm();
 	});
-	$(document.body).on("click", '#deleteTime', function() {
-		deleteForm();
-	});
-
-	//
-	function deleteForm() {
-		$("#test").remove("#test");
-	}
 
 	function addForm() {
 		var formHTML = $("#newPrescriptionForm").html();
-		var newFieldSet =
-	 		"<div id='test'>"+
-			"<div class='form-group'>" +
-			"<label class='time'>Time</label>" + "<button class='btn btn-del' id='deleteTime'>Delete</button><br/>" +
+		var newFieldSet = "<div class='form-group'>" +
+			"<label class='time'>Time</label>" +
 			"<input type='time' class='form-control' placeholder=''>" +
 			"</div>" +
 			"<table>" +
@@ -588,7 +568,6 @@ function addPrescription(patient) {
 
 			"</tbody>" +
 			"</table>" +
-			"</div>" +			
 			"<br/>";
 		formHTML += newFieldSet;
 		$("#newPrescriptionForm").html(formHTML);

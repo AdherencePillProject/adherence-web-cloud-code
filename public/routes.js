@@ -10,11 +10,11 @@ angular.module('app')
           templateUrl : 'common/views/home.html'
       })
       .when('/signup', {
-          templateUrl : 'common/views/signup.html',
-          controller  : 'SignupController'
+          templateUrl : 'common/views/signup.html'
       })
       .when('/doctor/profile', {
-          templateUrl : 'doctor/views/doctorprofile.html'
+          templateUrl : 'doctor/views/doctorprofile.html',
+          controller: 'DoctorProfileController'
       })
       .when('/patient/profile', {
           templateUrl : 'patient/views/patientprofile.html',
@@ -22,33 +22,23 @@ angular.module('app')
       })
       .when('/doctor/home', {
           templateUrl : 'doctor/views/Doctorhome.html',
-          controller:'patient_graphCtrl',
-          css:'doctor/css/doctor_table.css'
+          controller  : 'DoctorHomeController'
+      })
+      .when('/doctor/docpatient', {
+          templateUrl: 'doctor/views/doctor_patientprescription.html',
+          controller  : 'DoctorPrescriptionController'
       })
       .when('/patient/home', {
           templateUrl : 'patient/views/Prescription.html',
-          controller : 'prescriptionCtrl',
-          css: 'patient/css/patient_prescription.css'
+          controller : 'PatientPrescriptionController'
       })
-      .when('/patient/medCabinet', {
-          templateUrl : 'patient/views/medCabinet.html',
-          controller : 'MedCabinetController',
-          css: 'patient/css/medcabinet.css'
+      .when('/patient/MedCabinet', {
+          templateURL: 'patient/views/medCabinet.html'
       })
-      // .when('/doctor/patientView', {
-      //     templateURL: 'doctor/views/doctor_patientgraph.html',
-      //     controller: 'patient_graphCtrl',
-      //     css: 'doctor_patientgraph.css'
-      // })
-      .when('/doctor/graph', {
-          templateURL: 'doctor/views/doctor_patientgraph.html',
-          controller: 'patient_graphCtrl',
-          css: 'doctor_patientgraph.css'
+      .when('/doctor/patientView', {
+          templateURL: 'doctor/views/doctor_patientgraph.html'
       })
-      .when('/inbox', {
-          templateURL: 'common/views/inbox.html',
-          controller: 'InboxController'
-      })
+
       .otherwise({
           redirectTo  : '/'
       });

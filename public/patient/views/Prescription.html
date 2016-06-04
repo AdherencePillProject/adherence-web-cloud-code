@@ -1,31 +1,146 @@
-<div class="container">
-	<div class="row">
-		<div class="time_info">
-		<div class="date w3-tag w3-red">{{date}}<span id="th">th</span></div>
-		<div class="month_year">
-			<span class="month">{{month}}</span>
-			<!-- <span class="year">{{year}}</span> -->
-		</div>
-		<div class="day_of_week">{{day_of_week}}</div>
-		</div>
+<!DOCTYPE html>
+<html>
 
-		<div class="pill_dashborad">
-			<div ng-repeat = "x in prescriptions" ng-click="open(x)">
-				<span class="checked_span check_mark" ng-hide="checked">&#9989;</span>
-				<span class="unchecked_span check_mark" ng-hide="unchecked">&#128504;</span>
-				<div class="pill_info_content">
-					<p>{{x.get('pillName')}} <span id="time"></span></p>
-					<!-- <p>{{x.name}}</p>
-					<p><b>{{x.dose}}</b> tablets </p> -->
+<head>
+	<title>Doctor - Patient Prescription Page</title>
+	
+	<link rel="stylesheet" href="../css/my.css" media="screen" title="no title" charset="utf-8">
+
+	<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+	<script src="../js/my.js"></script>
+
+	<!--	<style>
+
+	body {
+		/*background-color: #bdc3c7;*/
+		font-family: "Helvetica Neue";
+	}
+
+	</style> -->
+</head>
+
+<body onload="toggleActive(document.getElementById('firstDrug'))">
+
+	<div class="dashboard">
+
+		<div class="title">
+			<!-- <div class="input-group">
+	            <input id ="search_text" type="text" class="form-control input-lg" placeholder="Medicine" />
+	            <span class="input-group-btn">
+	                <button class="btn btn-info btn-lg search_button" type="button">
+	                    <i class="glyphicon glyphicon-search" id = "search_icon"></i>
+	                </button></span>
+    		</div> -->
+			<i class="fa fa-chevron-left"></i>
+			<span class='title-name' style="margin: 0 10px; font-size:24px">
+				Today's Prescription
+			</span>
+			<i class="fa fa-chevron-right"></i>
+		</div> <!-- title -->
+
+		<div class="container my-panel"> <!-- dashboard panel groups -->
+			<div id='morning' class="col-md-4"> <!-- first panel -->
+				<div class="child-title">
+					<img class='icon' src="../assets/images/coffee.png" alt="morning" />
+					Morning
+				</div>
+
+				<div class=" child-panel"> <!-- first panel group content -->
+					<ul class="list-group">
+					    <li class="list-group-item topli" ><!-- first panel->firt medicine -->
+							<a data-toggle="modal" data-target="#myModal"><img class='icon-small' src="../assets/images/info.png" alt="info" /></a>
+							<button type="button" class="formodal">Tamiflu</button>
+							<img class="condition icon-small" src="../assets/images/check.png" alt="" />
+						</li>
+
+							<div class="list-group-item subli"> <!-- first panel->firt medicine info-->
+								<h4>Time:</h4>
+								<p> 8:00 am</p>
+								<div class='take-num'>
+									<h4>
+										Amount:
+									</h4>
+									<img class='icon-small' src="../assets/images/pills.png" alt="pills" />
+									<span>
+										x 10
+									</span>
+								</div>
+							</div> <!-- list-group-item -->
+
+						<li class="list-group-item topli" ><!-- first panel->2d medicine -->
+							<img class='icon-small' src="../assets/images/info.png" alt="info" />
+							<button type="button" class="formodal" data-toggle="modal" data-target="#myModal">Altace</button>
+							<img class="condition icon-small" src="../assets/images/close.png" alt="close" /> <!-- cross icon -->
+						</li>
+						<li class="list-group-item"><!-- first panel->3d medicine -->
+							<i class="fa fa-plus-square"></i>
+							<span class="badge">10</span><!-- how many pills haven't taken icon -->
+							Altace
+						</li>
+
+				  </ul>
+				</div>
+
+			</div>
+			<div id='noon' class="col-md-4"><!-- Second panel -->
+				<div class="child-title">
+					<img class="icon" src="../assets/images/noon.png" alt="noon" />
+					Afternoon
+				</div>
+
+				<div class=" child-panel"><!-- Second panel group content -->
+					<ul class="list-group">
+						<li class="list-group-item topli" > <!-- 2d panel ->1st medicine -->
+							<img class='icon-small' src="../assets/images/info.png" alt="info" />
+							<button type="button" class="formodal" data-toggle="modal" data-target="#myModal">Altace</button>
+							<img class="condition icon-small" src="../assets/images/pill.png" alt="pill" />
+						</li>
+
+						<li class="list-group-item topli" > <!-- 2d panel ->2d medicine -->
+							<img class='icon-small' src="../assets/images/info.png" alt="info" />
+							<button type="button" class="formodal" data-toggle="modal" data-target="#myModal">Altace</button>
+							<img class="condition icon-small" src="../assets/images/pill.png" alt="pill" />
+						</li>
+
+						<li class="list-group-item topli" ><!-- 2d panel ->3d medicine -->
+							<img class='icon-small' src="../assets/images/info.png" alt="info" />
+							<button type="button" class="formodal" data-toggle="modal" data-target="#myModal">Altace</button>
+							<img class="condition icon-small" src="../assets/images/pill.png" alt="pill" />
+						</li>
+
+
+				  </ul>
+				</div>
+			</div>
+
+			<div id='night' class="col-md-4"><!-- Third panel -->
+				<div class="child-title">
+					<img class='icon' src="../assets/images/night.png" alt="night" />
+					Evening
+				</div>
+
+				<div class=" child-panel">
+					<ul class="list-group"><!-- Third panel content-->
+						<li class="list-group-item topli" ><!-- 3d panel -> 1st medicine-->
+							<img class='icon-small' src="../assets/images/info.png" alt="info" />
+							<button type="button" class="formodal" data-toggle="modal" data-target="#myModal">Altace</button>
+							<img class="condition icon-small" src="../assets/images/pill.png" alt="pill" />
+						</li>
+						<li class="list-group-item topli" ><!-- 3d panel -> 2st medicine-->
+							<img class='icon-small' src="../assets/images/info.png" alt="info" />
+							<button type="button" class="formodal" data-toggle="modal" data-target="#myModal">Altace</button>
+							<img class="condition icon-small" src="../assets/images/pill.png" alt="pill" />
+						</li>
+				   </ul>
 				</div>
 			</div>
 		</div>
-		<ng-switch on="anyItemOpen()">
-		    <div ng-switch-when="true" class="pill_detail">
-		    	<h4>Drug Instruction</h4>
-		          {{opened.intro}}
-     		 </div>
-    	</ng-switch>
-
 	</div>
-</div>
+
+
+
+
+</body>
+
+
+</html>
