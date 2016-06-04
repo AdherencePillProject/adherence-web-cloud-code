@@ -1,1 +1,15 @@
-<h1>hello</h1>
+<button class"btn btn-default" ng-click="getSent()">Get Sent Messages</button>
+<button class"btn btn-default" ng-click="getReceived()">Get Received Messages</button>
+
+<div class="mailbox">
+  <div ng-repeat="msg in messages">
+    <div class="well well-sm">
+      <h3>{{msg.get('subject')}}</h3>
+      <p>
+        {{msg.get('text')}}
+      </p>
+
+
+    </div>
+  </div>
+</div>

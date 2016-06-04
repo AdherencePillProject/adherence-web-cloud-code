@@ -1,7 +1,9 @@
 angular.module('app')
   .controller('InboxController', ['$rootScope', '$scope', function($rootScope, $scope) {
 
-    function getMessages(folder, fn) {
+    $scope.messages = [];
+
+    function getMessages(folder) {
     	var message = Parse.Object.extend("Message");
     	var query = new Parse.Query(message);
 
@@ -16,7 +18,9 @@ angular.module('app')
     	query.include("addressee");
     	query.find({
     		success: function(results) {
-    			fn(results);
+    			$scope.$apply(function() {
+            $scope.messages = results;
+          });
     		},
     		error: function(error) {
         		alert("Error: " + error.code + " " + error.message);
@@ -25,20 +29,22 @@ angular.module('app')
 
     }
 
-    function getInbox(fn) {
-    	getMessages("inbox", fn);
-    }
+    $scope.getReceived = function getInbox() {
+    	getMessages("inbox");
+    };
 
-    function getSent(fn) {
-    	getMessages("sent",fn);
-    }
+    $scope.getSent = function getSent(callback) {
+    	getMessages("sent");
+    };
 
-    $scope.send = function(subject, message, addressee) {
-
+    $scope.send = function send(subject, body, addressee) {
+      var Message = Parse.Object.extend("Message");
       var sender = $rootScope.currentUser;
 
+      var message = new Message();
+
       message.set("subject", subject);
-      message.set("text", msg);
+      message.set("text", body);
       message.set("sender", sender);
       message.set("addressee", addressee);
       message.save({
@@ -51,7 +57,6 @@ angular.module('app')
         }
       });
     };
-
 
 
   }]);

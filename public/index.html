@@ -12,13 +12,40 @@
     <!-- CSS Frameworks -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css"/>
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
-    <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
     <!-- custom CSS -->
     <link rel="stylesheet" href="common/css/index.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="patient/css/patient_prescription.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="doctor/css/doctor_patientgraph.css" media="screen" title="no title" charset="utf-8">
 
+    <!-- JS Dependencies -->
+    <script src="//www.parsecdn.com/js/parse-1.6.7.js"></script>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-materialize/0.1.8/angular-materialize.min.js"></script>
 
+    <!-- Common JS -->
+    <script src='index/js/nav.js'></script>
+    <script src="app.js"></script>
+    <script src="routes.js"></script>
+
+    <!-- Services -->
+    <script src="common/js/services/UI.js"></script>
+    <script src="common/js/services/models/Doctor.js"></script>
+    <script src="common/js/services/models/User.js"></script>
+    <script src="common/js/services/models/Patient.js"></script>
+
+    <!-- Controllers -->
+    <script src="common/js/controllers/LoginController.js"></script>
+    <script src="common/js/controllers/SignupController.js"></script>
+    <script src="common/js/controllers/InboxController.js"></script>
+    <script src="patient/js/controllers/PatientProfileController.js"></script>
+    <script src="patient/js/controllers/MedCabinetController.js"></script>
+    <script src="patient/js/controllers/prescriptionCtrl.js"></script>
+    <script src="doctor/js/doctor_patientgraph.js"></script>
+    <script src="doctor/js/doctor_patientgraph.js"></script>
 
   </head>
   <body>
@@ -58,43 +85,8 @@
         <i class="fa fa-cog"></i>&nbsp Graph</a>
     </div>
 
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="common/css/index.css" media="screen" title="no title" charset="utf-8">
-    <link rel="stylesheet" href="patient/css/patient_prescription.css" media="screen" title="no title" charset="utf-8">
 
-    <!-- JS Dependencies -->
-    <script src="//www.parsecdn.com/js/parse-1.6.7.js"></script>
-    <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.js"></script>
-     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-materialize/0.1.8/angular-materialize.min.js"></script>
-
-    <!-- Common JS -->
-    <script src='index/js/nav.js'></script>
-    <script src="app.js"></script>
-    <script src="routes.js"></script>
-
-    <!-- Services -->
-    <script src="common/js/services/UI.js"></script>
-    <script src="common/js/services/models/Doctor.js"></script>
-    <script src="common/js/services/models/User.js"></script>
-    <script src="common/js/services/models/Patient.js"></script>
-
-    <!-- Controllers -->
-    <script src="common/js/controllers/LoginController.js"></script>
-    <script src="common/js/controllers/SignupController.js"></script>
-    <script src="patient/js/controllers/PatientProfileController.js"></script>
-    <script src="patient/js/controllers/MedCabinetController.js"></script>
-    <script src="patient/js/controllers/prescriptionCtrl.js"></script>
-  </head>
-
-  <body>
     <div ng-include="navbar.html"></div>
     <div ng-view class="apb-page"></div>
-
-    <script src="doctor/js/doctor_patientgraph.js"></script>
-    <script src="doctor/js/doctor_patientgraph.js"></script>
   </body>
 </html>

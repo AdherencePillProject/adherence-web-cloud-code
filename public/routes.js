@@ -2,6 +2,10 @@ angular.module('app')
     .config(function($routeProvider) {
       $routeProvider
         // route for the home page
+        .when('/inbox', {
+            templateUrl : 'common/views/inbox.html',
+            controller  : 'InboxController'
+        })
       .when('/login', {
           templateUrl : 'common/views/login.html',
           controller  : 'LoginController'
@@ -43,10 +47,6 @@ angular.module('app')
           templateURL: 'doctor/views/doctor_patientgraph.html',
           controller: 'patient_graphCtrl',
           css: 'doctor_patientgraph.css'
-      })
-      .when('/inbox', {
-          templateURL: 'common/views/inbox.html',
-          controller: 'InboxController'
       })
       .otherwise({
           redirectTo  : '/'
