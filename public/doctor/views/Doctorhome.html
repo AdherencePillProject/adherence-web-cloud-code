@@ -1,112 +1,104 @@
-<html>
+<!DOCTYPE html>
+<html ng-app="app">
 <head>
     <meta charset="utf-8">
-<!--     <meta http-equiv="X-UA-Compatible" content="IE=edge">
- -->    <title>Doctor - Patient Prescription Page</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Doctor - Patient Prescription Page</title>
 
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css">
     <script type="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
-    <script src="../js/jquery.dataTables.js"></script>
-    <script src="../js/Table.js"></script>
+    <script src="doctor/js/jquery.dataTables.js"></script>
+    <script src="doctor/js/Table.js"></script>
 
-	<script>
-		function toggleActive(element){
-			//should only be one
-			var actives = document.getElementsByClassName("list-group-item active");
-			for (var i = 0; i < actives.length; i++){
-				actives[i].className = "list-group-item";
-			}
-			element.className = "list-group-item active";
-
-			var drugs = document.getElementsByClassName("drug");
-			for (var d = 0; d < drugs.length; d++){
-				if (element.textContent.length > 20) {
-					drugs[d].textContent = document.getElementById("firstPatient").textContent + "'s Drug " + (d+1);
-				}
-				else {
-					drugs[d].textContent = element.textContent + "'s Drug " + (d+1);
-				}
-
-			}
-		}
-        console.log("reached page");
-        function myFunction1() {
-            $("#toggle-name").toggleClass("changecol");
+    <script>
+        function toggleActive(element){
+            //should only be one
+            var actives = document.getElementsByClassName("list-group-item active");
+            for (var i = 0; i < actives.length; i++){
+                actives[i].className = "list-group-item";
+            }
+            element.className = "list-group-item active";
+            var drugs = document.getElementsByClassName("drug");
+            for (var d = 0; d < drugs.length; d++){
+                if (element.textContent.length > 20) {
+                    drugs[d].textContent = document.getElementById("firstPatient").textContent + "'s Drug " + (d+1);
+                }
+                else {
+                    drugs[d].textContent = element.textContent + "'s Drug " + (d+1);
+                }
+            }
         }
+    </script>
+</head>
 
-        function myFunction2() {
-            $("#toggle-gender").toggleClass("changecol");
-        }
-
-        function myFunction3() {
-            $("#toggle-age").toggleClass("changecol");
-        }
-
-
-        function myFunction4() {
-            $("#toggle-preapp").toggleClass("changecol");
-        }
-
-        function myFunction5() {
-            $("#toggle-nextapp").toggleClass("changecol");
-        }
-
-        function myFunction6() {
-            $("#toggle-Medication").toggleClass("changecol");
-        }
-</script>
 <style>
     body {
         font-family: "Helvetica Neue";
     }
-
     .changecol{
         color:red !important;
     }
-
-    .showclass {
-        margin-bottom: 20%;
-        margin-left:20%;
-    }
-
 </style>
-</head>
 
+<body onload="toggleActive(document.getElementById('firstDrug'))">
 
-<body>
-    <div class="container1">
-        <h2>Patient Information</h2>
-    </div>
+    <div class="container">
+    <h2>Patient Information</h2>
+   </div>
 
 <!--change color -->
-<!--     <p id="a"></p> function does not exist
- -->
-    <div class="container1">
-          Toggle column:
-          <label><a id="toggle-name" class ="toggle-vis" data-column="0"  onclick="myFunction1()" ><span>Name</span></a></label>
-          <label><a id="toggle-gender" class ="toggle-vis" data-column="1" onclick="myFunction2()"><span>- Gender </span></a ></label>
-          <label><a id="toggle-age" class ="toggle-vis" data-column="2" onclick="myFunction3()"><span>- Age</span></a ></label>
-          <label><a id="toggle-preapp" class ="toggle-vis" data-column="3" onclick="myFunction4()"><span>- Last Appointment</span></a ></label>
-          <label><a id="toggle-nextapp" class ="toggle-vis" data-column="4" onclick="myFunction5()"><span>- Next Appointment</span></a ></label>
-          <label><a id="toggle-Medication" class ="toggle-vis" data-column="5" onclick="myFunction6()"><span>- Adherence %</span></a ></label>
-    </div>
-    <br>
+<p id="a" onclick="myFunction()"></p>
 
-<!--     <table border="0" cellspacing="6" cellpadding="6">
+<script>
+function myFunction1() {
+    $("#toggle-name").toggleClass("changecol");
+}
+function myFunction2() {
+    $("#toggle-gender").toggleClass("changecol");
+}
+function myFunction3() {
+    $("#toggle-age").toggleClass("changecol");
+}
+function myFunction4() {
+    $("#toggle-preapp").toggleClass("changecol");
+}
+function myFunction5() {
+    $("#toggle-nextapp").toggleClass("changecol");
+}
+function myFunction6() {
+    $("#toggle-Medication").toggleClass("changecol");
+}
+</script>
+
+<div class="container">
+<div>
+      Toggle column:
+      <label><a id="toggle-name" class ="toggle-vis" data-column="0"  onclick="myFunction1()" ><span>Name</span></a></label>
+      <label><a id="toggle-gender" class ="toggle-vis" data-column="1" onclick="myFunction2()"><span>- Gender </span></a ></label>
+      <label><a id="toggle-age" class ="toggle-vis" data-column="2" onclick="myFunction3()"><span>- Age</span></a ></label>
+      <label><a id="toggle-preapp" class ="toggle-vis" data-column="3" onclick="myFunction4()"><span>- Last Appointment</span></a ></label>
+      <label><a id="toggle-nextapp" class ="toggle-vis" data-column="4" onclick="myFunction5()"><span>- Next Appointment</span></a ></label>
+      <label><a id="toggle-Medication" class ="toggle-vis" data-column="5" onclick="myFunction6()"><span>- Adherence %</span></a ></label>
+</div>
+
+</br>
+
+
+<table border="0" cellspacing="6" cellpadding="6">
         <tbody>
-            <tr>
-                <td>Set the Threshold value to show:</td>
-                <td><input type="text" class="max" name="max"></td>
-            </tr>
-        </tbody>
-    </table> -->
-    <br>
-    <br>
-<!--     <table id="example" class="display" cellspacing="0" width="100%">
- -->   
- <div class="showclass">   
-    <table>
-    <tr>
+        <tr>
+            <td>Set the Threshold value to show:</td>
+            <td><input type="text" class="max" name="max"></td>
+        </tr>
+    </tbody>
+</table>
+
+</br>
+</br>
+<table id="example" class="display" cellspacing="0" width="100%">
+
+    <thead>
+      <tr>
         <th>Name</th>
         <th>Gender</th>
         <th>Age</th>
@@ -114,56 +106,59 @@
         <th>Next Appointment</th>
         <th>Adherence %</th>
       </tr>
-        <tr>
-            <td>Tiger Nixon</td>
-            <td>Male</td>
-            <td>61</td>
-            <td>2011/04/22</td>
-            <td>2011/04/25</td>
-            <td>85%</td>
-        </tr>
-        <tr>
-            <td>Garrett Winters</td>
-            <td>Male</td>
-            <td>63</td>
-            <td>2011/07/21</td>
-            <td>2011/07/25</td>
-            <td>70%</td>
-        </tr>
-        <tr>
-            <td>Ashton Cox</td>
-            <td>Female</td>
-            <td>66</td>
-            <td>2009/01/09</td>
-            <td>2009/01/12</td>
-            <td>86%</td>
-        </tr>
-        <tr>
-            <td>Cedric Kelly</td>
-            <td>Male</td>
-            <td>22</td>
-            <td>2012/03/18</td>
-            <td>2012/03/29</td>
-            <td>70%</td>
-        </tr>
-        <tr>
-            <td>Airi Satou</td>
-            <td>Female</td>
-            <td>33</td>
-            <td>2008/11/22</td>
-            <td>2008/11/28</td>
-            <td>62%</td>
-        </tr>
-        <tr>
-            <td>Brielle Williamson</td>
-            <td>Male</td>
-            <td>61</td>
-            <td>2012/11/25</td>
-            <td>2012/12/02</td>
-            <td>59%</td>
-        </tr>
-    </table>
-    </div>
+    </thead>
+    <tbody>
+            <tr>
+                <td>Tiger Nixon</td>
+                <td>Male</td>
+                <td>61</td>
+                <td>2011/04/22</td>
+                <td>2011/04/25</td>
+                <td>85%</td>
+            </tr>
+            <tr>
+                <td>Garrett Winters</td>
+                <td>Male</td>
+                <td>63</td>
+                <td>2011/07/21</td>
+                <td>2011/07/25</td>
+                <td>70%</td>
+            </tr>
+            <tr>
+                <td>Ashton Cox</td>
+                <td>Female</td>
+                <td>66</td>
+                <td>2009/01/09</td>
+                <td>2009/01/12</td>
+                <td>86%</td>
+            </tr>
+            <tr>
+                <td>Cedric Kelly</td>
+                <td>Male</td>
+                <td>22</td>
+                <td>2012/03/18</td>
+                <td>2012/03/29</td>
+                <td>70%</td>
+            </tr>
+            <tr>
+                <td>Airi Satou</td>
+                <td>Female</td>
+                <td>33</td>
+                <td>2008/11/22</td>
+                <td>2008/11/28</td>
+                <td>62%</td>
+            </tr>
+            <tr>
+                <td>Brielle Williamson</td>
+                <td>Male</td>
+                <td>61</td>
+                <td>2012/11/25</td>
+                <td>2012/12/02</td>
+                <td>59%</td>
+            </tr>
+  </tbody>
+  </table>
+</div>
 
 </body>
 </html>

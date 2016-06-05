@@ -1,48 +1,42 @@
+
 body {
-    background-color: white;
-      ont-family: "Helvetica Neue";
+    font-family: "Helvetica Neue";
 }
-.list-group {
-    padding-top: 20px;
+
+.col-sm-4 {
+    padding: 0px 40px 0px 40px;
 }
-#options {
-    float:right;
+
+.col-sm-8 {
+    padding: 0px 40px 0px 40px;
 }
-.col-md-4 {
-    padding-left: 5%;
-    padding-right: 10px;
-    height: 700px;
+
+.btn-primary {
+    margin-bottom: 15px;
 }
-.col-md-8 {
-    padding-left: 10px;
-    padding-right: 5%;
+
+@media (min-width:768px){
+    .left {
+        left: 10px;
+        width: 400px;
+    }
+    .col-sm-4 {
+      padding: 0px 20px 0px 30px;
+    }
+    .col-sm-8 {
+      padding: 0px 35px 0px 0px;
+    }
 }
-#patien-list {
-    padding: 20px 0px 0px 0px;
-    width: 100%;
+#patient_names {
+  padding-top: 20px;
 }
-#checkbox-left {
-    float: left; 
-    padding-right: 10px;
-    padding-left: 10%;
+.btn-del {
+
+    margin-left: 20px;
+    margin-bottom: 10px;
+    color:white;
+    background-color: red;
 }
-#radios-right {
-    float: left; 
-    padding-left: 10px;
-}
-#graph {
-    clear: both;
-    padding-left: 10%;
-    padding-right: 10%;
-}
-#xanax {
-    color: #0091ea;
-    font-weight: bold;
-}
-#iron {
-    color: #c51162;
-    font-weight: bold;
-}
-#lb-cb1, #lb-cb2 {
-    font-weight: bold;
+.p-del {
+    color: blue;
 }

@@ -15,6 +15,7 @@ angular.module('app')
       })
       .when('/signup', {
           templateUrl : 'common/views/signup.html'
+          controller: 'SignupController'
       })
       .when('/doctor/profile', {
           templateUrl : 'doctor/views/doctorprofile.html',
@@ -26,15 +27,22 @@ angular.module('app')
       })
       .when('/doctor/home', {
           templateUrl : 'doctor/views/Doctorhome.html',
-          controller  : 'DoctorHomeController'
+          controller  : 'patient_graphCtrl'
+          css : 'doctor/css/doctor_table.css'
       })
       .when('/doctor/docpatient', {
           templateUrl: 'doctor/views/doctor_patientprescription.html',
           controller  : 'DoctorPrescriptionController'
       })
+      .when('/doctor/graph', {
+          templateURL: 'doctor/views/doctor_patientgraph.html',
+          controller: 'patient_graphCtrl',
+          css: 'doctor_patientgraph.css'
+       })
       .when('/patient/home', {
           templateUrl : 'patient/views/Prescription.html',
-          controller : 'PatientPrescriptionController'
+          controller : 'prescriptionCtrl',
+          css: 'patient/css/patient_prescription.css'
       })
       .when('/patient/MedCabinet', {
           templateUrl: 'patient/views/medCabinet.html'
