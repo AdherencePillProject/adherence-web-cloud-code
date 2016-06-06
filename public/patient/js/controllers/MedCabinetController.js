@@ -4,6 +4,8 @@ angular
 
         console.log("med cabinet controller");
 
+        getPillInfoForCurrentUser();
+
         Parse.initialize("BDo39lSOtPuBwDfq0EBDgIjTzztIQE38Fuk03EcR", "ox76Y4RxB06A69JWAleRHSercHKomN2FVu61dfu3");
         var counter = 0;
 

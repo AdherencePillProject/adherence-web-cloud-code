@@ -1,4 +1,4 @@
-<body onload="getPillInfoForCurrentUser()" data-spy="scroll" data-target="#myScrollspy">
+<body data-spy="scroll" data-target="#myScrollspy">
 
     <div class="container" id="medcabinet">
         <!-- Med Cabinent -->
@@ -11,7 +11,7 @@
             <div class="panel-div table">
                 <div class="container-fluid">
                     <form action='/search' id='search-form' method='get' target='_top'>
-                        <div id='search-box' class="input-group" style="width:30%; margin-top: 20px">
+                        <div id='search-box' class="input-group" style="width:30%; margin-top: 20px; margin-bottom:15px">
                             <input id='search-text' name='q' placeholder='Search Your Med' class="form-control" type="text">
                             <span class="input-group-btn">
                                 <button class="btn btn-primary" id='search-button' type='button'>Search</button>
@@ -29,7 +29,7 @@
 
                                     <!--First Part-->
                                     <div class="col-sm-3" id="pillcontent">
-                                        <div id="img"><img src="../assets/images/capsule-icon.png" class="img-responsive" alt="Responsive image" width="64" height="64"></div>
+                                        <div id="img"><img src="patient/assets/images/capsule-icon.png" class="img-responsive" alt="Responsive image" width="64" height="64"></div>
                                         <!-- Pill Icon Appears Here-->
                                         <div class="title" id="pillInfo">Pill Info</div>
                                         <div class="pNameAndInstruction"></div>
@@ -39,7 +39,7 @@
 
                                     <!--Second Part -->
                                     <div class="col-sm-3" id="pillcontent">
-                                        <div id="img"> <img src="../assets/images/doctor-icon.png" class="img-responsive" alt="Responsive image" width="64" height="64"> </div>
+                                        <div id="img"> <img src="patient/assets/images/doctor-icon.png" class="img-responsive" alt="Responsive image" width="64" height="64"> </div>
                                         <!-- Doctor's Suggestion Icon Appears Here-->
                                         <div class="title">Doctor's Suggestion</div>
                                         <div class="suggestion"></div>
@@ -49,7 +49,7 @@
 
                                     <!--Third Part -->
                                     <div class="col-sm-3" id="pillcontent">
-                                        <div id="img"><img src="../assets/images/prescription-icon.png" class="img-responsive" alt="Responsive image" width="64" height="64"></div>
+                                        <div id="img"><img src="patient/assets/images/prescription-icon.png" class="img-responsive" alt="Responsive image" width="64" height="64"></div>
                                         <!-- Refill Icon Appears Here-->
                                         <div class="title">Refill Information</div>
                                         <div>10 Pills Left</br>Refill in 5 Days</div>
@@ -59,7 +59,7 @@
 
                                     <!--fourth Part -->
                                     <div class="col-sm-3" id="pillcontent">
-                                        <div id="img"><img src="../assets/images/Checklist-icon.png" class="img-responsive" alt="Responsive image" width="64" height="64"></div>
+                                        <div id="img"><img src="patient/assets/images/Checklist-icon.png" class="img-responsive" alt="Responsive image" width="64" height="64"></div>
                                         <!-- Refill Icon Appears Here-->
                                         <div class="title">Reminder</div>
                                         <div>Take1: Morning&nbsp&nbsp&nbsp<span class="glyphicon glyphicon-ok"></span></br>
