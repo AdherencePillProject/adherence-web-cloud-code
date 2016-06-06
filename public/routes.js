@@ -4,7 +4,8 @@ angular.module('app')
         // route for the home page
       .when('/inbox', {
             templateUrl : 'common/views/inbox.html',
-            controller  : 'InboxController'
+            controller  : 'InboxController',
+            css: ['common/css/inboxStyles.css', 'common/assets/web-icons/web-icons.css']
       })
       .when('/login', {
           templateUrl : 'common/views/login.html',
