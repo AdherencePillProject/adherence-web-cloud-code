@@ -37,26 +37,35 @@ angular.module('app')
     	getMessages("sent");
     };
 
-    $scope.send = function send(subject, body, addressee) {
+    $scope.send = function send(subject, body, addresseeName) {
       var Message = Parse.Object.extend("Message");
       var sender = $rootScope.currentUser;
 
-      var message = new Message();
+      var query = new Parse.Query(Parse.User);
+      query.equalTo("username", addresseeName);
+      query.first({
+        success: function(addressee) {
+          var message = new Message();
 
-      message.set("subject", subject);
-      message.set("text", body);
-      message.set("sender", sender);
-      message.set("addressee", addressee);
-      message.save({
-        success: function (obj) {
-          alert('success!');
+          message.set("subject", subject);
+          message.set("text", body);
+          message.set("sender", sender);
+          message.set("addressee", addressee);
+          message.save({
+            success: function (obj) {
+              alert('success!');
+            },
+
+            error: function (obj, error) {
+              alert("Error: " + error.code + " " + error.message);
+            }
+          });
         },
-
-        error: function (obj, error) {
-          alert("Error: " + error.code + " " + error.message);
+        error: function(addressee, err) {
+          alert("Error: Invalid recipient!");
         }
       });
-    };
 
+    };
 
   }]);
