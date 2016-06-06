@@ -36,7 +36,7 @@ angular.module('app')
           controller  : 'DoctorPrescriptionController'
       })
       .when('/doctor/graph', {
-          templateURL: 'doctor/views/doctor_patientgraph.html',
+          templateUrl: 'doctor/views/doctor_patientgraph.html',
           controller: 'patient_graphCtrl',
           css: 'doctor_patientgraph.css'
        })
