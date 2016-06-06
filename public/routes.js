@@ -53,13 +53,6 @@ angular.module('app')
       .when('/doctor/patientView', {
           templateUrl: 'doctor/views/doctor_patientgraph.html'
       })
-      .when('/compose', {
-          templateUrl: 'common/views/compose.html'
-      })
-      .when('/showTable', {
-          templateUrl: 'common/views/showTable.html'
-      })
-
       .otherwise({
           redirectTo  : '/'
       });
