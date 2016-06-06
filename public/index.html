@@ -18,11 +18,10 @@
     <!-- JS Dependencies -->
     <script src="https://www.parsecdn.com/js/parse-1.6.7.js"></script>
     <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.js"></script>
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-materialize/0.1.8/angular-materialize.min.js"></script>
+    <script src="bower_components/angular-route-styles/route-styles.js"></script>
 
     <!-- Common JS -->
     <script src='index/js/nav.js'></script>
@@ -53,7 +52,7 @@
     <script src="doctor/js/controllers/DoctorProfileController.js"></script>
   </head>
   <body>
-    <nav class="apb-nav">
+    <nav class="apb-nav" ng-show="currentUser"> 
       <div class="apb-logo">
         <a href="#"><span class="">APB System</span></a>
       </div>
@@ -74,7 +73,7 @@
         </div>
       </div>
     </nav>
-    <div class="apb-side">
+    <div class="apb-side" ng-show="currentUser">
       <a href="#/patient/home" class='apb-a'>
         <i class="fa fa-stethoscope"></i>&nbsp Prescription</a>
       <a href="#/patient/MedCabinet" class='apb-a'>
