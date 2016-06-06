@@ -1,15 +1,94 @@
-<button class"btn btn-default" ng-click="getSent()">Get Sent Messages</button>
-<button class"btn btn-default" ng-click="getReceived()">Get Received Messages</button>
+<head>
+	<title>Inbox</title>
+</head>
 
-<div class="mailbox">
-  <div ng-repeat="msg in messages">
-    <div class="well well-sm">
-      <h3>{{msg.get('subject')}}</h3>
-      <p>
-        {{msg.get('text')}}
-      </p>
+<body>
 
 
-    </div>
-  </div>
-</div>
+	<div class="overall-wrapper">
+		<!-- Mailbox Sidebar -->
+
+		<div id="page-aside-section">
+				<div class="list-group">
+						 <a class="list-group-item" href="javascript:void(0)" ng-click="getReceived()"><i class="icon wb-inbox" aria-hidden="true"></i>  Inbox</a> 
+						 <a class="list-group-item" href="javascript:void(0)" ng-click="getSent()"><i class="icon wb-envelope" aria-hidden="true"></i>  Sent</a> 
+						  <a class="list-group-item" href="javascript:void(0)"><i class="icon wb-trash" aria-hidden="true"></i>   Trash</a> 
+				</div>
+		</div>
+		<!-- Mailbox Content -->
+
+		<div id="page-main">
+			<!-- Mailbox Header -->
+
+			<div id="page-header">
+				<h1 id="title-format">
+					Mailbox
+
+				<button type="button" class="btn btn-secondary" ng-click="showTable=true" style="float:right; margin-bottom:3%; margin-right: 5%">Compose </button>
+
+				</h1>
+
+			</div>
+			<!-- Mailbox Content -->
+
+			<div id="page-content">
+				<!-- Actions -->
+				<!-- Mailbox -->
+
+				<table class="table" ng-hide="showTable">
+					<tbody>
+					
+
+						<tr ng-repeat="msg in messages">
+							<td class="cell-60"></td>
+							<td class="cell-main">
+
+								<div class="content"> 
+									<div class="title"> 
+										{{msg.get('sender').get('username')}}
+									</div>
+									<div class="abstract">
+										{{msg.get('text')}}
+									</div>
+								</div>
+							</td>
+							<td class="cell-60"></td>
+							<td class="cell-60"></td>
+							<td class="date-wrapper-cell">
+								<span class="date-text">
+									1 day ago
+                                </span>
+							</td>
+						</tr>
+						
+
+						
+						
+					</tbody>
+				</table>
+				<div ng-show="showTable" style="margin-left:4%">
+
+					<div class="input-group">
+
+					  <span class="input-group-addon">Recipient</span>
+					  <input type="text" class="form-control" placeholder="Recipient" ng-model="composition.addressee" style="width:50%;">
+					</div><br>
+					<div class="input-group">
+					  <span class="input-group-addon">Subject &nbsp </span>
+					  <input type="text" class="form-control" placeholder="Subject" ng-model="composition.subject" style="width:50%;">
+					</div>
+					<br>
+					<div class="input-group">
+					  Text:
+					  <textarea class = "form-control" rows = "10" cols="49" name="mailText" ng-model="composition.mailBody"></textarea>
+					</div>
+					<input type="submit" ng-click="update(composition)" value="Send" />
+				
+
+				</div>
+
+				</div>
+
+
+
+</body>
