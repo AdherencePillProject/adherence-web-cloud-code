@@ -49,7 +49,7 @@ body, html {
     font-size: 14;
     font-weight: bold;
 }
-#search-box {
+/*#search-box {
     position: relative;
     width: 30%;
     margin-bottom: 15px;
@@ -74,8 +74,8 @@ body, html {
     padding: 11px 0 12px 1em;
     color: #333;
     outline: none;
-}
-.submit1 {
+}*/
+/*.submit1 {
     width: 300px;
 }
 .submit1 input {
@@ -83,7 +83,7 @@ body, html {
 }
 .submit1 button {
     width: 20%;
-}
+}*/
 
 /*#search-button {
   position: absolute;
@@ -103,13 +103,13 @@ body, html {
   cursor: pointer;
 }*/
 
-.cell {
+/*.cell {
     float: left;
     width: 50%;
-}
-.table {
+}*/
+/*.table {
     border: 1px solid #000000;
-}
+}*/
 
 /* Custom Styles for Bootstrap Affix */
 
