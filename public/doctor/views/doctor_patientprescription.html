@@ -1,65 +1,31 @@
-<!DOCTYPE html>
-<html ng-app="app">
-
-<head>
-	<title>Doctor - Patient Prescription Page</title>
-
-	<!--Add JQuery-->
-	<script src="../../bower_components/jquery/dist/jquery.js"></script>
-	<!-- // <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script> -->
-
-	<!--Bootstrap-->
-	<link rel="stylesheet" type="text/css" href="../../bower_components/bootstrap/dist/css/bootstrap.css">
-	<script src="../../bower_components/bootstrap/dist/js/bootstrap.js"></script>
-
-	<!-- Font Awesome -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-
-	<!-- Parse -->
-	<script src="http://www.parsecdn.com/js/parse-1.6.7.min.js"></script>
-
-	<!-- Bootstrap Editable -->
-	<link href="http://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
-
-	<!--Add Angular-->
-	<script src="../../bower_components/angular/angular.js"></script>
-
-	<!--Add Angular Directives-->
-	<script src="../../common/js/angular-app.js"></script>
-
-	<!--Custom-->
-	<link rel="stylesheet" href="../css/doctor_patientprescription.css">
-
-</head>
-
 <body>
 
 	<div ng-controller='NavController as tab' ng-include src="'/partials/navbar/navbar_doctor.html'"></div>
 
 
-    <div class="row">
-	  <div class="col-sm-4">
-	    <h3 id="patientlist-title">Patients List</h3>
-	    <div class="input-group">
-	      <input type="text" class="form-control" placeholder="Search for a patient">
-	        <span class="input-group-btn">
+	<div class="row">
+		<div class="col-sm-4">
+			<h3 id="patientlist-title">Patients List</h3>
+			<div class="input-group">
+				<input type="text" class="form-control" placeholder="Search for a patient">
+				<span class="input-group-btn">
 	          <button class="btn btn-default" type="button">Search</button>
 	        </span>
-	    </div>
+			</div>
 
-	    <div class="list-group" id="patient_names">
+			<div class="list-group" id="patient_names">
+			</div>
 		</div>
-	  </div>
 
-  	<div class="col-sm-8 right">
-		<div class="list-group" id="patient_descriptions">
+		<div class="col-sm-8 right">
+			<div class="list-group" id="patient_descriptions">
+			</div>
 		</div>
-	</div>
 
 
 
-	<script src="../js/doctor_patientprescription.js"></script>
+		<script src="doctor/js/doctor_patientprescription.js"></script>
+		<link rel="stylesheet" href="doctor/css/doctor_patientprescription.css">
 
 
 </body>
