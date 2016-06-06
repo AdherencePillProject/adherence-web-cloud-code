@@ -1,0 +1,308 @@
+.icon {
+	padding-right: 3%;
+}
+
+.overall-wrapper {
+    box-sizing: border-box;
+    color: rgb(118, 131, 143);
+    height: 942px;
+    min-height: calc(-44px + 100%);
+    position: relative;
+    text-decoration: none solid rgb(118, 131, 143);
+    width: 1005px;
+    column-rule-color: rgb(118, 131, 143);
+    perspective-origin: 502.5px 471px;
+    transform-origin: 502.5px 471px;
+    animation: none 0s ease 0s 1 normal both running;
+    background: rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box;
+    border: 0px none rgb(118, 131, 143);
+    font: normal normal 300 normal 14px / 22px Roboto, sans-serif;
+/*    margin: 0px 0px 0px 260px;
+*/    outline: rgb(118, 131, 143) none 0px;
+}/*#DIV_1*/
+
+#page-aside-section {
+    bottom: 0px;
+    box-sizing: border-box;
+    color: rgb(118, 131, 143);
+    height: 942px;
+    justify-self: stretch;
+    left: 0px;
+    position: absolute;
+    text-decoration: none solid rgb(118, 131, 143);
+    top: 0px;
+    width: 165px;
+    column-rule-color: rgb(118, 131, 143);
+/*    perspective-origin: 130px 471px;
+    transform-origin: 130px 471px;*/
+    background: rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box;
+    border-top: 0px none rgb(118, 131, 143);
+    border-right: 1px solid rgb(228, 234, 236);
+    border-bottom: 0px none rgb(118, 131, 143);
+    border-left: 0px none rgb(118, 131, 143);
+    font: normal normal 300 normal 14px / 22px Roboto, sans-serif;
+    outline: rgb(118, 131, 143) none 0px;
+    transition: all 0.5s ease 0s;
+}/*#DIV_2*/
+
+
+.table {
+    border-collapse: collapse;
+    box-sizing: border-box;
+    color: rgb(118, 131, 143);
+    height: 300px;
+    max-width: 100%;
+    table-layout: fixed;
+    text-decoration: none solid rgb(118, 131, 143);
+    width: 745px;
+    column-rule-color: rgb(118, 131, 143);
+    perspective-origin: 372.5px 383px;
+    transform-origin: 372.5px 383px;
+    border-spacing: 0px 0px;
+    font: normal normal 300 normal 14px / 22px Roboto, sans-serif;
+    margin: 0px 0px 22px;
+    outline: rgb(118, 131, 143) none 0px;
+}/*#TABLE_113*/
+
+.list-group {
+    box-sizing: border-box;
+    color: rgb(118, 131, 143);
+    height: 289px;
+    position: relative;
+    text-decoration: none solid rgb(118, 131, 143);
+    width: 165px;
+    column-rule-color: rgb(118, 131, 143);
+/*    perspective-origin: 129.5px 144.5px;
+    transform-origin: 129.5px 144.5px;*/
+    border: 0px none rgb(118, 131, 143);
+    font: normal normal 300 normal 14px / 22px Roboto, sans-serif;
+    outline: rgb(118, 131, 143) none 0px;
+    padding: 22px 0px 0px;
+}/*#DIV_7*/
+
+#page-content {
+    box-sizing: border-box;
+    color: rgb(118, 131, 143);
+    height: 851px;
+    max-width: 100%;
+    text-decoration: none solid rgb(118, 131, 143);
+    width: 745px;
+    column-rule-color: rgb(118, 131, 143);
+    perspective-origin: 372.5px 425.5px;
+    transform-origin: 372.5px 425.5px;
+    border: 0px none rgb(118, 131, 143);
+    font: normal normal 300 normal 14px / 22px Roboto, sans-serif;
+    outline: rgb(118, 131, 143) none 0px;
+    overflow: auto;
+}/*#DIV_62*/
+
+.cell-60 {
+    border-collapse: collapse;
+    box-sizing: border-box;
+    color: rgb(118, 131, 143);
+    cursor: pointer;
+    height: 85px;
+    text-decoration: none solid rgb(118, 131, 143);
+    vertical-align: top;
+    width: 1px;
+    column-rule-color: rgb(118, 131, 143);
+    perspective-origin: 30px 42.5px;
+    transform-origin: 30px 42.5px;
+    border-top: 1px solid rgb(228, 234, 236);
+    border-right: 0px none rgb(118, 131, 143);
+    border-bottom: 0px none rgb(118, 131, 143);
+    border-left: 0px none rgb(118, 131, 143);
+    font: normal normal 300 normal 14px / 22px Roboto, sans-serif;
+    outline: rgb(118, 131, 143) none 0px;
+    padding: 20px 8px 20px 30px;
+}
+
+.cell-main {
+    border-collapse: collapse;
+    box-sizing: border-box;
+    color: rgb(118, 131, 143);
+    cursor: pointer;
+    height: 85px;
+    text-decoration: none solid rgb(118, 131, 143);
+    vertical-align: top;
+    width: 492px;
+    column-rule-color: rgb(118, 131, 143);
+    perspective-origin: 30px 42.5px;
+    transform-origin: 30px 42.5px;
+    border-top: 1px solid rgb(228, 234, 236);
+    border-right: 0px none rgb(118, 131, 143);
+    border-bottom: 0px none rgb(118, 131, 143);
+    border-left: 0px none rgb(118, 131, 143);
+    font: normal normal 300 normal 14px / 22px Roboto, sans-serif;
+    outline: rgb(118, 131, 143) none 0px;
+    padding: 20px 8px 20px 30px;
+}
+
+
+
+.list-group-item {
+    box-sizing: border-box;
+    color: rgb(118, 131, 143);
+    display: block;
+    height: 48px;
+    position: relative;
+    text-decoration: none solid rgb(118, 131, 143);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 150px;
+    column-rule-color: rgb(118, 131, 143);
+    perspective-origin: 129.5px 24px;
+    transform-origin: 129.5px 24px;
+    background: rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box;
+    border: 0px none rgb(118, 131, 143);
+    border-radius: 3px 3px 3px 3px;
+    font: normal normal 300 normal 14px / 22px Roboto, sans-serif;
+    margin: 0px 0px 1px;
+    outline: rgb(118, 131, 143) none 0px;
+    overflow: hidden;
+    padding: 13px 30px;
+}/*#A_12, #A_14, #A_17, #A_19, #A_24, #A_31, #A_38, #A_45, #A_52*/
+
+#page-main {
+    box-sizing: border-box;
+    color: rgb(118, 131, 143);
+    height: 942px;
+    text-decoration: none solid rgb(118, 131, 143);
+    width: 745px;
+    column-rule-color: rgb(118, 131, 143);
+    perspective-origin: 372.5px 471px;
+    transform-origin: 372.5px 471px;
+    border: 0px none rgb(118, 131, 143);
+    font: normal normal 300 normal 14px / 22px Roboto, sans-serif;
+    margin: 0px 0px 0px 170px;
+    outline: rgb(118, 131, 143) none 0px;
+}/*#DIV_54*/
+
+#page-header {
+    background-position: 0px 0px;
+    box-sizing: border-box;
+    color: rgb(118, 131, 143);
+    height: 91px;
+    position: relative;
+    text-decoration: none solid rgb(118, 131, 143);
+    width: 745px;
+    column-rule-color: rgb(118, 131, 143);
+    background: rgba(0, 0, 0, 0) none repeat scroll 0px 0px / auto padding-box border-box;
+    border: 0px none rgb(118, 131, 143);
+    font: normal normal 300 normal 14px / 22px Roboto, sans-serif;
+    outline: rgb(118, 131, 143) none 0px;
+    padding: 30px;
+}/*#DIV_55*/
+
+#title-format {
+    box-sizing: border-box;
+    color: rgb(55, 71, 79);
+    height: 31px;
+    text-decoration: none solid rgb(55, 71, 79);
+    text-shadow: rgba(0, 0, 0, 0.14902) 0px 0px 1px;
+    width: 685px;
+    column-rule-color: rgb(55, 71, 79);
+    perspective-origin: 342.5px 15.5px;
+    transform-origin: 342.5px 15.5px;
+    border: 0px none rgb(55, 71, 79);
+    font: normal normal 300 normal 26px / 31.2px Roboto, sans-serif;
+    margin: 0px;
+    outline: rgb(55, 71, 79) none 0px;
+}/*#H1_56*/
+
+.content {
+	border-collapse: collapse;
+    box-sizing: border-box;
+    color: rgb(118, 131, 143);
+    cursor: pointer;
+    height: 44px;
+    text-decoration: none solid rgb(118, 131, 143);
+    width: 419px;
+    column-rule-color: rgb(118, 131, 143);
+    perspective-origin: 209.5px 22px;
+    transform-origin: 209.5px 22px;
+    border: 0px none rgb(118, 131, 143);
+    font: normal normal 300 normal 14px / 22px Roboto, sans-serif;
+    outline: rgb(118, 131, 143) none 0px;
+}/*#DIV_128, #DIV_150, #DIV_172, #DIV_194, #DIV_216, #DIV_238, #DIV_260, #DIV_282, #DIV_304*/
+
+/*#DIV_129, #DIV_151, #DIV_173, #DIV_195, #DIV_217, #DIV_239, #DIV_261, #DIV_283, #DIV_305 {
+*/  
+.title {
+  border-collapse: collapse;
+    box-sizing: border-box;
+    color: rgb(82, 96, 105);
+    cursor: pointer;
+    height: 22px;
+    text-decoration: none solid rgb(82, 96, 105);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 419px;
+    column-rule-color: rgb(82, 96, 105);
+    perspective-origin: 209.5px 11px;
+    transform-origin: 209.5px 11px;
+    border: 0px none rgb(82, 96, 105);
+    font: normal normal 300 normal 14px / 22px Roboto, sans-serif;
+    outline: rgb(82, 96, 105) none 0px;
+    overflow: hidden;
+}/*#DIV_129, #DIV_151, #DIV_173, #DIV_195, #DIV_217, #DIV_239, #DIV_261, #DIV_283, #DIV_305*/
+
+/*#DIV_130, #DIV_152, #DIV_174, #DIV_196, #DIV_218, #DIV_240, #DIV_262, #DIV_284, #DIV_306 {
+*/    
+
+.abstract {
+	border-collapse: collapse;
+    box-sizing: border-box;
+    color: rgb(118, 131, 143);
+    cursor: pointer;
+    height: 22px;
+    text-decoration: none solid rgb(118, 131, 143);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 419px;
+    column-rule-color: rgb(118, 131, 143);
+    perspective-origin: 209.5px 11px;
+    transform-origin: 209.5px 11px;
+    border: 0px none rgb(118, 131, 143);
+    font: normal normal 300 normal 14px / 22px Roboto, sans-serif;
+    outline: rgb(118, 131, 143) none 0px;
+    overflow: hidden;
+}/*#DIV_130, #DIV_152, #DIV_174, #DIV_196, #DIV_218, #DIV_240, #DIV_262, #DIV_284, #DIV_306*/
+
+.date-wrapper-cell {
+    border-collapse: collapse;
+    box-sizing: border-box;
+    color: rgb(118, 131, 143);
+    cursor: pointer;
+    height: 85px;
+    text-decoration: none solid rgb(118, 131, 143);
+    vertical-align: top;
+    width: 130px;
+    column-rule-color: rgb(118, 131, 143);
+    perspective-origin: 65px 42.5px;
+    transform-origin: 65px 42.5px;
+    border-top: 1px solid rgb(228, 234, 236);
+    border-right: 0px none rgb(118, 131, 143);
+    border-bottom: 0px none rgb(118, 131, 143);
+    border-left: 0px none rgb(118, 131, 143);
+    font: normal normal 300 normal 14px / 22px Roboto, sans-serif;
+    outline: rgb(118, 131, 143) none 0px;
+    padding: 20px 30px 20px 8px;
+}/*#TD_133, #TD_155, #TD_177, #TD_199, #TD_221, #TD_243, #TD_265, #TD_287*/
+
+.date-text {
+    border-collapse: collapse;
+    box-sizing: border-box;
+    color: rgb(163, 175, 183);
+    cursor: pointer;
+    height: 22px;
+    text-decoration: none solid rgb(163, 175, 183);
+    width: 92px;
+    column-rule-color: rgb(163, 175, 183);
+    perspective-origin: 46px 11px;
+    transform-origin: 46px 11px;
+    border: 0px none rgb(163, 175, 183);
+    font: normal normal 300 normal 14px / 22px Roboto, sans-serif;
+    outline: rgb(163, 175, 183) none 0px;
+}/*#DIV_134, #DIV_156, #DIV_178, #DIV_200, #DIV_222, #DIV_244, #DIV_266, #DIV_288, #DIV_310*/
+
