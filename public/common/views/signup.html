@@ -9,308 +9,137 @@
 </head>
 <body>
 
-<!--register content-->
-<div class="dashboard">
-    <span class='title-name'>
-	       Register
-	</span>
-</div>
-<br></br>
 <div class="container">
-    <div class="row center-align">
-        <h3>Registration {{user.account_type}}</h3>
-    </div>
-    <div class="row">
-        <form class="col s12">
-          <div class="row">
-            <div class="input-field col s6">
-                <input ng-model="user.first_name" type="text" class="validate" name="first_name">
-                <label for="first_name">First Name</label>
+  <div class="row">
+  	<div class="col-md-8 col-md-offset-2">
+
+          <form class="form-horizontal">
+          <fieldset>
+            <div id="legend">
+              <legend class="">Register</legend>
             </div>
-            <div class="input-field col s6">
-                <input ng-model="last_name" type="text" class="validate"  name="last_name">
-                <label for="last_name">Last Name</label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col s6">
-                    <input ng-model="sex" class="with-gap" name="sex" type="radio" id="male"/>
-                    <label for="male">Male</label>
-            </div>
-            <div class="col s6">
-                    <input ng-model ="sex" class="with-gap" name="sex" type="radio" id="female"/>
-                    <label for="female">Female</label>
-            </div>
-          </div>
-          <div class="row">
-              <div class="input-field col s12">
-                  <select ng-model="account_type" name="account_type" ng-options="type.value as type.label for type in type_options" id="type_select">
-                      <!-- <option value="" selected="selected" disabled>Choose your option</option> -->
-                    <!-- <option value="1">Patient</option>
-                    <option value="2">Doctor</option>
-                    <option value="3">Pharmacy</option> -->
-                  </select>
-                  <label for="account_type">Account Type</label>
-              </div>
-          </div>
-          <div>
-              <div class="row" ng-show="account_type==2">
-                  <div class="input-field col s12">
-                      <input ng-model="hospital_name" type="text" class="validate" name="hospital_name">
-                      <label for="hospital_name">Hospital Name</label>
+
+            <div class="control-group">
+              <div class="row">
+                <div class="col-md-6">
+                  <label class="control-label" for="firstname">First Name</label>
+                  <div class="controls">
+                    <input ng-model="firstname" type="text" id="firstname" name="firstname" placeholder="First Name" class="form-control input-lg" required />
                   </div>
-              </div>
-              <div class="row" ng-show="account_type==2">
-                  <div class="input-field col s12">
-                      <input ng-model="hospital_name" type="text" class="validate" name="hospital_name">
-                      <label for="hospital_name">Hospital Name</label>
+                </div>
+                <div class="col-md-6">
+                  <label class="control-label" for="lastname">Last Name</label>
+                  <div class="controls">
+                    <input ng-model="lastname" type="text" id="lastname" name="lastname" placeholder="Last Name" class="form-control input-lg" required />
                   </div>
+                </div>
               </div>
-              <div class="row" ng-show="account_type==2">
-                  <div class="input-field col s12">
-                      <input ng-model="hospital_name" type="text" class="validate" name="hospital_name">
-                      <label for="hospital_name">Hospital Name</label>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label" for="gender">Sex</label>
+              <div class="radio">
+                <label>
+                    <input type="radio" name="gender" value="Male" ng-model="gender" checked>
+                    Male
+                </label>
+              </div>
+              <div class="radio">
+                <label>
+                    <input type="radio" name="gender" value="Female" ng-model="gender">
+                    Female
+                </label>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label" for="phone">Phone Number</label>
+              <div class="controls">
+                <input ng-model="phone" type="phone" id="phone" name="phone" placeholder="Phone Number" class="form-control input-lg" required />
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" for="accountType">Account Type</label>
+              <div class="radio">
+                <label>
+                    <input type="radio" name="accountType" value="Patient" ng-model="accountType" checked />
+                    Patient
+                </label>
+              </div>
+              <div class="radio">
+                <label>
+                    <input type="radio" name="accountType" value="Doctor" ng-model="accountType" />
+                    Doctor
+                </label>
+              </div>
+              <div class="radio">
+                <label>
+                    <input type="radio" name="accountType" value="Pharmacy" ng-model="accountType" />
+                    Pharmacy
+                </label>
+              </div>
+            </div>
+
+            <div ng-switch="accountType">
+              <div ng-switch-when="Doctor">
+                <div class="control-group">
+                  <label class="control-label" for="hospitalName">Hospital Name</label>
+                  <div class="controls">
+                    <input ng-model="hospitalName" type="text" id="hospitalName" name="hospitalName" placeholder="Hospital Name" class="form-control input-lg" />
                   </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label" for="hospitalAddress">Hospital Address</label>
+                  <div class="controls">
+                    <input ng-model="hospitalAddress" type="text" id="hospitalAddress" name="hospitalAddress" placeholder="Hospital Address" class="form-control input-lg" />
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label" for="hospitalCity">Hospital City</label>
+                  <div class="controls">
+                    <input ng-model="hospitalCity" type="text" id="hospitalCity" name="hospitalCity" placeholder="Hospital City" class="form-control input-lg" />
+                  </div>
+                </div>
               </div>
-          </div>
-          <div class="row">
-            <div class="input-field col s12">
-                <input type="email" class="validate" name="email">
-                <label for="email">Email</label>
             </div>
-          </div>
-          <div class="row">
-            <div class="input-field col s12">
-                <input type="password" class="validate" name="password">
-                <label for="password">Password</label>
+
+            <div class="control-group">
+              <label class="control-label" for="email">Email</label>
+              <div class="controls">
+                <input ng-model="email" type="email" id="email" name="email" placeholder="you@example.com" class="form-control input-lg" required />
+                <p class="help-block">This will be your login username</p>
+              </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="input-field col s12">
-                <input type="password" class="validate" name="confirm_password">
-                <label for="confirm_password">Confirm Password</label>
+
+            <div class="control-group">
+              <label class="control-label" for="password">Password</label>
+              <div class="controls">
+                <input ng-model="password" type="password" id="password" name="password" placeholder="Password" class="form-control input-lg" required />
+              </div>
             </div>
-          </div>
+
+            <div class="control-group">
+              <label class="control-label" for="password_confirm">Confirm Password</label>
+              <div class="controls">
+                <input ng-model="password_confirm" type="password" id="password_confirm" name="password_confirm" placeholder="Confirm Password" class="form-control input-lg" required />
+              </div>
+            </div>
+            <br />
+
+            <div class="control-group">
+              <div class="controls">
+                <button ng-click="register()" class="btn btn-lg btn-success">Register</button>
+                <button ng-click="reset()" type="reset"class="btn btn-lg btn-default">Reset</button>
+              </div>
+            </div>
+          </fieldset>
         </form>
+
     </div>
-</div>
-<div>
-        <form name="registration" class="col s6 push-s6">
-            <!-- <table border="0">
-                <tr>
-                    <td>E-mail (Username): </td>
-                    <td id="inputx">
-                        <input ng-model="email" type="email" name="email"> <span>*</span>
-                        <br>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Password:  </td>
-                    <td> <input ng-model="password" type="password" name="password"></td>
-                </tr>
-                <tr>
-                    <td>Confirm Password:  </td>
-                    <td> <input ng-model="password2" type="password" name="password2"></td>
-                </tr>
-                <tr>
-                    <td>Account Type:</td>
-                    <td>
-                        <select ng-model="account_type" name="account_type">
-                          <option value="" disabled selected>Choose your option</option>
-                          <option value="1">Patient</option>
-                          <option value="2">Doctor</option>
-                          <option value="3">Pharmacy</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>First Name: </td>
-                    <td id="inputx">
-                        <input ng-model="firstName" type="text" name="firstName"> <span>*</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Last Name: </td>
-                    <td id="inputx">
-                        <input ng-model="lastName" type="text" name="lastName"> <span>*</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Gender:  </td>
-                    <td>
-                        <input ng-model="sex" type="radio" name="sex" value="0" checked style="margin-left:5px;" />Male
-                        <input ng-model="sex" type="radio" name="sex" value="1" />Female
-                    </td>
-                </tr>
-                <tr>
-                    <td>Phone:  </td>
-                    <td>
-                        <input ng-model="phone" type="number" name="phone">
-                    </td>
-                </tr>
-                <tbody id="doctor" ng-show="account_type==2">
-                    <tr>
-                        <td>Hospital Name:  </td>
-                        <td>
-                            <input ng-model="hospital_name" type="text" name="hospitalName">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Hospital City:  </td>
-                        <td>
-                            <input ng-model="hospital_city" type="text" name="hospitalCity">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Address:  </td>
-                        <td>
-                            <input ng-model="address" type="text" name="address">
-                        </td>
-                    </tr>
-                </tbody>
-                <tbody id="pharmacy" ng-show="account_type==3">
-                    <tr>
-                        <td>Pharmacy Name:  </td>
-                        <td>
-                            <input ng-model="pharmacy_name" type="text" name="pharmacyName">
-                        </td>
-                    </tr>
-                </tbody>
-            </table> -->
-            <div class="center-align">
-                <button type="submit" name="sub" value="Submit" class="btn btn-default" id="upload" ng-click="signUp()">Sign Up</button>
-                <button type="reset" name="res" value="Clear" class="btn btn-default" id="upload">Reset</button>
-            </div>
-        </form>
+  </div>
 </div>
 
-  <!-- footer -->
 
-<!-- <script>
-Parse.initialize("BDo39lSOtPuBwDfq0EBDgIjTzztIQE38Fuk03EcR", "ox76Y4RxB06A69JWAleRHSercHKomN2FVu61dfu3");
-
-if (Parse.User.current())
-  Parse.User.logOut();
-var patientID;
-function myFunction(x)
-{
-  x.style.background="yellow";
-}
-
-function IsDigit(cCheck)
-{
-  return (('0'<=cCheck) && (cCheck<='9'));
-}
-
-function IsAlpha(cCheck)
-{
-  return ((('a'<=cCheck) && (cCheck<='z')) || (('A'<=cCheck) && (cCheck<='Z')))
-}
-
-function IsValid() //RE EDIT HERE WHEN CONNECT TO DATABASE WITH NEW CHECK for user name like:has existed...
-{
-  var struserName = reg.UserName.value;
-  for (nIndex=0; nIndex<struserName.length; nIndex++)
-  {
-    cCheck = struserName.charAt(nIndex);
-    if (!(IsDigit(cCheck) || IsAlpha(cCheck)))
-    {
-      return false;
-    }
-  }
-  return true;
-}
-function chkEmail(str)
-{
-  return str.search(/[\w\-]{1,}@[\w\-]{1,}\.[\w\-]{1,}/)==0?true:false
-}
-function  chkPID()//RE EDIT here when connect to database with check whether we have the patient in our database
-{
- patientID = reg.PID.value;
- for (nIndex=0; nIndex<patientID.length; nIndex++)
- {
-  cCheck = patientID.charAt(nIndex);
-  if (!IsDigit(cCheck))
-  {
-
-    return false;
-  }
-}
-}
-function docheck()
-{
-  if(reg.UserName.value=="")
-  {
-    alert("Please Enter your user name");
-    return false;
-  }
-  else if(!chkEmail(reg.UserName.value))
-  {
-    alert("Invalid user name. Please enter a valid email");
-    return false;
-  }
-  // else if(reg.PID.value=="")
-  // {
-  //   alert("Please enter your Patient ID");
-  //   return false;
-  // }
-/*else if(!chkPID())
-{
-alert("Invalid Patient ID. Please just include digits" + " "+patientID+"stop");
-return false;
-} */
-else if(reg.UserPassword.value=="")
-{
-  alert("Please enter your password");
-  return false;
-}
-else if(reg.UserPassword.value != reg.CUserPassword.value)
-{
-  alert("Conflict between two passwords");
-  return false;
-}
-/*else if(reg.UserName.value =="")
-{
-  alert("Please enter you E-mail");
-  return false;
-}*/
-else
-{
-  var user = new Object();
-  user.password = reg['UserPassword'].value;
-  user.email = reg['UserName'].value;
-  user.accountType = reg['AccountType'].value;
-  user.firstname = reg['FirstName'].value;
-  user.lastname = reg['LastName'].value;
-  user.gender = reg['Sex'].value;
-  user.phone = reg['Phone'].value;
-
-  if(user.accountType.toLowerCase() == "patient"){
-    saveNewUser(user, "Patient", null, "login.html");
-  }else if(user.accountType.toLowerCase() == "doctor"){
-    var doctor = new Object();
-    doctor.hospitalName = reg['hospitalName'].value;
-    doctor.address = reg['address'].value;
-    doctor.hospitalCity = reg['hospitalCity'].value;
-    saveNewUser(user, "Doctor", doctor, "login.html");
-  }
-
-  return true;
-}
-}
-function changeType(){
-  var accountType = document.getElementById("AccountType").value;
-  if(accountType=="Doctor"){
-    document.getElementById("doctor").style.display = "block";
-    document.getElementById("pharmacy").style.display = "none";
-  }else if(accountType="Pharmacy"){
-    document.getElementById("doctor").style.display = "none";
-    document.getElementById("pharmacy").style.display = "block";
-  }
-}
-</script> -->
-
-<script>console.log('does this work')</script>
 </body>
 
 </html>
