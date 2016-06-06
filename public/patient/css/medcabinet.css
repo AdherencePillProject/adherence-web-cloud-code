@@ -1,103 +1,88 @@
 body, html {
-  width: 100%;
-  margin: 0%;
+    width: 100%;
+    margin: 0%;
 }
-
-.name{
-  font-size: 18;
-  font-weight: bold;
-  text-align: center;
-  font-family: "Trebuchet MS", Helvetica, sans-serif;
+.name {
+    font-size: 18;
+    font-weight: bold;
+    text-align: center;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
 }
-
-
 #searchbar {
-font-family: 'PT Sans', sans-serif;
-margin-top: 10px;
-margin-bottom: 20px;
-font-size:20px;
-border-radius:0px;
+    font-family: 'PT Sans', sans-serif;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-size: 20px;
+    border-radius: 0px;
 }
-
 #panelheading {
-  text-align: center;
-  font-family: 'PT Sans', sans-serif;
-  font-size:20px;
-  background-color:#0089ec !important;
-  border-color:#4d90fe;
-  color:#000000;
+    text-align: center;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 20px;
+    background-color: #0089ec !important;
+    border-color: #4d90fe;
+    color: #000000;
 }
-
-#buttongroup{
-  font-family: 'PT Sans', sans-serif;
-  float:right;
+#buttongroup {
+    font-family: 'PT Sans', sans-serif;
+    float: right;
 }
-
-#pillcontent{
-  font-family: 'PT Sans', sans-serif;
-  font-size:16px;
-  margin-top: 5px;
-  margin-bottom: 10px;
+#pillcontent {
+    font-family: 'PT Sans', sans-serif;
+    font-size: 16px;
+    margin-top: 5px;
+    margin-bottom: 10px;
 }
-
-#img{
-  margin-bottom: 15px;
+#img {
+    margin-bottom: 15px;
 }
-
 .glyphicon-move {
-  cursor: move;
-  cursor: -webkit-grabbing;
+    cursor: move;
+    cursor: -webkit-grabbing;
 }
-
-#medication{
-  margin-bottom: 15px;
-  background-color: #fff;
+#medication {
+    margin-bottom: 15px;
+    background-color: #fff;
 }
-
-.title{
-  font-family: arial;
-  font-size: 14;
-  font-weight: bold;
+.title {
+    font-family: arial;
+    font-size: 14;
+    font-weight: bold;
 }
-
 #search-box {
-  position: relative;
-  width: 30%;
-  margin-bottom: 15px;
+    position: relative;
+    width: 30%;
+    margin-bottom: 15px;
 }
-
 #search-form {
-  height: 40px;
-  border: 1px solid #999;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
-  background-color: #fff;
-  overflow: hidden;
+    height: 40px;
+    border: 1px solid #999;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background-color: #fff;
+    overflow: hidden;
 }
-
 #search-text {
-  font-size: 14px;
-  color: #ddd;
-  border-width: 0;
-  background: transparent;
+    font-size: 14px;
+    color: #ddd;
+    border-width: 0;
+    background: transparent;
 }
-
 #search-box input[type="text"] {
-  width: 90%;
-  padding: 11px 0 12px 1em;
-  color: #333;
-  outline: none;
+    width: 90%;
+    padding: 11px 0 12px 1em;
+    color: #333;
+    outline: none;
 }
 .submit1 {
-  width: 300px;
+    width: 300px;
 }
 .submit1 input {
-  width: 80%;
+    width: 80%;
 }
-
 .submit1 button {
-  width: 20%;
+    width: 20%;
 }
 
 /*#search-button {
@@ -118,55 +103,48 @@ border-radius:0px;
   cursor: pointer;
 }*/
 
-
 .cell {
-  float: left;
-  width: 50%;
+    float: left;
+    width: 50%;
 }
-
 .table {
-  border:1px solid #000000;
+    border: 1px solid #000000;
 }
 
 /* Custom Styles for Bootstrap Affix */
-ul.nav-tabs{
-  text-align: center;
-  width: 220px;
-  margin-top: 0px;
-  border-radius: 4px;
-  border: 1px solid #ddd;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.067);
-}
 
-ul.nav-tabs li{
+ul.nav-tabs {
+    text-align: center;
+    width: 220px;
+    margin-top: 0px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.067);
+}
+ul.nav-tabs li {
     margin: 0;
     border-top: 1px solid #ddd;
 }
-
-ul.nav-tabs li:first-child{
+ul.nav-tabs li:first-child {
     border-top: none;
 }
-
-ul.nav-tabs li a{
+ul.nav-tabs li a {
     margin: 0;
     padding: 8px 16px;
     border-radius: 0;
 }
-
-ul.nav-tabs li.active a, ul.nav-tabs li.active a:hover{
+ul.nav-tabs li.active a, ul.nav-tabs li.active a:hover {
     color: #fff;
     background: #0088cc;
     border: 1px solid #0088cc;
 }
-
-ul.nav-tabs li:first-child a{
+ul.nav-tabs li:first-child a {
     border-radius: 4px 4px 0 0;
 }
-
-ul.nav-tabs li:last-child a{
+ul.nav-tabs li:last-child a {
     border-radius: 0 0 4px 4px;
 }
-
-ul.nav-tabs.affix{
-    top: 60px; /* Set the top position of pinned element */
+ul.nav-tabs.affix {
+    top: 60px;
+    /* Set the top position of pinned element */
 }
