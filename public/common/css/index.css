@@ -13,11 +13,12 @@ body {
 
 
 .apb-nav {
+  overflow: auto;
   background-color: #fff;
-  position:fixed;
 }
 
 .apb-logo{
+  padding-top: 15px;
   font-weight: 400;
   width: 200px;
   height:64px;
@@ -27,7 +28,18 @@ body {
   font-size: 1.6em;
 }
 
+.apb-logo a{
+    color: #fff !important;
+}
+
+a:hover{
+  text-decoration: none;
+}
+
 .apb-nav-box{
+  border-bottom: 1px #ddd solid;
+  padding: 21px;
+  height: 64px;
   margin-left: 200px;
   padding-left: 30px;
   color: #0089Ec;
@@ -40,7 +52,7 @@ body {
 }
 
 .apb-nav-tool{
-  padding-right: 30px;
+  padding-right: 5px;
   float: right;
   display: inline-block;
 }
@@ -52,18 +64,22 @@ body {
 
 .apb-side{
   float: left;
-  margin-top:45px;
   padding-top: 50px;
   width: 200px;
-  height: calc(100% - 66px);
+  height: 100%;
   background-color: #313131;
-  position:fixed;
+  position:relative;
 }
 
 .apb-side .apb-a{
    font-size: 1em;
    display: block;
    letter-spacing: 1px;
+ }
+
+a:hover, a:focus {
+   color: #fff;
+   text-decoration: none;
  }
 
 
@@ -75,8 +91,8 @@ body {
 
 .apb-a:hover{
   border-left: 4px solid #ddd;
-  background-color: #414141;
-  color: #fff;
+
+  color: #ddd;
 }
 
 
