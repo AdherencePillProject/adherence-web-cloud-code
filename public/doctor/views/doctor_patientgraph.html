@@ -142,15 +142,18 @@
     <div id="radios-right">
       <div class="radio">
       <label>
-        <input type="radio" name="optionsRadios" id="optionRadios1" value="option1" checked>
+        <input type="radio" ng-model="days" value="7" ng-change="WeekMonth(days)">
         Last Week
       </label>
       </div>
       <div class="radio">
-        <label>
-          <input type="radio" name="optionsRadios" id="optionRadios2" value="option2">
-          Last Month
-        </label>
+      <label>
+      <input type="radio" ng-model="days" value="30" ng-change="WeekMonth(days)">
+        Last Month
+      </label>
+      </div>
+
+      <div>
       </div>
     </div>
 

@@ -17,7 +17,7 @@ angular.module('app')
     //keeps track of which prescription number we are on
     var prescriptionNum = 0;
 
-    var days = 7;
+    $scope.days = 7;
 
     var Perscription = new Parse.Object.extend("Perscription", {
         Name: "",
@@ -256,7 +256,7 @@ angular.module('app')
                 lineThickness: 4,
                 markerType: "circle",
                 markerSize: 12,
-                dataPoints: pill_times_data[i].slice(pill_times_data[i].length - days, pill_times_data[i].length),
+                dataPoints: pill_times_data[i].slice(pill_times_data[i].length - $scope.days, pill_times_data[i].length),
                 visible:true
             }
             $scope.chart.options.data.push(pill_time);
@@ -275,7 +275,7 @@ angular.module('app')
     });
 
     $("#week-view").click(function() {
-        days = 7;
+        $scope.days = 7;
         $scope.chart.options.data = [];
         createDataArray(PillData, pill_times_data);
         putDataArrayToChart();
@@ -285,7 +285,7 @@ angular.module('app')
     });
 
     $("#month-view").click(function() {
-        days = 14
+        $scope.days = 14
         $scope.chart.options.data = []
         createDataArray(PillData, pill_times_data)
         putDataArrayToChart();
@@ -295,6 +295,22 @@ angular.module('app')
 
 
 
+    $scope.WeekMonth = function(day) {
+        $scope.days = day;
+        $scope.chart.options.data = [];
+        createDataArray(PillData, pill_times_data);
+        putDataArrayToChart();
+        $scope.chart.render();
+        $("#view-text").text("Week");
+    }
+    $scope.Month = function() {
+        $scope.days = 30;
+        $scope.chart.options.data = [];
+        createDataArray(PillData, pill_times_data);
+        putDataArrayToChart();
+        $scope.chart.render();
+        $("#view-text").text("Week");
+    }
     // createDataArray(PillData, pill_times_data)
     // putDataArrayToChart();
     // $scope.chart.render();
@@ -312,16 +328,6 @@ angular.module('app')
       }
       $scope.chart.render();
     }
-    $("#SelectAll").click(function() {
-      for(var i = 0; i < pill_names.length; i++) {
-        $scope.chart.options.data[i].visible = true;
-      }
-      $scope.chart.render();
-    });
-
-    $("#unSelectAll").click(function() {
-    });
-
 
     $(".canvasjs-chart-credit").hide();
     $(".col-md-8 > .btn-group").hide();
