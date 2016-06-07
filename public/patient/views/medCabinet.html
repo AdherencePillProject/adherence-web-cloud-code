@@ -20,6 +20,7 @@
                     </form>
                     <!-- Search Box -->
 
+                    <h3 id="noPillFound" style="display:inline">Sorry, we didn't find any pill info</h3>
                     <div class="row" id="med">
                         <div class="col-md-9">
                             <div class="list-group-item table" id="medication" style="display: none;">
@@ -51,8 +52,8 @@
                                     <div class="col-sm-3" id="pillcontent">
                                         <div id="img"><img src="patient/assets/images/prescription-icon.png" class="img-responsive" alt="Responsive image" width="64" height="64"></div>
                                         <!-- Refill Icon Appears Here-->
-                                        <div class="title">Refill Information</div>
-                                        <div>10 Pills Left</br>Refill in 5 Days</div>
+                                        <div class="title">Pill Left</div>
+                                        <div class="pillLeft"></div>
                                         <!-- Refill Info Appears Here-->
                                     </div>
                                     <!--Third Part -->
@@ -62,8 +63,7 @@
                                         <div id="img"><img src="patient/assets/images/Checklist-icon.png" class="img-responsive" alt="Responsive image" width="64" height="64"></div>
                                         <!-- Refill Icon Appears Here-->
                                         <div class="title">Reminder</div>
-                                        <div>Take1: Morning&nbsp&nbsp&nbsp<span class="glyphicon glyphicon-ok"></span></br>
-                                            Take2: Afternoon&nbsp&nbsp&nbsp<span class="glyphicon glyphicon-remove"></span></div>
+                                        <div class="takenTime"></div>
                                         <!-- History Appears Here-->
                                     </div>
                                     <!--fourth Part -->
