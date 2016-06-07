@@ -10,7 +10,6 @@ angular
         var counter = 0;
 
         function getPillInfoForPatient() {
-            console.log("getpillinfo");
             var user = Parse.User.current();
         }
 
@@ -19,7 +18,6 @@ angular
             var query = new Parse.Query(pillInfo);
             query.find({
                 success: function(results) {
-
                     alert("Found " + results.length + " results");
                     for (var i = 0; i < results.length; i++) {
                         var pill = results[i];
@@ -75,6 +73,7 @@ angular
                     // query.include("schedule");
                     query.find({
                         success: function(results) {
+                            var pillTuple = [];
                             var allPills = [];
                             //Successfully retrieve prescriptions
                             for (var i = 0; i < results.length; i++) {
@@ -87,6 +86,15 @@ angular
                                 // Get bottle object
                                 var bottle = results[i].get("bottle");
                                 var relation = bottle.relation('relatedPill');
+                                var pillLeft = results[i].get("numberLeft");
+                                var pillName = results[i].get("pillName");
+                                var consumption = results[i].get("consumptionTime");
+                                pillTuple.push(
+                                  {pillName: pillName,
+                                   pillLeft: pillLeft,
+                                   consumption: consumption
+                                  });
+
                                 relation.query().find({
                                     success: function(pills) {
                                         // toppings is a list of toppings for this pizza
@@ -98,7 +106,10 @@ angular
                                             // alert(instruction);
                                             // Use instruction for doctor suggestion for now
                                             // In the future, we may need suggestion column
-                                            duplicateMedDiv(name, instruction, instruction);
+                                            var pair = findPillLeftForPill(pillTuple, name);
+                                            var pillLeft = pair.pillLeft;
+                                            var time = pair.time;
+                                            duplicateMedDiv(name, instruction, instruction, pillLeft, time);
                                         }
                                     },
                                     error: function(error) {
@@ -115,8 +126,17 @@ angular
             });
         }
 
-        function duplicateMedDiv(medName, instruction, suggestion) {
+        function findPillLeftForPill(pillTuple, name){
+          for(var i = 0; i < pillTuple.length; i++){
+            if(pillTuple[i].pillName == name){
+              return {pillLeft: pillTuple[i].pillLeft, time: pillTuple[i].consumption};
+            }
+          }
+        }
 
+        function duplicateMedDiv(medName, instruction, suggestion, pillLeftNumber, time) {
+            // Found pill, hide no pill warning
+            $('#noPillFound').attr("style", "display:none");
             var original = document.getElementById('medication');
             var clone = original.cloneNode(true);
             clone.id = "medication" + ++counter;
@@ -129,6 +149,12 @@ angular
             pillNameAndInstruction.innerHTML = pillNameAndInstruction.innerHTML + "Name: " + medName + "<br>" + instruction + "</br>";
             var doctorSuggestion = document.getElementById(clone.id).getElementsByClassName('suggestion')[0];
             doctorSuggestion.innerHTML = doctorSuggestion.innerHTML + suggestion;
+            var pillLeft = document.getElementById(clone.id).getElementsByClassName('pillLeft')[0];
+            pillLeft.innerHTML = pillLeft.innerHTML + pillLeftNumber;
+            var takenTime = document.getElementById(clone.id).getElementsByClassName('takenTime')[0];
+            if(time != undefined){
+              takenTime.innerHTML = takenTime.innerHTML + time;
+            }
             updateNavigation(clone.id, medName);
         }
 
