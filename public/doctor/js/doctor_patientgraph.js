@@ -1,7 +1,11 @@
+
+
 angular.module('app')
 .controller('patient_graphCtrl', function($scope) {
     console.log('entered controller');
-
+    Parse.initialize("BDo39lSOtPuBwDfq0EBDgIjTzztIQE38Fuk03EcR", "ox76Y4RxB06A69JWAleRHSercHKomN2FVu61dfu3");
+    $scope.Name = "aaaa"
+    $scope.sortedName = []
     //window.onload = function () {
     //namesToIndices = keeps track of which patient is selected
 
@@ -21,166 +25,7 @@ angular.module('app')
         Pill_Names: [],
     });
 
-    //toggleActive
-    //parameters: div element
-    //function: toggles the active class element for divs on the right
-    //           loads prescription data for selected patient
-    function toggleActive(element){
-        //should only be one
-        var actives = document.getElementsByClassName("list-group-item active");
-        for (var i = 0; i < actives.length; i++){
-            actives[i].className = "list-group-item";
-        }
-        element.className = "list-group-item active";
-
-        //element.id[4] because id is in form "name[num here]"
-        var num = parseInt(element.id[4]);
-
-        var currActiveUser = namesToIndices[num];
-
-
-    }
-
-    function getPatientsInfo2() {
-
-        var patientList = Parse.Object.extend("Patient");
-        var query = new Parse.Query(patientList);
-
-        // Include user account info so we don't have to do another query
-        query.include('userAccount').ascending('firstname');
-
-        // Use a dict to save name/user pairs and sort later
-        var unsortedNames = [];
-
-        query.find({
-            success: function(patients) {
-                for (var i = 0; i < patients.length; i++) {
-                    var user = patients[i].get("userAccount");
-
-                    if (user != undefined) {
-                        var firstname = user.get("firstname");
-                        var lastname = user.get("lastname");
-                        if (firstname != undefined && lastname != undefined) {
-                            var name = firstname + " " + lastname;
-                            var userAndName = {
-                                lastName: lastname,
-                                name: name,
-                                user: user
-                            };
-                            unsortedNames.push(userAndName);
-                        }
-                    }
-                }
-                // sortedNames.push.apply(sortedNames, Object.keys(unsortedUsers));
-                // Ascending, for descending, use sortedNames.sort().reverse()
-                // Or, use a customized rule. There is no out-of-box sorting for a nested query.
-                unsortedNames.sort(function(a, b) {
-                    if (a['lastName'] < b['lastName']) return -1;
-                    if (a['lastName'] > b['lastName']) return 1;
-                    return 0;
-                });
-                for (var i = 0; i < unsortedNames.length; i++) {
-                    var sortedUser = unsortedNames[i]["user"];
-                    var sortedName = unsortedNames[i]["name"];
-                    namesToIndices[i] = sortedUser;
-                    createNameDiv(sortedName, i);
-                }
-            },
-            error: function(error) {
-                alert(error.message);
-            }
-        });
-    }
-
-    //createNameDiv()
-    //parameters: patient_name, count
-    //function: creates div for name that shows up on the right
-
-
-
-    function createNameDiv(patient_name, count, pillName){
-        //Add their names to div id="patient_names"
-        var pn = document.getElementById("patien_names");
-        var newA = document.createElement("a");
-
-        newA.href = "#";
-        newA.id = "name" + count;
-        newA.onclick = function() {
-            patientClicked(this, patient_name);
-        }
-        var name = document.createElement("h4");
-        name.textContent = patient_name;
-        name.className = "list-group-item-heading";
-
-        //first person loaded is highlighted
-        if(count == 0){
-            newA.className = "list-group-item active";
-            //element.id[4] because id is in form "name[num here]"
-            var num = parseInt(newA.id[4]);
-            var currActiveUser = namesToIndices[num];
-        }
-        else {
-            newA.className = "list-group-item";
-        }
-
-        newA.appendChild(name);
-        pn.appendChild(newA);
-    }
-
-
-    function patientClicked(ev, pillName) {
-      toggleActive(ev);
-      chart.options.data = [];
-      chart.options.title.text = pillName + "'s Weekly Graph Report";
-      pill_times_data = [];
-
-
-      // var perscription = Parse.Object.extend("Perscription");
-      var query = new Parse.Query(Perscription);
-
-      // alert(pillName)
-      query.equalTo("Name", pillName);
-      query.find({
-        success:function(result){
-            for (var i = 0; i < result.length; i++){
-                PillData = result[i].get("Pill_Data");
-                pill_names = result[i].get("Pill_Names");
-            }
-            createDataArray(PillData, pill_times_data)
-            putDataArrayToChart();
-            // getPatientsInfo2();
-            chart.render();
-        },
-        error: function(error) {
-            alert("error: " + error.code + " " + error.message)
-        }
-      })
-      $(".col-md-8 > .btn-group").show();
-    }
-
-
-    CanvasJS.addColorSet("customColorSet", [
-        "#ffc107", //amber
-        "#f44336", //red
-        "#cddc39", //lime
-        "#3f51b5", //indigo
-        "#2196f3", //blue
-        "#4caf50", //green
-        "#e91e63", //pink
-        "#00bcd4", //cyan
-        "#9c27b0", //purple
-        "#673ab7", //deep-purple
-        "#03a9f4", //light-blue
-        "#009688", //teal
-        "#8bc34a", //light-green
-        "#ffeb3b", //yellow
-        "#ff9800", //orange
-        "#ff5722", //deep-orange
-        "#795548", //brown
-        "#607d8b", //blue-grey
-        "#757575", //grey darken-1
-    ]);
-    var chart = new CanvasJS.Chart("chartContainer", {
+        $scope.chart = new CanvasJS.Chart("myChart", {
         colorSet: "customColorSet",
         animationEnabled: true,
         title:{
@@ -225,12 +70,151 @@ angular.module('app')
                 } else {
                     e.dataSeries.visible = true;
                 }
-                chart.render();
+                $scope.chart.render();
             }
         }
     });
+    //toggleActive
+    //parameters: div element
+    //function: toggles the active class element for divs on the right
+    //           loads prescription data for selected patient
+    function toggleActive(element){
+        //should only be one
+        var actives = document.getElementsByClassName("list-group-item active");
+        for (var i = 0; i < actives.length; i++){
+            actives[i].className = "list-group-item";
+        }
+        element.className = "list-group-item active";
 
-    chart.render();
+        //element.id[4] because id is in form "name[num here]"
+        var num = parseInt(element.id[4]);
+
+        var currActiveUser = namesToIndices[num];
+
+
+    }
+
+    $scope.getPatientsInfo2 = function() {
+        Parse.initialize("BDo39lSOtPuBwDfq0EBDgIjTzztIQE38Fuk03EcR", "ox76Y4RxB06A69JWAleRHSercHKomN2FVu61dfu3");
+
+        console.log("AAAA")
+        var patientList = Parse.Object.extend("Patient");
+        var query = new Parse.Query(patientList);
+
+        // Include user account info so we don't have to do another query
+        query.include('userAccount').ascending('firstname');
+
+        // Use a dict to save name/user pairs and sort later
+        var unsortedNames = [];
+
+        query.find({
+            success: function(patients) {
+
+            $scope.$apply(function() {
+                for (var i = 0; i < patients.length; i++) {
+                    var user = patients[i].get("userAccount");
+
+                    if (user != undefined) {
+                        var firstname = user.get("firstname");
+                        var lastname = user.get("lastname");
+                        if (firstname != undefined && lastname != undefined) {
+                            var name = firstname + " " + lastname;
+                            var userAndName = {
+                                lastName: lastname,
+                                name: name,
+                                user: user
+                            };
+                            unsortedNames.push(userAndName);
+                        }
+                    }
+                }
+                // sortedNames.push.apply(sortedNames, Object.keys(unsortedUsers));
+                // Ascending, for descending, use sortedNames.sort().reverse()
+                // Or, use a customized rule. There is no out-of-box sorting for a nested query.
+                unsortedNames.sort(function(a, b) {
+                    if (a['lastName'] < b['lastName']) return -1;
+                    if (a['lastName'] > b['lastName']) return 1;
+                    return 0;
+                });
+                for (var i = 0; i < unsortedNames.length; i++) {
+                    var sortedUser = unsortedNames[i]["user"];
+                    $scope.sortedName.push(unsortedNames[i]["name"]);
+                }
+
+                console.log($scope.sortedName)
+              });
+            },
+            error: function(error) {
+                alert(error.message);
+            }
+        });
+    }
+
+    console.log($scope.sortedName)
+    //createNameDiv()
+    //parameters: patient_name, count
+    //function: creates div for name that shows up on the right
+
+
+
+    $scope.patientClicked = function(pillName) {
+    Parse.initialize("BDo39lSOtPuBwDfq0EBDgIjTzztIQE38Fuk03EcR", "ox76Y4RxB06A69JWAleRHSercHKomN2FVu61dfu3");
+
+      $scope.chart.options.data = [];
+      $scope.chart.options.title.text = pillName + "'s Weekly Graph Report";
+      pill_times_data = [];
+
+      // var perscription = Parse.Object.extend("Perscription");
+      var query = new Parse.Query(Perscription);
+      console.log(pillName)
+      // alert(pillName)
+      query.equalTo("Name", pillName);
+      query.find({
+        success:function(result){
+            console.log(result)
+            $scope.$apply(function() {
+                for (var i = 0; i < result.length; i++){
+                    PillData = result[i].get("Pill_Data");
+                    pill_names = result[i].get("Pill_Names");
+                }
+                createDataArray(PillData, pill_times_data)
+                putDataArrayToChart();
+                console.log($scope.chart.options.data)
+                $scope.chart.render();
+              });
+        },
+        error: function(error) {
+            alert("error: " + error.code + " " + error.message)
+        }
+      })
+      $(".col-md-8 > .btn-group").show();
+    }
+
+
+    CanvasJS.addColorSet("customColorSet", [
+        "#ffc107", //amber
+        "#f44336", //red
+        "#cddc39", //lime
+        "#3f51b5", //indigo
+        "#2196f3", //blue
+        "#4caf50", //green
+        "#e91e63", //pink
+        "#00bcd4", //cyan
+        "#9c27b0", //purple
+        "#673ab7", //deep-purple
+        "#03a9f4", //light-blue
+        "#009688", //teal
+        "#8bc34a", //light-green
+        "#ffeb3b", //yellow
+        "#ff9800", //orange
+        "#ff5722", //deep-orange
+        "#795548", //brown
+        "#607d8b", //blue-grey
+        "#757575", //grey darken-1
+    ]);
+
+
+    $scope.chart.render();
 
     var pill_times_data = [];
     var pill_time_dataPoints = [];
@@ -275,34 +259,37 @@ angular.module('app')
                 dataPoints: pill_times_data[i].slice(pill_times_data[i].length - days, pill_times_data[i].length),
                 visible:true
             }
-            chart.options.data.push(pill_time);
+            $scope.chart.options.data.push(pill_time);
         }
     }
-        $("#addDataPoint").click(function () {
 
-        var length = chart.options.data[0].dataPoints.length;
-        chart.options.title.text = "New DataPoint Added at the end";
-        chart.options.data[0].dataPoints.push({ y: 25 - Math.random() * 10});
-        chart.render();
+    $scope.getPatientsInfo2();
 
-        });
+    $("#addDataPoint").click(function () {
+
+    var length = $scope.chart.options.data[0].dataPoints.length;
+    $scope.chart.options.title.text = "New DataPoint Added at the end";
+    $scope.chart.options.data[0].dataPoints.push({ y: 25 - Math.random() * 10});
+    $scope.chart.render();
+
+    });
 
     $("#week-view").click(function() {
         days = 7;
-        chart.options.data = [];
+        $scope.chart.options.data = [];
         createDataArray(PillData, pill_times_data);
         putDataArrayToChart();
-        chart.render();
+        $scope.chart.render();
         $("#view-text").text("Week");
         //$(".btn-group dropup > .btn btn-default dropdown-toggle").html("???");
     });
 
     $("#month-view").click(function() {
         days = 14
-        chart.options.data = []
+        $scope.chart.options.data = []
         createDataArray(PillData, pill_times_data)
         putDataArrayToChart();
-        chart.render();
+        $scope.chart.render();
         $("#view-text").text("Month");
     });
 
@@ -310,21 +297,29 @@ angular.module('app')
 
     // createDataArray(PillData, pill_times_data)
     // putDataArrayToChart();
-    getPatientsInfo2();
-    // chart.render();
-
+    // $scope.chart.render();
+    $scope.SelectALL = function() {
+      console.log("AAAA")
+      for(var i = 0; i < pill_names.length; i++) {
+        $scope.chart.options.data[i].visible = true;
+      }
+      $scope.chart.render();
+    }
+    $scope.unSelectALL = function() {
+      console.log("AAAA")
+      for(var i = 0; i < pill_names.length; i++) {
+        $scope.chart.options.data[i].visible = false;
+      }
+      $scope.chart.render();
+    }
     $("#SelectAll").click(function() {
       for(var i = 0; i < pill_names.length; i++) {
-        chart.options.data[i].visible = true;
+        $scope.chart.options.data[i].visible = true;
       }
-      chart.render();
+      $scope.chart.render();
     });
 
     $("#unSelectAll").click(function() {
-      for(var i = 0; i < pill_names.length; i++) {
-        chart.options.data[i].visible = false;
-      }
-      chart.render();
     });
 
 
@@ -361,7 +356,7 @@ angular.module('app')
             ]
         ];
         
-        chart.options.data = [];
+        $scope.chart.options.data = [];
         var pill_times_data_temp = []
         for(var i = 0; i < customizeData.length; i++) {
             var chartData = []
@@ -383,17 +378,19 @@ angular.module('app')
                 dataPoints: pill_times_data_temp[i],
                 visible:true
             }
-            chart.options.data.push(pill_time);
+            $scope.chart.options.data.push(pill_time);
         }
         
-        chart.render();
+        $scope.chart.render();
         $("#view-text").text("Customize");
     });
-
 
    // }
 
 
-    //Parse.initialize("BDo39lSOtPuBwDfq0EBDgIjTzztIQE38Fuk03EcR", "ox76Y4RxB06A69JWAleRHSercHKomN2FVu61dfu3");
+
+            
+    $scope.chart.render()
+
 
 });

@@ -1,6 +1,38 @@
+console.log("FUCK")
 window.onload = function () {
 //namesToIndices = keeps track of which patient is selected
+var Chart = new CanvasJS.Chart("chartContainer", {            
+      title:{
+        text: "Fruits sold in First & Second Quarter"              
+      },
 
+      data: [  //array of dataSeries     
+      { //dataSeries - first quarter
+   /*** Change type "column" to "bar", "area", "line" or "pie"***/        
+       type: "column",
+       name: "First Quarter",
+       dataPoints: [
+       { label: "banana", y: 18 },
+       { label: "orange", y: 29 },
+       { label: "apple", y: 40 },                                    
+       { label: "mango", y: 34 },
+       { label: "grape", y: 24 }
+       ]
+     },
+     { //dataSeries - second quarter
+
+      type: "column",
+      name: "Second Quarter",                
+      dataPoints: [
+      { label: "banana", y: 23 },
+      { label: "orange", y: 33 },
+      { label: "apple", y: 48 },                                    
+      { label: "mango", y: 37 },
+      { label: "grape", y: 20 }
+      ]
+    }
+    ]
+  });
 
 var namesToIndices = {};
 
@@ -201,7 +233,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
     }
 });
 
-chart.render();
+Chart.render();
 
 var pill_times_data = [];
 var pill_time_dataPoints = [];

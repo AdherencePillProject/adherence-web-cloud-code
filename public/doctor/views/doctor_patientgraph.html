@@ -2,6 +2,8 @@
 <html ng-app="adherence-partials">
 
 <head>
+
+
   <title>Doctor - Patient Graph Report</title>
   
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -20,14 +22,23 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
 
   <!--Add Angular Directives-->
-  <script src="/js/angular-app.js"></script>
+  <script src="../js/canvasjs/canvasjs.min.js"></script> 
+  <script src="app.js"></script>
 
-  <script src="js/doctor_patientgraph.js"></script>
   <!-- <link rel="stylesheet" href="css/doctor_patientgraph.css"> -->
   <style>
     body {
       background-color: white;
       font-family: "Helvetica Neue";
+    }
+    .container {
+        margin-top: 40px;
+        width: 970px !important;
+    }
+    #chartContainer {
+        margin-top: 30px;
+        height: 500px; 
+        width: 100%;
     }
     .list-group {
       padding-top: 20px;
@@ -76,21 +87,24 @@
     }
     
   </style>
-  <script type="text/javascript">
-    function toggleActive(element) {
-      var actives = document.getElementsByClassName("list-group-item active");
-      for (var i = 0; i < actives.length; i++){
-        actives[i].className = "list-group-item";
-      }
-      element.className = "list-group-item active";
-    }
-  </script>
 </head>
 
-<body>
-  <div ng-controller='NavController as tab' ng-include src="'/partials/navbar/navbar_doctor.html'"></div>
 
-<div class="row">
+<body>
+    <!-- <div class="container" ng-controller="patient_graphCtrl">
+        <div class="row">
+            <div class="col-xs-12">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div id="chartContainer"></div>
+            </div>
+        </div>
+    </div> -->
+
+  <!-- <div ng-controller='NavController as tab' ng-include src="'/partials/navbar/navbar_doctor.html'"></div> -->
+<div class="row"ng-controller="patient_graphCtrl">
   <div class="col-md-4">
     <h3 id="patientlist-title">Patients' List</h3>
     <div class="input-group">
@@ -100,39 +114,26 @@
         </span>
     </div>
 
-    <div class="list-group" id="patien_names">
-      <!--<a href="#" class="list-group-item active" onclick="patient0(this)">
-        <h4 class="list-group-item-heading">Yeyi Peng</h4>
-        <p class="list-group-item-text">some info about this patient</p>
+    <div class="list-group" >
+      <a href="" ng-repeat="x in sortedName track by $index" class="list-group-item" ng-click="patientClicked(x)">
+        <h4 class="list-group-item-heading">{{x}}</h4>
       </a>
-      <a href="#" class="list-group-item" onclick="patient1(this)">
-        <h4 class="list-group-item-heading">Jeanette Pranin</h4>
-        <p class="list-group-item-text">some info about this patient</p>
-      </a>
-      <a href="#" class="list-group-item" onclick="patient2(this)">
-        <h4 class="list-group-item-heading">Jack Tumblin</h4>
-        <p class="list-group-item-text">some info about this patient</p>
-      </a>
-      <a href="#" class="list-group-item" onclick="toggleActive(this)">
-        <h4 class="list-group-item-heading">Michael Horn</h4>
-        <p class="list-group-item-text">some info about this patient</p>
-      </a>-->
     </div>
   </div>
 
   <div class="col-md-8">
     <div id="checkbox-left">
 
-      <div class="checkbox">
+      <div class="checkbox" >
         <label>
-          <input type="checkbox" value="" id="selectallcheckboxes" onclick="selectAll(this)">
+          <input type="checkbox" value="" ng-click="SelectALL()">
           <span class="checkboxlabel">Select all</span>
         </label>
       </div>
 
       <div class="checkbox">
         <label>
-          <input type="checkbox" value="" id="unselectallcheckboxes" onclick="unSelectAll(this)">
+          <input type="checkbox" value="" id="unselectallcheckboxes" ng-click="unSelectALL()">
           Un-Select all
         </label>
       </div>
@@ -153,12 +154,10 @@
       </div>
     </div>
 
-    <div id="graph">
-      <canvas id="myChart" width="600" height="400"></canvas>
-    </div>
+            <div class="col-xs-12">
+                <div id="myChart"></div>
+            </div>
   </div>
 </div>
-  
 </body>
 </html>
-Status API Training Shop Blog About
