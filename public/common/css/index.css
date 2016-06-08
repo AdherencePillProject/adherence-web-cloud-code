@@ -132,9 +132,8 @@ a:hover, a:focus {
 
 .apb-page {
   position:relative;
-  z-index: -99;
   margin-left:200px;
-  padding-top: 60px;
+  padding-top: 80px;
 }
 
 .success {

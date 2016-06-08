@@ -26,7 +26,7 @@ angular
     console.log($scope.month);
     console.log(currentdate.getDate());
     // get the abbrevation of day_of_week
-    
+
     var weekday = new Array(7);
         weekday[0] = "Sun";
         weekday[1] = "Mon";
@@ -40,7 +40,7 @@ angular
     console.log(currentdate.getDay());
     console.log($scope.day_of_week);
     console.log('current user is', $rootScope.currentUser.get('prescription'));
-    // pill_info 
+    // pill_info
     // include the information of pills a patient should take, please retrieve from database
 
     $scope.pill_info = [
@@ -61,34 +61,42 @@ angular
         }
     ];
 
-    // query.find({
-    //     var relation = User.relation('prescription');
-    // })
+    var query = $rootScope.currentUser.relation('prescription').query();
+      // query.limit(5);
+      // query.descending('createdAt');
+      query.find({
+        success: function(res) {
+          $scope.$apply(function() {
+            $scope.prescriptions = res;
+          });
+        },
+        error: function(err) {
+          console.log(err);
+        }
+      });
 
-    //function:show_detail
-    //click the the pill and show pill_detail
-  //   $scope.showDetaili = true;
-  //   $scope.show_detail = function(){
-        // $scope.showDetail = ! $scope.showDetail;
-  //   };
 
-
-  $scope.open = function(item){
+      $scope.open = function(item){
+        console.log('called')
         if ($scope.isOpen(item)){
-            $scope.opened = undefined;
+            // $scope.$apply(function() {
+              $scope.opened = undefined;
+            // });
         } else {
-            $scope.opened = item;
-        }        
+            // $scope.$apply(function() {
+              $scope.opened = item;
+            // });
+        }
     };
-    
+
     $scope.isOpen = function(item){
         return $scope.opened === item;
     };
-    
+
     $scope.anyItemOpen = function() {
         return $scope.opened !== undefined;
     };
-    
+
     $scope.close = function() {
         $scope.opened = undefined;
     };
