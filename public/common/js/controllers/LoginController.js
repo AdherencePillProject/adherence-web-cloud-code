@@ -6,7 +6,6 @@ angular.module('app')
     	User.logIn($scope.email, $scope.password, {
     		success: function(user) {
           if (user) {
-              $rootScope.currentUser = user;
               var pp = user.get('patientPointer');
               var dp = user.get('doctorPointer');
               if (($scope.accType == 'Patient') && pp) {
@@ -14,10 +13,14 @@ angular.module('app')
                $scope.$apply(function(){
                   $location.path('/patient/profile');
                });
+               $rootScope.currentUser = user;
+               $rootScope.currentUser.role = $scope.accType;
               }
               else if (($scope.accType == 'Doctor') && dp) {
                 console.log('doctor')
                 UI.redirect('/profile/doctor');
+                $rootScope.currentUser = user;
+                $rootScope.currentUser.role = $scope.accType;
               }
               else
                 alert("You're attempting to log in as someone you are not");
