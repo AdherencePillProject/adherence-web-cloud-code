@@ -2,15 +2,14 @@
 	box-shadow: 1px 1px 5px #888888;
 	opacity: 0.7;
 	padding: 20px;
-	margin-top: 120px;
 	
 }
 /*=============time_info================*/
 .time_info{
-	float: left;
+	margin-right:25px;
+	margin-left: 25px;
 	width: 220px;
 	min-height: 200px;
-	margin-left: -90px;
 	text-align: center;
 
 }
@@ -51,9 +50,7 @@
 }
 /*=============.pill_dashborad=============*/
 .pill_dashborad{
-	float: left;
-	margin-left: 50px;
-	width: 45%;
+	margin-right: 25px;
 	cursor: pointer;
 }
 
@@ -62,7 +59,7 @@
 	margin-left: 10px;
 }
 .pill_info_content{
-	padding-left: 50px;
+	/*padding-left: 50px;*/
 	border-bottom: solid #888888;
 	border-width: 1px;
 	margin-bottom: 20px;
@@ -73,8 +70,8 @@
 	
 }
  /*===============.pill_detail============*/
- .pill_detail{
+ /*.pill_detail{
 	float: right;
     margin-right: -40px;
     width: 220px;
- }
+ }*/
