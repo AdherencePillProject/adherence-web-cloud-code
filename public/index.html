@@ -11,10 +11,13 @@
 
     <!-- CSS Frameworks -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
-    <!-- custom CSS -->
+
+    <!-- CSS Dependencies -->
+    <link href="bower_components/angular-xeditable/dist/css/xeditable.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="common/css/index.css" media="screen" title="no title" charset="utf-8">
-<!--     <link rel="stylesheet" href="patient/css/patient_prescription.css" media="screen" title="no title" charset="utf-8">
- -->
+
     <!-- JS Dependencies -->
     <script src="https://www.parsecdn.com/js/parse-1.6.7.js"></script>
     <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -22,6 +25,7 @@
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-route-styles/route-styles.js"></script>
+    <script src="bower_components/angular-xeditable/dist/js/xeditable.js"></script>
 
     <!-- Common JS -->
     <script src='index/js/nav.js'></script>
@@ -42,9 +46,6 @@
     <script src="patient/js/controllers/prescriptionCtrl.js"></script>
     <script src="patient/js/controllers/MedCabinetController.js"></script>
     <script src="common/js/controllers/InboxController.js"></script>
-    <link href="bower_components/angular-xeditable/dist/css/xeditable.css" rel="stylesheet">
-    <script src="bower_components/angular-xeditable/dist/js/xeditable.js"></script>
-    <script src="bower_components/angular-route-styles/route-styles.js"></script>
     <script src="routes.js"></script>
     <script src="doctor/js/doctor_patientgraph.js"></script>
     <script src="doctor/js/DoctorHomeController.js"></script>
@@ -54,45 +55,7 @@
     <script src="http://canvasjs.com/assets/script/canvasjs.min.js"></script>
   </head>
   <body>
-    <nav class="apb-nav" ng-show="currentUser">
-      <div class="apb-logo">
-        <a href="#/home" ><span class="">APB System</span></a>
-      </div>
-      <div class="apb-nav-box">
-        <div class="apb-nav-text">
-          Welcome, {{currentUser.get('firstname')}}
-        </div>
-        <div class="apb-nav-tool">
-          <a href="#/patient/profile"><i class="fa fa-user"></i>&nbsp {{currentUser.get('firstname')}} {{currentUser.get('lastname')}}</a>
-          <a href="#">
-            <i class="fa fa-bell"></i>
-            <span class="apb-badge">3</span>
-          </a>
-          <a href="#">
-            <i class="fa fa-envelope"></i>
-            <span class="apb-badge">1</span>
-          </a>
-        </div>
-      </div>
-    </nav>
-    <div class="apb-side" ng-show="currentUser">
-      <a href="#/patient/home" class='apb-a'>
-        <i class="fa fa-stethoscope"></i>&nbsp Patient Home</a>
-      <a href="#/doctor/docpatient" class='apb-a'>
-        <i class="fa fa-stethoscope"></i>&nbsp Prescription</a>
-      <a href="#/patient/MedCabinet" class='apb-a'>
-        <i class="fa fa-plus-square"></i>&nbsp Med Cabinet</a>
-      <a href="#" class='apb-a' >
-        <i class="fa fa-calendar-check-o"></i>&nbsp Appointment</a>
-      <a href="#/doctor/home" class='apb-a'>
-        <i class="fa fa-user-md"></i>&nbsp My Doctor</a>
-      <a href="#" class='apb-a'>
-        <i class="fa fa-cog"></i>&nbsp Setting</a>
-
-    </div>
-
-    <div ng-view class="apb-page">
-
-    </div>
+    <div ng-include="'common/views/navbar.html'" class="navbar"></div>
+    <div ng-view class="apb-page"></div>
   </body>
 </html>
