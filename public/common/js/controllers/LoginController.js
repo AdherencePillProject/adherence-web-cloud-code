@@ -10,17 +10,17 @@ angular.module('app')
               var dp = user.get('doctorPointer');
               if (($scope.accType == 'Patient') && pp) {
                console.log('patient');
-               $scope.$apply(function(){
-                  $location.path('/patient/profile');
+               $scope.$apply(function() {
+                 $location.path('/patient/profile').replace();
+                 $rootScope.currentUser = user;
                });
-               $rootScope.currentUser = user;
-               $rootScope.currentUser.role = $scope.accType;
               }
               else if (($scope.accType == 'Doctor') && dp) {
-                console.log('doctor')
-                UI.redirect('/profile/doctor');
-                $rootScope.currentUser = user;
-                $rootScope.currentUser.role = $scope.accType;
+                console.log('doctor');
+                $scope.$apply(function() {
+                  $location.path('/patient/profile').replace();
+                  $rootScope.currentUser = user;
+                });
               }
               else
                 alert("You're attempting to log in as someone you are not");

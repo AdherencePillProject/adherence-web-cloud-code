@@ -12,9 +12,9 @@ body {
 }
 
 .navbar {
+  top:0;
   position: fixed;
-  height:100%;
-  width:100%;
+  z-index: 99;
 }
 
 .apb-nav {
@@ -131,9 +131,9 @@ a:hover, a:focus {
 }
 
 .apb-page {
-  position:relative;
+  z-index: -1;
+  margin-top:100px;
   margin-left:200px;
-  padding-top: 80px;
 }
 
 .success {
