@@ -303,14 +303,6 @@ angular.module('app')
         $scope.chart.render();
         $("#view-text").text("Week");
     }
-    $scope.Month = function() {
-        $scope.days = 30;
-        $scope.chart.options.data = [];
-        createDataArray(PillData, pill_times_data);
-        putDataArrayToChart();
-        $scope.chart.render();
-        $("#view-text").text("Week");
-    }
     // createDataArray(PillData, pill_times_data)
     // putDataArrayToChart();
     // $scope.chart.render();
