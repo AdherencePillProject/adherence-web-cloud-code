@@ -173,6 +173,9 @@ angular.module('app')
         success:function(result){
             console.log(result)
             $scope.$apply(function() {
+                console.log("result length is ", result.length)
+                PillData = []
+                pill_names = []
                 for (var i = 0; i < result.length; i++){
                     PillData = result[i].get("Pill_Data");
                     pill_names = result[i].get("Pill_Names");
@@ -227,6 +230,7 @@ angular.module('app')
 
     function createDataArray(PillData, drawArray){
       console.log("function called")
+      console.log("length is ", PillData.length)
       for(var i = 0; i < PillData.length; i++){
         var chartData = []
         for(var j = 0; j < PillData[i].length; j++){
@@ -368,6 +372,8 @@ angular.module('app')
         $scope.chart.render();
         $("#view-text").text("Customize");
     });
+
+   // }
 
 
 
