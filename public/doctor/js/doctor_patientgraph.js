@@ -369,8 +369,6 @@ angular.module('app')
         $("#view-text").text("Customize");
     });
 
-   // }
-
 
 
 

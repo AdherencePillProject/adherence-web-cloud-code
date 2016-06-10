@@ -40,6 +40,32 @@
         </ul>
       </div>
     </div>
+    <!-- Modal for Choosing Customized Date-->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Choose dates</h4>
+          </div>
+          <div class="modal-body">
+            <form>
+              <label class="label-for-date">From: </label><input type="date" id="date-from">
+              <br>
+              <label class="label-for-date">To: </label><input type="date" id="date-to">
+            </form>
+            <p class="reminder">
+              <span class="glyphicon glyphicon-exclamation-sign"></span> If you cannot see the date picker  browser does not (mostly because yoursupport it) please enter the dates manually in the form of mm/dd/yyyy
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal" id="modal-confirm">Confirm</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="col-xs-12">
       <div id="myChart"></div>
     </div>
