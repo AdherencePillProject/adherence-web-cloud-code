@@ -1,125 +1,26 @@
 <!DOCTYPE html>
 <html ng-app="adherence-partials">
 
-<head>
-
-
-  <title>Doctor - Patient Graph Report</title>
-  
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-  <!--Chart.js-->
-  <script src="js/chartjs/Chart.js"></script>
-  <!--JQuery-->
-  <script src="js/jquery.js"></script>
-  <!--Bootstrap-->
-  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
-  <link href="css/bootstrap.css" rel="stylesheet">
-  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-  <!--Parse-->
-  <script src="http://www.parsecdn.com/js/parse-1.6.7.min.js"></script>
-
-  <!--Add Angular-->
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
-
-  <!--Add Angular Directives-->
-  <script src="../js/canvasjs/canvasjs.min.js"></script> 
-  <script src="app.js"></script>
-
-  <!-- <link rel="stylesheet" href="css/doctor_patientgraph.css"> -->
-  <style>
-    body {
-      background-color: white;
-      font-family: "Helvetica Neue";
-    }
-    .container {
-        margin-top: 40px;
-        width: 970px !important;
-    }
-    #chartContainer {
-        margin-top: 30px;
-        height: 500px; 
-        width: 100%;
-    }
-    .list-group {
-      padding-top: 20px;
-    }
-    #options {
-      float:right;
-    }
-    .col-md-4 {
-      padding-left: 5%;
-      padding-right: 10px;
-      height: 700px;
-    }
-    .col-md-8 {
-      padding-left: 10px;
-      padding-right: 5%;
-      
-    }
-    #patien-list {
-      padding: 20px 0px 0px 0px;
-      width: 100%;
-    }
-    #checkbox-left {
-      float: left; 
-      padding-right: 10px;
-      padding-left: 10%;
-    }
-    #radios-right {
-      float: left; 
-      padding-left: 10px;
-    }
-    #graph {
-      clear: both;
-      padding-left: 10%;
-      padding-right: 10%;
-    }
-    #xanax {
-      color: #0091ea;
-      font-weight: bold;
-    }
-    #iron {
-      color: #c51162;
-      font-weight: bold;
-    }
-    #lb-cb1, #lb-cb2 {
-      font-weight: bold;
-    }
-    
-  </style>
-</head>
-
+<link rel="stylesheet" type="text/css" href="../css/doctor_patientgraph.css">
 
 <body>
-    <!-- <div class="container" ng-controller="patient_graphCtrl">
-        <div class="row">
-            <div class="col-xs-12">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12">
-                <div id="chartContainer"></div>
-            </div>
-        </div>
-    </div> -->
-
   <!-- <div ng-controller='NavController as tab' ng-include src="'/partials/navbar/navbar_doctor.html'"></div> -->
-<div class="row"ng-controller="patient_graphCtrl">
-  <div class="col-md-4">
-    <h3 id="patientlist-title">Patients' List</h3>
-    <div class="input-group">
-      <input type="text" class="form-control" placeholder="Search for a patient">
-        <span class="input-group-btn">
-          <button class="btn btn-default" type="button">Search</button>
-        </span>
-    </div>
+  <div class="row" ng-controller="patient_graphCtrl">
+    <div class="col-md-4">
+      <h3 id="patientlist-title">Patients' List</h3>
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search for a patient">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button">Search</button>
+          </span>
+      </div>
 
-    <div class="list-group" >
-      <a href="" ng-repeat="x in sortedName track by $index" class="list-group-item" ng-click="patientClicked(x)">
-        <h4 class="list-group-item-heading">{{x}}</h4>
-      </a>
+      <div class="list-group" >
+        <a href="" ng-repeat="x in sortedName track by $index" class="list-group-item" ng-click="patientClicked(x)">
+          <h4 class="list-group-item-heading">{{x}}</h4>
+        </a>
+      </div>
     </div>
-  </div>
 
   <div class="col-md-8">
     <div id="checkbox-left">
@@ -152,14 +53,11 @@
         Last Month
       </label>
       </div>
-
-      <div>
-      </div>
     </div>
 
-            <div class="col-xs-12">
-                <div id="myChart"></div>
-            </div>
+    <div class="col-xs-12">
+        <div id="myChart"></div>
+    </div>
   </div>
 </div>
 </body>
