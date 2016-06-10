@@ -266,51 +266,47 @@ angular.module('app')
     $scope.getPatientsInfo2();
 
     $("#addDataPoint").click(function () {
-
-    var length = $scope.chart.options.data[0].dataPoints.length;
-    $scope.chart.options.title.text = "New DataPoint Added at the end";
-    $scope.chart.options.data[0].dataPoints.push({ y: 25 - Math.random() * 10});
-    $scope.chart.render();
-
+        var length = $scope.chart.options.data[0].dataPoints.length;
+        $scope.chart.options.title.text = "New DataPoint Added at the end";
+        $scope.chart.options.data[0].dataPoints.push({ y: 25 - Math.random() * 10});
+        $scope.chart.render();
     });
 
-    $("#week-view").click(function() {
+    $scope.switchWeekView = function() {
         $scope.days = 7;
         $scope.chart.options.data = [];
         createDataArray(PillData, pill_times_data);
         putDataArrayToChart();
         $scope.chart.render();
         $("#view-text").text("Week");
-        //$(".btn-group dropup > .btn btn-default dropdown-toggle").html("???");
-    });
-
-    $("#month-view").click(function() {
-        $scope.days = 14
-        $scope.chart.options.data = []
-        createDataArray(PillData, pill_times_data)
+    }
+    $scope.switchMonthView = function() {
+        $scope.days = 14;
+        $scope.chart.options.data = [];
+        createDataArray(PillData, pill_times_data);
         putDataArrayToChart();
         $scope.chart.render();
         $("#view-text").text("Month");
-    });
-
-
-
-    $scope.WeekMonth = function(day) {
-        $scope.days = day;
-        $scope.chart.options.data = [];
-        createDataArray(PillData, pill_times_data);
-        putDataArrayToChart();
-        $scope.chart.render();
-        $("#view-text").text("Week");
     }
-    $scope.Month = function() {
-        $scope.days = 30;
-        $scope.chart.options.data = [];
-        createDataArray(PillData, pill_times_data);
-        putDataArrayToChart();
-        $scope.chart.render();
-        $("#view-text").text("Week");
-    }
+
+
+
+    // $scope.WeekMonth = function(day) {
+    //     $scope.days = day;
+    //     $scope.chart.options.data = [];
+    //     createDataArray(PillData, pill_times_data);
+    //     putDataArrayToChart();
+    //     $scope.chart.render();
+    //     $("#view-text").text("Week");
+    // }
+    // $scope.Month = function() {
+    //     $scope.days = 30;
+    //     $scope.chart.options.data = [];
+    //     createDataArray(PillData, pill_times_data);
+    //     putDataArrayToChart();
+    //     $scope.chart.render();
+    //     $("#view-text").text("Week");
+    // }
     // createDataArray(PillData, pill_times_data)
     // putDataArrayToChart();
     // $scope.chart.render();
@@ -361,7 +357,7 @@ angular.module('app')
                 {date: new Date($toYear, $toMonth, $toDay), time: 7, number: true}
             ]
         ];
-        
+
         $scope.chart.options.data = [];
         var pill_times_data_temp = []
         for(var i = 0; i < customizeData.length; i++) {
@@ -371,7 +367,7 @@ angular.module('app')
             }
             pill_times_data_temp.push(chartData);
         }
-            
+
         for (var i = 0; i < pill_names.length; i++) {
             var pill_time = {
                 type: "line",
@@ -386,7 +382,7 @@ angular.module('app')
             }
             $scope.chart.options.data.push(pill_time);
         }
-        
+
         $scope.chart.render();
         $("#view-text").text("Customize");
     });
@@ -395,7 +391,7 @@ angular.module('app')
 
 
 
-            
+
     $scope.chart.render()
 
 

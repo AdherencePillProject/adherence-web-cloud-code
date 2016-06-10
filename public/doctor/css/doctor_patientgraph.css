@@ -1,42 +1,39 @@
-
+* {
+    padding: 0;
+    margin: 0;
+    font-family: "Helvetica Neue"
+}
 body {
-    font-family: "Helvetica Neue";
+    background-color: white;
+}
+.col-md-4 {
+    padding-left: 5%;
+    padding-right: 10px;
+}
+#graph {
+    padding-right: 5%;
+    margin-top: 100px;
+}
+#patien_names {
+    margin-top: 20px;
+    height: 550px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.col-md-8 > .btn-group {
+    float: right;
+    margin-bottom: 0;
+    margin-right: 5%;
+}
+.btn-group button {
+    width: 100px;
 }
 
-.col-sm-4 {
-    padding: 0px 40px 0px 40px;
+.label-for-date {
+    width: 80px;
 }
-
-.col-sm-8 {
-    padding: 0px 40px 0px 40px;
-}
-
-.btn-primary {
-    margin-bottom: 15px;
-}
-
-@media (min-width:768px){
-    .left {
-        left: 10px;
-        width: 400px;
-    }
-    .col-sm-4 {
-      padding: 0px 20px 0px 30px;
-    }
-    .col-sm-8 {
-      padding: 0px 35px 0px 0px;
-    }
-}
-#patient_names {
-  padding-top: 20px;
-}
-.btn-del {
-
-    margin-left: 20px;
-    margin-bottom: 10px;
-    color:white;
-    background-color: red;
-}
-.p-del {
-    color: blue;
+.reminder {
+    color: #8c8c8c;
+    margin-top: 15px;
+    margin-bottom: -15px;
 }

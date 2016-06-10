@@ -15,7 +15,7 @@
           </span>
       </div>
 
-      <div class="list-group" >
+      <div class="list-group" id="patien_names">
         <a href="" ng-repeat="x in sortedName track by $index" class="list-group-item" ng-click="patientClicked(x)">
           <h4 class="list-group-item-heading">{{x}}</h4>
         </a>
@@ -23,7 +23,7 @@
     </div>
 
   <div class="col-md-8">
-    <div id="checkbox-left">
+    <!-- <div id="checkbox-left">
 
       <div class="checkbox" >
         <label>
@@ -38,9 +38,9 @@
           Un-Select all
         </label>
       </div>
-    </div>
+    </div> -->
 
-    <div id="radios-right">
+   <!--  <div id="radios-right">
       <div class="radio">
       <label>
         <input type="radio" ng-model="days" value="7" ng-change="WeekMonth(days)">
@@ -53,10 +53,31 @@
         Last Month
       </label>
       </div>
+
+    </div> -->
+
+    <!-- button group -->
+    <div class="btn-group" role="group" aria-label="...">
+      <!-- button -->
+      <button type="button" class="btn btn-default" id="SelectAll" ng-click="SelectALL()">Select All</button>
+      <button type="button" class="btn btn-default" id="unSelectAll" ng-click="unSelectALL()">Unselect All</button>
+      <!-- switch view -->
+      <div class="btn-group dropup" role="group">
+        <button type="button" id="view" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span id="view-text">Week</span>
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li><a href="javascript:void(0)" id="week-view" ng-click="switchWeekView()">Week</a></li>
+          <li><a href="javascript:void(0)" id="month-view" ng-click="switchMonthView()">Month</a></li>
+          <li><a href="javascript:void(0)" id="customize-view" data-toggle="modal" data-target="#myModal">Customize</a></li>
+        </ul>
+      </div>
     </div>
 
     <div class="col-xs-12">
         <div id="myChart"></div>
+
     </div>
   </div>
 </div>
