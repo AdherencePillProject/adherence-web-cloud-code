@@ -37,29 +37,7 @@ angular
         weekday[6] = "Sat";
 
     $scope.day_of_week = weekday[currentdate.getDay()];
-    console.log(currentdate.getDay());
-    console.log($scope.day_of_week);
-    console.log('current user is', $rootScope.currentUser.get('prescription'));
-    // pill_info
-    // include the information of pills a patient should take, please retrieve from database
 
-    $scope.pill_info = [
-        {
-            "index": "0",
-            "name" :"Antihistamine",
-            "dose" :"2",
-            "time":"09:30",
-            "intro":"Here is the detailed introduction to this pill and prescription inforamtion"
-        },
-
-        {
-            "index": "1",
-            "name" :"Sonata",
-            "dose" :"1",
-            "time":"11:30",
-            "intro":"Here is the detailed introduction to"
-        }
-    ];
 
     var query = $rootScope.currentUser.relation('prescription').query();
       // query.limit(5);

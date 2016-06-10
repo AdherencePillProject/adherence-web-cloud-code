@@ -19,7 +19,7 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="common/css/index.css" media="screen" title="no title" charset="utf-8">
 
-    
+
     <!-- custom CSS -->
     <link rel="stylesheet" href="common/css/index.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="patient/css/patient_prescription.css" media="screen" title="no title" charset="utf-8">
@@ -35,7 +35,7 @@
     <script src="bower_components/angular-xeditable/dist/js/xeditable.js"></script>
 
     <!-- Common JS -->
-    <script src='index/js/nav.js'></script>
+    <script src='common/js/nav.js'></script>
     <script src="app.js"></script>
     <script src="routes.js"></script>
 
@@ -63,7 +63,7 @@
   </head>
 
   <body>
-    <div ng-include="'common/views/navbar.html'" class="navbar"></div>
+    <div ng-include="'common/views/navbar.html'" ng-if="location.path() !== '/login' && location.path() !== '/signup'"></div>
     <div ng-view class="apb-page"></div>
   </body>
 </html>

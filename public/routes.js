@@ -26,6 +26,9 @@ angular.module('app')
           templateUrl : 'patient/views/patientprofile.html',
           controller  : 'PatientProfileController'
       })
+      .when('/patient/appointments', {
+          templateUrl : 'patient/views/appointments.html'
+      })
       .when('/doctor/home', {
           templateUrl : 'doctor/views/Doctorhome.html',
           controller  : 'patient_graphCtrl',
