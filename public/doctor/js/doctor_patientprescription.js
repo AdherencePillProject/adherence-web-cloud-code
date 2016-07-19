@@ -7,6 +7,9 @@ var namesToIndices = {};
 //even if times aren't specified for a specific day we need to have it in the table
 var timesAvailable = [];
 
+var nameDictionary = {};
+var selected = "name0";
+
 
 //toggleActive
 //parameters: div element
@@ -27,6 +30,8 @@ function toggleActive(element) {
 
 	getPrescriptions(currActiveUser);
 	timesAvailable = [];
+	// Assuming only one element can be selected
+	selected = actives[0].id;
 
 }
 
@@ -57,6 +62,7 @@ function getPatientsInfo() {
 			userQuery.get(currID).then(function(user) {
 				var name = user.get("firstname") + " " + user.get("lastname");
 				namesToIndices[count] = user;
+				nameDictionary["name"+count] = patientDict[user.objectId];
 				createNameDiv(name, count++);
 			});
 
@@ -69,7 +75,7 @@ function getPatientsInfo() {
 
 // As required by Yeyi, for the patient sorting issue.
 function getPatientsInfo2() {
-
+	var patientDict = {};
 	var patientList = Parse.Object.extend("Patient");
 	var query = new Parse.Query(patientList);
 
@@ -83,12 +89,11 @@ function getPatientsInfo2() {
 		success: function(patients) {
 			for (var i = 0; i < patients.length; i++) {
 				var user = patients[i].get("userAccount");
-
 				// In some cases where userAccount is null, we need to double check.
 				// Though the userAccount should NOT be null in any cases.
 				// But with all the testing data, we never know.
-
 				if (user != undefined) {
+					patientDict[user.id] = patients[i].id;
 					//alert(user);
 					var firstname = user.get("firstname");
 					var lastname = user.get("lastname");
@@ -128,6 +133,7 @@ function getPatientsInfo2() {
 				var sortedUser = unsortedNames[i]["user"];
 				var sortedName = unsortedNames[i]["name"];
 				namesToIndices[i] = sortedUser;
+				nameDictionary["name"+i] = patientDict[sortedUser.id];
 				createNameDiv(sortedName, i);
 			}
 		},
@@ -295,21 +301,21 @@ function createPrescriptionDiv(drugName, prescriptionID, days, scheduleID, patie
 	var daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 
 	var newP = "<h3 class='drug'>" + drugName + "</h3>" +
-		"<div class='table-responsive'>" +
-		"<table class='table table-responsive'>" +
-		"<thead>" +
-		"<tr>" +
-		"<th></th>" +
-		"<th>" + daysOfWeek[0] + "</th>" +
-		"<th>" + daysOfWeek[1] + "</th>" +
-		"<th>" + daysOfWeek[2] + "</th>" +
-		"<th>" + daysOfWeek[3] + "</th>" +
-		"<th>" + daysOfWeek[4] + "</th>" +
-		"<th>" + daysOfWeek[5] + "</th>" +
-		"<th>" + daysOfWeek[6] + "</th>" +
-		"<tr>" +
-		"</thead>" +
-		"<tbody>";
+	"<div class='table-responsive'>" +
+	"<table class='table table-responsive'>" +
+	"<thead>" +
+	"<tr>" +
+	"<th></th>" +
+	"<th>" + daysOfWeek[0] + "</th>" +
+	"<th>" + daysOfWeek[1] + "</th>" +
+	"<th>" + daysOfWeek[2] + "</th>" +
+	"<th>" + daysOfWeek[3] + "</th>" +
+	"<th>" + daysOfWeek[4] + "</th>" +
+	"<th>" + daysOfWeek[5] + "</th>" +
+	"<th>" + daysOfWeek[6] + "</th>" +
+	"<tr>" +
+	"</thead>" +
+	"<tbody>";
 
 	timesAvailable.sort(function(a, b) {
 		return new Date('1970/01/01 ' + a) - new Date('1970/01/01 ' + b);
@@ -318,7 +324,7 @@ function createPrescriptionDiv(drugName, prescriptionID, days, scheduleID, patie
 
 	for (var t = 0; t < timesAvailable.length; t++) {
 		newP += "<tr>" +
-			"<th>" + timesAvailable[t] + "</th>";
+		"<th>" + timesAvailable[t] + "</th>";
 		for (var d = 0; d < days.length; d++) {
 			var times = Object.keys(days[d]);
 
@@ -347,11 +353,11 @@ function createPrescriptionDiv(drugName, prescriptionID, days, scheduleID, patie
 	var deleteBtnName = "deleteBtn" + prescriptionID;
 
 	newP += "</tbody>" +
-		"</table>" +
-		"</div>" +
-		"<div class='btn-group' id='" + drugName + "btnGroup' role='group'>" +
-		"<button type='button' id='" + deleteBtnName + "' class='btn btn-default'>Delete</button>" +
-		"</div>";
+	"</table>" +
+	"</div>" +
+	"<div class='btn-group' id='" + drugName + "btnGroup' role='group'>" +
+	"<button type='button' id='" + deleteBtnName + "' class='btn btn-default'>Delete</button>" +
+	"</div>";
 
 
 	newA.innerHTML += newP;
@@ -450,65 +456,154 @@ function updateDosage(scheduleID, drugName, dayOfWeek, timeOfDay, newValue) {
 
 }
 
+//submit form with name function.
+function submitForm() {
+	event.preventDefault();
+	var prescriptionName = document.getElementById("newPrescriptionName").value;
+	var time = document.getElementById("time").value;
+	var mon = document.getElementById("mon_pill").value;
+	var tu = document.getElementById("tu_pill").value;
+	var wed = document.getElementById("wed_pill").value;
+	var th = document.getElementById("th_pill").value;
+	var fr = document.getElementById("fr_pill").value;
+	var sa = document.getElementById("sa_pill").value;
+	var su = document.getElementById("sun_pill").value;
+	var prescription = {
+		pillName:prescriptionName,
+		time:time,
+		mon:mon,
+		tu:tu,
+		wed:wed,
+		th:th,
+		fr:fr,
+		sa:sa,
+		su:su
+	};
+	addPrescriptionToParse(prescription);
+}
 
-//addPrescription()
-//parameters: patient
-//function: creates div (AND LATER ADDS TO DATABASE) to allow user to add prescription to patient
-function addPrescription(patient) {
+function addPrescriptionToParse(prescription){
+	event.preventDefault();
+	// Successfully created the prescription
+	var Schedule = Parse.Object.extend("Schedule");
+	var newSchedule = new Schedule();
+	var mon = {};
+	var tu = {};
+	var wed = {};
+	var th = {};
+	var fr = {};
+	var sa = {};
+	var su = {};
+	mon[prescription["time"]] = prescription["mon"];
+	tu[prescription["time"]] = prescription["tu"];
+	wed[prescription["time"]] = prescription["wed"];
+	th[prescription["time"]] = prescription["th"];
+	fr[prescription["time"]] = prescription["fr"];
+	sa[prescription["time"]] = prescription["sa"];
+	su[prescription["time"]] = prescription["su"];
 
-	//temporarily remove addBtn
-	var addBtnHTML = $("#addBtn").html();
-	//  $("#addBtn").remove();
-	$(document.body).on("click", '#addBtn', function() {
-		addPrescription(patient);
-	});
+	newSchedule.save({
+		Monday: mon,
+		Tuesday: tu,
+		Wednesday: wed,
+		Thursday: th,
+		Friday: fr,
+		Saturday: sa,
+		Sunday: su
+	},
+	{
+		success:function(s){
+			var Prescription = Parse.Object.extend("Prescription");
+			var newPrescription = new Prescription();
+			var Patient = Parse.Object.extend("Patient");
+			var patient = new Parse.Query(Patient);
+			patient.get(nameDictionary[selected],{
+				success: function(selectedP){
+					// Successfully created the prescription
+					newPrescription.save(
+						{
+							pillName: prescription["pillName"],
+							schedule: s,
+							patientID: selectedP
+						},
+						{
+							success: function(p){
+								alert("yay");
+							},
+							error: function(e){
+								alert(e.message);
+							}
+						});
+					},
+					error: function(e){
+						alert(e.message);
+					}
+				});
+			},
+			error: function(object, error){
+				alert(error.message);
+			}
+		});
+	}
 
-	var divHTML = $("#patient_descriptions").html();
+	//addPrescription()
+	//parameters: patient
+	//function: creates div (AND LATER ADDS TO DATABASE) to allow user to add prescription to patient
+	function addPrescription(patient) {
 
-	var addPrescriptionForm = "<a class='list-group-item'>" +
-		"<form>" +
+		//temporarily remove addBtn
+		var addBtnHTML = $("#addBtn").html();
+		//  $("#addBtn").remove();
+		$(document.body).on("click", '#addBtn', function() {
+			addPrescription(patient);
+		});
+
+		var divHTML = $("#patient_descriptions").html();
+
+		var addPrescriptionForm = "<a class='list-group-item'>" +
+		"<form action=\"#\" method=\"post\" name=\"form_name\" id=\"form_id\">" +
 		"<h3>Add New Prescription</h3>" +
 		"<fieldset class='form-group' id='newPrescriptionForm'>" +
 		"<label for='newPrescriptionName'>Prescription Name:</label>" +
-		"<input type='text' class='form-control' id='newPrescriptionName' placeholder=''>" +
+		"<input type='text' name='prescription' class='form-control' id='newPrescriptionName' placeholder=''>" +
 		"<br/>" +
 		"<button class='btn btn-default' id='addTime'>Add Time</button><br/>" +
 		"<br/>" +
 		"<div id='test'>"+
 		"<div class='form-group'>" +
 		"<label class='time'>Time</label>" + "<button class='btn btn-del' id='deleteTime'>Delete</button><br/>"+
-		"<input type='time' class='form-control' placeholder=''>" +
+		"<input type='time' class='form-control' placeholder='' id='time'>" +
 		"</div>" +
 		"<table>" +
 		"<tbody>" +
 
 		"<td><div class='form-group'>" +
 		"<label class='day'>Monday</lable>" +
-		"<input type='number' min=0 class='form-control' placeholder='# of Pills'>" +
+		"<input type='number' min=0 class='form-control' id='mon_pill' placeholder='# of Pills'>" +
 		"</div></td>" +
 		"<td><div class='form-group'>" +
 		"<label class='day'>Tuesday</lable>" +
-		"<input type='number' min=0 class='form-control' placeholder='# of Pills'>" +
+		"<input type='number' min=0 class='form-control' id='tu_pill' placeholder='# of Pills'>" +
 		"</div></td>" +
 		"<td><div class='form-group'>" +
 		"<label class='day'>Wednesday</lable>" +
-		"<input type='number' min=0 class='form-control' placeholder='# of Pills'>" +
+		"<input type='number' min=0 class='form-control' id='wed_pill' placeholder='# of Pills'>" +
 		"</div></td>" +
 		"<td><div class='form-group'>" +
 		"<label class='day'>Thursday</lable>" +
-		"<input type='number' min=0 class='form-control' placeholder='# of Pills'>" +
+		"<input type='number' min=0 class='form-control' id='th_pill' placeholder='# of Pills'>" +
 		"</div></td>" +
 		"<td><div class='form-group'>" +
 		"<label class='day'>Friday</lable>" +
-		"<input type='number' min=0 class='form-control' placeholder='# of Pills'>" +
+		"<input type='number' min=0 class='form-control' id='fr_pill' placeholder='# of Pills'>" +
 		"</div></td>" +
 		"<td><div class='form-group'>" +
 		"<label class='day'>Saturday</lable>" +
-		"<input type='number' min=0 class='form-control' placeholder='# of Pills'>" +
+		"<input type='number' min=0 class='form-control' id='sa_pill' placeholder='# of Pills'>" +
 		"</div></td>" +
 		"<td><div class='form-group'>" +
 		"<label class='day'>Sunday</lable>" +
-		"<input type='number' min=0 class='form-control' placeholder='# of Pills'>" +
+		"<input type='number' min=0 class='form-control' id='sun_pill' placeholder='# of Pills'>" +
 		"</div></td>" +
 
 		"</tbody>" +
@@ -517,39 +612,39 @@ function addPrescription(patient) {
 		"<br/>" +
 
 		"</fieldset>" +
-		"<button class='btn btn-primary' type='submit'>Submit</button>" +
-
+		"<button class='btn btn-primary' onclick='submitForm()'>Submit</button>" +
 		"</form>" +
 		"</a>";
 
-	divHTML = addPrescriptionForm + divHTML;
+		divHTML = addPrescriptionForm + divHTML;
 
-	$("#patient_descriptions").html(divHTML);
-
-
-
-	// $( "button" ).click(function() {
-	//   $( "form1" ).remove();
-	// });
+		$("#patient_descriptions").html(divHTML);
 
 
-	//adds new time option to add prescription div if user clicks "Add Time" button
-	$(document.body).on("click", '#addTime', function() {
-		addForm();
-	});
-	$(document.body).on("click", '#deleteTime', function() {
-		deleteForm();
-	});
 
-	//
-	function deleteForm() {
-		$("#test").remove("#test");
-	}
 
-	function addForm() {
-		var formHTML = $("#newPrescriptionForm").html();
-		var newFieldSet =
-	 		"<div id='test'>"+
+		// $( "button" ).click(function() {
+		//   $( "form1" ).remove();
+		// });
+
+
+		//adds new time option to add prescription div if user clicks "Add Time" button
+		$(document.body).on("click", '#addTime', function() {
+			addForm();
+		});
+		$(document.body).on("click", '#deleteTime', function() {
+			deleteForm();
+		});
+
+		//
+		function deleteForm() {
+			$("#test").remove("#test");
+		}
+
+		function addForm() {
+			var formHTML = $("#newPrescriptionForm").html();
+			var newFieldSet =
+			"<div id='test'>"+
 			"<div class='form-group'>" +
 			"<label class='time'>Time</label>" + "<button class='btn btn-del' id='deleteTime'>Delete</button><br/>" +
 			"<input type='time' class='form-control' placeholder=''>" +
@@ -588,97 +683,99 @@ function addPrescription(patient) {
 
 			"</tbody>" +
 			"</table>" +
-			"</div>" +			
+			"</div>" +
 			"<br/>";
-		formHTML += newFieldSet;
-		$("#newPrescriptionForm").html(formHTML);
+			formHTML += newFieldSet;
+			$("#newPrescriptionForm").html(formHTML);
+		}
+
+
+		//ADD FUNCTIONALITY TO ADD NEW PRESCRIPTION HERE
+
 	}
 
 
-	//ADD FUNCTIONALITY TO ADD NEW PRESCRIPTION HERE
-
-}
 
 
 
-//deletePrescription()
-//parameters: prescriptionID, patient
-//function: deletes specified prescription from page and from database
-function deletePrescription(prescriptionID, patient) {
-	//delete Prescritpion, Schedule, prescriptions_list in patient
-	var prescriptionType = Parse.Object.extend("Prescription");
-	var query = new Parse.Query(prescriptionType);
+	//deletePrescription()
+	//parameters: prescriptionID, patient
+	//function: deletes specified prescription from page and from database
+	function deletePrescription(prescriptionID, patient) {
+		//delete Prescritpion, Schedule, prescriptions_list in patient
+		var prescriptionType = Parse.Object.extend("Prescription");
+		var query = new Parse.Query(prescriptionType);
 
 
 
-	query.get(prescriptionID, {
-		success: function(pres) {
-			//delete schedule associated with pill
-			var sched = pres.get("schedule");
+		query.get(prescriptionID, {
+			success: function(pres) {
+				//delete schedule associated with pill
+				var sched = pres.get("schedule");
 
-			//destroy schedule
-			destroySchedule(sched);
-
-
-			pres.destroy({
-				success: function(myObject) {
-					var prescripIDs = patient.get("patientPointer").get("prescriptions");
-					console.log("Successfully deleted " + myObject.get("pillName"));
+				//destroy schedule
+				destroySchedule(sched);
 
 
-					//finally, delete from webpage
-					//this follows the format specified in createPrescriptionDiv()
-					var pill = "#" + myObject.get("pillName") + "" + myObject["id"];
-					$(pill).remove();
+				pres.destroy({
+					success: function(myObject) {
+						var prescripIDs = patient.get("patientPointer").get("prescriptions");
+						console.log("Successfully deleted " + myObject.get("pillName"));
 
-					//we have no more prescriptions, clear div
-					if ($("#patient_descriptions > a").length <= 0) {
-						noPrescriptionDiv(patient);
+
+						//finally, delete from webpage
+						//this follows the format specified in createPrescriptionDiv()
+						var pill = "#" + myObject.get("pillName") + "" + myObject["id"];
+						$(pill).remove();
+
+						//we have no more prescriptions, clear div
+						if ($("#patient_descriptions > a").length <= 0) {
+							noPrescriptionDiv(patient);
+						}
+
+						//reload the webpage to show new prescription list
+						location.reload();
+					},
+					error: function(myObject, error) {
+						console.log("Error in retrieving scheduleID in updateDosage: " + error.code + " " + error.message);
 					}
 
-					//reload the webpage to show new prescription list
-					location.reload();
-				},
-				error: function(myObject, error) {
-					console.log("Error in retrieving scheduleID in updateDosage: " + error.code + " " + error.message);
-				}
+				});
+			},
+			error: function(object, error) {
+				console.log("Error in finding prescription with ID: " + prescriptionID + " : " + error.code + " " + error.message);
+			}
 
-			});
-		},
-		error: function(object, error) {
-			console.log("Error in finding prescription with ID: " + prescriptionID + " : " + error.code + " " + error.message);
-		}
+		});
 
-	});
-
-}
+	}
 
 
-//destroySchedule()
-//parameters: schedule
-//function: deletes schedule from database
-function destroySchedule(sched) {
-	sched.destroy({
-		success: function(myObject) {
-			console.log("Schedule " + myObject.id + " successfully deleted");
-		},
-		error: function(myObject, error) {
-			// The delete failed.
-			// error is a Parse.Error with an error code and message.
-			console.log("Deletion of schedule " + myObject.id + " failed, error: " + error.code + ", " + error.message);
-		}
-	});
+	//destroySchedule()
+	//parameters: schedule
+	//function: deletes schedule from database
+	function destroySchedule(sched) {
+		sched.destroy({
+			success: function(myObject) {
+				console.log("Schedule " + myObject.id + " successfully deleted");
+			},
+			error: function(myObject, error) {
+				// The delete failed.
+				// error is a Parse.Error with an error code and message.
+				console.log("Deletion of schedule " + myObject.id + " failed, error: " + error.code + ", " + error.message);
+			}
+		});
 
-}
+	}
 
 
 
-//main()
-function main() {
-	Parse.initialize("BDo39lSOtPuBwDfq0EBDgIjTzztIQE38Fuk03EcR", "ox76Y4RxB06A69JWAleRHSercHKomN2FVu61dfu3");
-	//get patients
-	getPatientsInfo2();
-}
+	//main()
+	function main() {
+		Parse.initialize("BDo39lSOtPuBwDfq0EBDgIjTzztIQE38Fuk03EcR", "ox76Y4RxB06A69JWAleRHSercHKomN2FVu61dfu3");
+		//get patients
+		getPatientsInfo2();
+	}
 
 
-main();
+	main();
